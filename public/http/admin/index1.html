@@ -1,0 +1,34 @@
+<div class="wrapper">
+
+<div ng-include="'/http/admin/public/header.html'"></div>
+<div ng-include="'/http/admin/public/left.html'"></div>
+<div>{{'parseURL' | F:'host'}}</div>
+<div ng-controller="admin-indexCtrl" ng-init="data_url='/admin/index'">
+    {{reset}}
+    <input type="text" ng-init="where.id.exp='like';where.id.val='';" ng-model="where.id.val" >
+    <button type="button" ng-init="reset=0" ng-click="getData($this)">搜索</button>
+    <button type="button" ng-click="getData($this,{reset:1})">重置</button>
+   <table class="table table-striped">
+        <tr>
+            <th>ID
+                <span ng-click="getData($this,{'order':'id'})" ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.id=='desc','glyphicon glyphicon-sort-by-attributes':order.id!='desc'}"></span>
+            </th>
+            <th>名称
+                <span ng-click="getData($this,{'order':'name'})" ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.name=='desc','glyphicon glyphicon-sort-by-attributes':order.name!='desc'}"></span>
+            </th>
+            <th>状态
+                <span ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.status,'glyphicon glyphicon-sort-by-attributes':!order.status}"></span>
+            </th>
+        </tr>
+        <tr ng-repeat="row in data">
+            <td>{{row.id}}</td>
+            <td>{{row.name}}</td>
+            <td>{{row.status}}</td>
+        </tr>
+    </table>
+    <div ng-include="'/http/admin/public/page.html'"></div>
+
+</div>
+</div>
+
+
