@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/lib/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+
+    <!-- endinject -->
+    <script src="//cdn.jsdelivr.net/angularjs/1.5/angular.min.js"></script>
+    <script src="http://mgcrea.github.io/angular-strap/dist/angular-strap.min.js"></script>
+    <script src="http://mgcrea.github.io/angular-strap/dist/angular-strap.tpl.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="DemoCtrl">
+
+
+<!-- Inlined sibling dropdown -->
+<button type="button" class="btn btn-lg btn-primary"
+        data-animation="am-flip-x"
+        bs-dropdown
+        aria-haspopup="true"
+        aria-expanded="true">Click to toggle dropdown
+</button>
+<ul class="dropdown-menu" role="menu">
+    <li><a href="#anotherAction"><i class="fa fa-download"></i>&nbsp;Some action</a></li>
+    <li><a ng-click="$alert('Holy guacamole')"><i class="fa fa-globe"></i>&nbsp;Display an alert</a></li>
+    <li ng-repeat="i in ['Foo', 'Bar', 'Baz']"><a ng-href="#action{{i}}"><i class="fa fa-chevron-right"></i>&nbsp;{{i}}</a></li>
+</ul>
+<script>
+    var app = angular.module('myApp', ['mgcrea.ngStrap']);
+    app.controller('DemoCtrl', function($scope, $modal,$alert) {
+        $scope.modal = {
+            "title": "Title",
+            "content": "Hello Modal<br />This is a multiline message!"
+        };
+        //$scope.alert = {title: 'Holy guacamole!', content: 'Best check yo self, you\'re not looking too good.', placement: 'top', type: 'info', show: true}
+        $scope.aa = function(){
+            $alert(
+                    {
+                        title: 'Holy guacamole!',
+                        content: 'Best check yo self, you\'re not looking too good.',
+                        placement: 'top-right',
+                        type: 'info',
+                        container: 'body',
+                        duration :30000
+
+                    }
+
+            )
+        }
+        var myAlert = 0;
+})
+</script>
+
+</body>
+</html>
