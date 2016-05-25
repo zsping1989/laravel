@@ -8,26 +8,42 @@
 
     <!-- endinject -->
     <script src="//cdn.jsdelivr.net/angularjs/1.5/angular.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular-animate.min.js"></script>
     <script src="http://mgcrea.github.io/angular-strap/dist/angular-strap.min.js"></script>
     <script src="http://mgcrea.github.io/angular-strap/dist/angular-strap.tpl.min.js"></script>
 </head>
+<style>
+    .div1 {
+        transition: all linear 0.5s;
+        background-color: lightblue;
+        height: 100px;
+    }
+
+    .ng-hide {
+        height: 0;
+    }
+</style>
 <body ng-app="myApp" ng-controller="DemoCtrl">
 
+<h1>隐藏 DIV: <input type="checkbox" ng-model="myCheck"></h1>
 
-<!-- Inlined sibling dropdown -->
+<div ng-hide="myCheck" class="div1"></div>
+<!-- Button to trigger a default dropdown from an array ($scope.dropdown) [{text:'foo', href:'', click:''}, ...] -->
 <button type="button" class="btn btn-lg btn-primary"
-        data-animation="am-flip-x"
-        bs-dropdown
-        aria-haspopup="true"
-        aria-expanded="true">Click to toggle dropdown
+        data-toggle="aa"
+        data-animation="am-flip-x" bs-dropdown
+        aria-haspopup="true" aria-expanded="false">Click to toggle dropdown
+    <br>
+    <small>(using an object)</small>
 </button>
-<ul class="dropdown-menu" role="menu">
+
+<ul class="dropdown-menu" id="aa" role="menu">
     <li><a href="#anotherAction"><i class="fa fa-download"></i>&nbsp;Some action</a></li>
     <li><a ng-click="$alert('Holy guacamole')"><i class="fa fa-globe"></i>&nbsp;Display an alert</a></li>
     <li ng-repeat="i in ['Foo', 'Bar', 'Baz']"><a ng-href="#action{{i}}"><i class="fa fa-chevron-right"></i>&nbsp;{{i}}</a></li>
 </ul>
 <script>
-    var app = angular.module('myApp', ['mgcrea.ngStrap']);
+    var app = angular.module('myApp', ['mgcrea.ngStrap','ngAnimate']);
     app.controller('DemoCtrl', function($scope, $modal,$alert) {
         $scope.modal = {
             "title": "Title",
