@@ -62,7 +62,7 @@ class AdminMiddleware
         }else{
             $menus = Menu::orderBy('left_margin')->get();
         }
-        dd($menus->toArray());
+        //dd($menus->toArray());
         $admin->menus = $menus->toArray();
         //存储后台用户信息
         Session::put('admin',$admin->toArray());

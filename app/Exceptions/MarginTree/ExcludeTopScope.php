@@ -11,13 +11,14 @@ namespace App\Exceptions\MarginTree;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
-use Illuminate\Database\Schema\Builder;
+use Illuminate\Database\Eloquent\Builder;
 
 class ExcludeTopScope implements Scope
 {
    public function apply(Builder $builder, Model $model)
    {
-       $builder->where($model->get('treeField')['level_key'],'>',1);
+       $level_key = $model->getAttribute('level_key')?: 'level' ;
+       $builder->where($level_key,'>',1);
    }
 
 

@@ -23,6 +23,7 @@ class MenuTableSeeder extends Seeder
 
         factory(\App\Models\Menu::class)->create([
             'name'=>'后台首页',
+            'icons'=>'fa-dashboard',
             'url'=>'/Admin/index',
             'description' => '后台首页',
             'parent_id'=>1,
@@ -30,9 +31,26 @@ class MenuTableSeeder extends Seeder
         ]);
         factory(\App\Models\Menu::class)->create([
             'name'=>'登录页面',
+            'icons'=>'fa-circle-o',
             'url'=>'/Admin/login',
             'description' => '后台登录',
             'parent_id'=>1,
+            'status'=>1
+        ]);
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'菜单测试',
+            'icons'=>'fa-th',
+            'url'=>'/Admin/index',
+            'description' => '后台首页',
+            'parent_id'=>2,
+            'status'=>1
+        ]);
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'菜单测一',
+            'icons'=>'fa-th',
+            'url'=>'/Admin/index',
+            'description' => '后台首页',
+            'parent_id'=>2,
             'status'=>1
         ]);
         //新建假数据3条

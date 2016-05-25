@@ -12,6 +12,7 @@ routes.default = data.route; //当前路由
 require.config({
     baseUrl: "/http/",
     paths: {
+        "jquery":'/lib/jquery/2.2.3/jquery.min',
         "angular": "/lib/angular/1.5.5/angular.min",
         "angular-ui-router": "/lib/angular-ui-router/0.2.8/angular-ui-router.min",
         "angular-strap":'/lib/angular-strap/2.3.8/dist/angular-strap.min',

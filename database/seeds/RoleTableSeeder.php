@@ -26,8 +26,8 @@ class RoleTableSeeder extends Seeder
         ]);
         //添加测试用户权限列表
         $role->menus()->saveMany([
-            \App\Models\Menu::find(1),
-            \App\Models\Menu::find(2)
+            \App\Models\Menu::find(2),
+            \App\Models\Menu::find(3)
         ]);
         factory(\App\Models\Role::class)->create([
             'name'=>'观察者下级用户',
