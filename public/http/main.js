@@ -6,6 +6,7 @@ var routes = {
     '/home/home':{'as':'home','path':'home/home'},
     '/home/about':{'as':'about','path':'home/about'},
     '/home/auth/login':{'as':'login','path':'home/login'},
+    '/admin/menu/index':{'as':'admin-menu-index','path':'admin/menu/index'},
     '/admin/index':{'as':'admin-index','path':'admin/index'}
 }
 routes.default = data.route; //当前路由

@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
+use App\Models\Menu;
+use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
 
 class MenuController extends Controller
 {
 
     public function getIndex(){
-dd('index');
+        $data = Menu::options(Request::only('where', 'order'))->paginate();
+        return Response::returns($data);
     }
     //创建
     public function create(){

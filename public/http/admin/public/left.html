@@ -21,7 +21,7 @@
             </div>
         </div>
         <ul class="sidebar-menu" ng-controller="admin-left-menuCtrl" ng-init="level=2">
-            <li ng-repeat="(key,menu) in menus" class="treeview active" ng-init="menus[key].toggle = !nav[menu.id]"
+            <li ng-repeat="(key,menu) in menus" class="treeview" ng-init="menus[key].toggle = !nav[menu.id]"
                 ng-class="{'active':!menus[key].toggle}" ng-if="menu.level<=level">
                 <a ng-href="{{menu.url}}" ng-init="level=menu.level" ng-click="menus[key].toggle =!menus[key].toggle">
                     <i class="fa" ng-class="menu.icons"></i> <span>{{menu.name}}</span> <i class="fa fa-angle-left pull-right"></i>
