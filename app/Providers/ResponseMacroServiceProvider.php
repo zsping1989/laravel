@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Menu;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -41,6 +42,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
             }else{
                 $value['user'] = Auth::user(); //用户信息
                 $value['menus'] = session('admin.menus');
+                $value['nav'] = collect(Menu::where('url','=',$value->get('route'))->first()->parents(true)->toArray())->keyBy('id');
                 return view('index',['data'=>$value]);
             }
             return $factory->make($value,$status);

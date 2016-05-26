@@ -16,16 +16,40 @@
     .div1 {
         transition: all linear 0.5s;
         background-color: lightblue;
+        opacity:1;
+
         height: 100px;
     }
 
     .ng-hide {
         height: 0;
+        opacity:0;
+   }
+    /*ng-repeat的元素*/
+    .item{
+        -webkit-transition: all linear 1s;
+        -o-transition: all linear 1s;
+        transition: all linear 1s;
+    }
+    /*动画开始前*/
+    .item.ng-enter{
+        opacity:0;
+    }
+    /*动画过程*/
+    .item-ng-enter-active{
+        opacity:1;
     }
 </style>
 <body ng-app="myApp" ng-controller="DemoCtrl">
+<div ng-init="users = [1,2,3,4,5]"></div>
+<input class="filter-btn" type="search" ng-model="u" placeholder="search item" aria-label="search item" />
+<ul>
+    <li class="item" ng-repeat="user in users | filter: u as result">
+        {{user}}
+    </li>
+</ul>
 
-<h1>隐藏 DIV: <input type="checkbox" ng-model="myCheck"></h1>
+<h1>隐藏 DIV: <button  ng-click="myCheck = !myCheck"> 点击</button></h1>
 
 <div ng-hide="myCheck" class="div1"></div>
 <!-- Button to trigger a default dropdown from an array ($scope.dropdown) [{text:'foo', href:'', click:''}, ...] -->

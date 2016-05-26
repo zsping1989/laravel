@@ -10,7 +10,8 @@ define(['app'],function(app){
     //菜单目录
     app.register.controller('admin-left-menuCtrl',["$scope", '$rootScope','View',function($scope,$rootScope,View){
         var datas = {
-            menus : data.menus
+            menus : data.menus,
+            nav:data.nav
         }
         $scope = View.with(datas,$scope);
     }])

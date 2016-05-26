@@ -21,17 +21,16 @@
             </div>
         </div>
         <ul class="sidebar-menu" ng-controller="admin-left-menuCtrl" ng-init="level=2">
-            <li ng-repeat="(key,menu) in menus" class="active treeview" ng-if="menu.level<=level">
+            <li ng-repeat="(key,menu) in menus" class="treeview" ng-init="menus[key].toggle = !nav[menu.id]" ng-class="{'active':!menus[key].toggle}" ng-if="menu.level<=level">
                 <a ng-href="{{menu.url}}" ng-init="level=menu.level" ng-click="menus[key].toggle =!menus[key].toggle">
                     <i class="fa" ng-class="menu.icons"></i> <span>{{menu.name}}</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu" ng-hide="!menus[key].toggle">
-                    <li  ng-repeat="row in menus"  ng-if="row.level>level && row.parent_id==menu.id" >
+                <ul class="treeview-menu" ng-hide="menus[key].toggle">
+                    <li  ng-repeat="row in menus" ng-class="{'active':nav[row.id]}"  ng-if="row.level>level && row.parent_id==menu.id" >
                         <a ng-href="{{row.url}}"><i class="fa" ng-class="row.icons"></i>{{row.name}}</a>
                     </li>
                 </ul>
             </li>
         </ul>
     </section>
-    <!-- /.sidebar -->
 </div>

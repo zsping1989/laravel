@@ -248,7 +248,13 @@ trait TreeModel{
             return collect([]);
         }
         return self::where($this->treeField['left_key'],'>',$left)->where($this->treeField['right_key'],'<',$right)->get();
+    }
 
+    public function parents($self = false){
+        $left = $this->getAttribute($this->treeField['left_key']);
+        $right = $this->getAttribute($this->treeField['right_key']);
+        $self AND $self = '=';
+        return self::where($this->treeField['left_key'],'<'.$self,$left)->where($this->treeField['right_key'],'>'.$self,$right)->get();
     }
 
 
