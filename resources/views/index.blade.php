@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/ate/AdminLTE.min.css">
     <link rel="stylesheet" href="/css/ate/_all-skins.min.css">
     <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/animate/animate.min.css">
 </head>
 <body>
 <script>

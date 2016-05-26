@@ -247,14 +247,14 @@ trait TreeModel{
         if((!$left && !$right) || ($left+1==$right)){
             return collect([]);
         }
-        return self::where($this->treeField['left_key'],'>',$left)->where($this->treeField['right_key'],'<',$right)->get();
+        return self::where($this->treeField['left_key'],'>',$left)->where($this->treeField['right_key'],'<',$right)->orderBy($this->treeField['left_key'])->get();
     }
 
     public function parents($self = false){
         $left = $this->getAttribute($this->treeField['left_key']);
         $right = $this->getAttribute($this->treeField['right_key']);
         $self AND $self = '=';
-        return self::where($this->treeField['left_key'],'<'.$self,$left)->where($this->treeField['right_key'],'>'.$self,$right)->get();
+        return self::where($this->treeField['left_key'],'<'.$self,$left)->where($this->treeField['right_key'],'>'.$self,$right)->orderBy($this->treeField['left_key'])->get();
     }
 
 

@@ -17,12 +17,12 @@ class MenuTableSeeder extends Seeder
         //创建权限数据
         factory(\App\Models\Menu::class)->create([
             'name'=>'菜单列表',
-            'url'=>'#',
+            'url'=>'',
             'description' => '根节点'
         ]);
 
         factory(\App\Models\Menu::class)->create([
-            'name'=>'后台首页',
+            'name'=>'菜单目录',
             'icons'=>'fa-dashboard',
             'url'=>'',
             'description' => '后台首页',
@@ -30,29 +30,72 @@ class MenuTableSeeder extends Seeder
             'status'=>1
         ]);
         factory(\App\Models\Menu::class)->create([
-            'name'=>'登录页面',
-            'icons'=>'fa-circle-o',
-            'url'=>'/Admin/login',
+            'name'=>'前端模块',
+            'icons'=>'fa-wrench',
+            'url'=>'',
             'description' => '后台登录',
             'parent_id'=>1,
             'status'=>1
         ]);
         factory(\App\Models\Menu::class)->create([
-            'name'=>'菜单测试',
+            'name'=>'登录页面',
             'icons'=>'fa-th',
-            'url'=>'/Admin/index',
+            'url'=>'/home/auth/login',
             'description' => '后台首页',
-            'parent_id'=>2,
+            'parent_id'=>3,
             'status'=>1
         ]);
         factory(\App\Models\Menu::class)->create([
-            'name'=>'菜单测一',
+            'name'=>'后台主页',
             'icons'=>'fa-th',
-            'url'=>'/Admin/index',
+            'url'=>'/admin/index',
             'description' => '后台首页',
             'parent_id'=>2,
             'status'=>1
         ]);
+
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'菜单管理',
+            'icons'=>'fa-th',
+            'url'=>'/admin/menu/index',
+            'description' => '后台首页',
+            'parent_id'=>2,
+            'status'=>1
+        ]);
+
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'创建代码',
+            'icons'=>'fa-circle-o',
+            'url'=>'',
+            'description' => '后台登录',
+            'parent_id'=>1,
+            'status'=>1
+        ]);
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'用户管理',
+            'icons'=>'fa-users',
+            'url'=>'',
+            'description' => '后台登录',
+            'parent_id'=>1,
+            'status'=>1
+        ]);
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'个人中心',
+            'icons'=>'fa-heart',
+            'url'=>'',
+            'description' => '后台登录',
+            'parent_id'=>1,
+            'status'=>1
+        ]);
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'其它板块',
+            'icons'=>'fa-wrench',
+            'url'=>'',
+            'description' => '后台登录',
+            'parent_id'=>1,
+            'status'=>1
+        ]);
+
         //新建假数据3条
         //factory(\App\Models\Menu::class,3)->create();
     }

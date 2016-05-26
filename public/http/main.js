@@ -87,3 +87,7 @@ function dataPath(){
         return parseURL('hash')+'?define=AMD&time='+(new Date()).getTime();
     }
 }
+
+function cout(arr){
+    return arr ? arr.length : 0;
+}

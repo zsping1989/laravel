@@ -45,10 +45,19 @@ Route::group(['prefix'=>'home','namespace'=>'Home'],function(){
 
 
 });
+Route::resource('photo', 'PhotoController');
+Route::group(['namespace'=>'Admin'],function(){
+    //Route::resource('menu', 'MenuController');
+});
+
 
 //后台路由设置
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']],function(){
+
+    Route::controller('menu', 'MenuController');
     Route::controller('/', 'IndexController');
+    //Route::resource('menu', 'MenuController');
+
     //Route::get('password/reset/{token?}', 'Home\PasswordController@showResetForm');
 });
 

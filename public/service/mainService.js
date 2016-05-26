@@ -118,13 +118,14 @@ define(['angular'], function (angular) {
 
     /* 全局函数调用 */
     main.filter('F', [ function () {
-        return function (x) {
+        return function () {
             var f = eval(arguments[0]);
             arguments.splice = [].splice;
             var p = arguments.splice(1);
             return f.apply(this, p);
         };
     }]);
+
 
     //http全局配置
     main.config(['$httpProvider',function($httpProvider){
