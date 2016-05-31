@@ -44,6 +44,7 @@ $factory->define(App\Models\Menu::class, function (Faker\Generator $faker) {
     return [
         'name'=>$faker->word,
         'description'=>$faker->word,
+        'prefix'=>'',
         'url'=>'/',
         'status'=>2 //不显示
     ];

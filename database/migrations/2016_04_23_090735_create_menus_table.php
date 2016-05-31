@@ -21,6 +21,7 @@ class CreateMenusTable extends Migration
             $table->string('name')->default('')->comment('菜单名称@required');
             $table->string('icons')->default('')->comment('图标');
             $table->string('description')->default('')->comment('描述');
+            $table->string('prefix')->default('')->comment('URL前缀:-跳转刷新,#-前端刷新');
             $table->string('url')->default('')->comment('URL路径');
             $table->tinyInteger('status')->default(2)->comment('状态:1-显示,2-不显示');
 
