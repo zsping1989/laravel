@@ -16,13 +16,13 @@
     .div1 {
         transition: all linear 0.5s;
         background-color: lightblue;
-        opacity:1;
+
 
         height: 100px;
     }
 
     .ng-hide {
-        height: 0;
+
         opacity:0;
    }
     /*ng-repeat的元素*/
@@ -51,7 +51,9 @@
 
 <h1>隐藏 DIV: <button  ng-click="myCheck = !myCheck"> 点击</button></h1>
 
-<div ng-hide="myCheck" class="div1"></div>
+<div ng-hide="myCheck" style="opacity:1;transition: all linear 0.5s;">
+    <div class="div1"></div>
+</div>
 <!-- Button to trigger a default dropdown from an array ($scope.dropdown) [{text:'foo', href:'', click:''}, ...] -->
 <button type="button" class="btn btn-lg btn-primary"
         data-toggle="aa"

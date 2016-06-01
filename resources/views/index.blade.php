@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="/css/ate/_all-skins.min.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/animate/animate.min.css">
+    <style>
+        .ng-hide {
+            height: 0;
+            opacity:0;
+        }
+    </style>
 </head>
 <body>
 <script>

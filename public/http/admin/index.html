@@ -3,19 +3,7 @@
 <div ng-include="'/http/admin/public/header.html'"></div>
 <div ng-include="'/http/admin/public/left.html'"></div>
 <div class="content-wrapper" ng-controller="admin-indexCtrl">
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-        Dashboard
-        <small id="tes"> 2.0</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li ng-repeat="row in nav" ng-class="{'active':row.url==route}">
-            <sapn ng-if="row.url==route" ><i class="fa" ng-class="row.icons"></i> {{row.name}}</sapn>
-            <a ng-if="row.url!=route" ng-href="{{row.url}}" ><i class="fa" ng-class="row.icons"></i> {{row.name}}</a>
-        </li>
-    </ol>
-</section>
+    <div ng-include="'/http/admin/public/nav.html'"></div>
 
 <!-- Main content -->
 <section class="content">

@@ -2,26 +2,15 @@
 <div class="wrapper">
 <div ng-include="'/http/admin/public/header.html'"></div>
 <div ng-include="'/http/admin/public/left.html'"></div>
-<div style="min-height: 916px;" class="content-wrapper" ng-controller="admin-menu-indexCtrl">
+<div style="min-height: 916px;" class="content-wrapper">
 <!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-        Data Tables
-        <small>advanced tables</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li ng-repeat="row in nav" ng-class="{'active':row.url==route}">
-            <sapn ng-if="row.url==route"><i class="fa" ng-class="row.icons"></i> {{row.name}}</sapn>
-            <a ng-if="row.url!=route" ng-href="{{row.url}}"><i class="fa" ng-class="row.icons"></i> {{row.name}}</a>
-        </li>
-    </ol>
-</section>
+<div ng-include="'/http/admin/public/nav.html'"></div>
 
 <!-- Main content -->
 <section class="content">
 <div class="row">
 <div class="col-xs-12">
-<div class="box" ng-init="data_url='/admin/menu/index'">
+<div class="box" ng-controller="admin-menu-indexCtrl"  ng-init="data_url='/admin/menu/menus'">
     <div class="box-header">
         <input type="text" ng-init="where.id.exp='like';where.id.val='';" ng-model="where.id.val" >
         <button type="button" ng-init="reset=0" ng-click="getData($this)">搜索</button>
@@ -29,7 +18,7 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-        <div class="dataTables_wrapper form-inline dt-bootstrap" id="example2_wrapper">
+        <div class="dataTables_wrapper form-inline dt-bootstrap">
             <div class="row">
                 <div class="col-sm-6"></div>
                 <div class="col-sm-6"></div>
@@ -67,7 +56,52 @@
         </div>
     </div>
 </div>
-
+    <div class="box" ng-controller="admin-area-indexCtrl"  ng-init="data_url='/admin/menu/areas'">
+        <div class="box-header">
+            <input type="text" ng-init="where.id.exp='like';where.id.val='';" ng-model="where.id.val" >
+            <button type="button" ng-init="reset=0" ng-click="getData($this)">搜索</button>
+            <button type="button" ng-click="getData($this,{reset:1})">重置</button>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="dataTables_wrapper form-inline dt-bootstrap">
+                <div class="row">
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table  class="table table-bordered table-hover dataTable">
+                            <tr role="row">
+                                <th class="sorting">ID
+                                    <span ng-click="getData($this,{'order':'id'})"  ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.id=='desc','glyphicon glyphicon-sort-by-attributes':order.id!='desc'}"></span>
+                                </th>
+                                <th class="sorting">名称
+                                    <span ng-click="getData($this,{'order':'name'})" ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.name=='desc','glyphicon glyphicon-sort-by-attributes':order.name!='desc'}"></span>
+                                </th>
+                                <th class="sorting">状态
+                                    <span ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.status,'glyphicon glyphicon-sort-by-attributes':!order.status}"></span>
+                                </th>
+                            </tr>
+                            <tr ng-repeat="row in data" role="row">
+                                <td>{{row.id}}</td>
+                                <td>{{row.name}}</td>
+                                <td>{{row.status}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5">
+                        Showing 1 to 10 of 57 entries
+                    </div>
+                    <div class="col-sm-7 ">
+                        <div ng-include="'/http/admin/public/page.html'" class="pull-right"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <!-- /.box -->
 </div>
 <!-- /.col -->

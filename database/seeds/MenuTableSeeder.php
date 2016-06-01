@@ -58,6 +58,7 @@ class MenuTableSeeder extends Seeder
         factory(\App\Models\Menu::class)->create([
             'name'=>'菜单管理',
             'icons'=>'fa-th',
+            'prefix'=>'#',
             'url'=>'/admin/menu/index',
             'description' => '后台首页',
             'parent_id'=>2,

@@ -29,6 +29,9 @@ class ResponseMacroServiceProvider extends ServiceProvider
 
 
             $value = collect($value)->merge($data);
+            $menu = Menu::where('url','=',$value->get('route'))->first();
+            $value['nav'] = $menu ? collect($menu->parents(true)->toArray())->keyBy('id') : [];
+
             if(Request::input('callback')){ //jsonp
                return $factory->jsonp(Request::input('callback'),$value);
             }elseif(Request::input('define')=='AMD'){ //AMD
@@ -42,7 +45,6 @@ class ResponseMacroServiceProvider extends ServiceProvider
             }else{
                 $value['user'] = Auth::user(); //用户信息
                 $value['menus'] = session('admin.menus');
-                $value['nav'] = collect(Menu::where('url','=',$value->get('route'))->first()->parents(true)->toArray())->keyBy('id');
                 return view('index',['data'=>$value]);
             }
             return $factory->make($value,$status);

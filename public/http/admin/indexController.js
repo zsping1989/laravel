@@ -8,8 +8,9 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
     var datas = datas || data;
 
     dump(datas);
-    app.register.controller('admin-indexCtrl', ["$scope", 'Model','View','$alert', function ($scope,Model,View,$alert) {
+    app.register.controller('admin-indexCtrl', ["$scope", '$rootScope','Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
         $scope = View.with(datas,$scope);
+        $rootScope.nav = datas.nav;
         /* 获取数据 */
         $scope.getData = Model.getData;
     }]);

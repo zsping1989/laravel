@@ -8,8 +8,15 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
     var datas = datas || data;
 
     dump(datas);
-    app.register.controller('admin-menu-indexCtrl', ["$scope", 'Model','View','$alert', function ($scope,Model,View,$alert) {
-        $scope = View.with(datas,$scope);
+    app.register.controller('admin-menu-indexCtrl', ["$scope",'$rootScope', 'Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
+        $scope = View.with(datas.menus,$scope);
+        $rootScope.nav = datas.nav;
+        $rootScope.route = datas.route;
+        /* 获取数据 */
+        $scope.getData = Model.getData;
+    }]);
+    app.register.controller('admin-area-indexCtrl', ["$scope",'$rootScope', 'Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
+        $scope = View.with(datas.areas,$scope);
         /* 获取数据 */
         $scope.getData = Model.getData;
     }]);

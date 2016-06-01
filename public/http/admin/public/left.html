@@ -26,7 +26,7 @@
                 <a ng-href="{{row.prefix}}{{menu.url}}" ng-init="level=menu.level" ng-click="menus[key].toggle =!menus[key].toggle">
                     <i class="fa" ng-class="menu.icons"></i> <span>{{menu.name}}</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu" ng-hide="menus[key].toggle">
+                <ul class="treeview-menu" ng-class="{'menu-open':!menus[key].toggle}">
                     <li  ng-repeat="row in menus" ng-class="{'active':nav[row.id]}"  ng-if="row.level>level && row.parent_id==menu.id" >
                         <a ng-href="{{row.prefix}}{{row.url}}"><i class="fa" ng-class="row.icons"></i>{{row.name}}</a>
                     </li>
