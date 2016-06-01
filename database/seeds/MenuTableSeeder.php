@@ -15,22 +15,60 @@ class MenuTableSeeder extends Seeder
         DB::table('menus')->truncate(); //菜单权限表
 
         //创建权限数据
+        //顶级菜单 ID:1
         factory(\App\Models\Menu::class)->create([
             'name'=>'菜单列表',
             'url'=>'',
-            'description' => '根节点'
+            'description' => '根节点,所有菜单的父节点'
         ]);
 
+        //ID:2
         factory(\App\Models\Menu::class)->create([
             'name'=>'菜单目录',
             'icons'=>'fa-dashboard',
             'url'=>'',
-            'description' => '后台首页',
+            'description' => '',
+            'parent_id'=>1,
+            'status'=>1
+        ]);
+        //ID:3
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'创建代码',
+            'icons'=>'fa-circle-o',
+            'url'=>'',
+            'description' => '创建代码模块',
+            'parent_id'=>1,
+            'status'=>1
+        ]);
+
+        //ID:4
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'前端模块',
+            'icons'=>'fa-wrench',
+            'url'=>'',
+            'description' => '前端所有路由',
+            'parent_id'=>1,
+            'status'=>1
+        ]);
+        //ID:5
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'用户管理',
+            'icons'=>'fa-users',
+            'url'=>'',
+            'description' => '用户模块',
             'parent_id'=>1,
             'status'=>1
         ]);
         factory(\App\Models\Menu::class)->create([
-            'name'=>'前端模块',
+            'name'=>'个人中心',
+            'icons'=>'fa-heart',
+            'url'=>'',
+            'description' => '个人资料',
+            'parent_id'=>1,
+            'status'=>1
+        ]);
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'其它板块',
             'icons'=>'fa-wrench',
             'url'=>'',
             'description' => '后台登录',
@@ -38,11 +76,30 @@ class MenuTableSeeder extends Seeder
             'status'=>1
         ]);
         factory(\App\Models\Menu::class)->create([
+            'name'=>'创建代码',
+            'icons'=>'fa-mouse-pointer',
+            'prefix'=>'#',
+            'url'=>'/admin/create-code',
+            'description' => '创建代码',
+            'parent_id'=>3,
+            'status'=>1
+        ]);
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'接口文档',
+            'icons'=>'fa-asterisk',
+            'prefix'=>'#',
+            'url'=>'/admin/api',
+            'description' => '接口说明',
+            'parent_id'=>3,
+            'status'=>1
+        ]);
+
+        factory(\App\Models\Menu::class)->create([
             'name'=>'登录页面',
             'icons'=>'fa-th',
             'url'=>'/home/auth/login',
             'description' => '后台首页',
-            'parent_id'=>3,
+            'parent_id'=>4,
             'status'=>1
         ]);
         factory(\App\Models\Menu::class)->create([
@@ -65,38 +122,7 @@ class MenuTableSeeder extends Seeder
             'status'=>1
         ]);
 
-        factory(\App\Models\Menu::class)->create([
-            'name'=>'创建代码',
-            'icons'=>'fa-circle-o',
-            'url'=>'',
-            'description' => '后台登录',
-            'parent_id'=>1,
-            'status'=>1
-        ]);
-        factory(\App\Models\Menu::class)->create([
-            'name'=>'用户管理',
-            'icons'=>'fa-users',
-            'url'=>'',
-            'description' => '后台登录',
-            'parent_id'=>1,
-            'status'=>1
-        ]);
-        factory(\App\Models\Menu::class)->create([
-            'name'=>'个人中心',
-            'icons'=>'fa-heart',
-            'url'=>'',
-            'description' => '后台登录',
-            'parent_id'=>1,
-            'status'=>1
-        ]);
-        factory(\App\Models\Menu::class)->create([
-            'name'=>'其它板块',
-            'icons'=>'fa-wrench',
-            'url'=>'',
-            'description' => '后台登录',
-            'parent_id'=>1,
-            'status'=>1
-        ]);
+
 
         //新建假数据3条
         //factory(\App\Models\Menu::class,3)->create();

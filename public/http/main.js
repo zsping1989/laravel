@@ -1,14 +1,23 @@
 dump(data);
+//自动注册路由
+var routes = {};
+for(var i in data.menus){
+    if(!data.menus[i].url){continue};
+    routes[data.menus[i].url]={
+        'as': data.menus[i].url,
+        'path':data.menus[i].url
+    };
+}
 
 //路由配置,单页面应用跳转
-var routes = {
+/*var routes = {
     //路由:控制器或视图
     '/home/home':{'as':'home','path':'home/home'},
     '/home/about':{'as':'about','path':'home/about'},
     '/home/auth/login':{'as':'login','path':'home/login'},
     '/admin/menu/index':{'as':'admin-menu-index','path':'admin/menu/index'},
     '/admin/index':{'as':'admin-index','path':'admin/index'}
-}
+}*/
 routes.default = data.route; //当前路由
 require.config({
     baseUrl: "/http/",
