@@ -1,0 +1,49 @@
+<div class="skin-blue sidebar-mini" ng-class="{'sidebar-collapse':left_hidden}">
+    <div class="wrapper">
+        <div ng-include="'/http/admin/public/header.html'"></div>
+        <div ng-include="'/http/admin/public/left.html'"></div>
+        <div class="content-wrapper">
+            <div ng-include="'/http/admin/public/nav.html'"></div>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box">
+                            <div class="box-header with-border" style="text-align: center">
+                                <h1>欢迎使用代码生成工具</h1>
+                            </div>
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-12" ng-controller="admin-create-codeCtrl">
+                                        <table data-num="13" class="table table-hover table-bordered">
+                                            <tr>
+                                                <th>创建名称</th>
+                                                <th>创建选项</th>
+                                                <th>创建按钮</th>
+                                                <th>创建说明</th>
+                                            </tr>
+                                            <tr>
+                                                <td>参数</td>
+                                                <td>参数变量名: <input type="text" value="keywords" disabled="disabled" name="p_name[]"> --&gt;关键字收索</td>
+                                                <td>参数变量值: <input type="text" value="阿凡达" name="p_value[]"></td>
+                                                <td>选填:字符串(影片名或影片首字母)</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <div ng-include="'/http/admin/public/right.html'"></div>
+    </div>
+</div>
+
+

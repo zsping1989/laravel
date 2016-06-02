@@ -1,0 +1,58 @@
+<div class="skin-blue sidebar-mini" ng-class="{'sidebar-collapse':left_hidden}">
+    <div class="wrapper">
+        <div ng-include="'/http/admin/public/header.html'"></div>
+        <div ng-include="'/http/admin/public/left.html'"></div>
+        <div class="content-wrapper">
+            <div ng-include="'/http/admin/public/nav.html'"></div>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box">
+                            <div class="box-header with-border" style="text-align: center">
+                                <h1>欢迎使用接口测试工具</h1>
+                            </div>
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-12" ng-controller="admin-apiCtrl">
+                                            <table data-num="13" class="table table-hover table-bordered">
+                                                <tr>
+                                                    <th>选项</th>
+                                                    <th colspan="2">内容</th>
+                                                    <th>说明</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>API请求地址</td>
+                                                    <td data-url="?class=HallUse&amp;method=getVideoList" id="interface-url">/index.php/Home/Interface/index?class=HallUse&amp;method=getVideoList</td>
+                                                    <td>
+                                                        提交类型: <input type="radio" value="get" name="m_type">GET
+                                                        <input type="radio" value="post" checked="checked" name="m_type">POST
+                                                    </td>
+                                                    <td>描述:</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>参数</td>
+                                                    <td>参数变量名: <input type="text" value="keywords" disabled="disabled" name="p_name[]"> --&gt;关键字收索</td>
+                                                    <td>参数变量值: <input type="text" value="阿凡达" name="p_value[]"></td>
+                                                    <td>选填:字符串(影片名或影片首字母)</td>
+                                                </tr>
+                                            </table>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <div ng-include="'/http/admin/public/right.html'"></div>
+    </div>
+</div>
+
+
