@@ -8,6 +8,7 @@ for(var i in data.menus){
         'path':data.menus[i].url
     };
 }
+routes['/home/auth/login'] = {'as':'home/auth/login','path':'home/auth/login'};
 
 //路由配置,单页面应用跳转
 /*var routes = {

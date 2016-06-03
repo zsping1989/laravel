@@ -24,7 +24,7 @@ class MenuTableSeeder extends Seeder
 
         //ID:2
         factory(\App\Models\Menu::class)->create([
-            'name'=>'菜单目录',
+            'name'=>'控制面板',
             'icons'=>'fa-dashboard',
             'url'=>'',
             'description' => '',

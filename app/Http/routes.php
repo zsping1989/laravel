@@ -53,12 +53,9 @@ Route::group(['namespace'=>'Admin'],function(){
 
 //后台路由设置
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']],function(){
-
+    Route::controller('make', 'MakeController');
     Route::controller('menu', 'MenuController');
     Route::controller('/', 'IndexController');
-    //Route::resource('menu', 'MenuController');
-
-    //Route::get('password/reset/{token?}', 'Home\PasswordController@showResetForm');
 });
 
 

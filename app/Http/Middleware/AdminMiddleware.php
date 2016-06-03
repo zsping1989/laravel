@@ -68,10 +68,8 @@ class AdminMiddleware
         Session::put('admin',$admin->toArray());
 
 
-
         $response = $next($request);
         //后置操作
-
         return $response;
     }
 

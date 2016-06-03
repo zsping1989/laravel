@@ -12,85 +12,37 @@
     <script src="http://mgcrea.github.io/angular-strap/dist/angular-strap.min.js"></script>
     <script src="http://mgcrea.github.io/angular-strap/dist/angular-strap.tpl.min.js"></script>
 </head>
-<style>
-    .div1 {
-        transition: all linear 0.5s;
-        background-color: lightblue;
-
-
-        height: 100px;
-    }
-
-    .ng-hide {
-
-        opacity:0;
-   }
-    /*ng-repeat的元素*/
-    .item{
-        -webkit-transition: all linear 1s;
-        -o-transition: all linear 1s;
-        transition: all linear 1s;
-    }
-    /*动画开始前*/
-    .item.ng-enter{
-        opacity:0;
-    }
-    /*动画过程*/
-    .item-ng-enter-active{
-        opacity:1;
-    }
-</style>
 <body ng-app="myApp" ng-controller="DemoCtrl">
-<div ng-init="users = [1,2,3,4,5]"></div>
-<input class="filter-btn" type="search" ng-model="u" placeholder="search item" aria-label="search item" />
-<ul>
-    <li class="item" ng-repeat="user in users | filter: u as result">
-        {{user}}
-    </li>
-</ul>
-
-<h1>隐藏 DIV: <button  ng-click="myCheck = !myCheck"> 点击</button></h1>
-
-<div ng-hide="myCheck" style="opacity:1;transition: all linear 0.5s;">
-    <div class="div1"></div>
+<!-- bsActivePane is optional -->
+<div bs-active-pane="tabs.activeTab" bs-tabs>
+    <div ng-repeat="tab in tabs"
+         data-title="{{ tab.title }}"
+         name="{{ tab.title }}"
+         disabled="{{ tab.disabled }}"
+          bs-pane>
+        {{tab.content}}
+    </div>
 </div>
-<!-- Button to trigger a default dropdown from an array ($scope.dropdown) [{text:'foo', href:'', click:''}, ...] -->
-<button type="button" class="btn btn-lg btn-primary"
-        data-toggle="aa"
-        data-animation="am-flip-x" bs-dropdown
-        aria-haspopup="true" aria-expanded="false">Click to toggle dropdown
-    <br>
-    <small>(using an object)</small>
-</button>
-
-<ul class="dropdown-menu" id="aa" role="menu">
-    <li><a href="#anotherAction"><i class="fa fa-download"></i>&nbsp;Some action</a></li>
-    <li><a ng-click="$alert('Holy guacamole')"><i class="fa fa-globe"></i>&nbsp;Display an alert</a></li>
-    <li ng-repeat="i in ['Foo', 'Bar', 'Baz']"><a ng-href="#action{{i}}"><i class="fa fa-chevron-right"></i>&nbsp;{{i}}</a></li>
-</ul>
 <script>
     var app = angular.module('myApp', ['mgcrea.ngStrap','ngAnimate']);
     app.controller('DemoCtrl', function($scope, $modal,$alert) {
-        $scope.modal = {
-            "title": "Title",
-            "content": "Hello Modal<br />This is a multiline message!"
-        };
-        //$scope.alert = {title: 'Holy guacamole!', content: 'Best check yo self, you\'re not looking too good.', placement: 'top', type: 'info', show: true}
-        $scope.aa = function(){
-            $alert(
-                    {
-                        title: 'Holy guacamole!',
-                        content: 'Best check yo self, you\'re not looking too good.',
-                        placement: 'top-right',
-                        type: 'info',
-                        container: 'body',
-                        duration :30000
+        $scope.tabs = [
+            {
+                "title": "Home",
+                "content": "Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica."
+            },
+            {
+                "title": "Profile",
+                "content": "Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee."
+            },
+            {
+                "title": "About",
+                "content": "Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade.",
+                "disabled": true
+            }
+        ];
+        $scope.tabs.activeTab = "Profile";
 
-                    }
-
-            )
-        }
-        var myAlert = 0;
 })
 </script>
 

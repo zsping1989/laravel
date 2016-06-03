@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Area;
 use App\Models\Menu;
+use App\Models\Role;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -11,24 +12,27 @@ use Illuminate\Support\Facades\Response;
 
 class MenuController extends Controller
 {
-    public function getMenus($flog=0){
-        $data = Menu::options(Request::only('where', 'order'))->paginate();
-        if($flog){
-            return $data;
-        }
-        return Response::returns($data);
+    public function getMenus(){
+        $data = Role::options(Request::only('where', 'order'))->paginate();
+        $param = [
+            'order'=> Request::input('order',[]), //排序
+            'where'=>Request::input('where',[]), //条件查询
+        ];
+        return collect($data)->merge($param);;
     }
-    public function getAreas($flog=0){
+    public function getAreas(){
         $data = Area::options(Request::only('where', 'order'))->paginate();
-        if($flog){
-            return $data;
-        }
-        return Response::returns($data);
+        $param = [
+            'order'=> Request::input('order',[]), //排序
+            'where'=>Request::input('where',[]), //条件查询
+        ];
+        return collect($data)->merge($param);;
     }
     //列表数据展示
     public function getIndex(){
-        $data['menus'] = $this->getMenus(1);
-        $data['areas'] = $this->getAreas(1);
+        $data['roles'] = $this->getMenus();
+
+        $data['areas'] = $this->getAreas();
         return Response::returns($data);
     }
     //创建
