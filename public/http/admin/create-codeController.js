@@ -8,11 +8,20 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
     var datas = datas || data;
 
     dump(datas);
-    app.register.controller('admin-create-codeCtrl', ["$scope", '$rootScope','Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
+    app.register.controller('admin-create-codeCtrl', ["$scope", '$rootScope','View','$alert','$http', function ($scope,$rootScope,View,$alert,$http) {
         $scope = View.with(datas,$scope);
         $rootScope.nav = datas.nav;
-        /* 获取数据 */
-        $scope.getData = Model.getData;
+        //创建代码
+        $scope.create = function(param){
+            $http({
+                method: 'POST',
+                url: '/admin/make/exe',
+                params: param}
+            ).success(function (datas) {
+                alert(1);
+
+            });
+        };
     }]);
 })
 

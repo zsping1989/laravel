@@ -14,8 +14,8 @@
                                 <h1>欢迎使用代码生成工具</h1>
                             </div>
                             <div class="box-body">
-                                <div class="row">
-                                    <div class="col-md-12" ng-controller="admin-create-codeCtrl" bs-tabs>
+                                <div class="row"  ng-controller="admin-create-codeCtrl">
+                                    <div class="col-md-12" bs-tabs>
                                         <div data-title="代码创建" name="代码创建" bs-pane>
                                             <div>
                                                 <div class="box-body">
@@ -31,9 +31,9 @@
                                                             <td>make:controller</td>
                                                             <td>创建控制器</td>
                                                             <td>
-                                                                <input name="param" value="Admin/TestController" placeholder="请填写控制器名称">
+                                                                <input name="c_name" ng-init="c_name='Admin/TestController'" ng-model="c_name"  placeholder="请填写控制器名称">
                                                             </td>
-                                                            <td><button>创建</button></td>
+                                                            <td><button ng-click="create({'artisan':'make:controller','name':c_name})">创建</button></td>
                                                             <td>创建一个新的控制器</td>
                                                         </tr>
                                                         <tr>
