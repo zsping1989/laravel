@@ -20,7 +20,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
             ).success(function (datas) {
                 $alert({
                     title: '提示:',
-                    content: '创建成功!',
+                    content: '操作成功!',
                     placement: 'bottom-right',
                     type: 'info',
                     duration:3,
@@ -28,7 +28,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
             }).error(function(){
                 $alert({
                     title: '提示:',
-                    content: '创建失败!',
+                    content: '操作失败!',
                     placement: 'bottom-right',
                     type: 'danger',
                     duration:3,
