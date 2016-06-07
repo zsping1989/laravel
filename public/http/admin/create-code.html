@@ -48,13 +48,13 @@
                                                         <tr>
                                                             <td>make:migration</td>
                                                             <td>创建迁移文件</td>
-                                                            <td ng-init="mi_type='--create'">
-                                                                <input name="mi_name" ng-init="mi_name='create_tests_table'" ng-model="mi_name"  placeholder="请填写迁移文件名称">->文件名<br />
-                                                                <input name="mi_table"  ng-init="mi_table='tests'" ng-model="mi_table"  placeholder="数据表名">->数据表<br />
-                                                                <input type="radio" name="mi_type" value="--create" ng-model="mi_type">:新增
-                                                                <input type="radio" name="mi_type" value="--table" ng-model="mi_type">:修改  ->类型选择
+                                                            <td ng-init="mi_type='--create';obj={'artisan':'make:migration'}">
+                                                                <input name="mi_name" ng-init="obj.name='create_tests_table'" ng-model="obj.name"  placeholder="请填写迁移文件名称">->文件名<br />
+                                                                <input name="mi_table"  ng-init="obj[mi_type]='tests'" ng-model="obj[mi_type]"  placeholder="数据表名">->数据表<br />
+                                                                <input type="radio" name="mi_type" ng-click="obj['--table']='';" value="--create" ng-model="mi_type">:新增
+                                                                <input type="radio" name="mi_type" ng-click="obj['--create']='';" value="--table" ng-model="mi_type">:修改  ->类型选择
                                                             </td>
-                                                            <td><button ng-click="create({'artisan':'make:migration','name':mi_name,type:mi_table})">创建</button></td>
+                                                            <td><button ng-click="create(obj)">创建</button></td>
                                                             <td>创建一个创建迁移文件</td>
                                                         </tr>
                                                         <tr>
