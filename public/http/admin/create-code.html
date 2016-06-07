@@ -31,7 +31,7 @@
                                                             <td>make:controller</td>
                                                             <td>创建控制器</td>
                                                             <td>
-                                                                <input name="c_name" ng-init="c_name='Admin/TestController'" ng-model="c_name"  placeholder="请填写控制器名称">
+                                                                <input name="c_name" ng-init="c_name='Admin/TestController'" ng-model="c_name"  placeholder="请填写控制器名称">->控制器
                                                             </td>
                                                             <td><button ng-click="create({'artisan':'make:controller','name':c_name})">创建</button></td>
                                                             <td>创建一个新的控制器</td>
@@ -40,16 +40,39 @@
                                                             <td>make:model</td>
                                                             <td>创建模型</td>
                                                             <td>
-                                                                <input name="param" value="Models/Test" placeholder="请填写控制器名称">
+                                                                <input name="m_name" ng-init="m_name='Models/Test'" ng-model="m_name"  placeholder="请填写模型名称">->模型
                                                             </td>
-                                                            <td><button>创建</button></td>
+                                                            <td><button ng-click="create({'artisan':'make:model','name':m_name})">创建</button></td>
                                                             <td>创建一个新的模型</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>make:migration</td>
+                                                            <td>创建迁移文件</td>
+                                                            <td ng-init="mi_type='--create'">
+                                                                <input name="mi_name" ng-init="mi_name='create_tests_table'" ng-model="mi_name"  placeholder="请填写迁移文件名称">->文件名<br />
+                                                                <input name="mi_table"  ng-init="mi_table='tests'" ng-model="mi_table"  placeholder="数据表名">->数据表<br />
+                                                                <input type="radio" name="mi_type" value="--create" ng-model="mi_type">:新增
+                                                                <input type="radio" name="mi_type" value="--table" ng-model="mi_type">:修改  ->类型选择
+                                                            </td>
+                                                            <td><button ng-click="create({'artisan':'make:migration','name':mi_name,type:mi_table})">创建</button></td>
+                                                            <td>创建一个创建迁移文件</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>make:seeder</td>
+                                                            <td>创建数据填充文件</td>
+                                                            <td>
+                                                                <input name="s_name" ng-init="s_name='TestTableSeeder'" ng-model="s_name"  placeholder="请填写填充文件名称">->文件名<br />
+                                                            </td>
+                                                            <td><button ng-click="create({'artisan':'make:seeder','name':s_name})">创建</button></td>
+                                                            <td>创建一个数据填充文件</td>
                                                         </tr>
                                                         <tr>
                                                             <td>make:console</td>
                                                             <td>创建artisan命令</td>
-                                                            <td>无</td>
-                                                            <td><button>创建</button></td>
+                                                            <td>
+                                                                <input name="at_name" ng-init="at_name='Test'" ng-model="at_name"  placeholder="请填写命令名称">->文件名
+                                                            </td>
+                                                            <td><button ng-click="create({'artisan':'make:console','name':at_name})">创建</button></td>
                                                             <td>创建一个artisan命令</td>
                                                         </tr>
                                                         <tr>
@@ -66,10 +89,45 @@
                                         <div data-title="数据迁移与填充" name="数据迁移与填充" bs-pane>
                                             <table class="table table-hover table-bordered">
                                                 <tr>
-                                                    <th>创建名称</th>
-                                                    <th>创建选项</th>
-                                                    <th>创建按钮</th>
-                                                    <th>创建说明</th>
+                                                    <th>命令名称</th>
+                                                    <th>命令选项</th>
+                                                    <th>执行按钮</th>
+                                                    <th>命令说明</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>migrate</td>
+                                                    <td>执行新增迁移文件</td>
+                                                    <td>
+                                                        <input type="checkbox" name="force" value="1" ng-model="force" >:强制执行
+                                                    </td>
+                                                    <td><button ng-click="create({'artisan':'migrate','--force':force})">执行</button></td>
+                                                    <td>执行新增迁移文件</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        migrate:rollback<br />
+                                                        migrate:reset<br />
+                                                        migrate:refresh
+                                                    </td>
+                                                    <td>回滚迁移</td>
+                                                    <td ng-init="rol='rollback'">
+                                                        <input type="radio" name="rol" value="rollback" ng-model="rol">->回滚到上一次迁移<br />
+                                                        <input type="radio" name="rol" value="reset" ng-model="rol">->回滚所有迁移<br />
+                                                        <input type="radio" name="rol" value="refresh" ng-model="rol">->回滚所有迁移并且再执行一次
+                                                    </td>
+                                                    <td><button ng-click="create({'artisan':'migrate:'+rol})">执行</button></td>
+                                                    <td>回滚迁移</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        db:seed
+                                                    </td>
+                                                    <td>数据填充</td>
+                                                    <td>
+                                                        <input name="se_name" ng-init="se_name='TestTableSeeder'" ng-model="se_name"  placeholder="请填写填充seeder类名">->seeder类名
+                                                    </td>
+                                                    <td><button ng-click="create({'artisan':'db:seed','--class':se_name})">执行</button></td>
+                                                    <td>数据填充</td>
                                                 </tr>
                                             </table>
                                         </div>

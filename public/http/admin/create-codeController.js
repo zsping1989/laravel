@@ -14,13 +14,26 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
         //创建代码
         $scope.create = function(param){
             $http({
-                method: 'POST',
-                url: '/admin/make/exe',
-                params: param}
+                    method: 'POST',
+                    url: '/admin/make/exe',
+                    data: param}
             ).success(function (datas) {
-                alert(1);
-
-            });
+                    $alert({
+                        title: '提示:',
+                        content: '操作成功!',
+                        placement: 'bottom-right',
+                        type: 'info',
+                        duration:3,
+                        show: true});
+                }).error(function(){
+                    $alert({
+                        title: '提示:',
+                        content: '操作失败!',
+                        placement: 'bottom-right',
+                        type: 'danger',
+                        duration:3,
+                        show: true});
+                });
         };
     }]);
 })
