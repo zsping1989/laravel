@@ -16,7 +16,11 @@
                             <div class="box-body">
                                 <div class="row">
                                     <div class="col-md-12" ng-controller="admin-apiCtrl">
-                                            <table data-num="13" class="table table-hover table-bordered">
+                                        选择接口分类:
+                                        <select>
+                                            <option ng-repeat="x in api" ng-if="x.level==2" value="{{x.id}}">{{x.name}}</option>
+                                        </select>
+                                        <table class="table table-hover table-bordered">
                                                 <tr>
                                                     <th>选项</th>
                                                     <th colspan="2">内容</th>

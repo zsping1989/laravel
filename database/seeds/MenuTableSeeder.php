@@ -59,6 +59,7 @@ class MenuTableSeeder extends Seeder
             'parent_id'=>1,
             'status'=>1
         ]);
+        //ID:6
         factory(\App\Models\Menu::class)->create([
             'name'=>'个人中心',
             'icons'=>'fa-heart',
@@ -67,6 +68,7 @@ class MenuTableSeeder extends Seeder
             'parent_id'=>1,
             'status'=>1
         ]);
+        //ID:7
         factory(\App\Models\Menu::class)->create([
             'name'=>'其它板块',
             'icons'=>'fa-wrench',
@@ -75,6 +77,7 @@ class MenuTableSeeder extends Seeder
             'parent_id'=>1,
             'status'=>1
         ]);
+        //ID:8
         factory(\App\Models\Menu::class)->create([
             'name'=>'创建代码',
             'icons'=>'fa-mouse-pointer',
@@ -84,6 +87,7 @@ class MenuTableSeeder extends Seeder
             'parent_id'=>3,
             'status'=>1
         ]);
+        //ID:9
         factory(\App\Models\Menu::class)->create([
             'name'=>'接口文档',
             'icons'=>'fa-asterisk',
@@ -93,11 +97,21 @@ class MenuTableSeeder extends Seeder
             'parent_id'=>3,
             'status'=>1
         ]);
-
+        //ID:10
         factory(\App\Models\Menu::class)->create([
             'name'=>'登录页面',
             'icons'=>'fa-th',
             'url'=>'/home/auth/login',
+            'description' => '后台首页',
+            'parent_id'=>4,
+            'status'=>1
+        ]);
+        //ID:11
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'退出登录',
+            'icons'=>'fa-th',
+            'prefix'=>'',
+            'url'=>'/home/auth/logout',
             'description' => '后台首页',
             'parent_id'=>4,
             'status'=>1

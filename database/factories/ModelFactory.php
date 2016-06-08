@@ -50,3 +50,14 @@ $factory->define(App\Models\Menu::class, function (Faker\Generator $faker) {
     ];
 });
 
+//接口参数
+$factory->define(App\Models\ApiParam::class, function (Faker\Generator $faker) {
+    return [
+        'menu_id'=>0,
+        'name'=>$faker->word,
+        'title'=>$faker->word,
+        'description'=>$faker->word,
+        'example'=>''
+    ];
+});
+

@@ -23,6 +23,7 @@ class CreateMenusTable extends Migration
             $table->string('description')->default('')->comment('描述');
             $table->string('prefix')->default('')->comment('URL前缀:-跳转刷新,#-前端刷新');
             $table->string('url')->default('')->comment('URL路径');
+            $table->integer('method')->default(1)->comment('请求方式:1-get,2-post,3-put');
             $table->tinyInteger('status')->default(2)->comment('状态:1-显示,2-不显示');
 
             $table->marginTree(); //树状结构

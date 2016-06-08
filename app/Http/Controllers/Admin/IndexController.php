@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Area;
+use App\Models\Menu;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
 
@@ -18,7 +19,10 @@ class IndexController extends Controller
     }
     //api文档说明列表
     public function getApi(){
-        return Response::returns([]);
+        //获取所有接口
+        $data['api'] = Menu::with('params')->get()->keyBy('id');
+        $data['max_level'] = $data['api']->max('level');
+        return Response::returns($data);
     }
     //代码创建
     public function getCreateCode(){

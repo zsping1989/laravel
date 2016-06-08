@@ -28,4 +28,9 @@ class Menu extends BaseModel
     public function adminUsers(){
 
     }
+
+    /* 接口-参数 */
+    public function params(){
+        return $this->hasMany('App\Models\ApiParam');
+    }
 }
