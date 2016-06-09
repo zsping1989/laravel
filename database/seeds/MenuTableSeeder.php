@@ -143,7 +143,7 @@ class MenuTableSeeder extends Seeder
             'prefix'=>'#',
             'url'=>'/admin/111ex',
             'description' => '后台首页',
-            'parent_id'=>12,
+            'parent_id'=>13,
             'status'=>1
         ]);
 

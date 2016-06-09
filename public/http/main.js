@@ -1,4 +1,4 @@
-dump(data);
+//dump(data);
 //自动注册路由
 var routes = {};
 for(var i in data.menus){

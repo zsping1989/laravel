@@ -43,7 +43,6 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                     }
                 }
             }
-            dump(select);
             $scope.select = select;
         }
         $scope.initselect();
