@@ -116,6 +116,7 @@ class MenuTableSeeder extends Seeder
             'parent_id'=>4,
             'status'=>1
         ]);
+        //ID:12
         factory(\App\Models\Menu::class)->create([
             'name'=>'后台主页',
             'icons'=>'fa-th',
@@ -125,7 +126,7 @@ class MenuTableSeeder extends Seeder
             'parent_id'=>2,
             'status'=>1
         ]);
-
+        //ID:13
         factory(\App\Models\Menu::class)->create([
             'name'=>'菜单管理',
             'icons'=>'fa-th',
@@ -133,6 +134,16 @@ class MenuTableSeeder extends Seeder
             'url'=>'/admin/menu/index',
             'description' => '后台首页',
             'parent_id'=>2,
+            'status'=>1
+        ]);
+        //ID:14
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'测试接口',
+            'icons'=>'fa-th',
+            'prefix'=>'#',
+            'url'=>'/admin/111ex',
+            'description' => '后台首页',
+            'parent_id'=>12,
             'status'=>1
         ]);
 
