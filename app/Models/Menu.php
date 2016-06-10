@@ -33,4 +33,9 @@ class Menu extends BaseModel
     public function params(){
         return $this->hasMany('App\Models\ApiParam');
     }
+
+    /* 接口-响应说明 */
+    public function responses(){
+        return $this->hasMany('App\Models\ApiResponse');
+    }
 }

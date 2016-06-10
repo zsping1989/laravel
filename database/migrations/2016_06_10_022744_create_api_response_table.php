@@ -1,12 +1,9 @@
 <?php
-/**
- * api接口参数表
- */
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateApiParamsTable extends Migration
+class CreateApiResponseTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,15 +12,12 @@ class CreateApiParamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('api_params', function (Blueprint $table) {
-            $table->increments('id')->comment('参数ID');
+        Schema::create('api_responses', function (Blueprint $table) {
+            $table->increments('id')->comment('响应说明ID');
 
             $table->integer('menu_id')->index()->default(0)->comment('接口ID');
-            $table->string('name')->default('')->comment('参数名称@required');
-            $table->string('title')->default('')->comment('提示');
+            $table->string('name')->default('')->comment('结果字段@required');
             $table->string('description')->default('')->comment('描述');
-            $table->string('example')->default('')->comment('事例值');
-            $table->tinyInteger('required')->default(0)->comment('状态:0-选填,1-必填');
 
             $table->timestamps();
             $table->softDeletes();
@@ -37,6 +31,6 @@ class CreateApiParamsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('api_params');
+        Schema::drop('api_responses');
     }
 }

@@ -16,7 +16,77 @@
                             <div class="box-body">
                                 <div class="row"  ng-controller="admin-create-codeCtrl">
                                     <div class="col-md-12" bs-tabs>
-                                        <div data-title="代码创建" name="代码创建" bs-pane>
+                                        <div data-title="原始代码创建" name="原始代码创建" bs-pane>
+                                            <div>
+                                                <div class="box-body">
+                                                    <table class="table table-bordered">
+                                                        <tr>
+                                                            <th >创建命令</th>
+                                                            <th>中文名称</th>
+                                                            <th>参数</th>
+                                                            <th>操作</th>
+                                                            <th>描述</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>make:controller</td>
+                                                            <td>创建控制器</td>
+                                                            <td>
+                                                                <input name="c_name" ng-init="c_name='Admin/TestController'" ng-model="c_name"  placeholder="请填写控制器名称">->控制器
+                                                            </td>
+                                                            <td><button ng-click="create({'artisan':'make:controller','name':c_name})">创建</button></td>
+                                                            <td>创建一个新的控制器</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>make:model</td>
+                                                            <td>创建模型</td>
+                                                            <td>
+                                                                <input name="m_name" ng-init="m_name='Models/Test'" ng-model="m_name"  placeholder="请填写模型名称">->模型
+                                                            </td>
+                                                            <td><button ng-click="create({'artisan':'make:model','name':m_name})">创建</button></td>
+                                                            <td>创建一个新的模型</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>make:migration</td>
+                                                            <td>创建迁移文件</td>
+                                                            <td ng-init="mi_type='--create';obj={'artisan':'make:migration'}">
+                                                                <input name="mi_name" ng-init="obj.name='create_tests_table'" ng-model="obj.name"  placeholder="请填写迁移文件名称">->文件名<br />
+                                                                <input name="mi_table"  ng-init="obj[mi_type]='tests'" ng-model="obj[mi_type]"  placeholder="数据表名">->数据表<br />
+                                                                <input type="radio" name="mi_type" ng-click="obj['--table']='';" value="--create" ng-model="mi_type">:新增
+                                                                <input type="radio" name="mi_type" ng-click="obj['--create']='';" value="--table" ng-model="mi_type">:修改  ->类型选择
+                                                            </td>
+                                                            <td><button ng-click="create(obj)">创建</button></td>
+                                                            <td>创建一个创建迁移文件</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>make:seeder</td>
+                                                            <td>创建数据填充文件</td>
+                                                            <td>
+                                                                <input name="s_name" ng-init="s_name='TestTableSeeder'" ng-model="s_name"  placeholder="请填写填充文件名称">->文件名<br />
+                                                            </td>
+                                                            <td><button ng-click="create({'artisan':'make:seeder','name':s_name})">创建</button></td>
+                                                            <td>创建一个数据填充文件</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>make:console</td>
+                                                            <td>创建artisan命令</td>
+                                                            <td>
+                                                                <input name="at_name" ng-init="at_name='Test'" ng-model="at_name"  placeholder="请填写命令名称">->文件名
+                                                            </td>
+                                                            <td><button ng-click="create({'artisan':'make:console','name':at_name})">创建</button></td>
+                                                            <td>创建一个artisan命令</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>make:auth</td>
+                                                            <td>创建用户认证</td>
+                                                            <td>无</td>
+                                                            <td><button disabled>创建</button></td>
+                                                            <td>创建最基础的用户认证,包括认证相关路由,视图,数据表等</td>
+                                                        </tr>
+                                                    </table>
+                                                </div><!-- /.box-body -->
+                                            </div><!-- /.box -->
+                                        </div>
+                                        <div data-title="自定义代码创建" name="自定义代码创建" bs-pane>
                                             <div>
                                                 <div class="box-body">
                                                     <table class="table table-bordered">
@@ -136,6 +206,22 @@
                                             </div>
 
                                         </div>
+                                        <div data-title="自定义说明文档" name="自定义说明文档" bs-pane>
+                                            <div>
+                                                <div class="box-body">
+                                                    <table class="table table-hover table-bordered">
+                                                        <tr>
+                                                            <th>命令名称</th>
+                                                            <th>命令选项</th>
+                                                            <th>执行按钮</th>
+                                                            <th>命令说明</th>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
                                     </div>
                                 </div>
                                 <!-- /.row -->

@@ -20,7 +20,7 @@ class IndexController extends Controller
     //api文档说明列表
     public function getApi(){
         //获取所有接口
-        $data['api'] = Menu::with('params')->orderBy('left_margin')->get()->keyBy(function ($item) {
+        $data['api'] = Menu::with('params','responses')->orderBy('left_margin')->get()->keyBy(function ($item) {
             return 'id_'.$item['id']; //保证json排序
         });
         $data['max_level'] = $data['api']->max('level');
