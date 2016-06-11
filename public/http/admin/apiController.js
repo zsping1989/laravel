@@ -75,6 +75,8 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
             //扁平数据
             $http(obj).success(function (datas) {
                 $scope.result = treeToArr(datas);
+            }).error(function(datas){
+                $scope.result = treeToArr(datas);
             });
         }
 

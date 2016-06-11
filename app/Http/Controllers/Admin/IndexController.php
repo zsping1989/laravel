@@ -29,6 +29,7 @@ class IndexController extends Controller
             return $item;
         });
         $data['max_level'] = $data['api']->max('level');
+        $data['_token'] = csrf_token();
         return Response::returns($data);
     }
     //代码创建

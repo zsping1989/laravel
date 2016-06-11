@@ -17,7 +17,7 @@
 function canRedirect(){
     $request = app('request');
     return !($request->has('callback') || $request->has('script')  ||
-    $request->has('define') || $request->ajax() || $request->wantsJson());
+    $request->has('define') || $request->ajax() || $request->wantsJson() || $request->has('dd'));
 }
 
 /**

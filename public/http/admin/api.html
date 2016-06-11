@@ -42,6 +42,7 @@
                                                     <td>{{api[select[select.length-1]].url}}</td>
                                                     <td>
                                                         提交类型:
+                                                        <input type="hidden" name="_token" value="{{_token}}" >
                                                         <input type="hidden" name="dd" value="1" id="dd" disabled="disabled">
                                                         <input type="radio" value="1" name="method" ng-model="api[select[select.length-1]].method">GET
                                                         <input type="radio" value="2" name="method"  ng-model="api[select[select.length-1]].method">POST
