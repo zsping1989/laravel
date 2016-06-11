@@ -99,6 +99,19 @@ function dataPath(){
     }
 }
 
+//数组长度
 function cout(arr){
     return arr ? arr.length : 0;
+}
+
+/* 返回值层级拼接 */
+function deep(num) {
+    var str = '|';
+    for (var i = 1; i < num; ++i) {
+        str += '—';
+    }
+    if (num > 1) {
+        return str+':';
+    }
+    return '';
 }

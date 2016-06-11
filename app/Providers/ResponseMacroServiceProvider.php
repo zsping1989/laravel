@@ -38,6 +38,8 @@ class ResponseMacroServiceProvider extends ServiceProvider
                 $value = 'define([],function(){ return '.collect($value)->toJson().';});';
             }elseif(Request::input('define')=='CMD'){ //CMD
                 $value = 'define([],function(){ return '.collect($value)->toJson().';});';
+            }elseif(Request::has('dd')){ //数据打印页面
+                dd($value->toArray());
             }elseif(Request::ajax() || Request::wantsJson()){ //json
                 $value = collect($value)->toJson();
             }elseif(Request::has('script')){ //页面

@@ -103,6 +103,7 @@ class MenuTableSeeder extends Seeder
             'icons'=>'fa-th',
             'url'=>'/home/auth/login',
             'description' => '后台首页',
+            'method'=>2,
             'parent_id'=>4,
             'status'=>1
         ]);

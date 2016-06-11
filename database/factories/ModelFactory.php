@@ -44,6 +44,7 @@ $factory->define(App\Models\Menu::class, function (Faker\Generator $faker) {
     return [
         'name'=>$faker->word,
         'description'=>$faker->word,
+        'method'=>1,
         'prefix'=>'',
         'url'=>'/',
         'status'=>2 //不显示
@@ -58,6 +59,15 @@ $factory->define(App\Models\ApiParam::class, function (Faker\Generator $faker) {
         'title'=>$faker->word,
         'description'=>$faker->word,
         'example'=>''
+    ];
+});
+
+//接口响应说明
+$factory->define(App\Models\ApiParam::class, function (Faker\Generator $faker) {
+    return [
+        'menu_id'=>0,
+        'name'=>$faker->word,
+        'description'=>$faker->word
     ];
 });
 

@@ -22,6 +22,11 @@ class IndexController extends Controller
         //获取所有接口
         $data['api'] = Menu::with('params','responses')->orderBy('left_margin')->get()->keyBy(function ($item) {
             return 'id_'.$item['id']; //保证json排序
+        })->toArray();
+        //responses key处理
+        $data['api'] = collect($data['api'])->map(function($item){
+            $item['responses'] = collect($item['responses'])->keyBy('name')->toArray();
+            return $item;
         });
         $data['max_level'] = $data['api']->max('level');
         return Response::returns($data);
