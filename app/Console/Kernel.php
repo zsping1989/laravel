@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         // Commands\Inspire::class,
         Commands\ConvertMigrations::class,
-        Commands\CreateCodes::class
+        Commands\CreateControllers::class,
+        Commands\CreateModels::class
     ];
 
     /**

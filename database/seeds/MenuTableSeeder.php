@@ -33,10 +33,10 @@ class MenuTableSeeder extends Seeder
         ]);
         //ID:3
         factory(\App\Models\Menu::class)->create([
-            'name'=>'创建代码',
+            'name'=>'开发工具',
             'icons'=>'fa-circle-o',
             'url'=>'',
-            'description' => '创建代码模块',
+            'description' => '开发模块',
             'parent_id'=>1,
             'status'=>1
         ]);

@@ -4,21 +4,21 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class CreateCodes extends Command
+class CreateModels extends Command
 {
     /**
-     * create:code 代码类型  代码名称
+     * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'create:code {type : The type of create code} {name : The name of code file}';
+    protected $signature = 'create:model {name : The name of model}';
 
     /**
-     * 创建自定义代码
+     * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create custom code';
+    protected $description = 'Create custom model';
 
     /**
      * Create a new command instance.
@@ -37,6 +37,6 @@ class CreateCodes extends Command
      */
     public function handle()
     {
-        dd($this->argument('type'));
+        //
     }
 }
