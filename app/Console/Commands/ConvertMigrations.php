@@ -1,4 +1,7 @@
 <?php
+/**
+ *  通过数据库表->生成迁徙文件
+ */
 
 namespace App\Console\Commands;
 

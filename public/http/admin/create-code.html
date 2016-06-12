@@ -70,9 +70,11 @@
                                                             <td>make:console</td>
                                                             <td>创建artisan命令</td>
                                                             <td>
-                                                                <input name="at_name" ng-init="at_name='Test'" ng-model="at_name"  placeholder="请填写命令名称">->文件名
+                                                                <input name="at_name" ng-init="at_name='Test'" ng-model="at_name"  placeholder="请填写命令名称">->文件名<br />
+                                                                <input name="command" ng-init="command='emails:send'" ng-model="command"  placeholder="请填写命令名称">->命令
+
                                                             </td>
-                                                            <td><button ng-click="create({'artisan':'make:console','name':at_name})">创建</button></td>
+                                                            <td><button ng-click="create({'artisan':'make:console','name':at_name,'--command':command})">创建</button></td>
                                                             <td>创建一个artisan命令</td>
                                                         </tr>
                                                         <tr>
