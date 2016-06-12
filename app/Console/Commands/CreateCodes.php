@@ -1,32 +1,29 @@
 <?php
-/**
- * 自定义代码创建
- */
 
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class CreateCode extends Command
+class CreateCodes extends Command
 {
     /**
-     * The name and signature of the console command.
+     * create:code 代码类型  代码名称
      *
      * @var string
      */
-    protected $signature = 'create:{code} {name}';
+    protected $signature = 'create:code {type : The type of create code} {name : The name of code file}';
 
     /**
-     * The console command description.
+     * 创建自定义代码
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Create custom code';
 
     /**
      * Create a new command instance.
      *
-     * return void
+     * @return void
      */
     public function __construct()
     {
@@ -40,6 +37,6 @@ class CreateCode extends Command
      */
     public function handle()
     {
-        //12
+        dd($this->argument('type'));
     }
 }

@@ -48,6 +48,7 @@ class ConvertMigrations extends Command
     {
         $this->database = $this->argument('database') ?: env('DB_DATABASE'); //数据库
         $ignoreInput = str_replace(' ', '', $this->option('ignore')); //选项数据表
+        dd(122);
         $this->appointTable($ignoreInput);
 
         $this->info('Migration Created Successfully');
