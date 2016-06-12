@@ -10,7 +10,7 @@
 <section class="content">
 <div class="row">
 <div class="col-xs-12">
-<div class="box" ng-controller="admin-role-indexCtrl"  ng-init="data_url='/admin/menu/menus'">
+<div class="box" ng-controller="admin-menu-indexCtrl"  ng-init="data_url='/admin/menu/menus'">
     <div class="box-header">
         <input type="text" ng-init="where.id.exp='like';where.id.val='';" ng-model="where.id.val" >
         <button type="button" ng-init="reset=0" ng-click="getData($this)">搜索</button>
@@ -56,57 +56,6 @@
         </div>
     </div>
 </div>
-    <div class="box" ng-controller="admin-area-indexCtrl"  ng-init="data_url='/admin/menu/areas'">
-        <div class="box-header">
-            <input type="text" ng-init="where.id.exp='like';where.id.val='';" ng-model="where.id.val" >
-            <button type="button" ng-init="reset=0" ng-click="getData($this)">搜索</button>
-            <button type="button" ng-click="getData($this,{reset:1})">重置</button>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-            <div class="dataTables_wrapper form-inline dt-bootstrap">
-                <div class="row">
-                    <div class="col-sm-6"></div>
-                    <div class="col-sm-6"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <table  class="table table-bordered table-hover dataTable">
-                            <tr role="row">
-                                <th class="sorting">ID
-                                    <span ng-click="getData($this,{'order':'id'})"  ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.id=='desc','glyphicon glyphicon-sort-by-attributes':order.id!='desc'}"></span>
-                                </th>
-                                <th class="sorting">名称
-                                    <span ng-click="getData($this,{'order':'name'})" ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.name=='desc','glyphicon glyphicon-sort-by-attributes':order.name!='desc'}"></span>
-                                </th>
-                                <th class="sorting">状态
-                                    <span ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.status,'glyphicon glyphicon-sort-by-attributes':!order.status}"></span>
-                                </th>
-                            </tr>
-                            <tr ng-repeat="row in data" role="row">
-                                <td>{{row.id}}</td>
-                                <td>{{row.name}}</td>
-                                <td>{{row.status}}</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-5">
-                        <div class="mailbox-controls">
-                            <!-- Check all button -->
-                            <button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
-                            <button class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                            <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                        </div>
-                    </div>
-                    <div class="col-sm-7 ">
-                        <div ng-include="'/http/admin/public/page.html'" class="pull-right"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 <!-- /.box -->
 </div>
 <!-- /.col -->

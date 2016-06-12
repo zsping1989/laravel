@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Response;
 class MenuController extends Controller
 {
     public function getMenus(){
-        $data = Role::options(Request::only('where', 'order'))->paginate();
+        $data = Menu::options(Request::only('where', 'order'))->orderBy('left_margin')->paginate();
         $param = [
             'order'=> Request::input('order',[]), //排序
             'where'=>Request::input('where',[]), //条件查询
@@ -30,9 +30,7 @@ class MenuController extends Controller
     }
     //列表数据展示
     public function getIndex(){
-        $data['roles'] = $this->getMenus();
-
-        $data['areas'] = $this->getAreas();
+        $data['list'] = $this->getMenus()->toArray();
         return Response::returns($data);
     }
     //创建
