@@ -64,7 +64,7 @@
                         <tr ng-repeat="row in data" role="row">
                             <td><input type="checkbox" value="{{row.id}}" name="ids[]" ng-model="ids[$index]" ng-true-value="{{row.id}}" ng-checked="selectAll"></td>
                             <td><a>{{row.id}}</a></td>
-                            <td>{{'deep' | F : row.level}}{{row.name}}{{ids[$index]}}</td>
+                            <td>{{'deep' | F : row.level}}{{row.name}}</td>
                             <td>{{row.prefix}}</td>
                             <td>{{row.url}}</td>
                             <td class="visible-lg">{{row.created_at}}</td>

@@ -14,7 +14,7 @@ class MenuController extends Controller
 {
     //获取菜单数据
     public function getMenus(){
-        $data = Menu::options(Request::only('where', 'order'))->orderBy('left_margin')->paginate();
+        $data = Menu::orderBy('left_margin')->options(Request::only('where', 'order'))->paginate();
         $param = [
             'order'=> Request::input('order',[]), //排序
             'where'=>Request::input('where',[]), //条件查询

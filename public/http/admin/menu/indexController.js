@@ -13,6 +13,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
         $rootScope.route = datas.route;
         /* 条件查询数据 */
         $scope.getData = Model.getData;
+        $scope.ids = [];
         /* 删除数据 */
         $scope.delete = Model.delete;
     }]);

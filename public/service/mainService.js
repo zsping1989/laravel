@@ -128,14 +128,24 @@ define(['angular'], function (angular) {
         //删除数据
         factory.delete = function($scope,id){
             var ids = id || $scope.ids;
-            dump(ids);alert(1);
-            if(!ids){return false}
+            var data = [];
+            if(typeof ids=='object'){
+                for (var i in ids){
+                    if(ids[i]){
+                        data[data.length] = ids[i];
+                    }
+                }
+            }else {
+                data = ids;
+            }
+            if(!data || (typeof ids =='object' && !ids.length)){return false}
             //请求数据
             $http({
                 method: 'POST',
                 url: $scope.delete_url,
-                data: {ids:ids}
+                data: {ids:data}
             }).success(function (datas) {
+                $scope.ids = [];
                 factory.getData($scope,{refresh:1});
             });
 
