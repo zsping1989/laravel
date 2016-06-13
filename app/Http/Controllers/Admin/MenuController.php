@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Response;
 
 class MenuController extends Controller
 {
+    //获取菜单数据
     public function getMenus(){
         $data = Menu::options(Request::only('where', 'order'))->orderBy('left_margin')->paginate();
         $param = [
@@ -20,19 +21,13 @@ class MenuController extends Controller
         ];
         return collect($data)->merge($param);;
     }
-    public function getAreas(){
-        $data = Area::options(Request::only('where', 'order'))->paginate();
-        $param = [
-            'order'=> Request::input('order',[]), //排序
-            'where'=>Request::input('where',[]), //条件查询
-        ];
-        return collect($data)->merge($param);;
-    }
+
     //列表数据展示
     public function getIndex(){
         $data['list'] = $this->getMenus()->toArray();
         return Response::returns($data);
     }
+
     //创建
     public function create(){
 
@@ -52,7 +47,13 @@ dd($menu);
     public function update($menu){
 
     }
-    public function destroy($menu){
 
+    //删除数据
+    public function postDestroy(){
+        $res = Menu::destroy(Request::input('ids',[]));
+        if($res===false){
+            return Response::returns(['alert'=>alert(['content'=>'删除失败!'],500)]);
+        }
+        return Response::returns(['alert'=>alert(['content'=>'删除成功!'])]);
     }
 }

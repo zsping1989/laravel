@@ -39,3 +39,26 @@ function orRedirect($to = null, $status = 302){
         'redirect' => $to,
     ],$status);
 }
+
+function alert($data = [],$status=200){
+    //默认值
+    $defult  = [
+        200=>[
+            'title'=>'提示',
+            'content'=>'操作成功!',
+            'placement'=>'bottom-right',
+            'type'=>'info',
+            'duration'=>3,
+            'show'=>true
+        ],
+        'other'=>[
+            'title'=>'提示',
+            'content'=>'操作失败!',
+            'placement'=>'bottom-right',
+            'type'=>'danger',
+            'duration'=>3,
+            'show'=>true
+        ]
+    ];
+    return collect($defult[$status] ? $defult[$status] : $defult['other'])->merge($data)->toArray();
+}

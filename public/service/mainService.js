@@ -4,7 +4,7 @@
  */
 define(['angular'], function (angular) {
     var main  = angular.module('main',[]);
-    //全局请求配置
+    //全局请求配置,响应监听
     main.factory('httpInterceptor', [ '$q', '$injector',function($q, $injector) {
         var httpInterceptor = {
             'responseError' : function(response) {
@@ -12,13 +12,23 @@ define(['angular'], function (angular) {
                 //页面跳转
                 if(response.data.redirect){
                     window.location.href = response.data.redirect;
-                    //弹出警告框
-                }else if(response.data.alert){
-                    alert(response.data.title)
+                }
+                //页面弹窗提示
+                if(response.data.alert){
+                    $alert(response.data.alert);
                 }
                 return $q.reject(response);
             },
             'response' : function(response) {
+                //页面跳转
+                if(response.data.redirect){
+                    window.location.href = response.data.redirect;
+                }
+                //页面弹窗提示
+                if(response.data.alert){
+                    $alert(response.data.alert);
+                }
+
                 return response;
             }, 'request' : function(config) {
                 return config;
@@ -60,6 +70,7 @@ define(['angular'], function (angular) {
 
     main.factory('Model',['$http','View',function($http,View){
         var factory = {};
+        //条件查询数据
         factory.getData = function ($scope,params) {
             params = params || {};
             var page = parseInt(params.page) || 1; //默认第一页
@@ -81,7 +92,7 @@ define(['angular'], function (angular) {
                 }
             }
             //查询条件为空不请求
-            if (!params.order && !flog && page == $scope.current_page && !params.reset) {
+            if (!params.order && !flog && page == $scope.current_page && !params.reset && !params.refresh) {
                 return true;
             }
 
@@ -113,6 +124,23 @@ define(['angular'], function (angular) {
                 View.with(datas,$scope);
             });
         };
+
+        //删除数据
+        factory.delete = function($scope,id){
+            var ids = id || $scope.ids;
+            dump(ids);alert(1);
+            if(!ids){return false}
+            //请求数据
+            $http({
+                method: 'POST',
+                url: $scope.delete_url,
+                data: {ids:ids}
+            }).success(function (datas) {
+                factory.getData($scope,{refresh:1});
+            });
+
+        };
+
         return factory
     }]);
 

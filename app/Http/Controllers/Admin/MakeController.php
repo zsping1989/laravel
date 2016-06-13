@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Response;
 
 class MakeController extends Controller
 {
@@ -17,6 +18,6 @@ class MakeController extends Controller
         })->toArray();
         //执行命令
         $exitCode = Artisan::call(Request::input('artisan'), $parameters);
-        dd($exitCode);
+        return Response::returns(['alert'=>alert(['content'=>'操作成功!'])]);
     }
 }
