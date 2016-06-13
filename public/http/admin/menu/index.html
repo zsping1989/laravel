@@ -44,9 +44,6 @@
                             <th class="sorting">名称
                                 <span ng-click="getData($this,{'order':'name'})" ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.name=='desc','glyphicon glyphicon-sort-by-attributes':order.name!='desc'}"></span>
                             </th>
-                            <th class="sorting">URL前缀
-                                <span ng-click="getData($this,{'order':'url'})" ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.url=='desc','glyphicon glyphicon-sort-by-attributes':order.url!='desc'}"></span>
-                            </th>
                             <th class="sorting">URL
                                 <span ng-click="getData($this,{'order':'url'})" ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.url=='desc','glyphicon glyphicon-sort-by-attributes':order.url!='desc'}"></span>
                             </th>
@@ -65,8 +62,7 @@
                             <td><input type="checkbox" value="{{row.id}}" name="ids[]" ng-model="ids[$index]" ng-true-value="{{row.id}}" ng-checked="selectAll"></td>
                             <td><a>{{row.id}}</a></td>
                             <td>{{'deep' | F : row.level}}{{row.name}}</td>
-                            <td>{{row.prefix}}</td>
-                            <td>{{row.url}}</td>
+                            <td>{{row.prefix}}{{row.url}}</td>
                             <td class="visible-lg">{{row.created_at}}</td>
                             <td class="visible-lg">{{row.updated_at}}</td>
                             <td>
@@ -74,9 +70,9 @@
                                 <span class="label label-warning" ng-if="row.status==2">隐藏</span>
                             </td>
                             <td>
-                                <button class="btn btn-xs btn-success ts-moveUp" type="button" data-pid="0"><i class="glyphicon glyphicon-arrow-up"></i></button>
-                                <a class="btn btn-xs btn-info" role="button" href="http://www.yuser.cn/index.php/Admin/Menu/edit.html?id=1"><i class="glyphicon glyphicon-edit"></i></a>
-                                <button class="btn btn-xs btn-danger" ng-click="delete($this,row.id)" type="button"><i class="glyphicon glyphicon-trash"></i></button>
+                                <button class="btn btn-xs btn-success ts-moveUp" title="置顶" type="button" data-pid="0"><i class="glyphicon glyphicon-arrow-up"></i></button>
+                                <a class="btn btn-xs btn-info" title="编辑" role="button" href="http://www.yuser.cn/index.php/Admin/Menu/edit.html?id=1"><i class="glyphicon glyphicon-edit"></i></a>
+                                <button class="btn btn-xs btn-danger" title="删除" ng-click="delete($this,row.id)" type="button"><i class="glyphicon glyphicon-trash"></i></button>
                             </td>
                         </tr>
                     </table>
@@ -84,8 +80,8 @@
             </div>
             <div class="row">
                 <div class="col-sm-5">
-                    <button class="btn btn-default btn-sm" ng-click="delete($this)"><i class="fa fa-trash-o"></i></button>
-                    <button class="btn btn-default btn-sm" ng-click="getData($this,{refresh:1})"><i class="fa fa-refresh"></i></button>
+                    <button class="btn btn-default btn-sm" title="删除选中" ng-click="delete($this)"><i class="fa fa-trash-o"></i></button>
+                    <button class="btn btn-default btn-sm" title="刷新" ng-click="getData($this,{refresh:1})"><i class="fa fa-refresh"></i></button>
                 </div>
                 <div class="col-sm-7 ">
                     <div ng-include="'/http/admin/public/page.html'" class="pull-right"></div>
