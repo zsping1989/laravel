@@ -16,9 +16,9 @@ class MakeController extends Controller
         $parameters = collect(Request::except('artisan','where','order'))->filter(function($item){
             return $item;
         })->toArray();
-        $parameters = ['name'=>'Admin/TestController','--resource'=>true];
+        //$parameters = ['name'=>'Admin/TestController','--resource'=>true];
         //执行命令
-        $exitCode = Artisan::call('create:controller', $parameters);
+        $exitCode = Artisan::call(Request::input('artisan'), $parameters);
         return Response::returns(['alert'=>alert(['content'=>'操作成功!'])]);
     }
 }

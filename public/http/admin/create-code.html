@@ -101,10 +101,15 @@
                                                         <td>创建控制器</td>
                                                         <td>
                                                             <input name="my_c_name" ng-init="my_c_name='Admin/TestController'" ng-model="my_c_name"  placeholder="请填写控制器名称">->控制器<br>
-                                                            <input type="checkbox" value="--resource" ng-model="my_c_type">:新增
+                                                            <span ng-if="my_c_type || my_c_verify">
+                                                                <input name="my_c_model" ng-init="my_c_model='Models/Test'" ng-model="my_c_model"  placeholder="请填写绑定模型">->模型<br>
+                                                            </span>
+                                                            <input type="checkbox" value="--resource" ng-model="my_c_type">:是否为资源控制器<br>
+                                                            <input type="checkbox" value="--verify" ng-model="my_c_verify">:是否自动生成验证
+
                                                         </td>
-                                                        <td><button ng-click="create({'artisan':'create:controller','name':my_c_name,'--resource':my_c_type})">创建</button></td>
-                                                        <td>创建一个新的自定义控制器</td>
+                                                        <td><button ng-click="create({'artisan':'create:controller','name':my_c_name,'model':my_c_model,'--verify':my_c_verify,'--resource':my_c_type})">创建</button></td>
+                                                        <td>创建一个新的自定义控制器;下一步需要自己绑定路由</td>
                                                     </tr>
                                                 </table>
                                             </div><!-- /.box-body -->

@@ -4,7 +4,7 @@ namespace {{$namespace}};
 
 use App\Exceptions\ResourceController;
 use App\Http\Controllers\Controller;
-use \App\{{$model}};
+use App\{{$model}};
 
 class {{$class}} extends Controller
 {

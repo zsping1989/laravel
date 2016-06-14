@@ -11,7 +11,9 @@ class CreateControllers extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'create:controller {name : The name of controller} {model? : bindModel} {--resource : create ResourceController}';
+    protected $signature = 'create:controller {name : The name of controller} {model? : bindModel}
+    {--resource : create ResourceController}
+    {--verify : verify}';
 
     /**
      * 创建自定义代码
@@ -44,8 +46,11 @@ class CreateControllers extends GeneratorCommand
         $data['namespace']  = $this->getNamespace($data['name']);
         $data['class'] = str_replace($data['namespace'].'\\', '', $data['name']);
         $data['resource'] = $this->option('resource'); //资源控制器选项
-        $data['model'] =  str_replace('/','\\',$this->argument('model')); //绑定模型
+        $data['model'] =  str_replace('/','\\',$this->argument('model') ?: 'Models\\'.str_replace('Controller','',$data['class'])); //绑定模型
         $data['modelName'] = pathinfo($data['model'])['filename'];
+        if($this->option('verify')){ //验证查询
+
+        }
         //dd($data);
 
         $path = $this->getPath($data['name']);
@@ -59,7 +64,6 @@ class CreateControllers extends GeneratorCommand
         $this->makeDirectory($path);
 
         $this->files->put($path, $this->buildClass($data));
-        dd(123);
 
         $this->info($this->type.' created successfully.');
     }
