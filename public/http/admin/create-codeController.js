@@ -17,7 +17,16 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                     method: 'POST',
                     url: '/admin/make/exe',
                     data: param}
-            )
+            ).error(function(){
+                $alert({
+                    'title':'提示',
+                    'content':'操作失败!',
+                    'placement':'bottom-right',
+                    'type':'danger',
+                    'duration':3,
+                    'show':true
+                });
+            });
         };
     }]);
 })

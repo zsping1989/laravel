@@ -11,13 +11,14 @@ use Illuminate\Support\Facades\Response;
 
 class MakeController extends Controller
 {
-    public function postExe(){
+    public function anyExe(){
         //处理没有值的参数
         $parameters = collect(Request::except('artisan','where','order'))->filter(function($item){
             return $item;
         })->toArray();
+        $parameters = ['name'=>'Admin/TestController','--resource'=>true];
         //执行命令
-        $exitCode = Artisan::call(Request::input('artisan'), $parameters);
+        $exitCode = Artisan::call('create:controller', $parameters);
         return Response::returns(['alert'=>alert(['content'=>'操作成功!'])]);
     }
 }

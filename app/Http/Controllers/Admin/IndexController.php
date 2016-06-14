@@ -34,6 +34,6 @@ class IndexController extends Controller
     }
     //代码创建
     public function getCreateCode(){
-        return Response::returns(alert(['content'=>'创建成功!']));
+        return Response::returns([]);
     }
 }

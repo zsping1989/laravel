@@ -14,7 +14,7 @@ define(['angular'], function (angular) {
                     window.location.href = response.data.redirect;
                 }
                 //页面弹窗提示
-                if(response.data.alert){
+                if(response.data.alert && $alert){
                     $alert(response.data.alert);
                 }
                 return $q.reject(response);
@@ -25,7 +25,7 @@ define(['angular'], function (angular) {
                     window.location.href = response.data.redirect;
                 }
                 //页面弹窗提示
-                if(response.data.alert){
+                if(response.data.alert && $alert){
                     $alert(response.data.alert);
                 }
 
