@@ -120,6 +120,16 @@ define(['angular'], function (angular) {
                 method: 'GET',
                 url: $scope.data_url,
                 params: resparams}).success(function (datas) {
+                if(params.refresh){
+                    $alert({
+                        'title':'提示',
+                        'content':'刷新成功!',
+                        'placement':'bottom-right',
+                        'type':'info',
+                        'duration':3,
+                        'show':true
+                    });
+                }
                 $scope.reset++;
                 View.with(datas,$scope);
             });

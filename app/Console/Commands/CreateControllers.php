@@ -11,7 +11,9 @@ class CreateControllers extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'create:controller {name : The name of controller} {model? : bindModel}
+    protected $signature = 'create:controller
+    {name : The name of controller}
+    {model? : bindModel}
     {--resource : create ResourceController}
     {--verify : verify}';
 

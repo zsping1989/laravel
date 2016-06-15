@@ -101,15 +101,66 @@
                                                         <td>创建控制器</td>
                                                         <td>
                                                             <input name="my_c_name" ng-init="my_c_name='Admin/TestController'" ng-model="my_c_name"  placeholder="请填写控制器名称">->控制器<br>
-                                                            <span ng-if="my_c_type || my_c_verify">
-                                                                <input name="my_c_model" ng-init="my_c_model='Models/Test'" ng-model="my_c_model"  placeholder="请填写绑定模型">->模型<br>
+                                                            <span ng-show="my_c_type || my_c_verify">
+                                                                <input name="my_c_model" ng-init="my_c_model=''" ng-model="my_c_model"  placeholder="请填写绑定模型">->模型<br>
                                                             </span>
                                                             <input type="checkbox" value="--resource" ng-model="my_c_type">:是否为资源控制器<br>
                                                             <input type="checkbox" value="--verify" ng-model="my_c_verify">:是否自动生成验证
-
                                                         </td>
                                                         <td><button ng-click="create({'artisan':'create:controller','name':my_c_name,'model':my_c_model,'--verify':my_c_verify,'--resource':my_c_type})">创建</button></td>
                                                         <td>创建一个新的自定义控制器;下一步需要自己绑定路由</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>create:model</td>
+                                                        <td>创建模型</td>
+                                                        <td>
+                                                            <input name="my_m_name" ng-init="my_m_name='Models/Test'" ng-model="my_m_name"  placeholder="请填写模型名称">->数据模型<br>
+                                                            <input name="my_m_table" ng-init="my_m_table='tests'" ng-model="my_m_table"  placeholder="请填写绑定模型的数据表">->表名<br>
+                                                            <input type="checkbox" value="--fields" ng-model="my_m_fields">:是否自动生成相关字段<br>
+                                                            <input type="checkbox" value="--softDeletes" ng-model="my_m_softDeletes">:是否启用软删除模式<br>
+                                                            <input type="checkbox" value="--tree" ng-model="my_m_tree">:是否启用树状结构模式
+                                                        </td>
+                                                        <td><button ng-click="create({
+                                                        'artisan':'create:model',
+                                                        'name':my_m_name,
+                                                        'table':my_m_table,
+                                                        '--fields':my_m_fields,
+                                                        '--softDeletes':my_m_softDeletes,
+                                                        '--tree':my_m_tree
+                                                        })">创建</button></td>
+                                                        <td>创建一个新的自定义模型</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>create:view</td>
+                                                        <td>创建视图</td>
+                                                        <td>
+                                                            <input name="my_v_name" ng-init="my_v_name='admin/test/index'" ng-model="my_v_name"  placeholder="请填写视图名称">->视图名称<br>
+                                                            <input type="text" ng-init="my_v_table='tests'"  ng-model="my_v_table">:填写绑定的数据表<br>
+                                                            <select ng-init="my_v_type='index'"  ng-model="my_v_type">
+                                                                <option value="index">数据显示页面</option>
+                                                                <option value="edit">数据编辑页面</option>
+                                                            </select>->模板类型选择
+                                                        </td>
+                                                        <td><button ng-click="create({
+                                                        'artisan':'create:view',
+                                                        'name':my_v_name,
+                                                        'type':my_v_type,
+                                                        'table':my_v_table
+                                                        })">创建</button></td>
+                                                        <td>创建一个新的自定义模型</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>create:js</td>
+                                                        <td>创建JS文件</td>
+                                                        <td>
+                                                            <input name="my_m_name" ng-init="my_m_name='Models/Test'" ng-model="my_m_name"  placeholder="请填写模型名称">->数据模型<br>
+                                                            <input type="checkbox" value="--tree" ng-model="my_m_tree">:是否启用树状结构模式
+                                                        </td>
+                                                        <td><button ng-click="create({
+                                                        'artisan':'create:js',
+                                                        '--tree':my_m_tree
+                                                        })">创建</button></td>
+                                                        <td>创建一个新的自定义模型</td>
                                                     </tr>
                                                 </table>
                                             </div><!-- /.box-body -->
@@ -179,8 +230,9 @@
                                             </div>
 
                                         </div>
-
+                                        　当前执行命令:<code ng-if="artisan">php artisan {{artisan}}</code>
                                     </div>
+
                                 </div>
                                 <!-- /.row -->
                             </div>

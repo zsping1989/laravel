@@ -1,4 +1,4 @@
-//dump(data);
+dump(data);
 //自动注册路由
 var routes = {};
 for(var i in data.menus){
@@ -8,7 +8,11 @@ for(var i in data.menus){
         'path':data.menus[i].url
     };
 }
-routes['/home/auth/login'] = {'as':'home/auth/login','path':'home/auth/login'};
+//当前路由不存在,自动组成路由
+if(!routes[data.route]){
+    routes[data.route] = {'as':data.route,'path':data.route};
+}
+
 
 //路由配置,单页面应用跳转
 /*var routes = {

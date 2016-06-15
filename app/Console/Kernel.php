@@ -16,7 +16,9 @@ class Kernel extends ConsoleKernel
         // Commands\Inspire::class,
         Commands\ConvertMigrations::class,
         Commands\CreateControllers::class,
-        Commands\CreateModels::class
+        Commands\CreateModels::class,
+        Commands\CreateViews::class,
+        Commands\CreateJs::class
     ];
 
     /**

@@ -13,6 +13,27 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
         $rootScope.nav = datas.nav;
         //创建代码
         $scope.create = function(param){
+            //命令拼接
+            $scope.artisan = param.artisan;
+            var option = '';
+            for (var i in param){
+                if(i=='artisan'){
+                    continue;
+                }
+                if(i.indexOf('--')!=-1 && param[i]){
+                    if(param[i]===true){
+                        option += ' '+i;
+                    }else {
+                        option += ' '+i+'='+param[i];
+                    }
+
+                    continue;
+                }
+                if(param[i]){
+                    $scope.artisan += ' '+param[i];
+                }
+            }
+            $scope.artisan += option;
             $http({
                     method: 'POST',
                     url: '/admin/make/exe',

@@ -71,3 +71,10 @@ $factory->define(App\Models\ApiParam::class, function (Faker\Generator $faker) {
     ];
 });
 
+//测试
+$factory->define(App\Models\Test::class, function (Faker\Generator $faker) {
+    return [
+        'name'=>$faker->word
+    ];
+});
+
