@@ -21,10 +21,10 @@
 ## 安装:
 要求:php >=5.6  安装好composer
 
-###php.ini文件需要开启
-extension=php_fileinfo.dll
-extension=php_fileinfo.dll
-extension=php_openssl.dll
+**php.ini文件需要开启**
+1.extension=php_fileinfo.dll
+2.always_populate_raw_post_data = -1
+3.extension=php_openssl.dll
 
 ```
 $ git clone https://github.com/zsping1989/laravel.git
@@ -42,7 +42,7 @@ cmd到项目根目录
 ```
 $ php artisan migrate --seed
 ```
-将站点目录指向根目录下的public(/public);
-路由访问:/admin/index
+* 将站点目录指向根目录下的public(/public);
+* 路由访问:/admin/index
 *Note: 登录用户名:13699411148 密码:123456
 
