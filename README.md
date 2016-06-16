@@ -24,6 +24,8 @@
 2. 安装好composer
 
 **php.ini文件需要开启**
+```
+```
 1. extension=php_fileinfo.dll
 2. always_populate_raw_post_data = -1
 3. extension=php_openssl.dll
