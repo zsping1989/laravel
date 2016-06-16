@@ -26,7 +26,11 @@ class CreateMenusTable extends Migration
             $table->integer('method')->default(1)->comment('请求方式:1-get,2-post,3-put');
             $table->tinyInteger('status')->default(2)->comment('状态:1-显示,2-不显示');
 
-            $table->marginTree(); //树状结构
+            //$table->marginTree(); //树状结构
+            $this->integer('parent_id')->default(0)->comment('父级ID');
+            $this->smallInteger('level')->default(0)->comment('层级');
+            $this->integer('left_margin')->default(0)->comment('左边界');
+            $this->integer('right_margin')->default(0)->comment('右边界');
             $table->timestamps(); //时间戳记录
             $table->softDeletes(); //软删除
         });
