@@ -4,21 +4,31 @@
 
 
 ## Screenshots
-![Dashboard Screenshot](https://cloud.githubusercontent.com/assets/1888261/14597104/53b404b6-057d-11e6-876d-c83630686590.png)
+![api](http://a1.qpic.cn/psb?/V11BOt0S4MAKLC/OrsvIoievKOW5N7nLGQr7ZaSFquKk6JcMMfWee1SDlM!/b/dOQAAAAAAAAA&bo=*ASAAgAAAAADB1g!&rf=viewer_4)
 
-![Login Screenshot](https://cloud.githubusercontent.com/assets/13616776/14597970/a366dc7c-0582-11e6-853b-776b1cf17aed.png
-)
+![create code](http://a2.qpic.cn/psb?/V11BOt0S4MAKLC/EenzPVIrRJV.Eo25f4kXRpKjqdwZNSlJgbWLrobEpaU!/b/dAwBAAAAAAAA&bo=tgSAAgAAAAADBxI!&rf=viewer_4)
+
+![data](http://a3.qpic.cn/psb?/V11BOt0S4MAKLC/.yI5Ri3vs0YhqQJRrR35uER6DJzvHfdvOPl*aZPXpmM!/b/dNoAAAAAAAAA&bo=xgSAAgAAAAADAGU!&rf=viewer_4)
+
+![index](http://a2.qpic.cn/psb?/V11BOt0S4MAKLC/0jGOAqd7u*Hq4bYUtYyWheVC7G*Ydw0dzZgwtcjlrhs!/b/dI0BAAAAAAAA&bo=nASAAgAAAAADBzg!&rf=viewer_4)
 
 ## Demo
-[Click here for a live demo](http://laravel-admin.herokuapp.com)
 
-*Note: If you register or use Oauth to sign-in your info will be available on public under user lists component, you can use credentials below.*
+*Note: 登录用户名:13699411148 密码:123456
 
-> admin@example.com / password
 
 ![laradmin](https://cloud.githubusercontent.com/assets/1888261/15561320/1899b4b2-2327-11e6-8a3a-7e3d7ce31621.png)
 
 ## Installation
+```
+$ git clone https://github.com/zsping1989/laravel.git
+```
+```
+$ cd laravel/
+```
+```
+$ git checkout dev
+```
 ```
 $ composer install && npm install
 ```
@@ -30,63 +40,3 @@ $ php artisan migrate
 $ php artisan db:seed
 ```
 
-## Work Flow
-
-**General Workflow**
-
-```
-$ php artisan serve --host=0
-```
-Open new terminal
-```
-$ gulp && gulp watch
-```
-
-> Default Username/Password: admin@example.com / password
-
-**Angular Generators**
-
-```
-$ artisan ng:page name       #New page inside angular/app/pages/
-$ artisan ng:dialog name     #New custom dialog inside angular/dialogs/
-$ artisan ng:component name  #New component inside angular/app/components/
-$ artisan ng:service name    #New service inside angular/services/
-$ artisan ng:filter name     #New filter inside angular/filters/
-$ artisan ng:config name     #New config inside angular/config/
-```
-[Laravel Angular Generator] (https://github.com/jadjoubran/laravel-ng-artisan-generators)
-
-#### [Read Full Documentation] (http://silverbux.github.io/laravel-angular-admin)
-
-## Features
-* [JWT-Auth] (https://github.com/tymondesigns/jwt-auth)
-* [Socialite] (https://github.com/laravel/socialite)
-* [Dingo/API] (https://github.com/dingo/api)
-* [Restangular] (https://github.com/mgonto/restangular)
-* [UI-Router] (https://github.com/angular-ui/ui-router/)
-* Access Control List
-    * [Romanbican/Roles] (https://github.com/romanbican/roles)
-    * [Angular ACL] (https://github.com/mikemclin/angular-acl)
-
-## Built With
-* [Laravel] (http://laravel.com)
-* [Angularjs] (https://angularjs.org)
-* [Twitter Bootstrap] (https://getbootstrap.com)
-* [Composer] (https://getcomposer.org/)
-* [Gulp.JS] (http://gulpjs.com/)
-* [BOWER] (http://bower.io/)
-* [NPM] (https://www.npmjs.com/)
-
-## Contributing
-
-Thank you for contributing to this repository.
-
-## Acknowledgments / Credits
-This project wont be possible without the following, We acknowledge and are grateful to these developers for their contributions to open source. **All necessary credits are given**.
-
-* [Laravel-Angular (Material)] (https://laravel-angular.readme.io)
-* [AdminLTE] (https://github.com/almasaeed2010/AdminLTE)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
