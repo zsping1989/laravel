@@ -19,17 +19,15 @@
 
 ![laradmin](https://cloud.githubusercontent.com/assets/1888261/15561320/1899b4b2-2327-11e6-8a3a-7e3d7ce31621.png)
 
-## Installation
+## 安装:
+要求:php >=5.6  安装好composer
 ```
 $ git clone https://github.com/zsping1989/laravel.git
-```
-```
+
 $ cd laravel/
-```
-```
+
 $ git checkout dev
-```
-```
+
 $ composer install
 ```
 
@@ -39,5 +37,6 @@ cmd到项目根目录
 ```
 $ php artisan migrate --seed
 ```
+将站点目录指向根目录下的public(/public);
 路由访问:/admin/index
 
