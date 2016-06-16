@@ -9,6 +9,7 @@ use App\Models\Menu;
 class MenuController extends Controller
 {
     use ResourceController; //资源控制器
+    protected $treeOrder = true;
 
     /**
      * 模型绑定

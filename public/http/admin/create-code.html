@@ -151,14 +151,20 @@
                                                     </tr>
                                                     <tr>
                                                         <td>create:js</td>
-                                                        <td>创建JS文件</td>
+                                                        <td>创建视图</td>
                                                         <td>
-                                                            <input name="my_m_name" ng-init="my_m_name='Models/Test'" ng-model="my_m_name"  placeholder="请填写模型名称">->数据模型<br>
-                                                            <input type="checkbox" value="--tree" ng-model="my_m_tree">:是否启用树状结构模式
+                                                            <input name="my_j_name" ng-init="my_j_name='admin/test/index'" ng-model="my_j_name"  placeholder="请填写视图名称">->js文件名称<br>
+                                                            <input type="text" ng-init="my_j_table='tests'"  ng-model="my_j_table">:填写绑定的数据表<br>
+                                                            <select ng-init="my_j_type='index'"  ng-model="my_j_type">
+                                                                <option value="index">数据显示页面</option>
+                                                                <option value="edit">数据编辑页面</option>
+                                                            </select>->模板类型选择
                                                         </td>
                                                         <td><button ng-click="create({
                                                         'artisan':'create:js',
-                                                        '--tree':my_m_tree
+                                                        'name':my_j_name,
+                                                        'type':my_j_type,
+                                                        'table':my_j_table
                                                         })">创建</button></td>
                                                         <td>创建一个新的自定义模型</td>
                                                     </tr>

@@ -120,7 +120,7 @@ define(['angular'], function (angular) {
                 method: 'GET',
                 url: $scope.data_url,
                 params: resparams}).success(function (datas) {
-                if(params.refresh){
+                if(params.refresh==1){
                     $alert({
                         'title':'提示',
                         'content':'刷新成功!',
@@ -156,7 +156,7 @@ define(['angular'], function (angular) {
                 data: {ids:data}
             }).success(function (datas) {
                 $scope.ids = [];
-                factory.getData($scope,{refresh:1});
+                factory.getData($scope,{refresh:2});
             });
 
         };
