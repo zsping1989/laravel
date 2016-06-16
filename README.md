@@ -20,10 +20,11 @@
 
 ## 安装:
 要求:php >=5.6  安装好composer
-php.ini文件需要开启
-#extension=php_fileinfo.dll
-#extension=php_fileinfo.dll
-#extension=php_openssl.dll
+
+###php.ini文件需要开启
+extension=php_fileinfo.dll
+extension=php_fileinfo.dll
+extension=php_openssl.dll
 
 ```
 $ git clone https://github.com/zsping1989/laravel.git
