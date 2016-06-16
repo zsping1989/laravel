@@ -36,7 +36,7 @@
                     <table  class="table table-bordered table-hover dataTable">
                         <tr role="row">
                             <th class="sorting" style="width: 30px;">
-                                <input type="checkbox" value="1" name="selectAll" ng-model="selectAll">
+                                <input type="checkbox" value="1" name="selectAll" ng-click="selectAllId($this,selectAll)" ng-model="selectAll">
                             </th>
                             <th class="sorting">ID
                                 <span ng-click="getData($this,{'order':'id'})"  ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.id=='desc','glyphicon glyphicon-sort-by-attributes':order.id!='desc'}"></span>
@@ -60,7 +60,7 @@
                         </tr>
                         <tr ng-repeat="row in data" role="row">
                             <td><input type="checkbox" value="{{row.id}}" name="ids[]" ng-model="ids[$index]" ng-true-value="{{row.id}}" ng-checked="selectAll"></td>
-                            <td><a>{{row.id}}</a></td>
+                            <td><a ng-init="allIds[$index] = row.id">{{row.id}}</a></td>
                             <td>{{'deep' | F : row.level}}{{row.name}}</td>
                             <td>{{row.prefix}}{{row.url}}</td>
                             <td class="visible-lg">{{row.created_at}}</td>
@@ -79,7 +79,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-5">
+                <div class="col-sm-5">{{allIds}}
                     <button class="btn btn-default btn-sm" title="删除选中" ng-click="delete($this)"><i class="fa fa-trash-o"></i></button>
                     <button class="btn btn-default btn-sm" title="刷新" ng-click="getData($this,{refresh:1})"><i class="fa fa-refresh"></i></button>
                 </div>

@@ -37,7 +37,7 @@
                                             <table  class="table table-bordered table-hover dataTable">
                                                 <tr role="row">
                                                     <th class="sorting" style="width: 30px;">
-                                                        <input type="checkbox" value="1" name="selectAll" ng-model="selectAll">
+                                                        <input type="checkbox" value="1" name="selectAll"  ng-click="selectAllId($this,selectAll)" ng-model="selectAll">
                                                     </th>
 @foreach ($table_fields as $field)
 @if($field->showType!='hidden')
@@ -49,17 +49,17 @@
                                                     <th class="sorting">操作</th>
                                                 </tr>
                                                 <tr ng-repeat="row in data" role="row">
-                                                    <td><input type="checkbox" value="@{{row.id}}" name="ids[]" ng-model="ids[$index]" ng-true-value="@{{row.id}}" ng-checked="selectAll"></td>
+                                                    <td><input type="checkbox" value="@{{row.id}}" name="ids[]" ng-model="ids[$index]" ng-init="allIds[$index] = row.id" ng-true-value="@{{row.id}}" ng-checked="selectAll"></td>
 @foreach ($table_fields as $field)
 @if($field->showType=='hidden')
 @elseif($field->showType=='time')
                                                             <td class="visible-lg">{{$tpl_start}}row.{{$field->Field}}{{$tpl_end}}</td>
 @elseif($field->values)
+                                                            <td>
 @foreach ($field->values as $key=>$value)
-                                                                <td>
                                                                     <span class="label label-primary" ng-if="row.{{$field->Field}}=={{$key}}">{{$value}}</span>
-                                                                </td>
 @endforeach
+                                                            </td>
 @else
                                                             <td>{{$tpl_start}}row.{{$field->Field}}{{$tpl_end}}</td>
 @endif

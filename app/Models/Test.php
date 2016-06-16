@@ -10,5 +10,8 @@ class Test extends BaseModel
     use TreeModel; //树状结构
     use SoftDeletes; //软删除
 
+    //批量赋值白名单
+    protected $fillable = [
+    ];
 
 }

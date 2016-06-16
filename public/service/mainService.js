@@ -137,7 +137,7 @@ define(['angular'], function (angular) {
 
         //删除数据
         factory.delete = function($scope,id){
-            var ids = id || $scope.ids;
+            var ids =id || $scope.ids;
             var data = [];
             if(typeof ids=='object'){
                 for (var i in ids){
@@ -148,17 +148,26 @@ define(['angular'], function (angular) {
             }else {
                 data = ids;
             }
-            if(!data || (typeof ids =='object' && !ids.length)){return false}
+            if(!data || (typeof ids =='object' && !ids.length)){
+                return false;
+            }
             //请求数据
             $http({
                 method: 'POST',
                 url: $scope.delete_url,
                 data: {ids:data}
             }).success(function (datas) {
+                $scope.selectAll = false;
                 $scope.ids = [];
                 factory.getData($scope,{refresh:2});
             });
-
+        };
+        factory.selectAllId = function($scope,selectAll){
+            if(selectAll){
+                $scope.ids = $scope.allIds;
+            }else {
+                $scope.ids = []
+            }
         };
 
         return factory
