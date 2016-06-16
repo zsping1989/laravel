@@ -33,10 +33,11 @@ $ git checkout dev
 $ composer install
 ```
 
-Open ```.env``` and enter necessary config for DB and Oauth Providers Settings.
+根目录创建 ```.env``` 文件,修改好数据库等相关配置
+cmd到项目根目录
 
 ```
-$ php artisan migrate
-$ php artisan db:seed
+$ php artisan migrate --seed
 ```
+路由访问:/admin/index
 
