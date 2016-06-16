@@ -30,7 +30,7 @@ $ cd laravel/
 $ git checkout dev
 ```
 ```
-$ composer install && npm install
+$ composer install
 ```
 
 Open ```.env``` and enter necessary config for DB and Oauth Providers Settings.
