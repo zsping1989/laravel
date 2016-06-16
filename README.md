@@ -14,7 +14,6 @@
 
 ## Demo
 
-*Note: 登录用户名:13699411148 密码:123456
 
 
 ![laradmin](https://cloud.githubusercontent.com/assets/1888261/15561320/1899b4b2-2327-11e6-8a3a-7e3d7ce31621.png)
@@ -44,4 +43,5 @@ $ php artisan migrate --seed
 ```
 将站点目录指向根目录下的public(/public);
 路由访问:/admin/index
+*Note: 登录用户名:13699411148 密码:123456
 
