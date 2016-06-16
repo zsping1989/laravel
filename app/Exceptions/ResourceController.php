@@ -17,10 +17,13 @@ trait ResourceController{
 
     //获取菜单数据
     public function getList(){
+
         if(isset($this->treeOrder)){
-            $this->bindModel->orderBy('left_margin');
+            $obj = $this->bindModel->orderBy('left_margin');
+        }else{
+            $obj = $this->bindModel;
         }
-        $data = $this->bindModel->options(Request::only('where', 'order'))->paginate();
+        $data = $obj->options(Request::only('where', 'order'))->paginate();
         $param = [
             'order'=> Request::input('order',[]), //排序
             'where'=>Request::input('where',[]), //条件查询
