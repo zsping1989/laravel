@@ -27,10 +27,10 @@ class CreateMenusTable extends Migration
             $table->tinyInteger('status')->default(2)->comment('状态:1-显示,2-不显示');
 
             //$table->marginTree(); //树状结构
-            $this->integer('parent_id')->default(0)->comment('父级ID');
-            $this->smallInteger('level')->default(0)->comment('层级');
-            $this->integer('left_margin')->default(0)->comment('左边界');
-            $this->integer('right_margin')->default(0)->comment('右边界');
+            $table->integer('parent_id')->default(0)->comment('父级ID');
+            $table->smallInteger('level')->default(0)->comment('层级');
+            $table->integer('left_margin')->default(0)->comment('左边界');
+            $table->integer('right_margin')->default(0)->comment('右边界');
             $table->timestamps(); //时间戳记录
             $table->softDeletes(); //软删除
         });
