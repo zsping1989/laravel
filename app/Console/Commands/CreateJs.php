@@ -72,11 +72,6 @@ class CreateJs extends GeneratorCommand
     }
 
 
-
-
-
-
-
     /**
      * Get the console command options.
      *

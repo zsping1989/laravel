@@ -16,7 +16,7 @@ class CreateMenusTable extends Migration
     public function up()
     {
         Schema::create('menus', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+            $table->engine = 'InnoDB COMMENT="菜单"';
             $table->increments('id')->comment('权限ID');
             $table->string('name')->default('')->comment('菜单名称@required');
             $table->string('icons')->default('')->comment('图标');

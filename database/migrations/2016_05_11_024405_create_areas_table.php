@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\Config;
 
 class CreateAreasTable extends Migration
 {
@@ -13,7 +11,7 @@ class CreateAreasTable extends Migration
      */
     public function up()
     {
-        DB::statement("CREATE TABLE `".Config::get('database.connections.mysql.prefix')."areas` (
+        DB::statement("CREATE TABLE `".config('database.connections.mysql.prefix')."areas` (
                       `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '区域ID',
                       `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '名称@required',
                       `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态:1-显示,2-不显示',
@@ -25,7 +23,7 @@ class CreateAreasTable extends Migration
                       `updated_at` timestamp NULL DEFAULT NULL,
                       `deleted_at` timestamp NULL DEFAULT NULL,
                       PRIMARY KEY (`id`)
-                    ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;"
+                    ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='地区'"
         );
     }
 
@@ -36,6 +34,6 @@ class CreateAreasTable extends Migration
      */
     public function down()
     {
-        DB::statement('drop table '.Config::get('database.connections.mysql.prefix').'areas');
+        DB::statement('drop table '.config('database.connections.mysql.prefix').'areas');
     }
 }

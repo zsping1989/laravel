@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+            $table->engine = 'InnoDB COMMENT="用户"';
             $table->increments('id')->comment('用户ID');
             $table->string('uname')->index()->default('')->unique()->comment('用户名@required');
             $table->string('password')->default('')->comment('密码@required|min:6');

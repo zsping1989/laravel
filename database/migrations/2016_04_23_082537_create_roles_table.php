@@ -15,7 +15,7 @@ class CreateRolesTable extends Migration
     public function up()
     {
         Schema::create('roles', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+            $table->engine = 'InnoDB COMMENT="角色"';
             $table->increments('id')->comment('角色ID');
             $table->string('name')->default('')->comment('角色名称@required');
             $table->string('description')->default('')->comment('描述');

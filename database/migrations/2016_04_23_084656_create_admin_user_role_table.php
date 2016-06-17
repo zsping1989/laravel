@@ -15,7 +15,7 @@ class CreateAdminUserRoleTable extends Migration
     public function up()
     {
         Schema::create('admin_user_role', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+            $table->engine = 'InnoDB COMMENT="后台用户-角色关联"';
             $table->integer('user_id')->index()->defualt(0)->comment('用户ID');
             $table->integer('role_id')->index()->defualt(0)->comment('角色ID');
             $table->primary(['user_id', 'role_id']);

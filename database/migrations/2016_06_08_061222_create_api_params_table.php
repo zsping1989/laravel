@@ -16,6 +16,7 @@ class CreateApiParamsTable extends Migration
     public function up()
     {
         Schema::create('api_params', function (Blueprint $table) {
+            $table->engine = 'InnoDB COMMENT="接口参数"';
             $table->increments('id')->comment('参数ID');
 
             $table->integer('menu_id')->index()->default(0)->comment('接口ID');

@@ -13,7 +13,7 @@ class CreateTestsTable extends Migration
     public function up()
     {
         Schema::create('tests', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+            $table->engine = 'InnoDB COMMENT="测试"';
             $table->increments('id')->comment('权限ID');
             $table->string('name')->default('')->comment('菜单名称@required');
             $table->integer('method')->default(1)->comment('请求方式:1-get,2-post,3-put');

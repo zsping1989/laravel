@@ -13,6 +13,7 @@ class CreateApiResponseTable extends Migration
     public function up()
     {
         Schema::create('api_responses', function (Blueprint $table) {
+            $table->engine = 'InnoDB COMMENT="接口响应"';
             $table->increments('id')->comment('响应说明ID');
 
             $table->integer('menu_id')->index()->default(0)->comment('接口ID');

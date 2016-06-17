@@ -13,7 +13,7 @@ class CreateMenuRoleTable extends Migration
     public function up()
     {
         Schema::create('menu_role', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+            $table->engine = 'InnoDB COMMENT="菜单-角色关联"';
             $table->integer('role_id')->index()->defualt(0)->comment('角色ID');
             $table->integer('menu_id')->index()->defualt(0)->comment('菜单ID');
             $table->primary(['role_id', 'menu_id']);
