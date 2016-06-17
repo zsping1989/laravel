@@ -86,6 +86,56 @@
                                                 </table>
                                             </div><!-- /.box-body -->
                                         </div>
+                                        <div data-title="数据迁移与填充" name="数据迁移与填充" bs-pane>
+                                            <div>
+                                                <div class="box-body">
+                                                    <table class="table table-hover table-bordered">
+                                                        <tr>
+                                                            <th>命令名称</th>
+                                                            <th>命令选项</th>
+                                                            <th>执行按钮</th>
+                                                            <th>命令说明</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>migrate</td>
+                                                            <td>执行新增迁移文件</td>
+                                                            <td>
+                                                                <input type="checkbox" name="force" value="1" ng-model="force" >:强制执行
+                                                            </td>
+                                                            <td><button ng-click="create({'artisan':'migrate','--force':force})">执行</button></td>
+                                                            <td>执行新增迁移文件</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                migrate:rollback<br />
+                                                                migrate:reset<br />
+                                                                migrate:refresh
+                                                            </td>
+                                                            <td>回滚迁移</td>
+                                                            <td ng-init="rol='rollback'">
+                                                                <input type="radio" name="rol" value="rollback" ng-model="rol">->回滚到上一次迁移<br />
+                                                                <input type="radio" name="rol" value="reset" ng-model="rol">->回滚所有迁移<br />
+                                                                <input type="radio" name="rol" value="refresh" ng-model="rol">->回滚所有迁移并且再执行一次
+                                                            </td>
+                                                            <td><button ng-click="create({'artisan':'migrate:'+rol})">执行</button></td>
+                                                            <td>回滚迁移</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                db:seed
+                                                            </td>
+                                                            <td>数据填充</td>
+                                                            <td>
+                                                                <input name="se_name" ng-init="se_name='TestTableSeeder'" ng-model="se_name"  placeholder="请填写填充seeder类名">->seeder类名
+                                                            </td>
+                                                            <td><button ng-click="create({'artisan':'db:seed','--class':se_name})">执行</button></td>
+                                                            <td>数据填充</td>
+                                                        </tr>
+                                                    </table>
+                                                 </div>
+                                            </div>
+
+                                        </div>
                                         <div data-title="自定义代码创建" name="自定义代码创建" bs-pane>
                                             <div class="box-body">
                                                 <table class="table table-bordered">
@@ -170,56 +220,6 @@
                                                     </tr>
                                                 </table>
                                             </div><!-- /.box-body -->
-                                        </div>
-                                        <div data-title="数据迁移与填充" name="数据迁移与填充" bs-pane>
-                                            <div>
-                                                <div class="box-body">
-                                                    <table class="table table-hover table-bordered">
-                                                        <tr>
-                                                            <th>命令名称</th>
-                                                            <th>命令选项</th>
-                                                            <th>执行按钮</th>
-                                                            <th>命令说明</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>migrate</td>
-                                                            <td>执行新增迁移文件</td>
-                                                            <td>
-                                                                <input type="checkbox" name="force" value="1" ng-model="force" >:强制执行
-                                                            </td>
-                                                            <td><button ng-click="create({'artisan':'migrate','--force':force})">执行</button></td>
-                                                            <td>执行新增迁移文件</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                migrate:rollback<br />
-                                                                migrate:reset<br />
-                                                                migrate:refresh
-                                                            </td>
-                                                            <td>回滚迁移</td>
-                                                            <td ng-init="rol='rollback'">
-                                                                <input type="radio" name="rol" value="rollback" ng-model="rol">->回滚到上一次迁移<br />
-                                                                <input type="radio" name="rol" value="reset" ng-model="rol">->回滚所有迁移<br />
-                                                                <input type="radio" name="rol" value="refresh" ng-model="rol">->回滚所有迁移并且再执行一次
-                                                            </td>
-                                                            <td><button ng-click="create({'artisan':'migrate:'+rol})">执行</button></td>
-                                                            <td>回滚迁移</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                db:seed
-                                                            </td>
-                                                            <td>数据填充</td>
-                                                            <td>
-                                                                <input name="se_name" ng-init="se_name='TestTableSeeder'" ng-model="se_name"  placeholder="请填写填充seeder类名">->seeder类名
-                                                            </td>
-                                                            <td><button ng-click="create({'artisan':'db:seed','--class':se_name})">执行</button></td>
-                                                            <td>数据填充</td>
-                                                        </tr>
-                                                    </table>
-                                                 </div>
-                                            </div>
-
                                         </div>
                                         <div data-title="自定义说明文档" name="自定义说明文档" bs-pane>
                                             <div>

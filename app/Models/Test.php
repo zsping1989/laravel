@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Test extends BaseModel
 {
+    protected $table = 'tests'; //数据表名称
 
     use TreeModel; //树状结构
     use SoftDeletes; //软删除

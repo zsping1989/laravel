@@ -2,14 +2,18 @@
 
 namespace App\Console\Commands;
 
+use App\Exceptions\CreateCommand;
 use Illuminate\Console\GeneratorCommand;
 
 class CreateControllers extends GeneratorCommand
 {
+    //创建代码扩展类
+    use CreateCommand;
+
     /**
-     * create:controller 控制器名称
-     *
-     * @var string
+     * 创建命令
+     * 说明:create:controller 控制器名称 模型名称(选填)
+     * 变量 string
      */
     protected $signature = 'create:controller
     {name : The name of controller}
@@ -17,32 +21,33 @@ class CreateControllers extends GeneratorCommand
     {--resource : create ResourceController}
     {--verify : verify}';
 
+
     /**
-     * 创建自定义代码
-     *
-     * @var string
+     * 命令描述
+     * 变量 string
      */
     protected $description = 'Create custom controller';
 
+
     /**
-     * The type of class being generated.
-     *
-     * @var string
+     * 生成的class类型
+     * 变量 string
      */
     protected $type = 'Controller';
 
-    protected $tpl_dir = 'commands';
-
+    /**
+     * 获取模板文件名
+     * 返回: string
+     */
+    protected function getTplFile(){
+        return 'controller';
+    }
 
 
     /**
-     * Execute the console command.
-     *
-     * @return mixed
+     * 基础数据分配
      */
-    public function handle()
-    {
-        //使用数据准备
+    protected function initData(){
         $data['php'] = '<?php';
         $data['name'] = $this->parseName($this->getNameInput());
         $data['namespace']  = $this->getNamespace($data['name']);
@@ -53,63 +58,31 @@ class CreateControllers extends GeneratorCommand
         if($this->option('verify')){ //验证查询
 
         }
-        //dd($data);
-
-        $path = $this->getPath($data['name']);
-
-        if ($this->alreadyExists($this->getNameInput())) {
-            $this->error($this->type.' already exists!');
-
-            return false;
-        }
-
-        $this->makeDirectory($path);
-
-        $this->files->put($path, $this->buildClass($data));
-
-        $this->info($this->type.' created successfully.');
+        $this->withData($data);
     }
 
-    /**
-     * 数据渲染
-     * param string $data
-     * 返回: string
-     */
-    public function buildClass($data){
-        return view($this->tpl_dir.'.controller',$data)->render();
-    }
-
-
-
-    /**
-     * Get the stub file for the generator.
-     *
-     * @return string
-     */
-    protected function getStub()
-    {
-    }
 
     /**
      * Get the default namespace for the class.
      *
-     * @param  string  $rootNamespace
-     * @return string
+     * 参数  string  $rootNamespace
+     * 返回 string
      */
     protected function getDefaultNamespace($rootNamespace)
     {
         return $rootNamespace.'\Http\Controllers';
     }
 
+
     /**
-     * Get the console command options.
-     *
-     * @return array
+     * 创建命令选项
+     * 返回: array
      */
     protected function getOptions()
     {
         return [
             ['resource', null, InputOption::VALUE_NONE, 'Generate a resource controller class.'],
+            ['verify', null, InputOption::VALUE_NONE, 'verify parameters']
         ];
     }
 

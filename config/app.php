@@ -1,12 +1,4 @@
 <?php
-/* 返回状态码定义 */
-define('CODE_W',3); //警告信息
-define('CODE_I',2); //提示信息
-define('CODE_P',1); //参数错误
-define('CODE_OK',0); //操作成功
-define('CODE_F',-1); //操作失败
-define('CODE_NO',-2); //没有数据
-define('CODE_SE',-3); //系统错误
 
 return [
 
