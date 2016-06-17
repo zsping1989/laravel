@@ -57,7 +57,7 @@
 @elseif($field->values)
                                                             <td>
 @foreach ($field->values as $key=>$value)
-                                                                    <span class="label label-primary" ng-if="row.{{$field->Field}}=={{$key}}">{{$value}}</span>
+                                                                    <span class="label label-primary" ng-if="row.{{$field->Field}}=='{{$key}}'">{{$value}}</span>
 @endforeach
                                                             </td>
 @else

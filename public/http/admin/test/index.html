@@ -59,13 +59,13 @@
                                                             <td>{{row.id}}</td>
                                                             <td>{{row.name}}</td>
                                                             <td>
-                                                                    <span class="label label-primary" ng-if="row.method==1">get</span>
-                                                                    <span class="label label-primary" ng-if="row.method==2">post</span>
-                                                                    <span class="label label-primary" ng-if="row.method==3">put</span>
+                                                                    <span class="label label-primary" ng-if="row.method=='1'">get</span>
+                                                                    <span class="label label-primary" ng-if="row.method=='2'">post</span>
+                                                                    <span class="label label-primary" ng-if="row.method=='3'">put</span>
                                                             </td>
                                                             <td>
-                                                                    <span class="label label-primary" ng-if="row.status==1">显示</span>
-                                                                    <span class="label label-primary" ng-if="row.status==2">不显示</span>
+                                                                    <span class="label label-primary" ng-if="row.status=='1'">显示</span>
+                                                                    <span class="label label-primary" ng-if="row.status=='2'">不显示</span>
                                                             </td>
                                                             <td>{{row.parent_id}}</td>
                                                             <td class="visible-lg">{{row.created_at}}</td>
