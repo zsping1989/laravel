@@ -27,24 +27,6 @@
                                                         <th>描述</th>
                                                     </tr>
                                                     <tr>
-                                                        <td>make:controller</td>
-                                                        <td>创建控制器</td>
-                                                        <td>
-                                                            <input name="c_name" ng-init="c_name='Admin/TestController'" ng-model="c_name"  placeholder="请填写控制器名称">->控制器
-                                                        </td>
-                                                        <td><button ng-click="create({'artisan':'make:controller','name':c_name})">创建</button></td>
-                                                        <td>创建一个新的控制器</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>make:model</td>
-                                                        <td>创建模型</td>
-                                                        <td>
-                                                            <input name="m_name" ng-init="m_name='Models/Test'" ng-model="m_name"  placeholder="请填写模型名称">->模型
-                                                        </td>
-                                                        <td><button ng-click="create({'artisan':'make:model','name':m_name})">创建</button></td>
-                                                        <td>创建一个新的模型</td>
-                                                    </tr>
-                                                    <tr>
                                                         <td>make:migration</td>
                                                         <td>创建迁移文件</td>
                                                         <td ng-init="mi_type='--create';obj={'artisan':'make:migration'}">
@@ -64,6 +46,24 @@
                                                         </td>
                                                         <td><button ng-click="create({'artisan':'make:seeder','name':s_name})">创建</button></td>
                                                         <td>创建一个数据填充文件</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>make:model</td>
+                                                        <td>创建模型</td>
+                                                        <td>
+                                                            <input name="m_name" ng-init="m_name='Models/Test'" ng-model="m_name"  placeholder="请填写模型名称">->模型
+                                                        </td>
+                                                        <td><button ng-click="create({'artisan':'make:model','name':m_name})">创建</button></td>
+                                                        <td>创建一个新的模型</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>make:controller</td>
+                                                        <td>创建控制器</td>
+                                                        <td>
+                                                            <input name="c_name" ng-init="c_name='Admin/TestController'" ng-model="c_name"  placeholder="请填写控制器名称">->控制器
+                                                        </td>
+                                                        <td><button ng-click="create({'artisan':'make:controller','name':c_name})">创建</button></td>
+                                                        <td>创建一个新的控制器</td>
                                                     </tr>
                                                     <tr>
                                                         <td>make:console</td>
