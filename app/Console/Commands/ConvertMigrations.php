@@ -1,86 +1,91 @@
 <?php
-/**
- *  通过数据库表->生成迁徙文件
- */
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
+use App\Exceptions\CreateCommand;
+use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Facades\DB;
 
-class ConvertMigrations extends Command
+class ConvertMigrations extends GeneratorCommand
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'convert:migrations
-    {database? : The name of the Database}
-    {--ignore= : Table name of Database}';
+    //创建代码扩展类
+    use CreateCommand;
 
     /**
-     * The console command description.
-     *
-     * @var string
+     * 创建命令
+     * 说明:convert:migration 数据表名
+     * 变量 string
      */
-    protected $description = 'Converts an existing MySQL database to migrations.';
+    protected $signature = 'convert:migration
+    {name : The name of table}';
 
-    protected $handleTables = array();//需要处理的表
-    protected $database; //数据库
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * 命令描述
+     * 变量 string
      */
-    public function __construct()
+    protected $description = 'Convert migration';
+
+
+    /**
+     * 生成的class类型
+     * 变量 string
+     */
+    protected $type = 'Migration';
+
+    /**
+     * 获取模板文件名
+     * 返回: string
+     */
+    protected function getTplFile(){
+        return 'migration';
+    }
+
+
+    /**
+     * 基础数据分配
+     */
+    protected function initData(){
+        $data['php'] = '<?php';
+        $data['name'] = $this->getNameInput();
+        $data['table'] = snake_case($this->getNameInput());
+        $data['class'] = ucfirst(camel_case($this->getNameInput()));
+        //查询数据表创建sql
+        $table_info = DB::select('SHOW CREATE TABLE `'.config('database.connections.mysql.prefix').$data['table'].'`')[0];
+        foreach($table_info as $key=>$value){
+            if($key=='Table'){
+                $data['true_table'] = $value;
+            }else{
+                $prefix = config('database.connections.mysql.prefix');
+                $data['create'] = $prefix ? str_replace('CREATE TABLE `'.$prefix,
+                    'CREATE TABLE `".config(\'database.connections.mysql.prefix\')."',
+                    $value) : $value;
+            }
+        }
+        //dd($data);
+        $this->withData($data);
+    }
+
+    /**
+     * Get the destination class path.
+     *
+     * @param  string  $name
+     * @return string
+     */
+    protected function getPath($name){
+        $name = str_replace($this->laravel->getNamespace(), '', $name);
+        return database_path('migrations/create_'.$name.'_table.php');
+    }
+
+
+    /**
+     * 创建命令选项
+     * 返回: array
+     */
+    protected function getOptions()
     {
-        parent::__construct();
+        return [];
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
-    {
-        $this->database = $this->argument('database') ?: env('DB_DATABASE'); //数据库
-        $ignoreInput = str_replace(' ', '', $this->option('ignore')); //选项数据表
-        dd(122);
-        $this->appointTable($ignoreInput);
-
-        $this->info('Migration Created Successfully');
-    }
-
-    /**
-     * 指定需要转换的数据表
-     * @param string $tables
-     */
-    protected function appointTable($tables=''){
-        $this->handleTables = $tables ? explode(',',$tables) : $this->notExistTable(); //需要生成的迁徙文件表
-
-    }
-
-    /**
-     * 获取数据库中所有表
-     * 返回: mixed
-     */
-    protected function getAllTables(){
-        $TABLE_SCHEMA = $this->database;
-        return DB::select('SELECT `TABLE_NAME` FROM information_schema.`TABLES` WHERE TABLE_SCHEMA = ?',[$TABLE_SCHEMA]);
-    }
-
-    /**
-     * 差异比较已有的迁徙表
-     * 返回: mixed
-     */
-    protected function notExistTable(){
-
-        dd($this->getAllTables());
-
-    }
 
 }
-
