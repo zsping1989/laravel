@@ -92,6 +92,7 @@ class CreateModels extends GeneratorCommand
             $data['fillable'] = $data['fillable'] ? "'".$data['fillable']."'":'';
             $data['delete'] = $data['delete']->implode("','");
             $data['delete'] = $data['delete'] ? "'".$data['delete']."'":'';
+            //dd($tableInfo);
         }
         $this->withData($data);
     }

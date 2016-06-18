@@ -1,4 +1,7 @@
 {!! $php !!}
+/**
+ * {{$table_comment}}模型
+ */
 namespace {{$namespace}};
 use App\BaseModel;
 @if ($tree)
