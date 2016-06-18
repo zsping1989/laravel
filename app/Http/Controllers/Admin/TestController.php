@@ -19,5 +19,13 @@ class TestController extends Controller
         $this->bindModel = $bindModel;
     }
 
+    /**
+    * 新增或修改,验证规则获取
+    * 返回: array
+    */
+    protected function getValidateRule(){
+        return ['name'=>'required'];
+    }
+
 
 }

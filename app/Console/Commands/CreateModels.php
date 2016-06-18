@@ -71,7 +71,7 @@ class CreateModels extends GeneratorCommand
         $data['tree'] = $this->option('tree'); //树状结构选项
         $data['softDeletes'] = $this->option('softDeletes'); //软删除模式选项
         if($data['fields'] = $this->option('fields')){ //字段生成
-            $tableInfo = $this->getTableInfo($data['table']  ?:str_singular(snake_case($data['class'])));
+            $tableInfo = $this->getTableInfo($data['table']  ?:snake_case($data['class']).'s');
             $this->withData($tableInfo);
             $data['dates'] = $tableInfo['table_fields']->filter(function($item){
                 return $item->showType=='time' || in_array($item->Field,['deleted_at', 'created_at','updated_at']);

@@ -56,7 +56,16 @@ class CreateControllers extends GeneratorCommand
         $data['model'] =  str_replace('/','\\',$this->argument('model') ?: 'Models\\'.str_replace('Controller','',$data['class'])); //绑定模型
         $data['modelName'] = pathinfo($data['model'])['filename'];
         if($this->option('verify')){ //验证查询
-
+            $tableInfo = $this->getTableInfo(snake_case($data['modelName']).'s');
+            $this->withData($tableInfo);
+            $data['validates'] = $tableInfo['table_fields']->map(function($item){
+                if($item->validator){
+                    return "'".$item->Field."'=>'".$item->validator."'";
+                }
+            })->filter(function($item){
+                return $item;
+            })->implode(",");
+            //dd($data);
         }
         $this->withData($data);
     }
