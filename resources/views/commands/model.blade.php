@@ -23,8 +23,11 @@ class {{$class}} extends BaseModel
 
 @if ($fields)
     //批量赋值白名单
-    protected $fillable = [
-    ];
-@endif
+    protected $fillable = [{!! $fillable !!}];
+    //输出隐藏字段
+    protected $hidden = [{!! $delete !!}];
+    //日期字段
+    protected $dates = [{!! $dates !!}];
+  @endif
 
-}
+  }

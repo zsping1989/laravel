@@ -59,6 +59,7 @@ class CreateViews extends GeneratorCommand
         $data['table'] = $this->argument('table'); //数据表名称
         $data['tpl_controller'] = str_replace('/','-',$this->getNameInput()).'Ctrl';
         $data['dirname'] = dirname($data['name']);
+        $data['label_style'] = ['primary','success','info','warning','danger','default','primary','success','info','warning','danger','default'];
         //dd($data);
 
         if($data['table']){ //查询数据表信息

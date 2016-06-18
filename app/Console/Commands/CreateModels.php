@@ -71,7 +71,27 @@ class CreateModels extends GeneratorCommand
         $data['tree'] = $this->option('tree'); //树状结构选项
         $data['softDeletes'] = $this->option('softDeletes'); //软删除模式选项
         if($data['fields'] = $this->option('fields')){ //字段生成
-
+            $tableInfo = $this->getTableInfo($data['table']  ?:str_singular(snake_case($data['class'])));
+            $this->withData($tableInfo);
+            $data['dates'] = $tableInfo['table_fields']->filter(function($item){
+                return $item->showType=='time' || in_array($item->Field,['deleted_at', 'created_at','updated_at']);
+            })->pluck('Field')->implode("','");
+            $data['dates'] = $data['dates'] ? "'".$data['dates']."'":'';
+            //隐藏输出字段
+            $data['delete'] = $tableInfo['table_fields']->filter(function($item){
+                return $item->showType=='delete' || in_array($item->Field,['deleted_at']);
+            })->pluck('Field');
+            //批量赋值字段
+            $data['fillable'] =$tableInfo['table_fields']->pluck('Field')->diff($data['delete']->merge([
+                'level',
+                'left_margin',
+                'right_margin',
+                'created_at',
+                'updated_at'
+            ])->all())->implode("','");
+            $data['fillable'] = $data['fillable'] ? "'".$data['fillable']."'":'';
+            $data['delete'] = $data['delete']->implode("','");
+            $data['delete'] = $data['delete'] ? "'".$data['delete']."'":'';
         }
         $this->withData($data);
     }

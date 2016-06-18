@@ -12,7 +12,10 @@ class Test extends BaseModel
     use SoftDeletes; //软删除
 
     //批量赋值白名单
-    protected $fillable = [
-    ];
-
-}
+    protected $fillable = ['id','name','method','status','parent_id'];
+    //输出隐藏字段
+    protected $hidden = ['deleted_at'];
+    //日期字段
+    protected $dates = ['created_at','updated_at','deleted_at'];
+  
+  }

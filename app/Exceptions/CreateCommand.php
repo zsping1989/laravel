@@ -108,6 +108,7 @@ trait CreateCommand
                 })->pluck('1','0')->filter(function($item){
                     return $item;
                 })->toArray(); //字段值
+                $item->showType = (!$item->showType && $item->values) ? 'radio' : $item->showType;
                 return $item;
             });
         return $data;
