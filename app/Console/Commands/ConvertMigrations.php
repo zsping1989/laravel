@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Exceptions\CreateCommand;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Composer;
 
 class ConvertMigrations extends GeneratorCommand
 {
@@ -32,6 +33,13 @@ class ConvertMigrations extends GeneratorCommand
      * 变量 string
      */
     protected $type = 'Migration';
+
+    public function __construct(MigrationCreator $creator,Composer $composer)
+    {
+        parent::__construct();
+        $this->creator = $creator;
+        $this->composer = $composer;
+    }
 
     /**
      * 获取模板文件名
@@ -64,6 +72,16 @@ class ConvertMigrations extends GeneratorCommand
         }
         //dd($data);
         $this->withData($data);
+
+    }
+
+    /**
+     * 生成文件加入自动加载
+     */
+    protected function addAutoload($path,$name){
+        //$this->creator->create($name, $path, $table, $create);
+        //$this->composer->dumpAutoloads();
+
     }
 
     /**
@@ -74,7 +92,7 @@ class ConvertMigrations extends GeneratorCommand
      */
     protected function getPath($name){
         $name = str_replace($this->laravel->getNamespace(), '', $name);
-        return database_path('migrations/create_'.$name.'_table.php');
+        return database_path('migrations/'.date('Y_m_d_His').'_create_'.$name.'_table.php');
     }
 
 

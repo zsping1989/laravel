@@ -72,6 +72,7 @@ trait CreateCommand
         $this->initData();
         //生成代码文件
         $this->files->put($path, $this->buildClass(null));
+        $this->addAutoload($path,'');
         //结果提示输出
         $this->info($this->type.' created successfully.');
     }
@@ -120,6 +121,13 @@ trait CreateCommand
      * 返回 string
      */
     protected function getStub(){
+
+    }
+
+    /**
+     * 生成文件加入自动加载
+     */
+    protected function addAutoload($path,$name){
 
     }
 
