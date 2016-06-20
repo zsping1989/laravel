@@ -1,17 +1,12 @@
 dump(data);
 //自动注册路由
-var routes = {};
-for(var i in data.menus){
-    if(!data.menus[i].url){continue};
-    routes[data.menus[i].url]={
-        'as': data.menus[i].url,
-        'path':data.menus[i].url
-    };
-}
+var routes = handleRoute(data.menus);
+data.route = data.route.replace(/\{(\w+)[\?]\}/ ,":$1");
 //当前路由不存在,自动组成路由
-if(!routes[data.route]){
+/*if(!routes[data.route]){
     routes[data.route] = {'as':data.route,'path':data.route};
 }
+dump(routes);alert(1);*/
 
 
 //路由配置,单页面应用跳转
@@ -60,6 +55,24 @@ function dump(){
     for (var i = 0; i < arguments.length; ++i) {
         console.log(arguments[i]);
     }
+}
+
+/* 后台路由转换前端静态路由处理 */
+function handleRoute(menus){
+    //自动注册路由
+    var routes = {};
+//menus = [data.menus[6]];
+    for(var i in menus){
+        if(!menus[i].url){continue};
+        //参数路由处理
+        var route = menus[i].url.replace(/\{(\w+)[\?]\}/ ,":$1");
+        var path = menus[i].url.replace(/\/\{(\w+)[\?]\}/ ,"");
+        routes[route]={
+            'as': path,
+            'path':path
+        };
+    }
+    return routes;
 }
 
 /* 获取路径参数 */

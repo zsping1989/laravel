@@ -6,6 +6,7 @@ use App\Models\Menu;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -50,6 +51,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
         });
     }
     public function addData(&$value){
+        $route = Route::getCurrentRoute()->getCompiled()->getStaticPrefix(); //当前路由
         $data = [
             'order'=> Request::input('order',[]), //排序
             'where'=>Request::input('where',[]), //条件查询
@@ -58,7 +60,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
 
 
         $value = collect($value)->merge($data);
-        $menu = Menu::where('url','=',$value->get('route'))->first();
+        $menu = Menu::where('url','like',$route.'%')->orderBy('right_margin')->first(); //最底层路由
         $value['nav'] = $menu ? collect($menu->parents(true)->toArray())->keyBy('id') : [];
     }
 

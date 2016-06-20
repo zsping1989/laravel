@@ -127,16 +127,18 @@ class MenuTableSeeder extends Seeder
             'parent_id'=>2,
             'status'=>1
         ]);
+
         //ID:13
         factory(\App\Models\Menu::class)->create([
             'name'=>'菜单管理',
             'icons'=>'fa-th',
             'prefix'=>'#',
             'url'=>'/admin/menu/index',
-            'description' => '后台首页',
+            'description' => '菜单管理',
             'parent_id'=>2,
             'status'=>1
         ]);
+
         //ID:14
         factory(\App\Models\Menu::class)->create([
             'name'=>'测试接口',
@@ -146,6 +148,41 @@ class MenuTableSeeder extends Seeder
             'description' => '后台首页',
             'parent_id'=>13,
             'status'=>1
+        ]);
+
+        //ID:15
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'菜单列表',
+            'icons'=>'fa-th',
+            'prefix'=>'#',
+            'url'=>'/admin/menu/index',
+            'description' => '列表详细',
+            'parent_id'=>13,
+            'status'=>1
+        ]);
+
+        //ID:16
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'删除菜单',
+            'icons'=>'',
+            'prefix'=>'',
+            'url'=>'/admin/menu/destroy',
+            'method'=>2,
+            'description' => '删除菜单',
+            'parent_id'=>13,
+            'status'=>2
+        ]);
+
+        //ID:17
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'编辑菜单',
+            'icons'=>'fa-th',
+            'prefix'=>'#',
+            'url'=>'/admin/menu/edit/{id?}',
+            'method'=>2,
+            'description' => '删除菜单',
+            'parent_id'=>13,
+            'status'=>2
         ]);
 
 

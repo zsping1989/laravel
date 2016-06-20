@@ -61,7 +61,9 @@ trait ResourceController{
      * @param null $id
      */
     public function getEdit($id=null){
-        $id AND $this->bindModel->find($id);
+        $data = [];
+        $id AND $data['row'] = $this->bindModel->find($id);
+        return Response::returns($data);
     }
 
     /**
