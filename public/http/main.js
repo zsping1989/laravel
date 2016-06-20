@@ -3,10 +3,10 @@ dump(data);
 var routes = handleRoute(data.menus);
 data.route = data.route.replace(/\{(\w+)[\?]\}/ ,":$1");
 //当前路由不存在,自动组成路由
-/*if(!routes[data.route]){
+if(!data.menus && !routes[data.route]){
     routes[data.route] = {'as':data.route,'path':data.route};
 }
-dump(routes);alert(1);*/
+//dump(routes);alert(1);
 
 
 //路由配置,单页面应用跳转
