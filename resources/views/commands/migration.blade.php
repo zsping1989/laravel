@@ -11,7 +11,7 @@ class Create{{$class}}Table extends Migration
      */
     public function up()
     {
-        DB::statement("{!! $create !!}}");
+        DB::statement("{!! $create !!}");
     }
 
     /**

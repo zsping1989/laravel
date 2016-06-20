@@ -4,13 +4,15 @@ namespace App\Console\Commands;
 
 use App\Exceptions\CreateCommand;
 use Illuminate\Console\GeneratorCommand;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Composer;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\DB;
 
 class ConvertMigrations extends GeneratorCommand
 {
     //创建代码扩展类
     use CreateCommand;
+
 
     /**
      * 创建命令
@@ -34,10 +36,23 @@ class ConvertMigrations extends GeneratorCommand
      */
     protected $type = 'Migration';
 
-    public function __construct(MigrationCreator $creator,Composer $composer)
+    /**
+     * The Composer instance.
+     *
+     * @var \Illuminate\Support\Composer
+     */
+    protected $composer;
+
+    /**
+     * Create a new migration install command instance.
+     *
+     * @param  \Illuminate\Database\Migrations\MigrationCreator  $creator
+     * @param  \Illuminate\Support\Composer  $composer
+     * @return void
+     */
+    public function __construct(Composer $composer,Filesystem $files)
     {
-        parent::__construct();
-        $this->creator = $creator;
+        parent::__construct($files);
         $this->composer = $composer;
     }
 
@@ -78,10 +93,8 @@ class ConvertMigrations extends GeneratorCommand
     /**
      * 生成文件加入自动加载
      */
-    protected function addAutoload($path,$name){
-        //$this->creator->create($name, $path, $table, $create);
-        //$this->composer->dumpAutoloads();
-
+    protected function addAutoload(){
+        $this->composer->dumpAutoloads();
     }
 
     /**
@@ -104,6 +117,7 @@ class ConvertMigrations extends GeneratorCommand
     {
         return [];
     }
+
 
 
 }
