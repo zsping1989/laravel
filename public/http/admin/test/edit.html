@@ -1,0 +1,123 @@
+<div class="skin-blue sidebar-mini" ng-class="{'sidebar-collapse':left_hidden}">
+    <div class="wrapper">
+        <div ng-include="'/http/admin/public/header.html'"></div>
+        <div ng-include="'/http/admin/public/left.html'"></div>
+        <div style="min-height: 715px;" class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div ng-include="'/http/admin/public/nav.html'"></div>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box box-primary" ng-controller="admin-test-editCtrl">
+                            <div class="box-header">
+                                <h3 class="box-title" ng-if="row.id">修改测试</h3>
+                                <h3 class="box-title" ng-if="!row.id">新增测试</h3>
+                            </div>
+                            <div class="box-body">
+                                <form role="form">
+                                                                            <div class="form-group row">
+                                            <div class="col-xs-2">
+                                                <label class="pull-right">权限ID:</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <input type="text" name="id" ng-model="row.id" class="form-control">
+                                            </div>
+                                        </div>
+                                                                            <div class="form-group row">
+                                            <div class="col-xs-2">
+                                                <label class="pull-right">菜单名称:</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <input type="text" name="name" ng-model="row.name" class="form-control">
+                                            </div>
+                                        </div>
+                                                                            <div class="form-group row">
+                                            <div class="col-xs-2">
+                                                <label class="pull-right">请求方式:</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <input type="text" name="method" ng-model="row.method" class="form-control">
+                                            </div>
+                                        </div>
+                                                                            <div class="form-group row">
+                                            <div class="col-xs-2">
+                                                <label class="pull-right">状态:</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <input type="text" name="status" ng-model="row.status" class="form-control">
+                                            </div>
+                                        </div>
+                                                                            <div class="form-group row">
+                                            <div class="col-xs-2">
+                                                <label class="pull-right">父级ID:</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <input type="text" name="parent_id" ng-model="row.parent_id" class="form-control">
+                                            </div>
+                                        </div>
+                                                                            <div class="form-group row">
+                                            <div class="col-xs-2">
+                                                <label class="pull-right">层级:</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <input type="text" name="level" ng-model="row.level" class="form-control">
+                                            </div>
+                                        </div>
+                                                                            <div class="form-group row">
+                                            <div class="col-xs-2">
+                                                <label class="pull-right">左边界:</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <input type="text" name="left_margin" ng-model="row.left_margin" class="form-control">
+                                            </div>
+                                        </div>
+                                                                            <div class="form-group row">
+                                            <div class="col-xs-2">
+                                                <label class="pull-right">右边界:</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <input type="text" name="right_margin" ng-model="row.right_margin" class="form-control">
+                                            </div>
+                                        </div>
+                                                                            <div class="form-group row">
+                                            <div class="col-xs-2">
+                                                <label class="pull-right">创建时间:</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <input type="text" name="created_at" ng-model="row.created_at" class="form-control">
+                                            </div>
+                                        </div>
+                                                                            <div class="form-group row">
+                                            <div class="col-xs-2">
+                                                <label class="pull-right">修改时间:</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <input type="text" name="updated_at" ng-model="row.updated_at" class="form-control">
+                                            </div>
+                                        </div>
+                                                                            <div class="form-group row">
+                                            <div class="col-xs-2">
+                                                <label class="pull-right">deleted_at:</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <input type="text" name="deleted_at" ng-model="row.deleted_at" class="form-control">
+                                            </div>
+                                        </div>
+                                                                    </form>
+                            </div>
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <div ng-include="'/http/admin/public/right.html'"></div>
+    </div>
+</div>
+
+

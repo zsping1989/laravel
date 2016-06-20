@@ -63,8 +63,10 @@ class CreateViews extends GeneratorCommand
         //dd($data);
 
         if($data['table']){ //查询数据表信息
+            //dd($this->getTableInfo($data['table']));
             $this->withData($this->getTableInfo($data['table']));
         }
+        //dd($data);
         $this->withData($data);
     }
 

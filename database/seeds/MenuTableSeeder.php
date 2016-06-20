@@ -185,6 +185,52 @@ class MenuTableSeeder extends Seeder
             'status'=>2
         ]);
 
+        //ID:18
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'测试菜单',
+            'icons'=>'fa-th',
+            'prefix'=>'#',
+            'url'=>'/admin/test/index',
+            'description' => '列表详细',
+            'parent_id'=>7,
+            'status'=>1
+        ]);
+
+        //ID:19
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'测试列表',
+            'icons'=>'fa-th',
+            'prefix'=>'#',
+            'url'=>'/admin/test/index',
+            'description' => '列表详细',
+            'parent_id'=>18,
+            'status'=>1
+        ]);
+
+        //ID:20
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'删除测试',
+            'icons'=>'',
+            'prefix'=>'',
+            'url'=>'/admin/test/destroy',
+            'method'=>2,
+            'description' => '删除测试',
+            'parent_id'=>18,
+            'status'=>2
+        ]);
+
+        //ID:21
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'编辑测试',
+            'icons'=>'fa-th',
+            'prefix'=>'#',
+            'url'=>'/admin/test/edit/{id?}',
+            'method'=>2,
+            'description' => '删除菜单',
+            'parent_id'=>18,
+            'status'=>2
+        ]);
+
 
 
         //新建假数据3条

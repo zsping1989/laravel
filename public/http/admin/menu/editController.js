@@ -8,6 +8,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
     var datas = datas || data;
     dump(datas);
     app.register.controller('admin-menu-editCtrl', ["$scope",'$rootScope', 'Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
+        $scope = View.with({'row':datas.row},$scope);
         $rootScope.nav = datas.nav;
         $rootScope.route = datas.route;
 

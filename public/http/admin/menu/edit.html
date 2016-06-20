@@ -2,7 +2,7 @@
 <div class="wrapper">
 <div ng-include="'/http/admin/public/header.html'"></div>
 <div ng-include="'/http/admin/public/left.html'"></div>
-<div style="min-height: 916px;" class="content-wrapper">
+<div style="min-height: 715px;" class="content-wrapper">
 <!-- Content Header (Page header) -->
 <div ng-include="'/http/admin/public/nav.html'"></div>
 
@@ -10,7 +10,24 @@
 <section class="content">
 <div class="row">
 <div class="col-xs-12">
-<div class="box box-info" ng-controller="admin-menu-editCtrl">
+<div class="box box-primary" ng-controller="admin-menu-editCtrl">
+    <div class="box-header">
+        <h3 class="box-title" ng-if="row.id">修改菜单</h3>
+        <h3 class="box-title" ng-if="!row.id">新增菜单</h3>
+    </div>
+    <div class="box-body">
+        <form role="form">
+            <div class="form-group row">
+                <div class="col-xs-2">
+                    <label class="pull-right">菜单名称:</label>
+                </div>
+                <div class="col-xs-3">
+                    <input type="text" name="name" ng-model="row.name" class="form-control">
+                </div>
+            </div>
+
+        </form>
+    </div>
 </div>
 <!-- /.box -->
 </div>

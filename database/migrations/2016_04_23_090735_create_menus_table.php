@@ -19,15 +19,15 @@ class CreateMenusTable extends Migration
             $table->engine = 'InnoDB COMMENT="菜单"';
             $table->increments('id')->comment('权限ID');
             $table->string('name')->default('')->comment('菜单名称@required');
-            $table->string('icons')->default('')->comment('图标');
-            $table->string('description')->default('')->comment('描述');
-            $table->string('prefix')->default('')->comment('URL前缀:-跳转刷新,#-前端刷新');
-            $table->string('url')->default('')->comment('URL路径');
-            $table->integer('method')->default(1)->comment('请求方式:1-get,2-post,3-put');
-            $table->tinyInteger('status')->default(2)->comment('状态:1-显示,2-不显示');
+            $table->string('icons')->default('')->comment('图标@alpha_dash');
+            $table->string('description')->default('')->comment('描述$editor');
+            $table->string('prefix')->default('')->comment('URL前缀:-跳转刷新,#-前端刷新$radio');
+            $table->string('url')->default('')->comment('URL路径@url');
+            $table->integer('method')->default(1)->comment('请求方式:1-get,2-post,3-put$radio@in:1,2,3');
+            $table->tinyInteger('status')->default(2)->comment('状态:1-显示,2-不显示$radio@in:1,2');
 
             //$table->marginTree(); //树状结构
-            $table->integer('parent_id')->default(0)->comment('父级ID');
+            $table->integer('parent_id')->default(0)->comment('父级ID@integer');
             $table->smallInteger('level')->default(0)->comment('层级');
             $table->integer('left_margin')->default(0)->comment('左边界');
             $table->integer('right_margin')->default(0)->comment('右边界');
