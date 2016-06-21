@@ -24,7 +24,7 @@ class TestController extends Controller
     * 返回: array
     */
     protected function getValidateRule(){
-        return ['name'=>'required'];
+        return ['name'=>'required','parent_id'=>'sometimes|required|exists:tests,id','method'=>'in:1,2,3','status'=>'in:1,2'];
     }
 
 

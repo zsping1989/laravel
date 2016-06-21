@@ -13,16 +13,30 @@
     <script src="http://mgcrea.github.io/angular-strap/dist/angular-strap.tpl.min.js"></script>
 </head>
 <body ng-app="myApp" ng-controller="DemoCtrl">
-<!-- bsActivePane is optional -->
-<div bs-active-pane="tabs.activeTab" bs-tabs>
-    <div ng-repeat="tab in tabs"
-         data-title="{{ tab.title }}"
-         name="{{ tab.title }}"
-         disabled="{{ tab.disabled }}"
-          bs-pane>
-        {{tab.content}}
+<form name="datepickerForm" class="form-inline" role="form">
+    <!-- Basic example -->
+    <div class="form-group" ng-class="{'has-error': datepickerForm.date.$invalid}">
+        <label class="control-label"><i class="fa fa-calendar"></i> Date <small>(as date)</small></label>
+        <input class="form-control" ng-model="selectedDate" name="date" bs-datepicker type="text">
     </div>
-</div>
+    <!-- Custom example -->
+    <div class="form-group" ng-class="{'has-error': datepickerForm.date2.$invalid}">
+        <label class=""><i class="fa fa-calendar"></i> Date <small>(as number)</small></label>
+        <input class="form-control" ng-model="selectedDateAsNumber" data-date-format="yyyy-MM-dd" data-date-type="number" data-min-date="02/10/86" data-max-date="today" data-autoclose="1" name="date2" bs-datepicker type="text">
+    </div>
+    <hr>
+    <!-- Date range example -->
+    <div class="form-group">
+        <label class="control-label"><i class="fa fa-calendar"></i> <i class="fa fa-arrows-h"></i> <i class="fa fa-calendar"></i> Date range <small>(dynamic)</small></label><br>
+        <div class="form-group col-xs-6">
+            <input class="form-control" ng-model="fromDate" data-max-date="{{untilDate}}" placeholder="From" bs-datepicker type="text">
+        </div>
+        <div class="form-group col-xs-6">
+            <input class="form-control" ng-model="untilDate" data-min-date="{{fromDate}}" placeholder="Until" bs-datepicker type="text">
+        </div>
+    </div>
+</form>
+
 <script>
     var app = angular.module('myApp', ['mgcrea.ngStrap','ngAnimate']);
     app.controller('DemoCtrl', function($scope, $modal,$alert) {

@@ -75,6 +75,30 @@ function handleRoute(menus){
     return routes;
 }
 
+/* 二进制转数组 */
+function binaryToArray(num){
+    var res = [];
+    var i = 0;
+    while(num){
+        if(num&1){
+            res[res.length] = pow(2,i);
+        }
+        num >>= 1;
+        i++;
+    }
+    return res;
+}
+
+/* 数组转二进制 */
+function arrayToBinary(arr){
+    if(!arr){return 0;}
+    var res = 0;
+    for(var i in arr){
+       res |= arr[i];
+    }
+    return res;
+}
+
 /* 获取路径参数 */
 function parseURL(key,url) {
     var a =  document.createElement('a');
@@ -132,5 +156,7 @@ function deep(num) {
     }
     return '';
 }
+
+
 
 

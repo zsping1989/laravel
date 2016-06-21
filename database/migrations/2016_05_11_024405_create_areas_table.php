@@ -14,8 +14,8 @@ class CreateAreasTable extends Migration
         DB::statement("CREATE TABLE `".config('database.connections.mysql.prefix')."areas` (
                       `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '区域ID',
                       `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '名称@required',
-                      `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态:1-显示,2-不显示',
-                      `parent_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '父ID',
+                      `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态:1-显示,2-不显示\$radio@in:1,2',
+                      `parent_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '父ID@sometimes|required|exists:areas,id',
                       `level` smallint(6) NOT NULL DEFAULT '0' COMMENT '层级',
                       `left_margin` int(11) NOT NULL DEFAULT '0' COMMENT '左边界',
                       `right_margin` int(11) NOT NULL DEFAULT '0' COMMENT '右边界',

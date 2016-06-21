@@ -11,6 +11,7 @@ namespace App\Exceptions;
 
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Http\Request as ValidateRequest;
 
 trait ResourceController{
     protected $bindModel; //绑定的model模型
@@ -68,12 +69,17 @@ trait ResourceController{
 
     /**
      * 执行修改或添加
-     * @param Request $request
+     * 参数 Request $request
      */
-    public function postEdit(Request $request){
+    public function postEdit(ValidateRequest $request){
         //验证数据
         $this->validate($request,$this->getValidateRule());
-
+        if($request->get('id')){
+            return Response::returns(['alert'=>alert(['content'=>'修改成功!'])]);
+        }else{
+            return Response::returns(['alert'=>alert(['content'=>'新增成功!'])]);
+        }
+        return Response::returns($request->all());
     }
 
     /**

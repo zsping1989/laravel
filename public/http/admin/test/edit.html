@@ -16,40 +16,24 @@
                                 <h3 class="box-title" ng-if="!row.id">新增测试</h3>
                             </div>
                             <div class="box-body">
-                                <form role="form">
-                                                                            <div class="form-group row">
+                                <form role="form"  action="/admin/test/edit" method="post" ng-init="data_url='/admin/test/edit';back_url='/admin/test/index'">
+                                                                                                                                                                                                                                        <div class="form-group row">
                                             <div class="col-xs-2">
-                                                <label class="pull-right">权限ID:</label>
-                                            </div>
-                                            <div class="col-xs-3">
-                                                <input type="text" name="id" ng-model="row.id" class="form-control">
-                                            </div>
-                                        </div>
-                                                                            <div class="form-group row">
-                                            <div class="col-xs-2">
-                                                <label class="pull-right">菜单名称:</label>
+                                                <label class="pull-right">测试名称:</label>
                                             </div>
                                             <div class="col-xs-3">
                                                 <input type="text" name="name" ng-model="row.name" class="form-control">
                                             </div>
                                         </div>
-                                                                            <div class="form-group row">
-                                            <div class="col-xs-2">
-                                                <label class="pull-right">请求方式:</label>
+                                                                                                                                                                <div class="form-group row">
+                                                <div class="col-xs-2">
+                                                    <label class="pull-right">描述:</label>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <textarea name="description" ng-model="row.description" class="form-control">{{row.description}}</textarea>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-3">
-                                                <input type="text" name="method" ng-model="row.method" class="form-control">
-                                            </div>
-                                        </div>
-                                                                            <div class="form-group row">
-                                            <div class="col-xs-2">
-                                                <label class="pull-right">状态:</label>
-                                            </div>
-                                            <div class="col-xs-3">
-                                                <input type="text" name="status" ng-model="row.status" class="form-control">
-                                            </div>
-                                        </div>
-                                                                            <div class="form-group row">
+                                                                                                                                                            <div class="form-group row">
                                             <div class="col-xs-2">
                                                 <label class="pull-right">父级ID:</label>
                                             </div>
@@ -57,55 +41,43 @@
                                                 <input type="text" name="parent_id" ng-model="row.parent_id" class="form-control">
                                             </div>
                                         </div>
-                                                                            <div class="form-group row">
+                                                                                                                                                                <div class="form-group row">
+                                                <div class="col-xs-2">
+                                                    <label class="pull-right">请求方式:</label>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                                                                        <input type="radio" name="method" value="1" ng-model="row.method"> get　　
+                                                                                                        <input type="radio" name="method" value="2" ng-model="row.method"> post　　
+                                                                                                        <input type="radio" name="method" value="3" ng-model="row.method"> put　　
+                                                                                                    </div>
+                                            </div>
+                                                                                                                                                                <div class="form-group row">
+                                                <div class="col-xs-2">
+                                                    <label class="pull-right">状态:</label>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                                                                        <input type="radio" name="status" value="1" ng-model="row.status"> 显示　　
+                                                                                                        <input type="radio" name="status" value="2" ng-model="row.status"> 不显示　　
+                                                                                                    </div>
+                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="form-group row">
                                             <div class="col-xs-2">
-                                                <label class="pull-right">层级:</label>
                                             </div>
                                             <div class="col-xs-3">
-                                                <input type="text" name="level" ng-model="row.level" class="form-control">
+                                                <input name="id" value="{{row.id}}" type="hidden">
+                                                <button class="btn btn-info" type="button" ng-click="submit()">
+                                                    <i class="glyphicon glyphicon-ok"></i>
+                                                    提交
+                                                </button>
+
+                                                &nbsp; &nbsp; &nbsp;
+                                                <button class="btn" type="button" ng-click="reset()">
+                                                    <i class="glyphicon glyphicon-repeat"></i>
+                                                    重置
+                                                </button>
                                             </div>
                                         </div>
-                                                                            <div class="form-group row">
-                                            <div class="col-xs-2">
-                                                <label class="pull-right">左边界:</label>
-                                            </div>
-                                            <div class="col-xs-3">
-                                                <input type="text" name="left_margin" ng-model="row.left_margin" class="form-control">
-                                            </div>
-                                        </div>
-                                                                            <div class="form-group row">
-                                            <div class="col-xs-2">
-                                                <label class="pull-right">右边界:</label>
-                                            </div>
-                                            <div class="col-xs-3">
-                                                <input type="text" name="right_margin" ng-model="row.right_margin" class="form-control">
-                                            </div>
-                                        </div>
-                                                                            <div class="form-group row">
-                                            <div class="col-xs-2">
-                                                <label class="pull-right">创建时间:</label>
-                                            </div>
-                                            <div class="col-xs-3">
-                                                <input type="text" name="created_at" ng-model="row.created_at" class="form-control">
-                                            </div>
-                                        </div>
-                                                                            <div class="form-group row">
-                                            <div class="col-xs-2">
-                                                <label class="pull-right">修改时间:</label>
-                                            </div>
-                                            <div class="col-xs-3">
-                                                <input type="text" name="updated_at" ng-model="row.updated_at" class="form-control">
-                                            </div>
-                                        </div>
-                                                                            <div class="form-group row">
-                                            <div class="col-xs-2">
-                                                <label class="pull-right">deleted_at:</label>
-                                            </div>
-                                            <div class="col-xs-3">
-                                                <input type="text" name="deleted_at" ng-model="row.deleted_at" class="form-control">
-                                            </div>
-                                        </div>
-                                                                    </form>
+                                </form>
                             </div>
                         </div>
                         <!-- /.box -->

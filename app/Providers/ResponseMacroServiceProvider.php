@@ -61,7 +61,8 @@ class ResponseMacroServiceProvider extends ServiceProvider
 
         $value = collect($value)->merge($data);
         $menu = Menu::where('url','like',$route.'%')->orderBy('right_margin')->first(); //最底层路由
-        $value['nav'] = $menu ? collect($menu->parents(true)->toArray())->keyBy('id') : [];
+        $menu->url = 'end';
+        $value['nav'] = $menu ? collect($menu->parents()->toArray())->push($menu)->keyBy('id') : [];
     }
 
     /**

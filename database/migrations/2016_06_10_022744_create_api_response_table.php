@@ -16,9 +16,9 @@ class CreateApiResponseTable extends Migration
             $table->engine = 'InnoDB COMMENT="接口响应"';
             $table->increments('id')->comment('响应说明ID');
 
-            $table->integer('menu_id')->index()->default(0)->comment('接口ID');
-            $table->string('name')->default('')->comment('结果字段@required');
-            $table->string('description')->default('')->comment('描述');
+            $table->integer('menu_id')->index()->default(0)->comment('接口ID@required|exists:menus,id');
+            $table->string('name')->default('')->comment('结果字段@required|alpha_dash');
+            $table->string('description')->default('')->comment('描述$textarea');
 
             $table->timestamps();
             $table->softDeletes();

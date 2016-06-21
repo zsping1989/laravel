@@ -14,7 +14,7 @@
                             <div class="box box-info" ng-controller="{{$tpl_controller}}"
                                  ng-init="data_url='/{{$dirname}}/list';delete_url='/{{$dirname}}/destroy'">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Latest Orders</h3>
+                                    <h3 class="box-title">{{$table_comment}}列表</h3>
                                     <div class="box-tools">
                                         <div class="input-group">
                                             <input type="text" ng-init="where.id.exp='like';where.id.val='';"
@@ -49,7 +49,8 @@
                                                                    ng-model="selectAll">
                                                         </th>
                                                         @foreach ($table_fields as $field)
-                                                            @if($field->showType!='hidden')
+                                                            @if(in_array($field->showType,['hidden','textarea','editor','delete']) )
+                                                            @else
                                                                 <th class="sorting @if($field->showType=='time') visible-lg @endif">{{$field->info}}@if($field->showType=='time')
                                                                         <i class="glyphicon glyphicon-time"></i> @endif
                                                                     <span ng-click="getData($this,{'order':'{{$field->Field}}'})"
@@ -108,6 +109,9 @@
                                                 <button class="btn btn-default btn-sm" title="刷新" ng-click="getData($this,{refresh:1})">
                                                     <i class="fa fa-refresh"></i>
                                                 </button>
+                                                <a class="btn btn-default btn-sm" title="添加" href="#/{{$dirname}}/edit/">
+                                                    <i class="fa fa-plus"></i>
+                                                </a>
                                             </div>
                                             <div class="col-sm-7 ">
                                                 <div ng-include="'/http/admin/public/page.html'" class="pull-right"></div>

@@ -110,6 +110,7 @@ trait CreateCommand
                     return $item;
                 })->toArray(); //字段值
                 $item->showType = (!$item->showType && $item->values) ? 'radio' : $item->showType;
+                $item->showType = !$item->showType ? 'text' : $item->showType;
                 return $item;
             });
         return $data;
