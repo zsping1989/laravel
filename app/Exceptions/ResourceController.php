@@ -74,9 +74,18 @@ trait ResourceController{
     public function postEdit(ValidateRequest $request){
         //验证数据
         $this->validate($request,$this->getValidateRule());
-        if($request->get('id')){
+        $id = $request->get('id');
+        if($id){
+            $res = $this->bindModel->find($id)->update($request->all());
+            if($res===false){
+                return Response::returns(['alert'=>alert(['content'=>'修改失败!'],500)]);
+            }
             return Response::returns(['alert'=>alert(['content'=>'修改成功!'])]);
         }else{
+            $res = $this->bindModel->create($request->except('id'));
+            if($res===false){
+                return Response::returns(['alert'=>alert(['content'=>'新增失败!'],500)]);
+            }
             return Response::returns(['alert'=>alert(['content'=>'新增成功!'])]);
         }
         return Response::returns($request->all());

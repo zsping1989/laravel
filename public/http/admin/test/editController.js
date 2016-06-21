@@ -18,7 +18,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
             }).success(function(){
                 $timeout(function(){
                     if($scope.row.id){
-                        $location.path($scope.back_url);
+                        //$location.path($scope.back_url);
                     }
                 },1000)
             });
