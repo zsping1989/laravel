@@ -135,7 +135,7 @@ class MenuTableSeeder extends Seeder
             'prefix'=>'#',
             'url'=>'/admin/menu/index',
             'description' => '菜单管理',
-            'parent_id'=>2,
+            'parent_id'=>3,
             'status'=>1
         ]);
 

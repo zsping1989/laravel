@@ -60,5 +60,5 @@ function alert($data = [],$status=200){
             'show'=>true
         ]
     ];
-    return collect($defult[$status] ? $defult[$status] : $defult['other'])->merge($data)->toArray();
+    return collect(isset($defult[$status]) ? $defult[$status] : $defult['other'])->merge($data)->toArray();
 }

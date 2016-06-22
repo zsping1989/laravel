@@ -46,7 +46,7 @@ require.config({
 
     },
     deps: ['app','css'], //启动
-    urlArgs: "time=" + (new Date()).getTime()  //防止读取缓存，调试用
+    urlArgs: ''//"time=" + (new Date()).getTime()  //防止读取缓存，调试用
 });
 
 /* 调试打印 */

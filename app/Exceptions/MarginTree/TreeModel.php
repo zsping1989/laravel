@@ -240,6 +240,10 @@ trait TreeModel{
         }
     }
 
+    /**
+     * 查询所子节点
+     * 返回: \Illuminate\Support\Collection
+     */
     public function childs(){
         $left = $this->getAttribute($this->treeField['left_key']);
         $right = $this->getAttribute($this->treeField['right_key']);
@@ -250,12 +254,42 @@ trait TreeModel{
         return self::where($this->treeField['left_key'],'>',$left)->where($this->treeField['right_key'],'<',$right)->orderBy($this->treeField['left_key'])->get();
     }
 
+    /**
+     * 查询所有父节点
+     * @param bool $self
+     * 返回: mixed
+     */
     public function parents($self = false){
         $left = $this->getAttribute($this->treeField['left_key']);
         $right = $this->getAttribute($this->treeField['right_key']);
         $self AND $self = '=';
-        return self::where($this->treeField['left_key'],'<'.$self,$left)->where($this->treeField['right_key'],'>'.$self,$right)->orderBy($this->treeField['left_key'])->get();
+        return self::where($this->treeField['left_key'],'<'.$self,$left)
+            ->where($this->treeField['right_key'],'>'.$self,$right)
+            ->orderBy($this->treeField['left_key'])
+            ->get();
     }
+
+
+    public function moveNear($id,$position = 'before'){
+        //初始化配置
+        $this->treeInit(app('NestedSetsService'));
+
+        //开启事务,处理边界
+        DB::beginTransaction();
+
+        //进行移动
+        $move_result = $this->nestend->moveNear($this->getAttribute($this->getKeyName()),$id,$position);
+        //移动结果判断
+        if($move_result===false){
+            DB::rollback();
+            return false;
+        }
+        DB::commit();
+        return $move_result;
+
+    }
+
+
 
 
 

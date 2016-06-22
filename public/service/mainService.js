@@ -119,7 +119,7 @@ define(['angular'], function (angular) {
             $http({
                 method: 'GET',
                 url: $scope.data_url,
-                params: resparams}).success(function (datas) {
+                params: resparams}).success(function (data) {
                 if(params.refresh==1){
                     $alert({
                         'title':'提示',
@@ -131,7 +131,18 @@ define(['angular'], function (angular) {
                     });
                 }
                 $scope.reset++;
-                View.with(datas,$scope);
+                View.with(data,$scope);
+            });
+        };
+
+        //置顶
+        factory.upTop = function($scope,id){
+            //请求数据
+            $http({
+                method: 'POST',
+                url: $scope.upTop_url+'/'+id
+            }).success(function () {
+                factory.getData($scope,{refresh:2});
             });
         };
 
@@ -156,12 +167,13 @@ define(['angular'], function (angular) {
                 method: 'POST',
                 url: $scope.delete_url,
                 data: {ids:data}
-            }).success(function (datas) {
+            }).success(function () {
                 $scope.selectAll = false;
                 $scope.ids = [];
                 factory.getData($scope,{refresh:2});
             });
         };
+
         factory.selectAllId = function($scope,selectAll){
             if(selectAll){
                 $scope.ids = $scope.allIds;
