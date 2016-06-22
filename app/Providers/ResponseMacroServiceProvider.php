@@ -22,11 +22,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
     {
         $macro = $this;
         $factory->macro('returns', function ($value,$status=200) use ($factory,$macro) {
-            $data = [
-                'order'=> Request::input('order',[]), //排序
-                'where'=>Request::input('where',[]) //条件查询
-            ];
-            $value = collect($value)->merge($data);
+            $value = collect($value);
             if(Request::input('callback')){ //jsonp
                return $factory->jsonp(Request::input('callback'),$value);
             }elseif(Request::input('define')=='AMD'){ //AMD
