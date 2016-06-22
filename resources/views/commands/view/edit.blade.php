@@ -20,16 +20,22 @@
                                     @foreach ($table_fields as $field)
                                         @if(in_array($field->showType,['hidden','delete']) ||in_array($field->Field,['updated_at','id','created_at','deleted_at']) )
                                         @elseif($field->showType=='time')
-                                            <div class="form-group row" ng-class="{'has-error': datepickerForm.{{$field->Field}}.$invalid}">
+                                            <div class="form-group row" ng-init="errorFieldMap['{{$field->Field}}']='{{$field->info}}'" ng-class="{'has-error': datepickerForm.{{$field->Field}}.$invalid}">
                                                 <div class="col-xs-2">
                                                     <label class="pull-right">{{$field->info}}:</label>
                                                 </div>
                                                 <div class="col-xs-3">
                                                     <input ng-model="row.{{$field->Field}}" name="{{$field->Field}}" class="form-control" data-date-format="yyyy-MM-dd" data-date-type="number" data-min-date="" data-max-date="today" data-autoclose="1"  bs-datepicker type="text">
                                                 </div>
+                                                <div class="col-xs-7" ng-if="!error.{{$field->Field}}">
+                                                    <span  class="label-msg">填写提示信息!</span>
+                                                </div>
+                                                <div class="col-xs-7 error-msg" ng-if="error.{{$field->Field}}">
+                                                    <span class="label-msg" ng-repeat="info in error.{{$field->Field}}">@{{info}}</span>
+                                                </div>
                                             </div>
                                         @elseif($field->showType=='radio')
-                                            <div class="form-group row">
+                                            <div class="form-group row"  ng-init="errorFieldMap['{{$field->Field}}']='{{$field->info}}'">
                                                 <div class="col-xs-2">
                                                     <label class="pull-right">{{$field->info}}:</label>
                                                 </div>
@@ -38,9 +44,15 @@
                                                     <input type="radio" name="{{$field->Field}}" value="{{$key}}" ng-model="row.{{$field->Field}}"> {{$value}}　　
                                                     @endforeach
                                                 </div>
+                                                <div class="col-xs-7" ng-if="!error.{{$field->Field}}">
+                                                    <span  class="label-msg">填写提示信息!</span>
+                                                </div>
+                                                <div class="col-xs-7 error-msg" ng-if="error.{{$field->Field}}">
+                                                    <span class="label-msg" ng-repeat="info in error.{{$field->Field}}">@{{info}}</span>
+                                                </div>
                                             </div>
                                         @elseif($field->showType=='checkbox')
-                                            <div class="form-group row">
+                                            <div class="form-group row"  ng-init="errorFieldMap['{{$field->Field}}']='{{$field->info}}'">
                                                 <div class="col-xs-2">
                                                     <label class="pull-right">{{$field->info}}:</label>
                                                 </div>
@@ -49,9 +61,15 @@
                                                         <input type="checkbox" name="{{$field->Field}}" value="{{$key}}" ng-model="row.{{$field->Field}}"> {{$value}}　　
                                                     @endforeach
                                                 </div>
+                                                <div class="col-xs-7" ng-if="!error.{{$field->Field}}">
+                                                    <span  class="label-msg">填写提示信息!</span>
+                                                </div>
+                                                <div class="col-xs-7 error-msg" ng-if="error.{{$field->Field}}">
+                                                    <span class="label-msg" ng-repeat="info in error.{{$field->Field}}">@{{info}}</span>
+                                                </div>
                                             </div>
                                         @elseif($field->showType=='select')
-                                            <div class="form-group row">
+                                            <div class="form-group row"  ng-init="errorFieldMap['{{$field->Field}}']='{{$field->info}}'">
                                                 <div class="col-xs-2">
                                                     <label class="pull-right">{{$field->info}}:</label>
                                                 </div>
@@ -62,23 +80,41 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
+                                                <div class="col-xs-7" ng-if="!error.{{$field->Field}}">
+                                                    <span  class="label-msg">填写提示信息!</span>
+                                                </div>
+                                                <div class="col-xs-7 error-msg" ng-if="error.{{$field->Field}}">
+                                                    <span class="label-msg" ng-repeat="info in error.{{$field->Field}}">@{{info}}</span>
+                                                </div>
                                             </div>
                                         @elseif($field->showType=='textarea')
-                                            <div class="form-group row">
+                                            <div class="form-group row"  ng-init="errorFieldMap['{{$field->Field}}']='{{$field->info}}'">
                                                 <div class="col-xs-2">
                                                     <label class="pull-right">{{$field->info}}:</label>
                                                 </div>
                                                 <div class="col-xs-3">
                                                     <textarea name="{{$field->Field}}" ng-model="row.{{$field->Field}}" class="form-control">{{$tpl_start}}row.{{$field->Field}}{{$tpl_end}}</textarea>
                                                 </div>
+                                                <div class="col-xs-7" ng-if="!error.{{$field->Field}}">
+                                                    <span  class="label-msg">填写提示信息!</span>
+                                                </div>
+                                                <div class="col-xs-7 error-msg" ng-if="error.{{$field->Field}}">
+                                                    <span class="label-msg" ng-repeat="info in error.{{$field->Field}}">@{{info}}</span>
+                                                </div>
                                             </div>
                                         @else
-                                        <div class="form-group row">
+                                        <div class="form-group row"  ng-init="errorFieldMap['{{$field->Field}}']='{{$field->info}}'">
                                             <div class="col-xs-2">
                                                 <label class="pull-right">{{$field->info}}:</label>
                                             </div>
                                             <div class="col-xs-3">
                                                 <input type="text" name="{{$field->Field}}" ng-model="row.{{$field->Field}}" class="form-control">
+                                            </div>
+                                            <div class="col-xs-7" ng-if="!error.{{$field->Field}}">
+                                                <span  class="label-msg">填写提示信息!</span>
+                                            </div>
+                                            <div class="col-xs-7 error-msg" ng-if="error.{{$field->Field}}">
+                                                <span class="label-msg" ng-repeat="info in error.{{$field->Field}}">@{{info}}</span>
                                             </div>
                                         </div>
                                         @endif

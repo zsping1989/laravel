@@ -6,7 +6,6 @@ data.route = data.route.replace(/\{(\w+)[\?]\}/ ,":$1");
 if(!routes[data.route]){
     routes[data.route] = {'as':data.route,'path':data.route};
 }
-//dump(routes);alert(1);
 
 
 //路由配置,单页面应用跳转

@@ -58,7 +58,6 @@ class ResponseMacroServiceProvider extends ServiceProvider
             'route'=>Request::getPathInfo()  //路由信息
         ];
 
-
         $value = collect($value)->merge($data);
         $menu = Menu::where('url','like',$route.'%')->orderBy('right_margin')->first(); //最底层路由
         $menu->url = 'end';

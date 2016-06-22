@@ -21,6 +21,15 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                         $location.path($scope.back_url);
                     }
                 },1000)
+            }).error(function(data){
+                if(typeof data == "object"){
+                    for(var i in data){
+                        for(var j in data[i]){
+                            data[i][j] = data[i][j].replace(i.replace('_',' ')+' ',$scope.errorFieldMap[i]);
+                        }
+                    }
+                    $scope.error = data;
+                }
             });
         }
         $rootScope.nav = datas.nav;
