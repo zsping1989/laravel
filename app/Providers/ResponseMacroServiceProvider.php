@@ -53,8 +53,6 @@ class ResponseMacroServiceProvider extends ServiceProvider
     public function addData(&$value){
         $route = Route::getCurrentRoute()->getCompiled()->getStaticPrefix(); //当前路由
         $data = [
-            'order'=> Request::input('order',[]), //排序
-            'where'=>Request::input('where',[]), //条件查询
             'route'=>Request::getPathInfo()  //路由信息
         ];
 

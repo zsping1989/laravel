@@ -47,7 +47,7 @@
                                                                ng-click="selectAllId($this,selectAll)"
                                                                ng-model="selectAll">
                                                     </th>
-                                                    <th class="sorting ">权限ID                                                                    <span
+                                                    <th class="sorting ">ID                                                                    <span
                                                             ng-click="getData($this,{'order':'id'})"
                                                             ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.id=='desc','glyphicon glyphicon-sort-by-attributes':order.id!='desc'}"></span>
                                                     </th>
@@ -86,7 +86,7 @@
                                                             ng-click="getData($this,{'order':'updated_at'})"
                                                             ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.updated_at=='desc','glyphicon glyphicon-sort-by-attributes':order.updated_at!='desc'}"></span>
                                                     </th>
-                                                    <th class="sorting">操作</th>
+                                                    <th class="sorting" style="width: 97px;">操作</th>
                                                 </tr>
                                                 <tr ng-repeat="row in data" role="row">
                                                     <td>

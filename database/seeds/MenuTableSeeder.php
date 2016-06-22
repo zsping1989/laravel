@@ -148,7 +148,7 @@ class MenuTableSeeder extends Seeder
             'url'=>'/admin/menu/index',
             'description' => '列表详细',
             'parent_id'=>13,
-            'status'=>1
+            'status'=>2
         ]);
 
         //ID:15
@@ -206,7 +206,7 @@ class MenuTableSeeder extends Seeder
             'url'=>'/admin/test/index',
             'description' => '列表详细',
             'parent_id'=>18,
-            'status'=>1
+            'status'=>2
         ]);
 
         //ID:20
@@ -228,7 +228,7 @@ class MenuTableSeeder extends Seeder
             'prefix'=>'#',
             'url'=>'/admin/test/edit/{id?}',
             'method'=>2,
-            'description' => '删除菜单',
+            'description' => '',
             'parent_id'=>18,
             'status'=>2
         ]);
@@ -242,10 +242,44 @@ class MenuTableSeeder extends Seeder
             'method'=>1,
             'description' => '角色的权限管理',
             'parent_id'=>5,
+            'status'=>1
+        ]);
+
+        //ID:23
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'角色列表',
+            'icons'=>'fa-list',
+            'prefix'=>'#',
+            'url'=>'/admin/role/index',
+            'method'=>1,
+            'description' => '列表详情',
+            'parent_id'=>22,
             'status'=>2
         ]);
 
+        //ID:24
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'角色编辑',
+            'icons'=>'fa-edit',
+            'prefix'=>'#',
+            'url'=>'/admin/role/edit/{id?}',
+            'method'=>2,
+            'description' => '添加或编辑角色',
+            'parent_id'=>22,
+            'status'=>2
+        ]);
 
+        //ID:25
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'删除角色',
+            'icons'=>'',
+            'prefix'=>'',
+            'url'=>'/admin/role/destroy',
+            'method'=>2,
+            'description' => '删除角色',
+            'parent_id'=>22,
+            'status'=>2
+        ]);
 
         //新建假数据3条
         //factory(\App\Models\Menu::class,3)->create();

@@ -1,19 +1,39 @@
 define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
     var datas = datas || data;
     dump(datas);
-    app.register.controller('admin-role-editCtrl', ["$scope",'$rootScope', 'Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
-        $scope = View.with(datas.list,$scope);
+    app.register.controller('admin-role-editCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$http','$location','$timeout',
+    function ($scope,$rootScope,Model,View,$alert,$http,$location,$timeout) {
+        //重置
+        $scope = View.with({'master':datas.row},$scope);
+        $scope.reset = function() {
+            $scope.row = angular.copy($scope.master);
+        };
+        $scope.reset();
+        //提交
+        $scope.submit = function(){
+            $http({
+                method: 'POST',
+                url: $scope.data_url,
+                data: $scope.row
+            }).success(function(){
+                $timeout(function(){
+                    if($scope.row.id){
+                        $location.path($scope.back_url);
+                    }
+                },1000)
+            }).error(function(data){
+                if(typeof data == "object"){
+                    for(var i in data){
+                        for(var j in data[i]){
+                            data[i][j] = data[i][j].replace(i.replace('_',' ')+' ',$scope.errorFieldMap[i]);
+                        }
+                    }
+                    $scope.error = data;
+                }
+            });
+        }
         $rootScope.nav = datas.nav;
         $rootScope.route = datas.route;
-        /* 条件查询数据 */
-        $scope.getData = Model.getData;
-        $scope.ids = [];
-        $scope.allIds = [];
-        /* 删除数据 */
-        $scope.delete = Model.delete;
-        $scope.selectAllId = Model.selectAllId;
+
     }]);
 })
-
-
-
