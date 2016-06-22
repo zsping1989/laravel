@@ -55,6 +55,7 @@ Route::group(['namespace'=>'Admin'],function(){
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']],function(){
     Route::controller('make', 'MakeController');
     Route::controller('menu', 'MenuController');
+    Route::controller('role', 'RoleController');
     Route::controller('test', 'TestController');
     Route::controller('/', 'IndexController');
 });

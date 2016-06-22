@@ -14,8 +14,7 @@ class IndexController extends Controller
     //后台首页
     public function getIndex()
     {
-        $data = Area::options(Request::only('where', 'order'))->paginate();
-        return Response::returns($data);
+        return Response::returns([]);
     }
     //api文档说明列表
     public function getApi(){

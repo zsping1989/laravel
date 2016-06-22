@@ -19,6 +19,7 @@ class MenuTableSeeder extends Seeder
         factory(\App\Models\Menu::class)->create([
             'name'=>'菜单列表',
             'url'=>'',
+            'status'=>2,
             'description' => '根节点,所有菜单的父节点'
         ]);
 
@@ -100,9 +101,9 @@ class MenuTableSeeder extends Seeder
         //ID:10
         factory(\App\Models\Menu::class)->create([
             'name'=>'登录页面',
-            'icons'=>'fa-th',
+            'icons'=>'',
             'url'=>'/home/auth/login',
-            'description' => '后台首页',
+            'description' => '',
             'method'=>2,
             'parent_id'=>4,
             'status'=>1
@@ -110,17 +111,17 @@ class MenuTableSeeder extends Seeder
         //ID:11
         factory(\App\Models\Menu::class)->create([
             'name'=>'退出登录',
-            'icons'=>'fa-th',
+            'icons'=>'',
             'prefix'=>'',
             'url'=>'/home/auth/logout',
-            'description' => '后台首页',
+            'description' => '',
             'parent_id'=>4,
             'status'=>1
         ]);
         //ID:12
         factory(\App\Models\Menu::class)->create([
             'name'=>'后台主页',
-            'icons'=>'fa-th',
+            'icons'=>'fa-home',
             'prefix'=>'#',
             'url'=>'/admin/index',
             'description' => '后台首页',
@@ -141,24 +142,25 @@ class MenuTableSeeder extends Seeder
 
         //ID:14
         factory(\App\Models\Menu::class)->create([
-            'name'=>'测试接口',
-            'icons'=>'fa-th',
+            'name'=>'菜单列表',
+            'icons'=>'fa-list',
             'prefix'=>'#',
-            'url'=>'/admin/111ex',
-            'description' => '后台首页',
+            'url'=>'/admin/menu/index',
+            'description' => '列表详细',
             'parent_id'=>13,
             'status'=>1
         ]);
 
         //ID:15
         factory(\App\Models\Menu::class)->create([
-            'name'=>'菜单列表',
-            'icons'=>'fa-th',
+            'name'=>'编辑菜单',
+            'icons'=>'fa-edit',
             'prefix'=>'#',
-            'url'=>'/admin/menu/index',
-            'description' => '列表详细',
+            'url'=>'/admin/menu/edit/{id?}',
+            'method'=>1,
+            'description' => '修改或添加数据',
             'parent_id'=>13,
-            'status'=>1
+            'status'=>2
         ]);
 
         //ID:16
@@ -175,12 +177,12 @@ class MenuTableSeeder extends Seeder
 
         //ID:17
         factory(\App\Models\Menu::class)->create([
-            'name'=>'编辑菜单',
-            'icons'=>'fa-th',
-            'prefix'=>'#',
-            'url'=>'/admin/menu/edit/{id?}',
+            'name'=>'菜单置顶',
+            'icons'=>'',
+            'prefix'=>'',
+            'url'=>'/admin/menu/move-top/{id}',
+            'description' => '移动菜单节点位置',
             'method'=>2,
-            'description' => '删除菜单',
             'parent_id'=>13,
             'status'=>2
         ]);
@@ -228,6 +230,18 @@ class MenuTableSeeder extends Seeder
             'method'=>2,
             'description' => '删除菜单',
             'parent_id'=>18,
+            'status'=>2
+        ]);
+
+        //ID:22
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'权限管理',
+            'icons'=>'fa-group',
+            'prefix'=>'#',
+            'url'=>'/admin/role/index',
+            'method'=>1,
+            'description' => '角色的权限管理',
+            'parent_id'=>5,
             'status'=>2
         ]);
 

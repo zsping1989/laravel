@@ -10,11 +10,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Role extends BaseModel
 {
-    /* 软删除 */
-    use SoftDeletes,TreeModel;
-    protected $fillable = [
-        'name', 'description' ,'parent_id'
-    ];
+
+    use TreeModel; //树状结构
+    use SoftDeletes; //软删除
+
+    //批量赋值白名单
+    protected $fillable = ['id','name','description','parent_id'];
+    //输出隐藏字段
+    protected $hidden = ['deleted_at'];
+    //日期字段
+    protected $dates = ['created_at','updated_at','deleted_at'];
 
     /* 角色-权限菜单 */
     public function menus(){
