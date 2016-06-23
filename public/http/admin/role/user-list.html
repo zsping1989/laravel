@@ -1,0 +1,42 @@
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal ng-scope top am-fade"  style="z-index: 1050; display: block;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div ng-show="userTitle" class="modal-header">
+                <button ng-click="$hide()" aria-label="Close" class="close" type="button">
+                    <span aria-hidden="true">×</span></button>
+                <h4 ng-bind="userTitle" class="modal-title ng-binding"></h4>
+            </div>
+            <div class="modal-body ng-binding">
+                <table class="table table-bordered table-hover dataTable">
+                    <tr role="row">
+                        <th class="sorting ">用户ID
+                        </th>
+                        <th class="sorting ">用户名
+                        </th>
+                        <th class="sorting ">昵称
+                        </th>
+                        <th class="sorting  visible-lg ">创建时间 <i
+                                class="glyphicon glyphicon-time"></i>
+                        </th>
+                        <th class="sorting  visible-lg ">修改时间 <i
+                                class="glyphicon glyphicon-time"></i>
+                        </th>
+                    </tr>
+                    <tr ng-repeat="row in userData" role="row">
+                        <td>{{row.id}}</td>
+                        <td>{{row.uname}}</td>
+                        <td>{{row.name}}</td>
+                        <td class="visible-lg">{{ row.created_at}}</td>
+                        <td class="visible-lg">{{ row.updated_at}}</td>
+                    </tr>
+                    <tr ng-if="!userData[0]">
+                        <td colspan="5" style="text-align: center">暂无数据</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="$hide()" class="btn btn-default" type="button">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

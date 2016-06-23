@@ -365,6 +365,30 @@ class MenuTableSeeder extends Seeder
             'status'=>1
         ]);
 
+        //ID:33
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'执行创建',
+            'icons'=>'',
+            'prefix'=>'#',
+            'url'=>'/admin/make/exe',
+            'method'=>2,
+            'description' => '执行console命令',
+            'parent_id'=>8,
+            'status'=>2
+        ]);
+
+        //ID:34
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'接口列表',
+            'icons'=>'',
+            'prefix'=>'#',
+            'url'=>'/admin/api',
+            'method'=>1,
+            'description' => '',
+            'parent_id'=>9,
+            'status'=>2
+        ]);
+
         //新建假数据3条
         //factory(\App\Models\Menu::class,3)->create();
     }

@@ -4,7 +4,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
     app.register.controller('admin-role-editCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$http','$location','$timeout',
     function ($scope,$rootScope,Model,View,$alert,$http,$location,$timeout) {
         //重置
-        $scope = View.with({'master':datas.row},$scope);
+        $scope = View.with({'master':datas.row,'permissions':datas.permissions},$scope);
         $scope.reset = function() {
             $scope.row = angular.copy($scope.master);
         };

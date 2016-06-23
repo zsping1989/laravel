@@ -13,50 +13,22 @@
     <script src="http://mgcrea.github.io/angular-strap/dist/angular-strap.tpl.min.js"></script>
 </head>
 <body ng-app="myApp" ng-controller="DemoCtrl">
-<form name="datepickerForm" class="form-inline" role="form">
-    <!-- Basic example -->
-    <div class="form-group" ng-class="{'has-error': datepickerForm.date.$invalid}">
-        <label class="control-label"><i class="fa fa-calendar"></i> Date <small>(as date)</small></label>
-        <input class="form-control" ng-model="selectedDate" name="date" bs-datepicker type="text">
-    </div>
-    <!-- Custom example -->
-    <div class="form-group" ng-class="{'has-error': datepickerForm.date2.$invalid}">
-        <label class=""><i class="fa fa-calendar"></i> Date <small>(as number)</small></label>
-        <input class="form-control" ng-model="selectedDateAsNumber" data-date-format="yyyy-MM-dd" data-date-type="number" data-min-date="02/10/86" data-max-date="today" data-autoclose="1" name="date2" bs-datepicker type="text">
-    </div>
-    <hr>
-    <!-- Date range example -->
-    <div class="form-group">
-        <label class="control-label"><i class="fa fa-calendar"></i> <i class="fa fa-arrows-h"></i> <i class="fa fa-calendar"></i> Date range <small>(dynamic)</small></label><br>
-        <div class="form-group col-xs-6">
-            <input class="form-control" ng-model="fromDate" data-max-date="{{untilDate}}" placeholder="From" bs-datepicker type="text">
-        </div>
-        <div class="form-group col-xs-6">
-            <input class="form-control" ng-model="untilDate" data-min-date="{{fromDate}}" placeholder="Until" bs-datepicker type="text">
-        </div>
-    </div>
-</form>
-
+<button type="button" class="btn btn-lg btn-primary" data-animation="am-fade-and-scale" data-placement="center" bs-modal="modal">Click to toggle modal
+    <br>
+    <small>(using an object)</small>
+</button>
+<button type="button" class="btn btn-lg btn-danger" data-animation="am-fade-and-slide-top" data-template-url="./aa.html" bs-modal="modal">Custom Modal
+    <br>
+    <small>(using data-template)</small>
+</button>
 <script>
     var app = angular.module('myApp', ['mgcrea.ngStrap','ngAnimate']);
     app.controller('DemoCtrl', function($scope, $modal,$alert) {
-        $scope.tabs = [
-            {
-                "title": "Home",
-                "content": "Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica."
-            },
-            {
-                "title": "Profile",
-                "content": "Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee."
-            },
-            {
-                "title": "About",
-                "content": "Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade.",
-                "disabled": true
-            }
-        ];
-        $scope.tabs.activeTab = "Profile";
 
+        $scope.modal = {
+            "title": "Title",
+            "content": "Hello Modal<br />This is a multiline message!"
+        }
 })
 </script>
 
