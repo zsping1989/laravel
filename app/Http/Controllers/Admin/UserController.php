@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exceptions\ResourceController;
 use App\Http\Controllers\Controller;
-use App\Models\Role;
+use App\User;
 
-class RoleController extends Controller
+class UserController extends Controller
 {
     use ResourceController; //资源控制器
-    protected $treeOrder = true;
+
     /**
     * 模型绑定
     * MenuController constructor.
     * 参数: Menu $bindModel
     */
-    public function __construct(Role $bindModel){
+    public function __construct(User $bindModel){
         $this->bindModel = $bindModel;
     }
 
@@ -24,7 +24,7 @@ class RoleController extends Controller
     * 返回: array
     */
     protected function getValidateRule(){
-        return ['name'=>'required','parent_id'=>'sometimes|required|exists:roles,id'];
+        return ['uname'=>'required|alpha_dash|digits_between:6,18|unique:users,uname','password'=>'sometimes|required|digits_between:6,18','name'=>'required','email'=>'required|email|unique:users,email','mobile_phone'=>'required|integer|digits:11|unique:users,qq','qq'=>'integer'];
     }
 
 

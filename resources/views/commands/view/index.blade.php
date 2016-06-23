@@ -49,7 +49,7 @@
                                                                    ng-model="selectAll">
                                                         </th>
                                                         @foreach ($table_fields as $field)
-                                                            @if(in_array($field->showType,['hidden','textarea','editor','delete']) )
+                                                            @if(in_array($field->showType,['hidden','textarea','editor','delete','password']))
                                                             @else
                                                                 <th class="sorting @if($field->showType=='time') visible-lg @endif">{{$field->info}}@if($field->showType=='time')
                                                                         <i class="glyphicon glyphicon-time"></i> @endif
@@ -68,7 +68,7 @@
                                                         </td>
                                                         @foreach ($table_fields as $field)
                                                             <?php $i = 0; ?>
-                                                            @if(in_array($field->showType,['hidden','textarea','editor','delete']) )
+                                                            @if(in_array($field->showType,['hidden','textarea','editor','delete','password']) )
                                                             @elseif($field->showType=='time')
                                                                 <td class="visible-lg">{{$tpl_start}} row.{{$field->Field}}{{$tpl_end}}</td>
                                                             @elseif(in_array($field->showType,['select','radio']))

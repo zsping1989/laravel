@@ -18,7 +18,7 @@
                             <div class="box-body">
                                 <form role="form"  action="/{{$dirname}}/edit" method="post" ng-init="data_url='/{{$dirname}}/edit';back_url='/{{$dirname}}/index'">
                                     @foreach ($table_fields as $field)
-                                        @if(in_array($field->showType,['hidden','delete']) ||in_array($field->Field,['updated_at','id','created_at','deleted_at']) )
+                                        @if(in_array($field->showType,['hidden','delete','password']) ||in_array($field->Field,['updated_at','id','created_at','deleted_at']) )
                                         @elseif($field->showType=='time')
                                             <div class="form-group row" ng-init="errorFieldMap['{{$field->Field}}']='{{$field->info}}'" ng-class="{'has-error': datepickerForm.{{$field->Field}}.$invalid}">
                                                 <div class="col-xs-2">

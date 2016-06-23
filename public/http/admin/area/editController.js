@@ -1,7 +1,7 @@
 define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
     var datas = datas || data;
     dump(datas);
-    app.register.controller('admin-menu-editCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$http','$location','$timeout',
+    app.register.controller('admin-area-editCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$http','$location','$timeout',
     function ($scope,$rootScope,Model,View,$alert,$http,$location,$timeout) {
         //重置
         $scope = View.with({'master':datas.row},$scope);
@@ -13,7 +13,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
         $scope.submit = function(){
             var data = $scope.row;
             if(!data.parent_id){
-                delete data.parent_id;
+              delete data.parent_id;
             }
             $http({
                 method: 'POST',

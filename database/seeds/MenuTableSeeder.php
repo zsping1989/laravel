@@ -189,11 +189,11 @@ class MenuTableSeeder extends Seeder
 
         //ID:18
         factory(\App\Models\Menu::class)->create([
-            'name'=>'测试菜单',
-            'icons'=>'fa-th',
+            'name'=>'区域管理',
+            'icons'=>'fa-area-chart',
             'prefix'=>'#',
-            'url'=>'/admin/test/index',
-            'description' => '列表详细',
+            'url'=>'/admin/area/index',
+            'description' => '城市地区管理',
             'parent_id'=>7,
             'status'=>1
         ]);
@@ -201,9 +201,9 @@ class MenuTableSeeder extends Seeder
         //ID:19
         factory(\App\Models\Menu::class)->create([
             'name'=>'测试列表',
-            'icons'=>'fa-th',
+            'icons'=>'fa-list',
             'prefix'=>'#',
-            'url'=>'/admin/test/index',
+            'url'=>'/admin/area/index',
             'description' => '列表详细',
             'parent_id'=>18,
             'status'=>2
@@ -211,24 +211,24 @@ class MenuTableSeeder extends Seeder
 
         //ID:20
         factory(\App\Models\Menu::class)->create([
-            'name'=>'删除测试',
+            'name'=>'删除区域',
             'icons'=>'',
             'prefix'=>'',
-            'url'=>'/admin/test/destroy',
+            'url'=>'/admin/area/destroy',
             'method'=>2,
-            'description' => '删除测试',
+            'description' => '删除区域',
             'parent_id'=>18,
             'status'=>2
         ]);
 
         //ID:21
         factory(\App\Models\Menu::class)->create([
-            'name'=>'编辑测试',
-            'icons'=>'fa-th',
+            'name'=>'编辑区域',
+            'icons'=>'fa-edit',
             'prefix'=>'#',
-            'url'=>'/admin/test/edit/{id?}',
+            'url'=>'/admin/area/edit/{id?}',
             'method'=>2,
-            'description' => '',
+            'description' => '添加或编辑区域',
             'parent_id'=>18,
             'status'=>2
         ]);
@@ -279,6 +279,90 @@ class MenuTableSeeder extends Seeder
             'description' => '删除角色',
             'parent_id'=>22,
             'status'=>2
+        ]);
+
+        //ID:26
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'用户管理',
+            'icons'=>'fa-user',
+            'prefix'=>'#',
+            'url'=>'/admin/user/index',
+            'method'=>1,
+            'description' => '用户管理',
+            'parent_id'=>5,
+            'status'=>1
+        ]);
+
+        //ID:27
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'用户列表',
+            'icons'=>'fa-list',
+            'prefix'=>'#',
+            'url'=>'/admin/user/index',
+            'method'=>1,
+            'description' => '用户管理',
+            'parent_id'=>26,
+            'status'=>2
+        ]);
+
+        //ID:28
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'编辑用户用户',
+            'icons'=>'fa-edit',
+            'prefix'=>'#',
+            'url'=>'/admin/user/edit/{id?}',
+            'method'=>2,
+            'description' => '添加或编辑用户',
+            'parent_id'=>26,
+            'status'=>2
+        ]);
+
+        //ID:29
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'编辑用户用户',
+            'icons'=>'',
+            'prefix'=>'',
+            'url'=>'/admin/user/destroy',
+            'method'=>2,
+            'description' => '删除用户',
+            'parent_id'=>26,
+            'status'=>2
+        ]);
+
+        //ID:30
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'资料修改',
+            'icons'=>'fa-database',
+            'prefix'=>'#',
+            'url'=>'/admin/user/info',
+            'method'=>1,
+            'description' => '个人资料修改',
+            'parent_id'=>6,
+            'status'=>1
+        ]);
+
+        //ID:31
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'密码修改',
+            'icons'=>'fa-lock',
+            'prefix'=>'#',
+            'url'=>'/admin/user/password',
+            'method'=>1,
+            'description' => '个人资料修改',
+            'parent_id'=>6,
+            'status'=>1
+        ]);
+
+        //ID:32
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'系统消息',
+            'icons'=>'fa-bell-o',
+            'prefix'=>'#',
+            'url'=>'/admin/user/message',
+            'method'=>1,
+            'description' => '个人资料修改',
+            'parent_id'=>6,
+            'status'=>1
         ]);
 
         //新建假数据3条
