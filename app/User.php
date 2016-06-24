@@ -25,8 +25,8 @@ class User extends Authenticatable
         'password', 'remember_token','deleted_at'
     ];
     //关系模型
-    public function adminUser(){
-        return $this->hasOne('App\Models\AdminUser');
+    public function admin(){
+        return $this->hasOne('App\Models\Admin');
     }
 
 

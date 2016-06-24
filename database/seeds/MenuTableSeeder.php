@@ -437,6 +437,18 @@ class MenuTableSeeder extends Seeder
             'status'=>2
         ]);
 
+        //ID:39
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'角色用户',
+            'icons'=>'fa-edit',
+            'prefix'=>'#',
+            'url'=>'/admin/role/user-list/{id}',
+            'method'=>1,
+            'description' => '',
+            'parent_id'=>22,
+            'status'=>2
+        ]);
+
         //新建假数据3条
         //factory(\App\Models\Menu::class,3)->create();
     }

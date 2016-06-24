@@ -33,7 +33,8 @@ class RoleTableSeeder extends Seeder
             \App\Models\Menu::find(23),
             \App\Models\Menu::find(24),
             \App\Models\Menu::find(25),
-            \App\Models\Menu::find(37)
+            \App\Models\Menu::find(37),
+            \App\Models\Menu::find(39)
         ]);
         factory(\App\Models\Role::class)->create([
             'name'=>'观察者下级用户',

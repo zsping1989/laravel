@@ -12,14 +12,14 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                 url: route,
                 async: false
             }).success(function(data){
-                window.cacheData[route] = {'master':data.row,'permissions':data.permissions};
+                window.cacheData[route] = {'master':data.row,'permissions':data.permissions,canEdit:data.canEdit};
                 init();
             })
         }else {
             init();
         }
         function init(){
-            var maindata = window.cacheData[route] || {'master':datas.row,'permissions':datas.permissions};
+            var maindata = window.cacheData[route] || {'master':datas.row,'permissions':datas.permissions,canEdit:datas.canEdit};
             window.cacheData[route] = maindata;
             $scope.data_key = route;
 
@@ -31,6 +31,17 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
             $scope.reset();
             //提交
             $scope.submit = function(){
+                if(!$scope.canEdit){
+                    $alert({
+                        'title':'警告',
+                        'content':'你没有权限修改该角色!',
+                        'placement':'bottom-right',
+                        'type':'danger',
+                        'duration':3,
+                        'show':true
+                    });
+                    return true;
+                }
                 var data = $scope.row;
                 if(!data.parent_id){
                     delete data.parent_id;

@@ -27,7 +27,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 //后台用户
-$factory->define(App\Models\AdminUser::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Admin::class, function (Faker\Generator $faker) {
     return [];
 });
 

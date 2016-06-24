@@ -7,7 +7,7 @@ namespace App\Models;
 use App\BaseModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AdminUser extends BaseModel
+class Admin extends BaseModel
 {
     /* 软删除 */
     use SoftDeletes;
@@ -22,7 +22,7 @@ class AdminUser extends BaseModel
 
     /* 角色信息 */
     public function roles(){
-        return $this->belongsToMany('App\Models\Role','admin_user_role','admin_user_id','role_id');
+        return $this->belongsToMany('App\Models\Role','admin_role','admin_id','role_id');
     }
 
     /* 菜单信息 */

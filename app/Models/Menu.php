@@ -25,7 +25,7 @@ class Menu extends BaseModel
     }
 
     /* 菜单-用户 */
-    public function adminUsers(){
+    public function admins(){
 
     }
 

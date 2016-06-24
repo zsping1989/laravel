@@ -5,7 +5,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdminUserRoleTable extends Migration
+class CreateAdminRoleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,11 @@ class CreateAdminUserRoleTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin_user_role', function (Blueprint $table) {
+        Schema::create('admin_role', function (Blueprint $table) {
             $table->engine = 'InnoDB COMMENT="后台用户-角色关联"';
-            $table->integer('user_id')->index()->defualt(0)->comment('用户ID');
+            $table->integer('admin_id')->index()->defualt(0)->comment('用户ID');
             $table->integer('role_id')->index()->defualt(0)->comment('角色ID');
-            $table->primary(['user_id', 'role_id']);
+            $table->primary(['admin_id', 'role_id']);
         });
     }
 
@@ -29,6 +29,6 @@ class CreateAdminUserRoleTable extends Migration
      */
     public function down()
     {
-        Schema::drop('admin_user_role');
+        Schema::drop('admin_role');
     }
 }

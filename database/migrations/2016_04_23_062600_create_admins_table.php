@@ -5,7 +5,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdminUsersTable extends Migration
+class CreateAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,10 @@ class CreateAdminUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin_users', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->engine = 'InnoDB COMMENT="后台用户"';
             $table->increments('id')->comment('后台用户ID');
-            $table->integer('user_id')->index()->unique()->default(0)->comment('用户ID@required|exists:users,id|unique:admin_users,user_id');
+            $table->integer('user_id')->index()->unique()->default(0)->comment('用户ID@required|exists:users,id|unique:admins,user_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +30,6 @@ class CreateAdminUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('admin_users');
+        Schema::drop('admins');
     }
 }

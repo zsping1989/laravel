@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\AdminUser;
+use App\Models\Admin;
 use App\Models\Menu;
 use App\Models\Role;
 use Closure;
@@ -28,7 +28,7 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
         //获取管理员用户
-        $admin = Auth::user()->adminUser;
+        $admin = Auth::user()->admin;
 
         //不是管理员
         if(!$admin){
@@ -36,11 +36,9 @@ class AdminMiddleware
         }
 
         //获取用户所有角色,跟其下属角色
-        $roles = AdminUser::find(2)->roles;
-        dd($roles);
+        $roles = $admin->roles;
         //不是超级管理员
         if(!$roles->contains('id',1)){
-
             //用户所含角色的下级角色
             $lower_level = [];
             $roles->each(function ($item,$k) use(&$lower_level){
@@ -60,12 +58,10 @@ class AdminMiddleware
             $route = Route::getCurrentRoute()->getCompiled()->getStaticPrefix(); //当前路由
 
             $menus->each(function($item) use (&$hasPermission,$route){
-                //dump($item->url,$route);
                if(strpos($item->url,$route)===0){
                    $hasPermission = true;
                }
             });
-//dd($menus);
             //判断权限
             if(!$hasPermission){
                 return orRedirect('/admin/index');

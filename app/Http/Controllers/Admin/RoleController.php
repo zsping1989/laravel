@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request as ValidateRequest;
 
 class RoleController extends Controller
 {
@@ -60,7 +61,7 @@ class RoleController extends Controller
      * 返回: mixed
      */
     public function getUserList($id){
-        $admin = $this->bindModel->find($id)->adminUsers;
+        $admin = $this->bindModel->find($id)->admins;
         return User::whereIn('id',$admin->pluck('user_id'))->get();
     }
 
@@ -83,7 +84,49 @@ class RoleController extends Controller
             }
             return $item;
         });
+        $data['canEdit'] = in_array($id,$this->rolesChildsId());
         return Response::returns($data);
+    }
+
+    /**
+     * 执行修改或添加
+     * 参数 Request $request
+     */
+    public function postEdit(ValidateRequest $request){
+        //验证数据
+        $this->validate($request,$this->getValidateRule());
+        $id = $request->get('id');
+        //验证是否有修改权限
+        if(!in_array($id,$this->rolesChildsId())){ //无权修改
+            return Response::returns(['name'=>['你无权修改该角色!']],422);
+        };
+        if($id){
+            $res = $this->bindModel->find($id)->update($request->all());
+            if($res===false){
+                return Response::returns(['alert'=>alert(['content'=>'修改失败!'],500)]);
+            }
+            return Response::returns(['alert'=>alert(['content'=>'修改成功!'])]);
+        }else{
+            $res = $this->bindModel->create($request->except('id'));
+            if($res===false){
+                return Response::returns(['alert'=>alert(['content'=>'新增失败!'],500)]);
+            }
+            return Response::returns(['alert'=>alert(['content'=>'新增成功!'])]);
+        }
+        return Response::returns($request->all());
+    }
+
+    /**
+     * 获取当前用户角色的子角色
+     * @return array
+     */
+    protected function rolesChildsId(){
+        $roles = Session::get('admin')['roles']; //当前用户角色
+        $rolesChilds = collect([]);
+        collect($roles)->each(function($item)use (&$rolesChilds){
+            $rolesChilds->push($this->bindModel->find($item['id'])->childs());
+        });
+        return $rolesChilds->collapse()->pluck('id')->toArray();
     }
 
     /**
@@ -91,19 +134,14 @@ class RoleController extends Controller
      * @return mixed
      */
     public function getDestroy(){
-        dd(33);
         //查询用户角色的所有下级角色ID,可删除的角色ID
-        $roles = Session::get('admin')['roles']; //当前用户角色
-        $rolesChilds = collect([]);
-        collect($roles)->each(function($item)use (&$rolesChilds){
-            $rolesChilds->push($this->bindModel->find($item['id'])->childs());
-        });
-        $ids = $rolesChilds->collapse()->pluck('id')->toArray();
+        $ids = $this->rolesChildsId();
         $qids = Request::input('ids',[]);
         $qids = is_array($qids) ? $qids : [$qids];
-        if(!collect($qids)->diff($ids)->toArray()){
+        if(collect($qids)->diff($ids)->toArray()){
             return Response::returns(['alert'=>alert(['content'=>'有未授权删除的用户角色!'],422)],422);
         }
+        //角色删除
         $res = $this->bindModel->destroy($qids);
         if($res===false){
             return Response::returns(['alert'=>alert(['content'=>'删除失败!'],500)]);
