@@ -3,7 +3,12 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
     dump(datas);
     app.register.controller('admin-menu-indexCtrl', ["$scope",'$rootScope', 'Model','View','$alert',
         function ($scope,$rootScope,Model,View,$alert) {
-        $scope = View.with(datas.list,$scope);
+            //数据缓存,用于方便更新数据
+            var maindata = window.cacheData['admin-menu-index'] || datas.list;
+            window.cacheData['admin-menu-index'] = maindata;
+            $scope.data_key = 'admin-menu-index';
+
+            $scope = View.with(maindata,$scope);
         $rootScope.nav = datas.nav;
         $rootScope.route = datas.route;
         /* 条件查询数据 */

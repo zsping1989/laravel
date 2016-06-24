@@ -200,7 +200,7 @@ class MenuTableSeeder extends Seeder
 
         //ID:19
         factory(\App\Models\Menu::class)->create([
-            'name'=>'测试列表',
+            'name'=>'区域列表',
             'icons'=>'fa-list',
             'prefix'=>'#',
             'url'=>'/admin/area/index',
@@ -307,7 +307,7 @@ class MenuTableSeeder extends Seeder
 
         //ID:28
         factory(\App\Models\Menu::class)->create([
-            'name'=>'编辑用户用户',
+            'name'=>'编辑用户',
             'icons'=>'fa-edit',
             'prefix'=>'#',
             'url'=>'/admin/user/edit/{id?}',
@@ -319,7 +319,7 @@ class MenuTableSeeder extends Seeder
 
         //ID:29
         factory(\App\Models\Menu::class)->create([
-            'name'=>'编辑用户用户',
+            'name'=>'删除用户',
             'icons'=>'',
             'prefix'=>'',
             'url'=>'/admin/user/destroy',
@@ -386,6 +386,54 @@ class MenuTableSeeder extends Seeder
             'method'=>1,
             'description' => '',
             'parent_id'=>9,
+            'status'=>2
+        ]);
+
+        //ID:35
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'菜单列表',
+            'icons'=>'',
+            'prefix'=>'#',
+            'url'=>'/admin/menu/list',
+            'method'=>1,
+            'description' => '',
+            'parent_id'=>13,
+            'status'=>2
+        ]);
+
+        //ID:36
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'区域列表',
+            'icons'=>'fa-edit',
+            'prefix'=>'#',
+            'url'=>'/admin/area/list',
+            'method'=>2,
+            'description' => '',
+            'parent_id'=>18,
+            'status'=>2
+        ]);
+
+        //ID:37
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'角色列表',
+            'icons'=>'fa-edit',
+            'prefix'=>'#',
+            'url'=>'/admin/role/list',
+            'method'=>2,
+            'description' => '',
+            'parent_id'=>22,
+            'status'=>2
+        ]);
+
+        //ID:38
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'用户列表',
+            'icons'=>'fa-edit',
+            'prefix'=>'#',
+            'url'=>'/admin/user/list',
+            'method'=>2,
+            'description' => '',
+            'parent_id'=>26,
             'status'=>2
         ]);
 

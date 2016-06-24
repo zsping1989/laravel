@@ -11,7 +11,7 @@ define(['angular'], function (angular) {
                 dump(response);
                 //页面跳转
                 if(response.data.redirect){
-                    window.location.href = response.data.redirect;
+                    //window.location.href = response.data.redirect;
                 }
                 //页面弹窗提示
                 if(response.data.alert && $alert){
@@ -22,7 +22,7 @@ define(['angular'], function (angular) {
             'response' : function(response) {
                 //页面跳转
                 if(response.data.redirect){
-                    window.location.href = response.data.redirect;
+                    //window.location.href = response.data.redirect;
                 }
                 //页面弹窗提示
                 if(response.data.alert && $alert){
@@ -57,8 +57,8 @@ define(['angular'], function (angular) {
                     data.where[i].val = '';
                 }
             }
-            delete data.order;
-            delete data.where;
+            //delete data.order;
+            //delete data.where;
             for (var i in data) {
                 scope[i] = data[i];
             }
@@ -120,6 +120,7 @@ define(['angular'], function (angular) {
                 method: 'GET',
                 url: $scope.data_url,
                 params: resparams}).success(function (data) {
+
                 if(params.refresh==1){
                     $alert({
                         'title':'提示',
@@ -131,6 +132,8 @@ define(['angular'], function (angular) {
                     });
                 }
                 $scope.reset++;
+                //更新缓存数据
+                window.cacheData[$scope.data_key] = data;
                 View.with(data,$scope);
             });
         };

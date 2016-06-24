@@ -16,7 +16,7 @@ class BaseModel extends Model{
         //条件筛选
         collect($options['where'])->each(function($item,$key) use(&$query){
             $val = $item->exp=='like' ? '%'.preg_replace('/([_%])/','\\\$1', $item->val).'%' : $item->val;
-            $item and $query->where($key,$item->exp,$val);
+            $item and $query->where($item->key,$item->exp,$val);
         });
         //排序
         collect($options['order'])->each(function($item,$key) use (&$query){

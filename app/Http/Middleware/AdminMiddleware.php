@@ -2,12 +2,14 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\AdminUser;
 use App\Models\Menu;
 use App\Models\Role;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -34,8 +36,8 @@ class AdminMiddleware
         }
 
         //获取用户所有角色,跟其下属角色
-        $roles = $admin->roles;
-
+        $roles = AdminUser::find(2)->roles;
+        dd($roles);
         //不是超级管理员
         if(!$roles->contains('id',1)){
 
@@ -54,9 +56,18 @@ class AdminMiddleware
             $menus = Menu::whereHas('roles',function ($q) use ($roles_id){
                 $q->whereIn('id',$roles_id);
             })->orderBy('left_margin')->get();
+            $hasPermission = false;
+            $route = Route::getCurrentRoute()->getCompiled()->getStaticPrefix(); //当前路由
 
+            $menus->each(function($item) use (&$hasPermission,$route){
+                //dump($item->url,$route);
+               if(strpos($item->url,$route)===0){
+                   $hasPermission = true;
+               }
+            });
+//dd($menus);
             //判断权限
-            if(!$menus->contains('url',app('request')->getPathInfo())){
+            if(!$hasPermission){
                 return orRedirect('/admin/index');
             }
         }else{

@@ -16,11 +16,12 @@
                                 <h3 class="box-title">角色列表</h3>
                                 <div class="box-tools">
                                     <div class="input-group">
-                                        <input type="text" ng-init="where.id.exp='like';where.id.val='';"
-                                               ng-model="where.id.val" placeholder="Search"
+                                        <input type="text"
+                                               ng-init="where[0].key='id';where[0].exp='like';where[0].val= where[0].val || '';"
+                                               ng-model="where[0].val" placeholder="Search"
                                                class="form-control input-sm pull-right">
                                         <div class="input-group-btn">
-                                            <button ng-init="reset=0" ng-click="getData($this)"
+                                            <button ng-init="reset= where[0].val ? 1 : 0" ng-click="getData($this)"
                                                     class="btn btn-sm btn-default"><i class="fa fa-search"></i>
                                             </button>
                                             <button type="button" ng-click="getData($this,{reset:1})"
@@ -73,9 +74,10 @@
                                                 </tr>
                                                 <tr ng-repeat="row in data" role="row">
                                                     <td>
-                                                        <input ng-if="row.id !=1 " type="checkbox" value="{{row.id}}" name="ids[]"
+                                                        <input ng-if="row.id != 1 && row.handle" type="checkbox"
+                                                               value="{{row.id}}" name="ids[]"
                                                                ng-model="ids[$index]"
-                                                               ng-init="allIds[$index] = row.id==1 ? 0 : row.id"
+                                                               ng-init="allIds[$index] = row.id"
                                                                ng-true-value="{{row.id}}" ng-checked="selectAll">
                                                     </td>
                                                     <td>{{row.id}}</td>
@@ -89,10 +91,11 @@
                                                             <i class="glyphicon glyphicon-search"></i>
                                                         </button>
                                                         <a class="btn btn-xs btn-info" title="编辑" role="button"
-                                                           href="/admin/role/edit/{{row.id}}">
+                                                           href="#/admin/role/edit/{{row.id}}">
                                                             <i class="glyphicon glyphicon-edit"></i>
                                                         </a>
-                                                        <button ng-if="row.id != 1" class="btn btn-xs btn-danger" title="删除"
+                                                        <button ng-if="row.id != 1 && row.handle"
+                                                                class="btn btn-xs btn-danger" title="删除"
                                                                 ng-click="delete($this,row.id)" type="button">
                                                             <i class="glyphicon glyphicon-trash"></i>
                                                         </button>
@@ -111,7 +114,7 @@
                                                     ng-click="getData($this,{refresh:1})">
                                                 <i class="fa fa-refresh"></i>
                                             </button>
-                                            <a class="btn btn-default btn-sm" title="添加" href="/admin/role/edit/0">
+                                            <a class="btn btn-default btn-sm" title="添加" href="#/admin/role/edit/0">
                                                 <i class="fa fa-plus"></i>
                                             </a>
                                         </div>

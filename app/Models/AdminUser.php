@@ -22,7 +22,7 @@ class AdminUser extends BaseModel
 
     /* 角色信息 */
     public function roles(){
-        return $this->belongsToMany('App\Models\Role','admin_user_role','role_id','user_id');
+        return $this->belongsToMany('App\Models\Role','admin_user_role','admin_user_id','role_id');
     }
 
     /* 菜单信息 */

@@ -2,7 +2,12 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
     var datas = datas || data;
     dump(datas);
     app.register.controller('{{$tpl_controller}}', ["$scope",'$rootScope', 'Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
-        $scope = View.with(datas.list,$scope);
+        //数据缓存,用于方便更新数据
+        var maindata = window.cacheData['{{$tpl_controller}}'] || datas.list;
+        window.cacheData['{{$tpl_controller}}'] = maindata;
+        $scope.data_key = '{{$tpl_controller}}';
+
+        $scope = View.with(maindata,$scope);
         $rootScope.nav = datas.nav;
         $rootScope.route = datas.route;
         /* 条件查询数据 */

@@ -1,4 +1,5 @@
 dump(data);
+window.cacheData = {};
 //自动注册路由
 var routes = handleRoute(data.menus);
 data.route = data.route.replace(/\{(\w+)[\?]\}/ ,":$1");
@@ -46,7 +47,7 @@ require.config({
 
     },
     deps: ['app','css'], //启动
-    urlArgs: ''//"time=" + (new Date()).getTime()  //防止读取缓存，调试用
+    urlArgs: "time=" + (new Date()).getTime()  //防止读取缓存，调试用
 });
 
 /* 调试打印 */

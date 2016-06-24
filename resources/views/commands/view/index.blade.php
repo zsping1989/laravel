@@ -17,11 +17,11 @@
                                     <h3 class="box-title">{{$table_comment}}列表</h3>
                                     <div class="box-tools">
                                         <div class="input-group">
-                                            <input type="text" ng-init="where.id.exp='like';where.id.val='';"
-                                                   ng-model="where.id.val" placeholder="Search"
+                                            <input type="text" ng-init="where[0].key='id';where[0].exp='like';where[0].val= where[0].val || '';"
+                                                   ng-model="where[0].val" placeholder="Search"
                                                    class="form-control input-sm pull-right">
                                             <div class="input-group-btn">
-                                                <button ng-init="reset=0" ng-click="getData($this)"
+                                                <button ng-init="reset=where[0].val ? 1 : 0" ng-click="getData($this)"
                                                         class="btn btn-sm btn-default"><i class="fa fa-search"></i>
                                                 </button>
                                                 <button type="button" ng-click="getData($this,{reset:1})"
