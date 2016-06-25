@@ -11,10 +11,21 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
         $scope.reset();
         //提交
         $scope.submit = function(){
-            var data = $scope.row;
+            if($scope.row.id){
+                var data = {};
+                for (var i in $scope.row){
+                    if(i=='uname'|| i=='email' || i=='mobile_phone'){
+                        continue;
+                    }
+                    data[i] = $scope.row[i];
+                }
+            }else{
+                var data = $scope.row;
+            }
             if(!data.parent_id){
                 delete data.parent_id;
             }
+
             $http({
                 method: 'POST',
                 url: $scope.data_url,

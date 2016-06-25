@@ -34,15 +34,19 @@ class RoleController extends Controller
 
 
     /**
-     * 列表数据展示页面
-     * @return mixed
+     * 获取菜单数据
+     * @return static
      */
-    public function getIndex(){
-        $data['list'] = $this->getList(); //角色列表
+    public function getList(){
+        //树状结构限制排序
+        if(isset($this->treeOrder)){
+            $obj = $this->bindModel->orderBy('left_margin');
+        }else{
+            $obj = $this->bindModel;
+        }
+        $data = $obj->options(Request::only('where', 'order'))->paginate();
         $roles = Session::get('admin')['roles']; //当前用户角色
-
-        //处理用户是否可操作对应角色
-        $data['list']['data'] = collect($data['list']['data'])->map(function($item) use($roles){
+        foreach($data as &$item){
             $flog = false;
             foreach($roles as $role){
                 if($role['left_margin']<$item['left_margin']&& $role['right_margin']>$item['right_margin']){
@@ -50,8 +54,22 @@ class RoleController extends Controller
                 }
             }
             $item['handle'] = $flog;
-            return $item;
-        });
+        }
+        $param = [
+            'order'=> Request::input('order',[]), //排序
+            'where'=>Request::input('where',[]), //条件查询
+        ];
+
+        return collect($data)->merge($param);
+    }
+
+    /**
+     * 列表数据展示页面
+     * @return mixed
+     */
+    public function getIndex(){
+        $data['list'] = $this->getList(); //角色列表
+
         return Response::returns($data);
     }
 
@@ -93,7 +111,7 @@ class RoleController extends Controller
             return $item;
         });
         $data['users'] = $id ? $this->getUserList($id) : [];
-        $data['canEdit'] = $id ? in_array($id,$this->rolesChildsId()) : true;
+        $data['canEdit'] = $id ? (in_array($id,$this->rolesChildsId()) || $this->isSuper()) : true;
         return Response::returns($data);
     }
 
