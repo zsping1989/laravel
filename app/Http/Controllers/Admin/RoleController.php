@@ -66,6 +66,14 @@ class RoleController extends Controller
     }
 
     /**
+     * 判断是否是超级管理员
+     * @return bool
+     */
+    protected function isSuper(){
+        return collect(Session::get('admin')['roles'])->pluck('id')->contains(1);
+    }
+
+    /**
      * 编辑数据页面
      * @param null $id
      */
@@ -84,6 +92,7 @@ class RoleController extends Controller
             }
             return $item;
         });
+        $data['users'] = $id ? $this->getUserList($id) : [];
         $data['canEdit'] = in_array($id,$this->rolesChildsId());
         return Response::returns($data);
     }
@@ -96,24 +105,26 @@ class RoleController extends Controller
         //验证数据
         $this->validate($request,$this->getValidateRule());
         $id = $request->get('id');
+
         //验证是否有修改权限
-        if(!in_array($id,$this->rolesChildsId())){ //无权修改
+        if(!$this->isSuper() && !in_array($id,$this->rolesChildsId())){ //无权修改
             return Response::returns(['name'=>['你无权修改该角色!']],422);
         };
-        if($id){
+        if ($id) {
             $res = $this->bindModel->find($id)->update($request->all());
-            if($res===false){
-                return Response::returns(['alert'=>alert(['content'=>'修改失败!'],500)]);
+            if ($res === false) {
+                return Response::returns(['alert' => alert(['content' => '修改失败!'], 500)]);
             }
-            return Response::returns(['alert'=>alert(['content'=>'修改成功!'])]);
-        }else{
-            $res = $this->bindModel->create($request->except('id'));
-            if($res===false){
-                return Response::returns(['alert'=>alert(['content'=>'新增失败!'],500)]);
-            }
-            return Response::returns(['alert'=>alert(['content'=>'新增成功!'])]);
+            //修改菜单-角色关系
+            return Response::returns(['alert' => alert(['content' => '修改成功!'])]);
         }
-        return Response::returns($request->all());
+
+        $res = $this->bindModel->create($request->except('id'));
+        if ($res === false) {
+            return Response::returns(['alert' => alert(['content' => '新增失败!'], 500)]);
+        }
+        //添加菜单-角色关系
+        return Response::returns(['alert' => alert(['content' => '新增成功!'])]);
     }
 
     /**

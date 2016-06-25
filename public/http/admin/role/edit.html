@@ -63,16 +63,31 @@
                                             <span class="label-msg" ng-repeat="info in error.parent_id">{{info}}</span>
                                         </div>
                                     </div>
+                                    <div class="form-group row" ng-init="errorFieldMap['parent_id']='父级ID'">
+                                        <div class="col-xs-2">
+                                            <label class="pull-right">拥有角色的用户:</label>
+                                        </div>
+                                        <div class="col-xs-10">
+                                                <span ng-repeat="user in users" title="{{user.name}}" class="label label-primary">{{user.uname}}</span>
+                                        </div>
+                                    </div>
                                     <div class="form-group row" ng-init="errorFieldMap['permissions']='权限'">
                                         <div class="col-xs-2">
                                             <label class="pull-right">角色权限:</label>
                                         </div>
-                                        <div class="col-xs-10">
-                                            {{have}}
+                                        <div class="col-xs-10" ng-init="new_permissions = []">
                                             <span ng-repeat="permission in permissions">
                                                 <br ng-if="$index>0 && permission['level']!=permissions[$index-1]['level']" />
                                                  {{ ($index>0 && permission['level']==permissions[$index-1]['level']) ? '　　':('deep' | F : permission.level-1)}}
-                                                <input type="checkbox" value="permission.id" ng-disabled="(row.id==1 || !canEdit)"  ng-checked="(row.id==1 || permission.checked)"> {{permission.name}}
+                                                <input type="checkbox"
+                                                       ng-true-value="{{permission.id}}"
+                                                       name="new_permissions[]"
+                                                       value="permission.id"
+                                                       ng-click="checkedp(new_permissions[$index],permission.left_margin,permission.right_margin)"
+                                                       ng-disabled="(row.id==1 || !canEdit)"
+                                                       ng-checked="(row.id==1 || permission.checked)"
+                                                       ng-init="new_permissions[$index] = permission.checked ? permission.id : 0"
+                                                       ng-model="new_permissions[$index]"> {{permission.name}}
                                             </span>
                                         </div>
                                     </div>

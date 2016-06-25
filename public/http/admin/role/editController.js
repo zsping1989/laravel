@@ -12,14 +12,18 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                 url: route,
                 async: false
             }).success(function(data){
-                window.cacheData[route] = {'master':data.row,'permissions':data.permissions,canEdit:data.canEdit};
+                window.cacheData[route] = {'master':data.row,
+                    'permissions':data.permissions,
+                    canEdit:data.canEdit,
+                    users:data.users
+                };
                 init();
             })
         }else {
             init();
         }
         function init(){
-            var maindata = window.cacheData[route] || {'master':datas.row,'permissions':datas.permissions,canEdit:datas.canEdit};
+            var maindata = window.cacheData[route] || {'master':datas.row, users:datas.users,'permissions':datas.permissions,canEdit:datas.canEdit};
             window.cacheData[route] = maindata;
             $scope.data_key = route;
 
@@ -29,6 +33,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                 $scope.row = angular.copy($scope.master);
             };
             $scope.reset();
+
             //提交
             $scope.submit = function(){
                 if(!$scope.canEdit){
@@ -43,7 +48,8 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                     return true;
                 }
                 var data = $scope.row;
-                if(!data.parent_id){
+                data.new_permissions = $scope.new_permissions;
+                if(!(data.parent_id-0)){
                     delete data.parent_id;
                 }
                 $http({
@@ -54,7 +60,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                     window.cacheData[route] = null;
                     $timeout(function(){
                         if($scope.row.id){
-                            $location.path($scope.back_url);
+                            //$location.path($scope.back_url);
                         }
                     },1000);
                 }).error(function(data){
@@ -67,6 +73,20 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                         $scope.error = data;
                     }
                 });
+            }
+
+            //选中
+            $scope.checkedp = function(checked,left,right){
+                //向下选中所有子节点,向上选中父节点
+                checked = checked-0;
+                var permissions = $scope.permissions;
+                for (var permission in permissions){
+                    if((checked && left>permissions[permission].left_margin && right<permissions[permission].right_margin)||
+                        (left<permissions[permission].left_margin && right>permissions[permission].right_margin)){
+                        $scope.permissions[permission].checked = checked;
+                        $scope.new_permissions[permission] = checked ? $scope.permissions[permission].id : 0;
+                    }
+                }
             }
         }
 
