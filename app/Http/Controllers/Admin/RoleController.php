@@ -93,7 +93,7 @@ class RoleController extends Controller
             return $item;
         });
         $data['users'] = $id ? $this->getUserList($id) : [];
-        $data['canEdit'] = in_array($id,$this->rolesChildsId());
+        $data['canEdit'] = $id ? in_array($id,$this->rolesChildsId()) : true;
         return Response::returns($data);
     }
 
@@ -110,19 +110,54 @@ class RoleController extends Controller
         if(!$this->isSuper() && !in_array($id,$this->rolesChildsId())){ //无权修改
             return Response::returns(['name'=>['你无权修改该角色!']],422);
         };
+        //当前用户拥有的权限
+        $have = collect(Session::get('admin')['menus'])->pluck('id')->all();
+        //新角色权限
+        $new_permissions = collect($request->get('new_permissions'))->filter(function ($item) {
+            return $item > 0;
+        })->intersect($have)->all();
+
         if ($id) {
-            $res = $this->bindModel->find($id)->update($request->all());
+            $role = $this->bindModel->find($id);
+            $res = $role->update($request->all());
             if ($res === false) {
                 return Response::returns(['alert' => alert(['content' => '修改失败!'], 500)]);
             }
             //修改菜单-角色关系
+            if($id!=1){
+                //当前用户拥有该角色的旧权限
+                $old_permissions = $role->menus->pluck('id')
+                    ->intersect($have)
+                    ->all();
+                //删除旧的权限,添加新权限
+                $add_permissions = collect($new_permissions)->diff($old_permissions)->all();
+                $del_permissions = collect($old_permissions)->diff($new_permissions)->all();
+                $role->menus()->detach($del_permissions);
+                $role->menus()->attach($add_permissions);
+                //新增权限父节点都将拥有
+                $role->parents()->each(function($item) use($add_permissions){
+                    $item->menus()->detach($add_permissions);
+                    $item->menus()->attach($add_permissions);
+                });
+                //删除节点权限子节点都删除
+                $role->childs()->each(function($item) use($del_permissions){
+                    $item->menus()->detach($del_permissions);
+                });
+
+            }
             return Response::returns(['alert' => alert(['content' => '修改成功!'])]);
         }
 
-        $res = $this->bindModel->create($request->except('id'));
-        if ($res === false) {
+        $role = $this->bindModel->create($request->except('id'));
+        if ($role === false) {
             return Response::returns(['alert' => alert(['content' => '新增失败!'], 500)]);
         }
+        //所有父节点添加对应权限
+        $role->parents(true)->each(function($item)use($new_permissions){
+            $item->menus()->detach($new_permissions);
+            $item->menus()->attach($new_permissions);
+        });
+        
         //添加菜单-角色关系
         return Response::returns(['alert' => alert(['content' => '新增成功!'])]);
     }
