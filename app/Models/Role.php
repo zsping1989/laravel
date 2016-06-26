@@ -8,6 +8,7 @@ use App\BaseModel;
 use App\Exceptions\MarginTree\ExcludeTop;
 use App\Exceptions\MarginTree\TreeModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Session;
 
 class Role extends BaseModel
 {
@@ -30,4 +31,6 @@ class Role extends BaseModel
     public function admins(){
         return $this->belongsToMany('App\Models\Admin','admin_role','admin_id','role_id');
     }
+
+
 }

@@ -63,7 +63,7 @@ trait ResourceController{
      */
     public function getEdit($id=null){
         $data = [];
-        $id AND $data['row'] = $this->bindModel->find($id);
+        $id AND $data['row'] = $this->bindModel->findOrFail($id);
         return Response::returns($data);
     }
 
@@ -75,20 +75,21 @@ trait ResourceController{
         //验证数据
         $this->validate($request,$this->getValidateRule());
         $id = $request->get('id');
+        //修改
         if($id){
             $res = $this->bindModel->find($id)->update($request->all());
             if($res===false){
                 return Response::returns(['alert'=>alert(['content'=>'修改失败!'],500)]);
             }
             return Response::returns(['alert'=>alert(['content'=>'修改成功!'])]);
-        }else{
-            $res = $this->bindModel->create($request->except('id'));
-            if($res===false){
-                return Response::returns(['alert'=>alert(['content'=>'新增失败!'],500)]);
-            }
-            return Response::returns(['alert'=>alert(['content'=>'新增成功!'])]);
         }
-        return Response::returns($request->all());
+
+        //新增
+        $res = $this->bindModel->create($request->except('id'));
+        if($res===false){
+            return Response::returns(['alert'=>alert(['content'=>'新增失败!'],500)]);
+        }
+        return Response::returns(['alert'=>alert(['content'=>'新增成功!'])]);
     }
 
     /**

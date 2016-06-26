@@ -15,6 +15,8 @@ class Admin extends BaseModel
         'user_id'
     ];
 
+    //隐藏输出字段
+    protected $hidden = ['deleted_at'];
     /* 用户信息 */
     public function user(){
         return $this->belongsTo('App\User');

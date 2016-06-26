@@ -23,7 +23,7 @@
                                             <label class="pull-right">用户名:</label>
                                         </div>
                                         <div class="col-xs-3">
-                                            <input type="text" name="uname" ng-model="row.uname" disabled="disabled" class="form-control">
+                                            <input type="text" name="uname" ng-model="row.uname" ng-disabled="row.id" class="form-control">
                                         </div>
                                         <div class="col-xs-7" ng-if="!error.uname">
                                             <span class="label-msg">填写提示信息!</span>
@@ -37,7 +37,7 @@
                                             <label class="pull-right">电子邮箱:</label>
                                         </div>
                                         <div class="col-xs-3">
-                                            <input type="text" name="email" disabled="disabled" ng-model="row.email" class="form-control">
+                                            <input type="text" name="email" ng-disabled="row.id" ng-model="row.email" class="form-control">
                                         </div>
                                         <div class="col-xs-7" ng-if="!error.email">
                                             <span class="label-msg">填写提示信息!</span>
@@ -52,7 +52,7 @@
                                             <label class="pull-right">电话:</label>
                                         </div>
                                         <div class="col-xs-3">
-                                            <input type="text" name="mobile_phone" disabled="disabled" ng-model="row.mobile_phone"
+                                            <input type="text" name="mobile_phone" ng-disabled="row.id" ng-model="row.mobile_phone"
                                                    class="form-control">
                                         </div>
                                         <div class="col-xs-7" ng-if="!error.mobile_phone">
@@ -106,6 +106,42 @@
                                             <span class="label-msg" ng-repeat="info in error.status">{{info}}</span>
                                         </div>
                                     </div>
+                                    <div class="form-group row" ng-init="errorFieldMap['admin']='管理员'">
+                                        <div class="col-xs-2">
+                                            <label class="pull-right">设置管理员:</label>
+                                        </div>
+                                        <div class="col-xs-3" ng-init="row.admin.isAdmin = row.admin.isAdmin ? row.admin.isAdmin : 0">
+                                            <input type="radio" name="admin" value="0" ng-model="row.admin.isAdmin" ng-disabled="row.admin.isAdmin &&  row.disabled"> 否　　
+                                            <input type="radio" name="admin" value="1" ng-model="row.admin.isAdmin" ng-disabled="row.admin.isAdmin &&  row.disabled"> 是　　
+                                        </div>
+                                        <div class="col-xs-7" ng-if="!error.isAdmin">
+                                            <span class="label-msg">填写提示信息!</span>
+                                        </div>
+                                        <div class="col-xs-7 error-msg" ng-if="error.isAdmin">
+                                            <span class="label-msg" ng-repeat="info in error.isAdmin">{{info}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" ng-if="row.admin.isAdmin==1" >
+                                        <div class="col-xs-2">
+                                            <label class="pull-right">用户角色:</label>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <span  ng-repeat="role in roles">
+                                                <br ng-if="$index>0 && role['level']!=roles[$index-1]['level']" />
+                                                {{ ($index>0 && role['level']==roles[$index-1]['level']) ? ' ':('deep' | F : role.level)}}
+                                                <input type="checkbox"
+                                                       value="{{role.id}}"
+                                                       ng-true-value="{{role.id}}"
+                                                       name="new_roles[]"
+                                                       ng-init="new_roles[$index] = role.checked ? role.id : 0"
+                                                       ng-model="new_roles[$index]"
+                                                       ng-disabled="role.disabled"
+                                                       ng-checked="role.checked" >
+                                                <span title="{{role.name}}" class="label label-primary">{{role.name}}</span>　
+                                            </span>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group row">
                                         <div class="col-xs-2">
                                         </div>

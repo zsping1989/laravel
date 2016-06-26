@@ -123,11 +123,19 @@ class RoleController extends Controller
         //验证数据
         $this->validate($request,$this->getValidateRule());
         $id = $request->get('id');
-
         //验证是否有修改权限
         if(!$this->isSuper() && !in_array($id,$this->rolesChildsId())){ //无权修改
             return Response::returns(['name'=>['你无权修改该角色!']],422);
         };
+
+        //添加或修改角色父ID权限判断
+        if(!$this->isSuper()){
+            $parent_id = $request->get('parent_id');
+            if(!$parent_id || !in_array($parent_id,$this->rolesChildsId(true))){
+                return Response::returns(['parent_id'=>['只能设置你有权限的角色分组ID']],422);
+            }
+        }
+
         //当前用户拥有的权限
         $have = collect(Session::get('admin')['menus'])->pluck('id')->all();
         //新角色权限
@@ -150,16 +158,16 @@ class RoleController extends Controller
                 //删除旧的权限,添加新权限
                 $add_permissions = collect($new_permissions)->diff($old_permissions)->all();
                 $del_permissions = collect($old_permissions)->diff($new_permissions)->all();
-                $role->menus()->detach($del_permissions);
+                $del_permissions AND $role->menus()->detach($del_permissions);
                 $role->menus()->attach($add_permissions);
                 //新增权限父节点都将拥有
                 $role->parents()->each(function($item) use($add_permissions){
-                    $item->menus()->detach($add_permissions);
+                    $add_permissions AND $item->menus()->detach($add_permissions);
                     $item->menus()->attach($add_permissions);
                 });
                 //删除节点权限子节点都删除
                 $role->childs()->each(function($item) use($del_permissions){
-                    $item->menus()->detach($del_permissions);
+                    $del_permissions AND $item->menus()->detach($del_permissions);
                 });
 
             }
@@ -172,7 +180,7 @@ class RoleController extends Controller
         }
         //所有父节点添加对应权限
         $role->parents(true)->each(function($item)use($new_permissions){
-            $item->menus()->detach($new_permissions);
+            $new_permissions AND $item->menus()->detach($new_permissions);
             $item->menus()->attach($new_permissions);
         });
         
@@ -184,13 +192,17 @@ class RoleController extends Controller
      * 获取当前用户角色的子角色
      * @return array
      */
-    protected function rolesChildsId(){
+    protected function rolesChildsId($all=false){
         $roles = Session::get('admin')['roles']; //当前用户角色
         $rolesChilds = collect([]);
         collect($roles)->each(function($item)use (&$rolesChilds){
             $rolesChilds->push($this->bindModel->find($item['id'])->childs());
         });
-        return $rolesChilds->collapse()->pluck('id')->toArray();
+        $rolesChilds = $rolesChilds->collapse()->pluck('id');
+        if(!$all){
+            return $rolesChilds->toArray();
+        }
+        return $rolesChilds->merge(collect($roles)->pluck('id'))->toArray();
     }
 
     /**

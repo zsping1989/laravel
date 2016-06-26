@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Session;
 
 class User extends Authenticatable
 {
@@ -29,5 +30,12 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Admin');
     }
 
+    /**
+     * 判断是否是超级管理员
+     * @return bool
+     */
+    public function isSuper(){
+        return collect(Session::get('admin')['roles'])->pluck('id')->contains(1);
+    }
 
 }

@@ -56,14 +56,16 @@ class AdminMiddleware
             })->orderBy('left_margin')->get();
             $hasPermission = false;
             $route = Route::getCurrentRoute()->getCompiled()->getStaticPrefix(); //当前路由
-
             $menus->each(function($item) use (&$hasPermission,$route){
+                //dump($item->url,$route,strpos($item->url,$route)===0);
                if(strpos($item->url,$route)===0){
                    $hasPermission = true;
                }
             });
+            //dd(1);
             //判断权限
             if(!$hasPermission){
+                dd('无权访问!');
                 return orRedirect('/admin/index');
             }
         }else{
