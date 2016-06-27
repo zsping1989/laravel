@@ -190,11 +190,22 @@ class UserController extends Controller
      */
     public function getFramework(){
         //查询所有角色
-        $data = Role::orderBy('left_margin')->get()->load('admins.user');
+        $data['roles'] = Role::orderBy('left_margin')->get()->load('admins.user');
+        $level = [];
+        foreach($data['roles'] as &$role){
+            $role->users = collect($role->admins->toArray())->pluck('user')->implode('name', ',');
+            if(!isset($level[$role->level])){
+                $level[$role->level] = 0;
+            }
+            $role->level_num = $level[$role->level];
+            ++$level[$role->level];
+        }
         //查询层级最多的节点数
         $level_max_num = Role::select(DB::raw('count(*) as role_count'))->groupBy('level')->orderBy('role_count','desc')->first()->role_count;
-        $data->width = ($level_max_num+1)*200;
-        $data->height = Role::max('level')*115+150;
+        $data['width'] = ($level_max_num+1)*200;
+        $data['height'] = Role::max('level')*115+150;
+        $data['level_count'] = $level;
+        //return $data;
         return Response::returns($data);
     }
 }
