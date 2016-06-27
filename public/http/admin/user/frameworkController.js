@@ -63,7 +63,7 @@ define(['app',dataPath(),'joint','admin/public/headerController','admin/public/l
         for(var i in $scope.roles){
             //画图
             bart['id'+$scope.roles[i].id] = member(
-                ($scope.width-200)/(Math.pow(2,$scope.level_count[$scope.roles[i].level]))+($scope.roles[i].level_num*200)-100, //宽
+                ($scope.width-200)/(Math.pow(2,$scope.level_count[$scope.roles[i].level]))+($scope.roles[i].level_num*200)-60, //宽
                 115*$scope.roles[i].level, //高
                 $scope.roles[i].name, //角色名称
                 $scope.roles[i].users, //用户名称
@@ -75,6 +75,10 @@ define(['app',dataPath(),'joint','admin/public/headerController','admin/public/l
                 link(bart['id'+$scope.roles[i].id], bart['id'+$scope.roles[i].parent_id], []);
             }
         }
+        $scope.aa = function(){
+            dump(bart['id1'].position());
+        }
+
         //dump($scope.roles);
         /*var bart = member(300,70,'CEO', 'Bart Simpson', 'male.png', '#30d0c6');
 
