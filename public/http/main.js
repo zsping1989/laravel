@@ -34,6 +34,10 @@ require.config({
         "pagination":'/lib/pagination/0.02/pagination',
         'css': '/lib/require-css/0.1.8/css.min',
         'mainService':'/service/mainService',
+        'lodash':'/lib/lodash/3.10.1/lodash.min',
+        'backbone':'/lib/backbone/backbone.min',
+        'joint':'/lib/joint/0.9.6/joint.min',
+        'underscore':'/lib/underscore/1.8.3/underscore.min',
         "app":'app'
     },
     map: {
@@ -42,9 +46,10 @@ require.config({
         "angular": { exports: "angular" },
         "angularAMD": ["angular"],
         "ngload": ["angularAMD"],
-        "pagination": ["angular",'css!/lib/pagination/0.02/pagination.css'],
+        'lodash':['jquery'],
+        'backbone':['jquery','lodash'],
+        "joint": ["jquery",'lodash','backbone','css!/lib/joint/0.9.6/joint.css'],
         "angular-ui-router": ["angular"]
-
     },
     deps: ['app','css'], //启动
     urlArgs: "time=" + (new Date()).getTime()  //防止读取缓存，调试用

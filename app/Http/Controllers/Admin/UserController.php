@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Role;
 use App\User;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request as ValidateRequest;
@@ -30,6 +31,27 @@ class UserController extends Controller
     */
     protected function getValidateRule(){
         return ['uname'=>'sometimes|required|alpha_dash|between:6,18|unique:users,uname','password'=>'sometimes|required|digits_between:6,18','name'=>'required','email'=>'sometimes|required|email|unique:users,email','mobile_phone'=>'sometimes|required|mobile_phone|digits:11|unique:users,qq','qq'=>'integer'];
+    }
+
+    /**
+     * 获取菜单数据
+     * @return static
+     */
+    public function getList(){
+        //树状结构限制排序
+        if(isset($this->treeOrder)){
+            $obj = $this->bindModel->orderBy('left_margin');
+        }else{
+            $obj = $this->bindModel;
+        }
+        $data = $obj->options(Request::only('where', 'order'))->paginate();
+        //判断用户是否可被删除
+        $data->load('admin'); //是后台用户不可直接被删除
+        $param = [
+            'order'=> Request::input('order',[]), //排序
+            'where'=>Request::input('where',[]), //条件查询
+        ];
+        return collect($data)->merge($param);
     }
 
     /**
@@ -142,5 +164,32 @@ class UserController extends Controller
             return Response::returns(['alert'=>alert(['content'=>'新增失败!'],500)]);
         }
         return Response::returns(['alert'=>alert(['content'=>'新增成功!'])]);
+    }
+
+    /**
+     * 删除数据
+     * @return mixed
+     */
+    public function postDestroy(){
+        //管理员不可直接被删除,过滤掉管理员用户
+        $ids = $this->bindModel->whereIn('id',Request::input('ids',[]))
+            ->get()->load('admin')->filter(function($item){
+                return !$item->admin;
+        })->pluck('id');
+        $res = $this->bindModel->destroy($ids);
+        if($res===false){
+            return Response::returns(['alert'=>alert(['content'=>'删除失败!'],500)]);
+        }
+        return Response::returns(['alert'=>alert(['content'=>'删除成功!'])]);
+    }
+
+    /**
+     * 后台角色用户组织架构图
+     * 返回: mixed
+     */
+    public function getFramework(){
+        //查询所有角色
+        $data = Role::orderBy('left_margin')->get()->load('admins.user');
+        return Response::returns($data);
     }
 }

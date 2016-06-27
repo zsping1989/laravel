@@ -89,10 +89,12 @@
                                                 </tr>
                                                 <tr ng-repeat="row in data" role="row">
                                                     <td>
-                                                        <input ng-if="row.id != 1" type="checkbox" value="{{row.id}}" name="ids[]"
+                                                        <input ng-if="(row.id != 1 && !row.admin)" type="checkbox" value="{{row.id}}"
+                                                               name="ids[]"
                                                                ng-model="ids[$index]"
-                                                               ng-init="allIds[$index] = row.id==1 ? 0 : row.id"
-                                                               ng-true-value="{{row.id}}" ng-checked="selectAll">
+                                                               ng-init="allIds[$index] = (row.id==1 || row.admin) ? 0 : row.id"
+                                                               ng-true-value="{{row.id}}"
+                                                               ng-checked="selectAll">
                                                     </td>
                                                     <td>{{row.id}}</td>
                                                     <td>{{row.uname}}</td>
@@ -113,7 +115,7 @@
                                                            href="/admin/user/edit/{{row.id}}">
                                                             <i class="glyphicon glyphicon-edit"></i>
                                                         </a>
-                                                        <button ng-if="row.id != 1" class="btn btn-xs btn-danger" title="删除"
+                                                        <button ng-if="(row.id != 1 && !row.admin)" class="btn btn-xs btn-danger" title="删除"
                                                                 ng-click="delete($this,row.id)" type="button">
                                                             <i class="glyphicon glyphicon-trash"></i>
                                                         </button>

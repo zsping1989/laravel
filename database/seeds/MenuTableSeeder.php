@@ -449,6 +449,18 @@ class MenuTableSeeder extends Seeder
             'status'=>2
         ]);
 
+        //ID:40
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'组织架构',
+            'icons'=>'fa-cubes',
+            'prefix'=>'#',
+            'url'=>'/admin/user/framework',
+            'method'=>1,
+            'description' => '',
+            'parent_id'=>5,
+            'status'=>1
+        ]);
+
         //新建假数据3条
         //factory(\App\Models\Menu::class,3)->create();
     }

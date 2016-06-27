@@ -1,0 +1,44 @@
+<div class="skin-blue sidebar-mini" ng-class="{'sidebar-collapse':left_hidden}">
+    <div class="wrapper">
+        <div ng-include="'/http/admin/public/header.html'"></div>
+        <div ng-include="'/http/admin/public/left.html'"></div>
+        <div style="min-height: 715px;" class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div ng-include="'/http/admin/public/nav.html'"></div>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box box-info"  ng-controller="admin-user-frameworkCtrl">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">后台组织架构图</h3>
+                                <div class="box-tools">
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="dataTables_wrapper form-inline dt-bootstrap">
+                                    <div class="row">
+                                        <div class="col-sm-6"></div>
+                                        <div class="col-sm-6"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="paper col-sm-12" >
+                                            <div id="paper" ></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <div ng-include="'/http/admin/public/right.html'"></div>
+    </div>
+</div>
