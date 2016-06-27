@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Role;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
@@ -190,6 +191,10 @@ class UserController extends Controller
     public function getFramework(){
         //查询所有角色
         $data = Role::orderBy('left_margin')->get()->load('admins.user');
+        //查询层级最多的节点数
+        $level_max_num = Role::select(DB::raw('count(*) as role_count'))->groupBy('level')->orderBy('role_count','desc')->first()->role_count;
+        $data->width = ($level_max_num+1)*200;
+        $data->height = Role::max('level')*115+150;
         return Response::returns($data);
     }
 }
