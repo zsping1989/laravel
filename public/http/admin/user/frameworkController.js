@@ -1,7 +1,7 @@
 define(['app',dataPath(),'joint','admin/public/headerController','admin/public/leftController'], function (app,datas,joint) {
     var datas = datas || data;
     dump(datas);
-    app.register.controller('admin-user-frameworkCtrl', ["$scope",'$rootScope', 'Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
+    app.register.controller('admin-user-frameworkCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$http', function ($scope,$rootScope,Model,View,$alert,$http) {
         //数据缓存,用于方便更新数据
         var maindata = window.cacheData['admin-user-framework'] || datas;
         window.cacheData['admin-user-framework'] = maindata;
@@ -15,8 +15,8 @@ define(['app',dataPath(),'joint','admin/public/headerController','admin/public/l
         var graph = new joint.dia.Graph();
         var paper = new joint.dia.Paper({
             el: $('#paper'),
-            width: $scope.width,
-            height: $scope.height,
+            width: $scope.width+200,
+            height: $scope.height+200,
             gridSize: 1,
             model: graph,
             perpendicularLinks: true,
@@ -59,46 +59,45 @@ define(['app',dataPath(),'joint','admin/public/headerController','admin/public/l
             graph.addCell(cell);
             return cell;
         }
-        var bart = {};
+        var colour = {'level_6':'#f4f4f4','level_2':'#367fa9','level_3':'#008d4c','level_4':'#00acd6','level_5':'#d73925','level_1':'#e08e0b'};
+        var barts = {}; //图标对象
         for(var i in $scope.roles){
+            var x = $scope.roles[i].x || ($scope.width-200)/(Math.pow(2,$scope.level_count[$scope.roles[i].level]))+($scope.roles[i].level_num*200)-60;
+            var y = $scope.roles[i].y || 115*$scope.roles[i].level;
             //画图
-            bart['id'+$scope.roles[i].id] = member(
-                ($scope.width-200)/(Math.pow(2,$scope.level_count[$scope.roles[i].level]))+($scope.roles[i].level_num*200)-60, //宽
-                115*$scope.roles[i].level, //高
+            barts['id'+$scope.roles[i].id] = member(
+                x, //宽
+                y, //高
                 $scope.roles[i].name, //角色名称
                 $scope.roles[i].users, //用户名称
                 'male.png', //图片
-                '#30d0c6'); //背景颜色
+                colour['level_'+$scope.roles[i].level]); //背景颜色
             
-            //划线
+            //划线链接
             if($scope.roles[i].parent_id){
-                link(bart['id'+$scope.roles[i].id], bart['id'+$scope.roles[i].parent_id], []);
+                //拐点1确定
+                var spinodal1 = barts['id'+$scope.roles[i].parent_id].position();
+                var spinodal2 = barts['id'+$scope.roles[i].id].position();
+                link(
+                    barts['id'+$scope.roles[i].id],
+                    barts['id'+$scope.roles[i].parent_id],
+                    [{x:spinodal2.x+100,y:spinodal1.y+100},{x:spinodal1.x+100,y:spinodal1.y+100}]);
             }
         }
-        $scope.aa = function(){
-            dump(bart['id1'].position());
+        $scope.saveCoord = function(){
+            var data = [];
+            for(var i in barts){
+                var coord = barts[i].position();
+                data[data.length] = {id: i.replace('id',''),x:coord.x,y:coord.y};
+            }
+            $http({
+                method: 'POST',
+                url: '/admin/user/framework',
+                data: {positions:data}
+            })
         }
 
-        //dump($scope.roles);
-        /*var bart = member(300,70,'CEO', 'Bart Simpson', 'male.png', '#30d0c6');
 
-        var homer = member(90,200,'VP Marketing', 'Homer Simpson', 'male.png', '#7c68fd', '#f1f1f1');
-        var marge = member(300,200,'VP Sales', 'Marge Simpson', 'female.png', '#7c68fd', '#f1f1f1');
-        var lisa = member(500,200,'VP Production' , 'Lisa Simpson', 'female.png', '#7c68fd', '#f1f1f1');
-
-        var maggie = member(400,350,'Manager', 'Maggie Simpson', 'female.png', '#feb563');
-        var lenny = member(190,350,'Manager', 'Lenny Leonard', 'male.png', '#feb563');
-        var carl = member(190,500,'Manager', 'Carl Carlson', 'male.png', '#feb563');
-
-
-
-        link(bart, marge, [{x: 385, y: 180}]);
-        link(bart, homer, [{x: 385, y: 180}, {x: 175, y: 180}]);
-        link(bart, lisa, [{x: 385, y: 180}, {x: 585, y: 180}]);
-
-        link(homer, lenny, [{x:175 , y: 380}]);
-        link(homer, carl, [{x:175 , y: 530}]);
-        link(marge, maggie, [{x:385 , y: 380}]);*/
 
 
     }]);

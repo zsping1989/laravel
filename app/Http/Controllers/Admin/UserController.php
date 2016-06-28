@@ -208,4 +208,17 @@ class UserController extends Controller
         //return $data;
         return Response::returns($data);
     }
+
+    /**
+     * 保存每个节点的坐标位置
+     */
+    public function postFramework(){
+        foreach(Request::input('positions') as $value){
+            $res = Role::find($value['id'])->update($value);
+            if($res===false){
+                return Response::returns(['alert'=>alert(['content'=>'保存失败!'],500)]);
+            }
+        }
+        return Response::returns(['alert'=>alert(['content'=>'保存成功!'])]);
+    }
 }

@@ -16,7 +16,7 @@ class Role extends BaseModel
     use SoftDeletes; //软删除
 
     //批量赋值白名单
-    protected $fillable = ['id','name','description','parent_id'];
+    protected $fillable = ['id','name','description','x','y','parent_id'];
     //输出隐藏字段
     protected $hidden = ['deleted_at'];
     //日期字段
