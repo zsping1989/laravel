@@ -39,6 +39,7 @@ class UserController extends Controller
      * @return static
      */
     public function getList(){
+        $this->handleRequest();
         //树状结构限制排序
         if(isset($this->treeOrder)){
             $obj = $this->bindModel->orderBy('left_margin');

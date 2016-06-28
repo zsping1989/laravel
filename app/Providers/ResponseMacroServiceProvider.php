@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class ResponseMacroServiceProvider extends ServiceProvider
@@ -40,7 +39,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
             }else{
                 $macro->addData($value);
                 $value['user'] = Auth::user(); //用户信息
-                $value['menus'] = session('admin.menus');
+                $value['menus'] = session('userInfo.menus');
                 return view('index',['data'=>$value]);
             }
             return $factory->make($value,$status);

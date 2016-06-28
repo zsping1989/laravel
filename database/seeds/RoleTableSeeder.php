@@ -25,17 +25,10 @@ class RoleTableSeeder extends Seeder
             'description' => '只拥有查看权限',
         ]);
         //添加测试用户权限列表
-        $role->menus()->saveMany([
-            \App\Models\Menu::find(2),
-            \App\Models\Menu::find(5),
-            \App\Models\Menu::find(12),
-            \App\Models\Menu::find(22),
-            \App\Models\Menu::find(23),
-            \App\Models\Menu::find(24),
-            \App\Models\Menu::find(25),
-            \App\Models\Menu::find(37),
-            \App\Models\Menu::find(39)
-        ]);
+        $role->menus()->saveMany(
+            \App\Models\Menu::whereIn('id',[2,5,12,22,23,24,25,37,39])->get()->all()
+          );
+
         factory(\App\Models\Role::class)->create([
             'name'=>'观察者下级用户',
             'description' => '只拥有查看权限',
