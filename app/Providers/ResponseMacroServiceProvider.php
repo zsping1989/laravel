@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Logics\Facade\UserLogic;
 use App\Models\Menu;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
@@ -39,7 +40,8 @@ class ResponseMacroServiceProvider extends ServiceProvider
             }else{
                 $macro->addData($value);
                 $value['user'] = Auth::user(); //用户信息
-                $value['menus'] = session('userInfo.menus');
+                dd(UserLogic::getUserInfo());
+                $value['menus'] = UserLogic::getUserInfo('menus');
                 return view('index',['data'=>$value]);
             }
             return $factory->make($value,$status);

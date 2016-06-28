@@ -8,6 +8,7 @@
  */
 namespace App\Logics;
 
+use App\Logics\Facade\MenuLogic;
 use App\Models\Menu;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
@@ -111,6 +112,16 @@ class UserLogic{
         $data['admin'] = $this->admin ? $this->admin->toArray() : null;
         $data['menus'] = $this->admin ? $this->getAdminMenus()->toArray(): null;
         return $this->putCacheUserInfo($data);
+    }
+
+    /**
+     * 获取缓存用户信息
+     * @param string $key
+     * @return mixed
+     */
+    public function getUserInfo($key=''){
+        $key AND $key = '.'.$key;
+        return session('userInfo'.$key);
     }
 
 }
