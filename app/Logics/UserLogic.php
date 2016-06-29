@@ -77,7 +77,6 @@ class UserLogic{
         }else{
             //获取当前用户角色及下属角色ID
             $roles_id = $this->getAdminRolesAndChilds()->pluck('id');
-
             //获取含有的权限url
             $menus = Menu::whereHas('roles',function ($q) use ($roles_id){
                 $q->whereIn('id',$roles_id);

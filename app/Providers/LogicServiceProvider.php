@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Logics\Facade\MenuLogic;
+use App\Logics\MenuLogic;
 use App\Logics\UserLogic;
 use Illuminate\Support\ServiceProvider;
 
