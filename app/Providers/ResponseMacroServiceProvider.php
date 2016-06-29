@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Logics\Facade\MenuLogic;
 use App\Logics\Facade\UserLogic;
 use App\Models\Menu;
 use Illuminate\Support\Facades\Auth;
@@ -41,20 +40,23 @@ class ResponseMacroServiceProvider extends ServiceProvider
             }else{
                 $macro->addData($value);
                 $value['user'] = Auth::user(); //用户信息
+                dd(UserLogic::getUserInfo());
                 $value['menus'] = UserLogic::getUserInfo('menus');
                 return view('index',['data'=>$value]);
             }
             return $factory->make($value,$status);
         });
     }
-
-    /**
-     * 公共数据模块
-     * @param $value
-     */
     public function addData(&$value){
-        $value['route'] = Request::getPathInfo();  //路由信息
-        $value['nav'] = MenuLogic::getNavbar(); //导航菜单获取
+        $route = Route::getCurrentRoute()->getCompiled()->getStaticPrefix(); //当前路由
+        $data = [
+            'route'=>Request::getPathInfo()  //路由信息
+        ];
+
+        $value = collect($value)->merge($data);
+        $menu = Menu::where('url','like',$route.'%')->orderBy('right_margin')->first(); //最底层路由
+        $menu->url = 'end';
+        $value['nav'] = $menu ? collect($menu->parents()->toArray())->push($menu)->keyBy('id') : [];
     }
 
     /**

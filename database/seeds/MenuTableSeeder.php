@@ -83,7 +83,7 @@ class MenuTableSeeder extends Seeder
             'name'=>'创建代码',
             'icons'=>'fa-mouse-pointer',
             'prefix'=>'#',
-            'url'=>'/admin/create-code',
+            'url'=>'/admin/make/create-code',
             'description' => '创建代码',
             'parent_id'=>3,
             'status'=>1
@@ -93,7 +93,7 @@ class MenuTableSeeder extends Seeder
             'name'=>'接口文档',
             'icons'=>'fa-asterisk',
             'prefix'=>'#',
-            'url'=>'/admin/api',
+            'url'=>'/admin/exploit/api',
             'description' => '接口说明',
             'parent_id'=>3,
             'status'=>1
@@ -458,6 +458,30 @@ class MenuTableSeeder extends Seeder
             'method'=>1,
             'description' => '',
             'parent_id'=>5,
+            'status'=>1
+        ]);
+
+        //ID:41
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'404页面',
+            'icons'=>'fa-exclamation-triangle',
+            'prefix'=>'#',
+            'url'=>'/admin/page404',
+            'method'=>1,
+            'description' => '',
+            'parent_id'=>7,
+            'status'=>1
+        ]);
+
+        //ID:42
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'500页面',
+            'icons'=>'fa-exclamation-triangle',
+            'prefix'=>'#',
+            'url'=>'/admin/page500',
+            'method'=>1,
+            'description' => '',
+            'parent_id'=>7,
             'status'=>1
         ]);
 

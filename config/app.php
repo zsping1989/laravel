@@ -159,6 +159,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ResponseMacroServiceProvider::class,
         App\Providers\MarginTreeServiceProvider::class,
+        App\Providers\LogicServiceProvider::class,
 
     ],
 

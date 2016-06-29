@@ -59,6 +59,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admi
     Route::controller('area', 'AreaController');
     Route::controller('user', 'UserController');
     Route::controller('test', 'TestController');
+
     Route::controller('/', 'IndexController');
 });
 
