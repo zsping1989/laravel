@@ -128,7 +128,7 @@ class UserController extends Controller
         $has_roles = $this->rolesChildsId();
         //修改
         if($id){
-            $user = $this->bindModel->find($id);
+            $user = $this->bindModel->findOrFail($id);
             $res =$user->update($request->all());
             if($res===false){
                 return Response::returns(['alert'=>alert(['content'=>'修改失败!'],500)]);

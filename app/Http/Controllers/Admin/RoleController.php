@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exceptions\ResourceController;
 use App\Http\Controllers\Controller;
+use App\Logics\Facade\UserLogic;
 use App\Models\Role;
 use App\User;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request as ValidateRequest;
 
 class RoleController extends Controller
@@ -46,7 +46,7 @@ class RoleController extends Controller
             $obj = $this->bindModel;
         }
         $data = $obj->options(Request::only('where', 'order'))->paginate();
-        $roles = Session::get('admin')['roles']; //当前用户角色
+        $roles = UserLogic::getUserInfo('admin.roles'); //当前用户角色
         foreach($data as &$item){
             $flog = false;
             foreach($roles as $role){
@@ -84,13 +84,6 @@ class RoleController extends Controller
         return User::whereIn('id',$admin->pluck('user_id'))->get();
     }
 
-    /**
-     * 判断是否是超级管理员
-     * @return bool
-     */
-    protected function isSuper(){
-        return collect(Session::get('admin')['roles'])->pluck('id')->contains(1);
-    }
 
     /**
      * 编辑数据页面
@@ -98,12 +91,21 @@ class RoleController extends Controller
      */
     public function getEdit($id=null){
         $data = [];
-        $id AND $data['row'] = $this->bindModel->find($id);
+        if(!$id){
+            //查询当前用户拥有权限
+            $data['permissions'] = collect(UserLogic::getUserInfo('menus'))->map(function($item){
+                $item['checked'] = 0;
+                return $item;
+            });
+            return Response::returns($data);
+        }
+
+        $data['row'] = $this->bindModel->findOrFail($id);
         //当前角色拥有权限
-        $have = $id ? $data['row']->menus->pluck('id')->all() : [];
+        $have = $data['row']->menus->pluck('id')->all();
 
         //查询当前用户拥有权限
-        $data['permissions'] = collect(Session::get('admin')['menus'])->map(function($item) use ($have){
+        $data['permissions'] = collect(UserLogic::getUserInfo('menus'))->map(function($item) use ($have){
             if(in_array($item['id'],$have)){
                 $item['checked'] = 1;
             }else{
@@ -111,8 +113,8 @@ class RoleController extends Controller
             }
             return $item;
         });
-        $data['users'] = $id ? $this->getUserList($id) : [];
-        $data['canEdit'] = $id ? (in_array($id,$this->rolesChildsId()) || $this->isSuper()) : true;
+        $data['users'] = $this->getUserList($id);
+        $data['canEdit'] = in_array($id,$this->rolesChildsId()) || UserLogic::getUserInfo('isSuperAdmin');
         return Response::returns($data);
     }
 
@@ -125,20 +127,20 @@ class RoleController extends Controller
         $this->validate($request,$this->getValidateRule());
         $id = $request->get('id');
         //验证是否有修改权限
-        if(!$this->isSuper() && !in_array($id,$this->rolesChildsId())){ //无权修改
+        if($id && !UserLogic::getUserInfo('isSuperAdmin') && !in_array($id,$this->rolesChildsId())){ //无权修改
             return Response::returns(['name'=>['你无权修改该角色!']],422);
         };
 
         //添加或修改角色父ID权限判断
-        if(!$this->isSuper()){
+        if(!UserLogic::getUserInfo('isSuperAdmin')){
             $parent_id = $request->get('parent_id');
-            if(!$parent_id || !in_array($parent_id,$this->rolesChildsId(true))){
+            if(!$parent_id || !in_array($parent_id,$this->rolesChildsId())){
                 return Response::returns(['parent_id'=>['只能设置你有权限的角色分组ID']],422);
             }
         }
 
         //当前用户拥有的权限
-        $have = collect(Session::get('admin')['menus'])->pluck('id')->all();
+        $have = collect(UserLogic::getUserInfo('menus'))->pluck('id')->all();
         //新角色权限
         $new_permissions = collect($request->get('new_permissions'))->filter(function ($item) {
             return $item > 0;
@@ -194,16 +196,7 @@ class RoleController extends Controller
      * @return array
      */
     protected function rolesChildsId($all=false){
-        $roles = Session::get('admin')['roles']; //当前用户角色
-        $rolesChilds = collect([]);
-        collect($roles)->each(function($item)use (&$rolesChilds){
-            $rolesChilds->push($this->bindModel->find($item['id'])->childs());
-        });
-        $rolesChilds = $rolesChilds->collapse()->pluck('id');
-        if(!$all){
-            return $rolesChilds->toArray();
-        }
-        return $rolesChilds->merge(collect($roles)->pluck('id'))->toArray();
+        return UserLogic::getAdminRolesAndChilds($all)->pluck('id')->toArray();
     }
 
     /**
