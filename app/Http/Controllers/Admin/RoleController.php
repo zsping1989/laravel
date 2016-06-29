@@ -134,7 +134,7 @@ class RoleController extends Controller
         //添加或修改角色父ID权限判断
         if(!UserLogic::getUserInfo('isSuperAdmin')){
             $parent_id = $request->get('parent_id');
-            if(!$parent_id || !in_array($parent_id,$this->rolesChildsId())){
+            if(!$parent_id || !in_array($parent_id,$this->rolesChildsId(true))){
                 return Response::returns(['parent_id'=>['只能设置你有权限的角色分组ID']],422);
             }
         }
