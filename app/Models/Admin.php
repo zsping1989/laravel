@@ -11,7 +11,9 @@ class Admin extends BaseModel
 {
     /* 软删除 */
     use SoftDeletes;
-    protected $fillable = ['user_id'];
+    protected $fillable = [
+        'user_id'
+    ];
 
     //隐藏输出字段
     protected $hidden = ['deleted_at'];
@@ -25,5 +27,8 @@ class Admin extends BaseModel
         return $this->belongsToMany('App\Models\Role','admin_role','admin_id','role_id');
     }
 
+    /* 菜单信息 */
+    public function menus(){
 
+    }
 }

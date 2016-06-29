@@ -1,11 +1,10 @@
 {!! $php !!}
 
-use App\Http\Controllers\Controller;
 namespace {{$namespace}};
-@if ($resource)
+
 use App\Exceptions\ResourceController;
+use App\Http\Controllers\Controller;
 use App\{{$model}};
-@endif
 
 class {{$class}} extends Controller
 {

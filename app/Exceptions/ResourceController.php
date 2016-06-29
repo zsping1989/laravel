@@ -17,23 +17,10 @@ trait ResourceController{
     protected $bindModel; //绑定的model模型
 
     /**
-     * 处理请求参数
-     */
-    protected function handleRequest(){
-        Request::offsetSet('order',json_decode(Request::input('order','[]')));//排序处理
-        Request::offsetSet('where',collect(Request::input('where',[]))->map(function($item){
-            if($item){
-                return json_decode($item);
-            }
-        })->toArray()); //条件筛选处理
-    }
-
-    /**
      * 获取菜单数据
      * @return static
      */
     public function getList(){
-        $this->handleRequest();
         //树状结构限制排序
         if(isset($this->treeOrder)){
             $obj = $this->bindModel->orderBy('left_margin');

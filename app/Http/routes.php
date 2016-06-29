@@ -51,19 +51,16 @@ Route::group(['namespace'=>'Admin'],function(){
 });
 
 
-//中间件验证
-Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']], function(){
-    Route::controller('make', 'MakeController'); //创建代码控制器
-    Route::controller('menu', 'MenuController'); //菜单资源控制器
-    Route::controller('area', 'AreaController'); //区域资源控制器
-    Route::controller('exploit', 'ExploitController'); //开发工具控制器
-
-    Route::controller('role', 'RoleController'); //角色资源控制器
-    Route::controller('user', 'UserController'); //用户资源控制器
+//后台路由设置
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']],function(){
+    Route::controller('make', 'MakeController');
+    Route::controller('menu', 'MenuController');
+    Route::controller('role', 'RoleController');
+    Route::controller('area', 'AreaController');
+    Route::controller('user', 'UserController');
     Route::controller('test', 'TestController');
     Route::controller('/', 'IndexController');
 });
-
 
 
 

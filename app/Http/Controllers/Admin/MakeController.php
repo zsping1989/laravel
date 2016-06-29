@@ -11,19 +11,7 @@ use Illuminate\Support\Facades\Response;
 
 class MakeController extends Controller
 {
-    /**
-     * 代码创建页面
-     * 返回: mixed
-     */
-    public function getCreateCode(){
-        return Response::returns([]);
-    }
-
-    /**
-     * 执行创建
-     * 返回: mixed
-     */
-    public function postExe(){
+    public function anyExe(){
         //处理没有值的参数
         $parameters = collect(Request::except('artisan','where','order'))->filter(function($item){
             return $item;
