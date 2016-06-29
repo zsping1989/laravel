@@ -21,7 +21,7 @@ class MenuLogic{
     }
 
     /**
-     * 导航条
+     * 获取导航条
      * 返回: array|static
      */
     public function getNavbar(){
@@ -31,4 +31,19 @@ class MenuLogic{
        return $menu ? collect($menu->parents()->toArray())->push($menu)->keyBy('id') : [];
     }
 
+    /**
+     * 判断url是否在菜单目录里
+     * @param $url
+     * @param $menus
+     * @return bool
+     */
+    public function isUrlInMenus($url,$menus){
+        $isIn = false;
+        collect($menus)->each(function($item) use (&$isIn,$url){
+            if(strpos($item['url'],$url)===0){
+                $isIn = true;
+            }
+        });
+        return $isIn;
+    }
 }

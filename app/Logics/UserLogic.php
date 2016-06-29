@@ -115,6 +115,7 @@ class UserLogic{
         return $this->putCacheUserInfo($data);
     }
 
+
     /**
      * 获取用户缓存信息
      * param string $key
