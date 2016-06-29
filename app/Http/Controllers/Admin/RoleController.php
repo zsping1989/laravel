@@ -16,18 +16,18 @@ class RoleController extends Controller
     use ResourceController; //资源控制器
     protected $treeOrder = true;
     /**
-    * 模型绑定
-    * MenuController constructor.
-    * 参数: Menu $bindModel
-    */
+     * 模型绑定
+     * MenuController constructor.
+     * 参数: Menu $bindModel
+     */
     public function __construct(Role $bindModel){
         $this->bindModel = $bindModel;
     }
 
     /**
-    * 新增或修改,验证规则获取
-    * 返回: array
-    */
+     * 新增或修改,验证规则获取
+     * 返回: array
+     */
     protected function getValidateRule(){
         return ['name'=>'required','parent_id'=>'sometimes|required|exists:roles,id'];
     }
@@ -38,6 +38,7 @@ class RoleController extends Controller
      * @return static
      */
     public function getList(){
+        $this->handleRequest();
         //树状结构限制排序
         if(isset($this->treeOrder)){
             $obj = $this->bindModel->orderBy('left_margin');
@@ -183,7 +184,7 @@ class RoleController extends Controller
             $new_permissions AND $item->menus()->detach($new_permissions);
             $item->menus()->attach($new_permissions);
         });
-        
+
         //添加菜单-角色关系
         return Response::returns(['alert' => alert(['content' => '新增成功!'])]);
     }

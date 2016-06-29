@@ -18,18 +18,18 @@ class UserController extends Controller
     use ResourceController; //资源控制器
 
     /**
-    * 模型绑定
-    * MenuController constructor.
-    * 参数: Menu $bindModel
-    */
+     * 模型绑定
+     * MenuController constructor.
+     * 参数: Menu $bindModel
+     */
     public function __construct(User $bindModel){
         $this->bindModel = $bindModel;
     }
 
     /**
-    * 新增或修改,验证规则获取
-    * 返回: array
-    */
+     * 新增或修改,验证规则获取
+     * 返回: array
+     */
     protected function getValidateRule(){
         return ['uname'=>'sometimes|required|alpha_dash|between:6,18|unique:users,uname','password'=>'sometimes|required|digits_between:6,18','name'=>'required','email'=>'sometimes|required|email|unique:users,email','mobile_phone'=>'sometimes|required|mobile_phone|digits:11|unique:users,qq','qq'=>'integer'];
     }
@@ -39,6 +39,7 @@ class UserController extends Controller
      * @return static
      */
     public function getList(){
+        $this->handleRequest();
         //树状结构限制排序
         if(isset($this->treeOrder)){
             $obj = $this->bindModel->orderBy('left_margin');
@@ -176,7 +177,7 @@ class UserController extends Controller
         $ids = $this->bindModel->whereIn('id',Request::input('ids',[]))
             ->get()->load('admin')->filter(function($item){
                 return !$item->admin;
-        })->pluck('id');
+            })->pluck('id');
         $res = $this->bindModel->destroy($ids);
         if($res===false){
             return Response::returns(['alert'=>alert(['content'=>'删除失败!'],500)]);
