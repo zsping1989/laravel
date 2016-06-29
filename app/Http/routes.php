@@ -57,8 +57,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admi
     Route::controller('menu', 'MenuController'); //菜单资源控制器
     Route::controller('area', 'AreaController'); //区域资源控制器
     Route::controller('exploit', 'ExploitController'); //开发工具控制器
-
     Route::controller('role', 'RoleController'); //角色资源控制器
+
     Route::controller('user', 'UserController'); //用户资源控制器
 
     Route::controller('test', 'TestController');

@@ -30,12 +30,4 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Admin');
     }
 
-    /**
-     * 判断是否是超级管理员
-     * @return bool
-     */
-    public function isSuper(){
-        return collect(Session::get('admin')['roles'])->pluck('id')->contains(1);
-    }
-
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exceptions\ResourceController;
 use App\Http\Controllers\Controller;
+use App\Logics\Facade\UserLogic;
 use App\Models\Admin;
 use App\Models\Role;
 use App\User;
@@ -90,7 +91,7 @@ class UserController extends Controller
         }
         $has_roles = isset($admin->roles) ? $admin->roles: collect([]);
         //获取当前用户所有下属角色
-        $self_roles = $this->rolesChildsId($this->bindModel->isSuper());
+        $self_roles = $this->rolesChildsId(UserLogic::getUserInfo('isSuperAdmin'));
         //列出所有角色
         $data['roles'] = Role::orderBy('left_margin')->get()->each(function($item)use($self_roles,$has_roles){
             $item->checked = in_array($item->id,$has_roles->pluck('id')->toArray()); //当前用户拥有角色
@@ -104,17 +105,8 @@ class UserController extends Controller
      * @return array
      */
     protected function rolesChildsId($all=false,$id=true){
-        $roles = Session::get('admin')['roles']; //当前用户角色
-        $rolesChilds = collect([]);
-        collect($roles)->each(function($item)use (&$rolesChilds){
-            $rolesChilds->push(Role::find($item['id'])->childs());
-        });
-        $rolesChilds = $rolesChilds->collapse();
-        $id AND $rolesChilds = $rolesChilds->pluck('id');
-        if(!$all){
-            return $rolesChilds->toArray();
-        }
-        return $id ? $rolesChilds->merge(collect($roles)->pluck('id'))->toArray() : $rolesChilds->merge(collect($roles)->toArray())->toArray();
+        $res = UserLogic::getAdminRolesAndChilds($all);
+        return $id ? $res->pluck('id')->toArray() : $res->toArray() ;
     }
 
     /**
@@ -133,10 +125,11 @@ class UserController extends Controller
             if($res===false){
                 return Response::returns(['alert'=>alert(['content'=>'修改失败!'],500)]);
             }
-            if($request->input('admin.isAdmin')&& !$user->admin){ //设置成后台管理员
+            if($request->input('admin.isAdmin')){ //设置成后台管理员
                 $old_admin = Admin::withTrashed()->where('user_id','=',$id)->first();
                 if($old_admin->toArray()){
-                    $admin = $old_admin->restore(); //恢复数据
+                    $old_admin->restore(); //恢复数据
+                    $admin = $old_admin;
                 }else{
                     $admin = $user->admin()->save(new Admin([]));
                 }
