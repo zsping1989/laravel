@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Exceptions\CustomValidator;
+use App\Logics\UserLogic;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,8 +23,6 @@ class AppServiceProvider extends ServiceProvider
 
 
 
-
-
     }
 
     /**
@@ -33,5 +32,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        //用户逻辑
+        $this->app->singleton('user.logic', function($app){
+            return new UserLogic();
+        });
+
     }
 }

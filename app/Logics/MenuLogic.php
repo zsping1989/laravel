@@ -8,17 +8,11 @@
  */
 namespace App\Logics;
 
+use App\Logics\Facade\UserLogic as FacadeUserLogic;
 use App\Models\Menu;
 use Illuminate\Support\Facades\Route;
 
 class MenuLogic{
-    /**
-     * 后台权限白名单(菜单ID)
-     * 返回: array
-     */
-    public function getAdminWhiteListIds(){
-        return [2,12,41,42];
-    }
 
     /**
      * 获取导航条
@@ -45,5 +39,23 @@ class MenuLogic{
             }
         });
         return $isIn;
+    }
+
+
+    /**
+     * 获取自己的所有权限,
+     * 并将传入的参数菜单列表选中
+     * param $menus
+     */
+    public function getMainCheckedMenus($menus){
+        $have = collect($menus)->pluck('id')->all();
+        return collect(FacadeUserLogic::getUserInfo('menus'))->map(function($item) use ($have){
+            if(in_array($item['id'],$have)){
+                $item['checked'] = 1;
+            }else{
+                $item['checked'] = 0;
+            }
+            return $item;
+        });
     }
 }

@@ -41,20 +41,11 @@ class UserController extends Controller
      */
     public function getList(){
         $this->handleRequest();
-        //树状结构限制排序
-        if(isset($this->treeOrder)){
-            $obj = $this->bindModel->orderBy('left_margin');
-        }else{
-            $obj = $this->bindModel;
-        }
+        $obj = $this->checkOrder(); //排序检查
         $data = $obj->options(Request::only('where', 'order'))->paginate();
         //判断用户是否可被删除
         $data->load('admin'); //是后台用户不可直接被删除
-        $param = [
-            'order'=> Request::input('order',[]), //排序
-            'where'=>Request::input('where',[]), //条件查询
-        ];
-        return collect($data)->merge($param);
+        return $this->withParam($data); //附带请求参数返回
     }
 
     /**
@@ -70,29 +61,13 @@ class UserController extends Controller
                 $admin->isAdmin = intval(!!$admin->id);
                 $admin->roles;
             }
-            $no_disabled = false;
-            //判断该用户是否可被当前随便修改
-            $main_roles = $this->rolesChildsId(true,false); //当前用户角色,数组
-            //如果被编辑用户的角色在用户的
-            foreach($main_roles as $main_role){
-                $flog = true; //拥有编辑权限标记
-                if(!isset($admin->roles)){
-                    $no_disabled = true;
-                    break;
-                }
-                foreach($admin->roles as $role){
-                    if(!($role->left_margin>$main_role['left_margin'] && $role->right_margin<$main_role['right_margin'])){
-                        $flog = false;
-                    }
-                }
-                $flog AND $no_disabled = true;
-            }
-            $data['row']->disabled = !$no_disabled;
+            //该条用户数据是否可编辑
+            $data['row']->disabled = !UserLogic::checkEditUser($data['row']);
         }
         $has_roles = isset($admin->roles) ? $admin->roles: collect([]);
         //获取当前用户所有下属角色
         $self_roles = $this->rolesChildsId(UserLogic::getUserInfo('isSuperAdmin'));
-        //列出所有角色
+        //列出所有角色,当前用户不可操作的角色禁用
         $data['roles'] = Role::orderBy('left_margin')->get()->each(function($item)use($self_roles,$has_roles){
             $item->checked = in_array($item->id,$has_roles->pluck('id')->toArray()); //当前用户拥有角色
             $item->disabled = !in_array($item->id,$self_roles); //添加用户角色是否可用

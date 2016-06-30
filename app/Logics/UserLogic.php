@@ -8,9 +8,9 @@
  */
 namespace App\Logics;
 
-use App\Logics\Facade\MenuLogic as FacadeMenuLogic;
 use App\Models\Menu;
 use App\Models\Role;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class UserLogic{
@@ -19,9 +19,19 @@ class UserLogic{
     //用户信息
     protected $user;
 
+
+
     public function __construct(){
         $this->user = Auth::user();
         $this->admin = $this->user ? $this->user->admin : null;
+    }
+
+    /**
+     * 后台权限白名单(菜单ID)
+     * 返回: array
+     */
+    public function getMenuWhiteListIds(){
+        return [7,2,12,41,42];
     }
 
     /**
@@ -80,7 +90,7 @@ class UserLogic{
             //获取含有的权限url
             $menus = Menu::whereHas('roles',function ($q) use ($roles_id){
                 $q->whereIn('id',$roles_id);
-            })->orderBy('left_margin')->orWhereIn('id',FacadeMenuLogic::getAdminWhiteListIds())->get();
+            })->orderBy('left_margin')->orWhereIn('id',$this->getMenuWhiteListIds())->get();
         }
         return $menus;
     }
@@ -124,6 +134,35 @@ class UserLogic{
     public function getUserInfo($key=''){
         $key and $key = '.'.$key;
         return session('userInfo'.$key);
+    }
+
+
+    /**
+     * 检查用户是否可被当前用户编辑
+     * param $user
+     * 返回: bool
+     */
+    public function checkEditUser(User $user){
+        $no_disabled = false;
+        $admin = $user->admin;
+        $admin and $admin->roles ;
+        //判断该用户是否可被当前随便修改
+        $main_roles = $this->getAdminRolesAndChilds(true); //当前用户角色,数组
+        //如果被编辑用户的角色在用户的
+        foreach($main_roles as $main_role){
+            $flog = true; //拥有编辑权限标记
+            if(!isset($admin->roles)){
+                $no_disabled = true;
+                break;
+            }
+            foreach($admin->roles as $role){
+                if(!($role->left_margin>$main_role['left_margin'] && $role->right_margin<$main_role['right_margin'])){
+                    $flog = false;
+                }
+            }
+            $flog AND $no_disabled = true;
+        }
+        return $no_disabled;
     }
 
 }

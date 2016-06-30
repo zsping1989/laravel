@@ -29,23 +29,35 @@ trait ResourceController{
     }
 
     /**
-     * 获取菜单数据
-     * @return static
+     * 检查树状结构限制排序
+     * 返回: mixed
      */
-    public function getList(){
-        $this->handleRequest();
-        //树状结构限制排序
-        if(isset($this->treeOrder)){
-            $obj = $this->bindModel->orderBy('left_margin');
-        }else{
-            $obj = $this->bindModel;
-        }
-        $data = $obj->options(Request::only('where', 'order'))->paginate();
+    protected function checkOrder(){
+           return isset($this->treeOrder) ? $this->bindModel->orderBy('left_margin') : $this->bindModel;
+    }
+
+    /**
+     * 附带参数返回
+     * param $data
+     * 返回: static
+     */
+    protected function withParam($data){
         $param = [
             'order'=> Request::input('order',[]), //排序
             'where'=>Request::input('where',[]), //条件查询
         ];
         return collect($data)->merge($param);
+    }
+
+    /**
+     * 获取菜单数据
+     * @return static
+     */
+    public function getList(){
+        $this->handleRequest();
+        $obj = $this->checkOrder(); //排序检查
+        $data = $obj->options(Request::only('where', 'order'))->paginate();
+        return $this->withParam($data);
     }
 
     /**

@@ -36,7 +36,7 @@ class MenuController extends Controller
      */
     public function postMoveTop($id){
         //被移动节点
-        $obj = $this->bindModel->find($id);
+        $obj = $this->bindModel->findOrFail($id);
         //现在置顶的节点
         if($obj->parent_id==1){
             $top = $this->bindModel->where('level','=',2)->orderBy('left_margin')->first();

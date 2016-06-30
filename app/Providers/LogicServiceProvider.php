@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Logics\MenuLogic;
-use App\Logics\UserLogic;
+use App\Logics\RoleLogic;
 use Illuminate\Support\ServiceProvider;
 
 class LogicServiceProvider extends ServiceProvider
@@ -25,11 +25,10 @@ class LogicServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
-    {
+    public function register(){
         //用户逻辑
-        $this->app->singleton('user.logic', function($app){
-            return new UserLogic();
+        $this->app->singleton('role.logic', function($app){
+            return new RoleLogic();
         });
         //菜单逻辑
         $this->app->singleton('menu.logic', function($app){
@@ -43,6 +42,6 @@ class LogicServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['menu.logic','user.logic'];
+        return ['role.logic','menu.logic'];
     }
 }
