@@ -75,6 +75,7 @@ class RoleController extends Controller
     public function getEdit($id=null){
         $data = [];
         if(!$id){
+            $data['canEdit']  = true;
             //查询当前用户拥有权限
             $data['permissions'] = MenuLogic::getMainCheckedMenus([]);
             return Response::returns($data);
