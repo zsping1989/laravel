@@ -37,7 +37,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
             }elseif(Request::ajax() || Request::wantsJson()){ //json
                 $value = collect($value)->toJson();
             }elseif(Request::has('script')){ //页面
-                $value = 'var data = '.collect($value)->toJson().';';
+                $value = 'var '.Request::input('script').' = '.collect($value)->toJson().';';
             }else{
                 $macro->addData($value);
                 $value['user'] = UserLogic::getUser(); //用户信息
@@ -48,7 +48,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
         });
     }
     public function addData(&$value){
-        $value['route'] = Request::getPathInfo();  //路由信息
+        $value['route'] = preg_replace('/^\/?data(.*)$/','$1',Request::getPathInfo());  //路由信息
         $value['nav'] = MenuLogic::getNavbar();
     }
 

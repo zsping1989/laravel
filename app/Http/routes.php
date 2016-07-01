@@ -11,10 +11,15 @@
 |
 */
 Route::get('/', 'Home\IndexController@index');
-
-//前台路由设置
 Route::group(['prefix'=>'home','namespace'=>'Home'],function(){
     Route::controller('auth', 'AuthController');
+    Route::controller('index', 'IndexController');
+});
+
+//前台路由设置
+Route::group(['prefix'=>'data/home','namespace'=>'Home'],function(){
+    Route::controller('auth', 'AuthController');
+    Route::controller('index', 'IndexController');
     //首页
     //Route::get('/', 'IndexController@index');
     /* Route::get('/home', ['uses'=>'HomeController@index','as'=>'ho']);
@@ -52,7 +57,7 @@ Route::group(['namespace'=>'Admin'],function(){
 
 
 //中间件验证
-Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']], function(){
+Route::group(['prefix'=>'data/admin','namespace'=>'Admin','middleware'=>['auth','admin']], function(){
     Route::controller('make', 'MakeController'); //创建代码控制器
     Route::controller('menu', 'MenuController'); //菜单资源控制器
     Route::controller('area', 'AreaController'); //区域资源控制器

@@ -7,12 +7,15 @@
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^/?data/(.*)$ index.php [L]
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
+
+    RewriteRule ^ index.html [L]
+
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .

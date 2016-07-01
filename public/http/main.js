@@ -1,60 +1,62 @@
-dump(data);
-window.cacheData = {};
-//自动注册路由
-var routes = handleRoute(data.menus);
-data.route = data.route.replace(/\{(\w+)[\?]\}/ ,":$1");
-//当前路由不存在,自动组成路由
-if(!routes[data.route]){
-    routes[data.route] = {'as':data.route,'path':data.route};
-}
+//获取路由数据,注册路由
+requirejs(['/data/home/index/routes?define=AMD'],function(data){
+    window.cacheData = {};
+    //自动注册路由
+    window.routes = handleRoute(data.menus);
+    data.route = parseURL()['path'];//data.route.replace(/\{(\w+)[\?]\}/ ,":$1");
 
+    //当前路由不存在,自动组成路由
+    if(!window.routes[data.route]){
+        window.routes[data.route] = {'as':data.route,'path':data.route};
+    }
 
-//路由配置,单页面应用跳转
-/*var routes = {
-    //路由:控制器或视图
-    '/home/home':{'as':'home','path':'home/home'},
-    '/home/about':{'as':'about','path':'home/about'},
-    '/home/auth/login':{'as':'login','path':'home/login'},
-    '/admin/menu/index':{'as':'admin-menu-index','path':'admin/menu/index'},
-    '/admin/index':{'as':'admin-index','path':'admin/index'}
-}*/
-routes.default = data.route; //当前路由
-require.config({
-    baseUrl: "/http/",
-    paths: {
-        "jquery":'/lib/jquery/2.2.3/jquery.min',
-        "angular": "/lib/angular/1.5.5/angular.min",
-        "angular-ui-router": "/lib/angular-ui-router/0.2.8/angular-ui-router.min",
-        "angular-strap":'/lib/angular-strap/2.3.8/dist/angular-strap.min',
-        "angular-strap-tpl":'/lib/angular-strap/2.3.8/dist/angular-strap.tpl.min',
-        'satellizer':'/lib/satellizer/0.14.0/satellizer.min',
-        "angularAMD": "/lib/angularAMD/0.2.1/angularAMD.min",
-        "angular-animate":'/lib/angular-animate/1.5.5/angular-animate.min',
-        "ngload": "/lib/angularAMD/0.2.1/ngload.min",
-        "pagination":'/lib/pagination/0.02/pagination',
-        'css': '/lib/require-css/0.1.8/css.min',
-        'mainService':'/service/mainService',
-        'lodash':'/lib/lodash/3.10.1/lodash.min',
-        'backbone':'/lib/backbone/backbone.min',
-        'joint':'/lib/joint/0.9.6/joint.min',
-        'underscore':'/lib/underscore/1.8.3/underscore.min',
-        "app":'app'
-    },
-    map: {
-    },
-    shim: {
-        "angular": { exports: "angular" },
-        "angularAMD": ["angular"],
-        "ngload": ["angularAMD"],
-        'lodash':['jquery'],
-        'backbone':['jquery','lodash'],
-        "joint": ["jquery",'lodash','backbone','css!/lib/joint/0.9.6/joint.css'],
-        "angular-ui-router": ["angular"]
-    },
-    deps: ['app','css'], //启动
-    urlArgs: "time=" + (new Date()).getTime()  //防止读取缓存，调试用
+/*    //路由配置,单页面应用跳转
+    var routes = {
+     //路由:控制器或视图
+     '/home/home':{'as':'home','path':'home/home'},
+     '/home/about':{'as':'about','path':'home/about'},
+     '/home/auth/login':{'as':'login','path':'home/auth/login'},
+     '/admin/menu/index':{'as':'admin-menu-index','path':'admin/menu/index'},
+     '/admin/index':{'as':'admin-index','path':'admin/index'}
+     }*/
+    window.routes.default = data.route; //当前路由
+    require.config({
+        baseUrl: "/http/",
+        paths: {
+            "jquery":'/lib/jquery/2.2.3/jquery.min',
+            "angular": "/lib/angular/1.5.5/angular.min",
+            "angular-ui-router": "/lib/angular-ui-router/0.2.8/angular-ui-router.min",
+            "angular-strap":'/lib/angular-strap/2.3.8/dist/angular-strap.min',
+            "angular-strap-tpl":'/lib/angular-strap/2.3.8/dist/angular-strap.tpl.min',
+            'satellizer':'/lib/satellizer/0.14.0/satellizer.min',
+            "angularAMD": "/lib/angularAMD/0.2.1/angularAMD.min",
+            "angular-animate":'/lib/angular-animate/1.5.5/angular-animate.min',
+            "ngload": "/lib/angularAMD/0.2.1/ngload.min",
+            "pagination":'/lib/pagination/0.02/pagination',
+            'css': '/lib/require-css/0.1.8/css.min',
+            'mainService':'/service/mainService',
+            'lodash':'/lib/lodash/3.10.1/lodash.min',
+            'backbone':'/lib/backbone/backbone.min',
+            'joint':'/lib/joint/0.9.6/joint.min',
+            'underscore':'/lib/underscore/1.8.3/underscore.min',
+            "app":'app'
+        },
+        map: {
+        },
+        shim: {
+            "angular": { exports: "angular" },
+            "angularAMD": ["angular"],
+            "ngload": ["angularAMD"],
+            'lodash':['jquery'],
+            'backbone':['jquery','lodash'],
+            "joint": ["jquery",'lodash','backbone','css!/lib/joint/0.9.6/joint.css'],
+            "angular-ui-router": ["angular"]
+        },
+        deps: ['app','css'], //启动
+        urlArgs: "time=" + (new Date()).getTime()  //防止读取缓存，调试用
+    });
+
 });
-
 /* 调试打印 */
 function dump(){
     for (var i = 0; i < arguments.length; ++i) {
@@ -66,7 +68,7 @@ function dump(){
 function handleRoute(menus){
     //自动注册路由
     var routes = {};
-//menus = [data.menus[6]];
+//menus = [menus[7]];
     for(var i in menus){
         if(!menus[i].url){continue};
         //参数路由处理
@@ -139,9 +141,9 @@ function parseURL(key,url) {
 
 function dataPath(){
     if(parseURL('hash')==routes.default){
-        return null;
+        return '/data'+parseURL('hash')+'?define=AMD&global=all&time='+(new Date()).getTime();
     }else{
-        return parseURL('hash')+'?define=AMD&time='+(new Date()).getTime();
+        return '/data'+parseURL('hash')+'?define=AMD&time='+(new Date()).getTime();
     }
 }
 

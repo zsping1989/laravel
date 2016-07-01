@@ -20,6 +20,7 @@ class MenuLogic{
      */
     public function getNavbar(){
         $route = Route::getCurrentRoute()->getCompiled()->getStaticPrefix(); //当前路由
+        $route = preg_replace('/^\/?data(.*)$/','$1',$route);
         $menu = Menu::where('url','like',$route.'%')->orderBy('right_margin')->first(); //最底层路由
         $menu AND $menu->url = 'end';
        return $menu ? collect($menu->parents()->toArray())->push($menu)->keyBy('id') : [];
@@ -34,7 +35,7 @@ class MenuLogic{
     public function isUrlInMenus($url,$menus){
         $isIn = false;
         collect($menus)->each(function($item) use (&$isIn,$url){
-            if(strpos($item['url'],$url)===0){
+            if(strpos($item['url'],$url)===0 || strpos('/data'.$item['url'],$url)===0){
                 $isIn = true;
             }
         });

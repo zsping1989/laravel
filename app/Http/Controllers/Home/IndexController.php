@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Models\Menu;
-use App\Models\Role;
-use App\User;
-use Gregwar\Captcha\CaptchaBuilder;
+use App\Logics\Facade\UserLogic;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Routing\Route;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Response;
 
 class IndexController extends Controller
 {
@@ -28,5 +23,11 @@ class IndexController extends Controller
 
     public function getIndexAa(){
         return view('welcome');
+    }
+
+
+    public function getRoutes(){
+        $data['menus'] = UserLogic::getUser() ? UserLogic::getUserInfo('menus') : null;
+        return Response::returns($data);
     }
 }
