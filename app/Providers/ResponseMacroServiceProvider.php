@@ -40,8 +40,8 @@ class ResponseMacroServiceProvider extends ServiceProvider
                 $value = 'var data = '.collect($value)->toJson().';';
             }else{
                 $macro->addData($value);
-                $value['user'] = Auth::user(); //用户信息
-                $value['menus'] = UserLogic::getUserInfo('menus');
+                $value['user'] = UserLogic::getUser(); //用户信息
+                $value['menus'] = $value['user'] ? UserLogic::getUserInfo('menus') : null;
                 return view('index',['data'=>$value]);
             }
             return $factory->make($value,$status);

@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Logics\Facade\MenuLogic;
 use App\Logics\Facade\UserLogic;
 use Closure;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 
 class AdminMiddleware{
@@ -22,7 +23,10 @@ class AdminMiddleware{
     {
         //不是管理员,跳转到前台首页
         if(!UserLogic::getUserInfo('admin')){
-            return orRedirect('/');
+            if(canRedirect() || app('request')->has('define')){
+                return redirect('/');
+            }
+            return Response::returns(['alert'=>alert(['content'=>'你还不是后台管理员,请联系管理员!'],302)]);
         }
 
         //不是超级管理员,需要验证权限
@@ -38,7 +42,10 @@ class AdminMiddleware{
 
             //没有权限,
             if(!$hasPermission){
-                return orRedirect('/admin/page404');
+                if(canRedirect() || app('request')->has('define')){
+                    return redirect('/admin/page404');
+                }
+                return Response::returns(['alert'=>alert(['content'=>'你没有访问权限,请联系管理员!'],302)]);
             }
         }
 

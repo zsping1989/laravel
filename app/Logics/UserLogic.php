@@ -22,8 +22,16 @@ class UserLogic{
 
 
     public function __construct(){
-        $this->user = Auth::user();
+        $this->user = $this->getUser();
         $this->admin = $this->user ? $this->user->admin : null;
+    }
+
+    /**
+     * 获取登录用户
+     * 返回: mixed
+     */
+    public function getUser(){
+       return Auth::user();
     }
 
     /**

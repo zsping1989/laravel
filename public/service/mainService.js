@@ -11,7 +11,7 @@ define(['angular'], function (angular) {
                 dump(response);
                 //页面跳转
                 if(response.data.redirect){
-                    //window.location.href = response.data.redirect;
+                    window.location.href = response.data.redirect;
                 }
                 //页面弹窗提示
                 if(response.data.alert && $alert){
@@ -22,7 +22,7 @@ define(['angular'], function (angular) {
             'response' : function(response) {
                 //页面跳转
                 if(response.data.redirect){
-                    //window.location.href = response.data.redirect;
+                    window.location.href = response.data.redirect;
                 }
                 //页面弹窗提示
                 if(response.data.alert && $alert){
