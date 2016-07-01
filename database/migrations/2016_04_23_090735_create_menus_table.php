@@ -27,6 +27,7 @@ class CreateMenusTable extends Migration
             //$table->marginTree(); //树状结构
             $table->integer('parent_id')->default(0)->comment('父级ID@sometimes|required|exists:menus,id');
             $table->integer('method')->default(1)->comment('请求方式:1-get,2-post,3-put$radio@in:1,2,3');
+            $table->integer('is_page')->default(0)->comment('是否为页面:0-否,1-是$radio@in:0,1');
             $table->tinyInteger('status')->default(2)->comment('状态:1-显示,2-不显示$radio@in:1,2');
             $table->smallInteger('level')->default(0)->comment('层级');
             $table->integer('left_margin')->default(0)->comment('左边界');

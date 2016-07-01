@@ -59,4 +59,9 @@ class MenuLogic{
             return $item;
         });
     }
+
+
+    public function getPageMenus(){
+        return Menu::where('is_page','=',1)->get();
+    }
 }

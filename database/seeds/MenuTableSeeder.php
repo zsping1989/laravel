@@ -84,6 +84,7 @@ class MenuTableSeeder extends Seeder
             'icons'=>'fa-mouse-pointer',
             'prefix'=>'#',
             'url'=>'/admin/make/create-code',
+            'is_page'=>1,
             'description' => '创建代码',
             'parent_id'=>3,
             'status'=>1
@@ -96,6 +97,7 @@ class MenuTableSeeder extends Seeder
             'url'=>'/admin/exploit/api',
             'description' => '接口说明',
             'parent_id'=>3,
+            'is_page'=>1,
             'status'=>1
         ]);
         //ID:10
@@ -106,6 +108,7 @@ class MenuTableSeeder extends Seeder
             'description' => '',
             'method'=>2,
             'parent_id'=>4,
+            'is_page'=>1,
             'status'=>1
         ]);
         //ID:11
@@ -126,6 +129,7 @@ class MenuTableSeeder extends Seeder
             'url'=>'/admin/index',
             'description' => '后台首页',
             'parent_id'=>2,
+            'is_page'=>1,
             'status'=>1
         ]);
 
@@ -134,9 +138,10 @@ class MenuTableSeeder extends Seeder
             'name'=>'菜单管理',
             'icons'=>'fa-th',
             'prefix'=>'#',
-            'url'=>'/admin/menu/index',
+            'url'=>'',
             'description' => '菜单管理',
             'parent_id'=>3,
+            'is_page'=>1,
             'status'=>1
         ]);
 
@@ -160,6 +165,7 @@ class MenuTableSeeder extends Seeder
             'method'=>1,
             'description' => '修改或添加数据',
             'parent_id'=>13,
+            'is_page'=>1,
             'status'=>2
         ]);
 
@@ -192,9 +198,10 @@ class MenuTableSeeder extends Seeder
             'name'=>'区域管理',
             'icons'=>'fa-area-chart',
             'prefix'=>'#',
-            'url'=>'/admin/area/index',
+            'url'=>'',
             'description' => '城市地区管理',
             'parent_id'=>7,
+            'is_page'=>1,
             'status'=>1
         ]);
 
@@ -230,6 +237,7 @@ class MenuTableSeeder extends Seeder
             'method'=>2,
             'description' => '添加或编辑区域',
             'parent_id'=>18,
+            'is_page'=>1,
             'status'=>2
         ]);
 
@@ -238,10 +246,11 @@ class MenuTableSeeder extends Seeder
             'name'=>'权限管理',
             'icons'=>'fa-group',
             'prefix'=>'#',
-            'url'=>'/admin/role/index',
+            'url'=>'',
             'method'=>1,
             'description' => '角色的权限管理',
             'parent_id'=>5,
+            'is_page'=>1,
             'status'=>1
         ]);
 
@@ -266,6 +275,7 @@ class MenuTableSeeder extends Seeder
             'method'=>2,
             'description' => '添加或编辑角色',
             'parent_id'=>22,
+            'is_page'=>1,
             'status'=>2
         ]);
 
@@ -286,10 +296,11 @@ class MenuTableSeeder extends Seeder
             'name'=>'用户管理',
             'icons'=>'fa-user',
             'prefix'=>'#',
-            'url'=>'/admin/user/index',
+            'url'=>'',
             'method'=>1,
             'description' => '用户管理',
             'parent_id'=>5,
+            'is_page'=>1,
             'status'=>1
         ]);
 
@@ -314,6 +325,7 @@ class MenuTableSeeder extends Seeder
             'method'=>2,
             'description' => '添加或编辑用户',
             'parent_id'=>26,
+            'is_page'=>1,
             'status'=>2
         ]);
 
@@ -338,6 +350,7 @@ class MenuTableSeeder extends Seeder
             'method'=>1,
             'description' => '个人资料修改',
             'parent_id'=>6,
+            'is_page'=>1,
             'status'=>1
         ]);
 
@@ -350,6 +363,7 @@ class MenuTableSeeder extends Seeder
             'method'=>1,
             'description' => '个人资料修改',
             'parent_id'=>6,
+            'is_page'=>1,
             'status'=>1
         ]);
 
@@ -362,6 +376,7 @@ class MenuTableSeeder extends Seeder
             'method'=>1,
             'description' => '个人资料修改',
             'parent_id'=>6,
+            'is_page'=>1,
             'status'=>1
         ]);
 
@@ -386,6 +401,7 @@ class MenuTableSeeder extends Seeder
             'method'=>1,
             'description' => '',
             'parent_id'=>9,
+            'is_page'=>1,
             'status'=>2
         ]);
 

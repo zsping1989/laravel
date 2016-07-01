@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Logics\Facade\MenuLogic;
 use App\Logics\Facade\UserLogic;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class IndexController extends Controller
 
 
     public function getRoutes(){
-        $data['menus'] = UserLogic::getUser() ? UserLogic::getUserInfo('menus') : null;
+        $data['menus'] = MenuLogic::getPageMenus();
         return Response::returns($data);
     }
 }
