@@ -1,15 +1,8 @@
 define(['app',dataPath(),'joint','admin/public/headerController','admin/public/leftController'], function (app,datas,joint) {
-    var datas = datas || data;
-    dump(datas);
     app.register.controller('admin-user-frameworkCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$http', function ($scope,$rootScope,Model,View,$alert,$http) {
-        //数据缓存,用于方便更新数据
-        var maindata = window.cacheData['admin-user-framework'] || datas;
-        window.cacheData['admin-user-framework'] = maindata;
         $scope.data_key = 'admin-user-framework';
-
-        $scope = View.with(maindata,$scope);
-        $rootScope.nav = datas.nav;
-        $rootScope.route = datas.route;
+        $scope = View.withCache(datas,$scope);
+        $rootScope = View.with(datas.global,$rootScope);
 
         //三方jquery插件画图
         var graph = new joint.dia.Graph();

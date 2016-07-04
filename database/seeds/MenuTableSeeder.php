@@ -138,7 +138,7 @@ class MenuTableSeeder extends Seeder
             'name'=>'菜单管理',
             'icons'=>'fa-th',
             'prefix'=>'#',
-            'url'=>'',
+            'url'=>'/admin/menu/index',
             'description' => '菜单管理',
             'parent_id'=>3,
             'is_page'=>1,
@@ -198,8 +198,9 @@ class MenuTableSeeder extends Seeder
             'name'=>'区域管理',
             'icons'=>'fa-area-chart',
             'prefix'=>'#',
-            'url'=>'',
+            'url'=>'/admin/area/index',
             'description' => '城市地区管理',
+            'is_page' => '1',
             'parent_id'=>7,
             'is_page'=>1,
             'status'=>1
@@ -246,7 +247,7 @@ class MenuTableSeeder extends Seeder
             'name'=>'权限管理',
             'icons'=>'fa-group',
             'prefix'=>'#',
-            'url'=>'',
+            'url'=>'/admin/role/index',
             'method'=>1,
             'description' => '角色的权限管理',
             'parent_id'=>5,
@@ -296,7 +297,7 @@ class MenuTableSeeder extends Seeder
             'name'=>'用户管理',
             'icons'=>'fa-user',
             'prefix'=>'#',
-            'url'=>'',
+            'url'=>'/admin/user/index',
             'method'=>1,
             'description' => '用户管理',
             'parent_id'=>5,
@@ -473,6 +474,7 @@ class MenuTableSeeder extends Seeder
             'url'=>'/admin/user/framework',
             'method'=>1,
             'description' => '',
+            'is_page'=>1,
             'parent_id'=>5,
             'status'=>1
         ]);
@@ -483,6 +485,7 @@ class MenuTableSeeder extends Seeder
             'icons'=>'fa-exclamation-triangle',
             'prefix'=>'#',
             'url'=>'/admin/page404',
+            'is_page' => '1',
             'method'=>1,
             'description' => '',
             'parent_id'=>7,
@@ -497,6 +500,7 @@ class MenuTableSeeder extends Seeder
             'url'=>'/admin/page500',
             'method'=>1,
             'description' => '',
+            'is_page' => '1',
             'parent_id'=>7,
             'status'=>1
         ]);

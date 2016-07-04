@@ -90,8 +90,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
             }
         }
 
-        $rootScope.nav = datas.nav;
-        $rootScope.route = datas.route;
+        $rootScope = View.with(datas.global,$rootScope);
 
     }]);
 })

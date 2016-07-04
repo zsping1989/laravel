@@ -79,7 +79,7 @@ trait ResourceController{
         if($res===false){
             return Response::returns(['alert'=>alert(['content'=>'删除失败!'],500)]);
         }
-        return Response::returns(['alert'=>alert(['content'=>'删除成功!'])]);
+        return ['alert'=>alert(['content'=>'删除成功!'])];
     }
 
     /**
@@ -104,17 +104,17 @@ trait ResourceController{
         if($id){
             $res = $this->bindModel->find($id)->update($request->all());
             if($res===false){
-                return Response::returns(['alert'=>alert(['content'=>'修改失败!'],500)]);
+                return ['alert'=>alert(['content'=>'修改失败!'],500)];
             }
-            return Response::returns(['alert'=>alert(['content'=>'修改成功!'])]);
+            return ['alert'=>alert(['content'=>'修改成功!'])];
         }
 
         //新增
         $res = $this->bindModel->create($request->except('id'));
         if($res===false){
-            return Response::returns(['alert'=>alert(['content'=>'新增失败!'],500)]);
+            return ['alert'=>alert(['content'=>'新增失败!'],500)];
         }
-        return Response::returns(['alert'=>alert(['content'=>'新增成功!'])]);
+        return ['alert'=>alert(['content'=>'新增成功!'])];
     }
 
     /**

@@ -65,6 +65,12 @@ define(['angular'], function (angular) {
             scope.$this = scope;
             return scope;
         }
+        factory.withCache = function(data,scope){
+            //数据缓存,用于方便更新数据
+            var maindata = window.cacheData[scope.data_key] || data;
+            window.cacheData[scope.data_key] = maindata;
+            return factory.with(maindata,scope);
+        };
         return factory;
     });
 

@@ -47,9 +47,20 @@ class ResponseMacroServiceProvider extends ServiceProvider
             return $factory->make($value,$status);
         });
     }
+
+    /**
+     * 添加全局数据
+     * @param $value
+     */
     public function addData(&$value){
-        $value['route'] = preg_replace('/^\/?data(.*)$/','$1',Request::getPathInfo());  //路由信息
-        $value['nav'] = MenuLogic::getNavbar();
+        $global = [];
+        $global['route'] = preg_replace('/^\/?data(.*)$/','$1',Request::getPathInfo());  //路由信息
+        $global['nav'] = MenuLogic::getNavbar(); //导航数据
+        if(Request::input('global')=='all'){ //获取当前用户菜单数据,用户信息
+            $global['user'] = UserLogic::getUser(); //用户信息
+            $global['menus'] = $global['user'] ? UserLogic::getUserInfo('menus') : null; //菜单数据
+        }
+        $value['global'] = $global;
     }
 
     /**

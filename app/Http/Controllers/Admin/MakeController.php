@@ -31,6 +31,6 @@ class MakeController extends Controller
         //$parameters = ['name'=>'Admin/TestController','--resource'=>true];
         //执行命令
         $exitCode = Artisan::call(Request::input('artisan'), $parameters);
-        return Response::returns(['alert'=>alert(['content'=>'操作成功!'])]);
+        return ['alert'=>alert(['content'=>'操作成功!'])];
     }
 }

@@ -1,10 +1,9 @@
 define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
-    var datas = datas || data;
-    dump(datas);
     app.register.controller('admin-user-editCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$http','$location','$timeout',
     function ($scope,$rootScope,Model,View,$alert,$http,$location,$timeout) {
         //重置
         $scope = View.with({'master':datas.row,'master_roles':datas.roles},$scope);
+        $rootScope = View.with(datas.global,$rootScope);
         $scope.new_roles = [];
         $scope.reset = function() {
             $scope.row = angular.copy($scope.master);
@@ -50,8 +49,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                 }
             });
         }
-        $rootScope.nav = datas.nav;
-        $rootScope.route = datas.route;
+
 
     }]);
 })

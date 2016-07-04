@@ -32,7 +32,7 @@ class MenuController extends Controller
 
     /**
      * 将子节点置顶
-     * @param $id
+     * param $id
      */
     public function postMoveTop($id){
         //被移动节点
@@ -44,12 +44,12 @@ class MenuController extends Controller
             $top = $this->bindModel->find($obj->parent_id)->childs()->first();
         }
         if($top->id==$obj->id){
-            return Response::returns(['alert'=>alert(['content'=>'已经是最顶端了!'])]);
+            return ['alert'=>alert(['content'=>'已经是最顶端了!'])];
         }
         if($obj->moveNear($top->id)===false){
-            return Response::returns(['alert'=>alert(['content'=>'置顶失败!'],500)]);
+            return ['alert'=>alert(['content'=>'置顶失败!'],500)];
         }
-        return Response::returns(['alert'=>alert(['content'=>'置顶成功!'])]);
+        return ['alert'=>alert(['content'=>'置顶成功!'])];
     }
 
 

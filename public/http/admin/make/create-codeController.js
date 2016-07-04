@@ -5,12 +5,9 @@
 //dump(require.s.contexts._.defined.data);
 
 define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
-    var datas = datas || data;
-
-    dump(datas);
     app.register.controller('admin-create-codeCtrl', ["$scope", '$rootScope','View','$alert','$http', function ($scope,$rootScope,View,$alert,$http) {
         $scope = View.with(datas,$scope);
-        $rootScope.nav = datas.nav;
+        $rootScope = View.with(datas.global,$rootScope);
         //创建代码
         $scope.create = function(param){
             //命令拼接
@@ -36,7 +33,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
             $scope.artisan += option;
             $http({
                     method: 'POST',
-                    url: '/admin/make/exe',
+                    url: '/data/admin/make/exe',
                     data: param}
             ).error(function(){
                 $alert({
