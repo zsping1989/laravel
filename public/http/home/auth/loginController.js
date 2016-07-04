@@ -11,7 +11,7 @@ define(['app',dataPath()],function(app,datas){
                 _token:datas._token
             }).success(function(res){
                 //登录成功跳转
-                window.location.href = res.redirect || '/admin/index';
+                //window.location.href = res.redirect || '/admin/index';
             }).error(function(res){
                 //登录失败,显示提示信息
                 $scope.msgs = res;

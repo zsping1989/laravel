@@ -37,7 +37,7 @@ function orRedirect($to = null, $status = 302){
         'title'=>\Illuminate\Support\Facades\Lang::get('status.status302'),
         'content'=>\Illuminate\Support\Facades\Lang::get('status.redirectTo').$to,
         'redirect' => $to
-    ],$status);
+    ]);
 }
 
 function alert($data = [],$status=200){

@@ -27,8 +27,13 @@ class ResponseMacroServiceProvider extends ServiceProvider
             if(Request::input('callback')){ //jsonp
                return $factory->jsonp(Request::input('callback'),$value);
             }elseif(Request::input('define')=='AMD'){ //AMD
-                $macro->addData($value);
-                $value = 'define([],function(){ return '.collect($value)->toJson().';});';
+                if($redirect = $value->get('redirect')){
+                    //页面跳转
+                    $value = 'window.location.href = \''.$redirect.'\';';
+                }else{
+                    $macro->addData($value);
+                    $value = 'define([],function(){ return '.collect($value)->toJson().';});';
+                }
             }elseif(Request::input('define')=='CMD'){ //CMD
                 $macro->addData($value);
                 $value = 'define([],function(){ return '.collect($value)->toJson().';});';
