@@ -1,6 +1,5 @@
 define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
     app.register.controller('admin-user-indexCtrl', ["$scope",'$rootScope', 'Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
-        $scope.data_key = 'admin-user-index';
         $scope = View.withCache(datas.list,$scope);
         $rootScope = View.with(datas.global,$rootScope);
 

@@ -1,5 +1,5 @@
 //获取路由数据,注册路由
-requirejs(['/data/home/index/routes?define=AMD'],function(data){
+requirejs(['/datas/home/index/routes.js'],function(data){
     window.cacheData = {};
     //自动注册路由
     window.routes = handleRoute(data.menus);
@@ -10,15 +10,6 @@ requirejs(['/data/home/index/routes?define=AMD'],function(data){
         window.routes[data.route] = {'as':data.route,'path':data.route};
     }
 
-/*    //路由配置,单页面应用跳转
-    var routes = {
-     //路由:控制器或视图
-     '/home/home':{'as':'home','path':'home/home'},
-     '/home/about':{'as':'about','path':'home/about'},
-     '/home/auth/login':{'as':'login','path':'home/auth/login'},
-     '/admin/menu/index':{'as':'admin-menu-index','path':'admin/menu/index'},
-     '/admin/index':{'as':'admin-index','path':'admin/index'}
-     }*/
     window.routes.default = data.route; //当前路由
     require.config({
         baseUrl: "/http/",
@@ -53,7 +44,7 @@ requirejs(['/data/home/index/routes?define=AMD'],function(data){
             "angular-ui-router": ["angular"]
         },
         deps: ['app','css'], //启动
-        urlArgs: "time=" + (new Date()).getTime()  //防止读取缓存，调试用
+        urlArgs: ''//"time=" + (new Date()).getTime()  //防止读取缓存，调试用
     });
 
 });

@@ -1,12 +1,7 @@
 define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
     app.register.controller('admin-role-indexCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$modal','$http',
         function ($scope,$rootScope,Model,View,$alert,$modal,$http) {
-            //数据缓存,用于方便更新数据
-            var maindata = window.cacheData['admin-role-index'] || datas.list;
-            window.cacheData['admin-role-index'] = maindata;
-            $scope.data_key = 'admin-role-index';
-
-            $scope = View.with(maindata,$scope);
+            $scope = View.withCache(datas.list,$scope);
             $rootScope = View.with(datas.global,$rootScope);
             /* 条件查询数据 */
             $scope.getData = Model.getData;
@@ -20,7 +15,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
             $scope.userList = function(id){
                 $http({
                     method: 'GET',
-                    url: '/admin/role/user-list/'+id
+                    url: '/data/admin/role/user-list/'+id
                    }).success(function(data){
                     $scope.userTitle = '用户列表';
                     $scope.userData = data;

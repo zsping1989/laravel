@@ -1,8 +1,8 @@
 define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
-    var datas = datas || data;
-    dump(datas);
     app.register.controller('admin-role-editCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$http','$location','$timeout',
     function ($scope,$rootScope,Model,View,$alert,$http,$location,$timeout) {
+        dump(datas);
+        $rootScope = View.with(datas.global,$rootScope);
         //数据缓存,用于方便更新数据
         var route = parseURL('hash');
         //动态路由需要重新获取数据
@@ -90,7 +90,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
             }
         }
 
-        $rootScope = View.with(datas.global,$rootScope);
+
 
     }]);
 })

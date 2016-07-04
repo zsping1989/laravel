@@ -67,6 +67,7 @@ define(['angular'], function (angular) {
         }
         factory.withCache = function(data,scope){
             //数据缓存,用于方便更新数据
+            scope.data_key = parseURL('hash');
             var maindata = window.cacheData[scope.data_key] || data;
             window.cacheData[scope.data_key] = maindata;
             return factory.with(maindata,scope);

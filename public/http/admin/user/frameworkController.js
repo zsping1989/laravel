@@ -1,6 +1,5 @@
 define(['app',dataPath(),'joint','admin/public/headerController','admin/public/leftController'], function (app,datas,joint) {
     app.register.controller('admin-user-frameworkCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$http', function ($scope,$rootScope,Model,View,$alert,$http) {
-        $scope.data_key = 'admin-user-framework';
         $scope = View.withCache(datas,$scope);
         $rootScope = View.with(datas.global,$rootScope);
 
@@ -85,7 +84,7 @@ define(['app',dataPath(),'joint','admin/public/headerController','admin/public/l
             }
             $http({
                 method: 'POST',
-                url: '/admin/user/framework',
+                url: '/data/admin/user/framework',
                 data: {positions:data}
             })
         }
