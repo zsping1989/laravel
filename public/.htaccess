@@ -2,13 +2,14 @@
     <IfModule mod_negotiation.c>
         Options -MultiViews
     </IfModule>
-
+    Options +FollowSymlinks
     RewriteEngine On
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^/?data/(.*)$ index.php [L]
     RewriteRule ^(.*)/$ /$1 [L,R=301]
+    RewriteRule ^/?data/home/index/routes\.js.*$ /http/routes.js [L]
+    RewriteRule ^/?data/(.*)$ index.php [L]
 
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d

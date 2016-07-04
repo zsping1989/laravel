@@ -90,7 +90,5 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
             }
         }
 
-
-
     }]);
 })
