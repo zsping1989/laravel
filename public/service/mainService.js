@@ -66,12 +66,13 @@ define(['angular'], function (angular) {
             return scope;
         }
 
-        factory.withCache = function(data,scope){
-            //数据缓存,用于方便更新数据
-            scope.data_key = scope.data_key || parseURL('hash');
-
+        factory.withCache = function(data,scope,root){
+            if(!root){
+                //数据缓存,用于方便更新数据
+                scope.data_key = scope.data_key!='global' ? scope.data_key : parseURL('hash');
+            }
             //需要重新更新数据
-            if(window.cacheData[scope.data_key]===false || (!window.cacheData[scope.data_key] && data['global'] && data['global']['route']!=scope.data_key)){
+            if(window.cacheData[scope.data_key]===false || (!window.cacheData[scope.data_key] && data['global'] && scope.data_key!='global' && data['global']['route']!=scope.data_key)){
                 $http({
                     method: 'GET',
                     url:'/data'+scope.data_key

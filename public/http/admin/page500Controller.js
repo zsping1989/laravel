@@ -7,7 +7,7 @@
 define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
     app.register.controller('admin-page500Ctrl', ["$scope", '$rootScope','Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
         $scope = View.with(datas,$scope);
-        $rootScope = View.with(datas.global,$rootScope);
+       $rootScope = View.withCache(datas.global,$rootScope,1);
     }]);
 })
 

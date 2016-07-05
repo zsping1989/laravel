@@ -132,7 +132,7 @@ function parseURL(key,url) {
 }
 
 function dataPath(){
-    if(parseURL('hash')==routes.default){
+    if(parseURL('hash')==routes.default || !window.cacheData['global']){
         return '/data'+parseURL('hash')+'?define=AMD&global=all&time='+(new Date()).getTime();
     }else{
         return '/data'+parseURL('hash')+'?define=AMD&time='+(new Date()).getTime();

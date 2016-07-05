@@ -7,6 +7,7 @@ define(["angular", "angularAMD", "angular-ui-router",'angular-animate','angular-
 
     app.run(['$rootScope', '$state', '$stateParams',
         function($rootScope, $state, $stateParams) {
+            $rootScope.data_key = 'global';
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
         }

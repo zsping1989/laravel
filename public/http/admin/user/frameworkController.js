@@ -1,7 +1,7 @@
 define(['app',dataPath(),'joint','admin/public/headerController','admin/public/leftController'], function (app,datas,joint) {
     app.register.controller('admin-user-frameworkCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$http', function ($scope,$rootScope,Model,View,$alert,$http) {
         $scope = View.withCache(datas,$scope);
-        $rootScope = View.with(datas.global,$rootScope);
+        $rootScope = View.withCache(datas.global,$rootScope,1);
         /* 条件查询数据 */
         $scope.getData = Model.getData;
 
@@ -55,6 +55,7 @@ define(['app',dataPath(),'joint','admin/public/headerController','admin/public/l
         }
         var colour = {'level_6':'#f4f4f4','level_2':'#367fa9','level_3':'#008d4c','level_4':'#00acd6','level_5':'#d73925','level_1':'#e08e0b'};
         var barts = {}; //图标对象
+
         for(var i in $scope.roles){
             var x = $scope.roles[i].x || ($scope.width-200)/(Math.pow(2,$scope.level_count[$scope.roles[i].level]))+($scope.roles[i].level_num*200)-60;
             var y = $scope.roles[i].y || 115*$scope.roles[i].level;
