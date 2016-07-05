@@ -87,7 +87,11 @@ define(['angular'], function (angular) {
                 return init();
             }
             function init(){
-                var maindata = window.cacheData[scope.data_key] || data;
+                if(!root){
+                    var maindata = window.cacheData[scope.data_key] || data;
+                }else {
+                    var maindata = data;
+                }
                 window.cacheData[scope.data_key] = maindata;
                 return factory.with(maindata,scope);
             }
