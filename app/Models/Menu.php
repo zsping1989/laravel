@@ -16,7 +16,7 @@ class Menu extends BaseModel
 
     //批量赋值白名单
     protected $fillable = [
-        'name','icons', 'description' , 'url','status','parent_id'
+        'name','icons', 'prefix','description' , 'url','status','parent_id'
     ];
 
     /* 菜单-角色 */

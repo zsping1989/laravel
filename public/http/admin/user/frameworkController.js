@@ -2,6 +2,8 @@ define(['app',dataPath(),'joint','admin/public/headerController','admin/public/l
     app.register.controller('admin-user-frameworkCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$http', function ($scope,$rootScope,Model,View,$alert,$http) {
         $scope = View.withCache(datas,$scope);
         $rootScope = View.with(datas.global,$rootScope);
+        /* 条件查询数据 */
+        $scope.getData = Model.getData;
 
         //三方jquery插件画图
         var graph = new joint.dia.Graph();

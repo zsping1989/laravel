@@ -14,9 +14,15 @@
                             <div class="box-header">
                                 <h3 class="box-title" ng-if="row.id">修改{{$table_comment}}</h3>
                                 <h3 class="box-title" ng-if="!row.id">新增{{$table_comment}}</h3>
+                                <div class="box-tools">
+                                    <button class="btn btn-default btn-sm" title="刷新"
+                                            ng-click="getData($this,{refresh:1})">
+                                        <i class="fa fa-refresh"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="box-body">
-                                <form role="form"  action="/{{$dirname}}/edit" method="post" ng-init="data_url='/{{$dirname}}/edit';back_url='/{{$dirname}}/index'">
+                                <form role="form"  action="/data/{{$dirname}}/edit" method="post" ng-init="data_url='/data/{{$dirname}}/edit/'+row.id;edit_url='/data/{{$dirname}}/edit';back_url='/{{$dirname}}/index'">
                                     @foreach ($table_fields as $field)
                                         @if(in_array($field->showType,['hidden','delete','password']) ||in_array($field->Field,['updated_at','id','created_at','deleted_at']) )
                                         @elseif($field->showType=='time')
@@ -130,7 +136,7 @@
                                                 </button>
 
                                                 &nbsp; &nbsp; &nbsp;
-                                                <button class="btn" type="button" ng-click="reset()">
+                                                <button class="btn" type="button" ng-click="resetdata()">
                                                     <i class="glyphicon glyphicon-repeat"></i>
                                                     重置
                                                 </button>

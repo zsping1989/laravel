@@ -1,5 +1,6 @@
 //获取路由数据,注册路由
 requirejs(['/data/home/index/routes?define=AMD'],function(data){
+    dump(data);
     window.cacheData = {};
     //自动注册路由
     window.routes = handleRoute(data.menus);

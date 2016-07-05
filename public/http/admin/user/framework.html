@@ -10,7 +10,7 @@
             <section class="content">
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="box box-info"  ng-controller="admin-user-frameworkCtrl">
+                        <div class="box box-info"  ng-controller="admin-user-frameworkCtrl" ng-init="data_url='/data/admin/user/framework'">
                             <div class="box-header with-border">
                                 <h3 class="box-title">后台组织架构图</h3>
                                 <div class="box-tools">
@@ -18,7 +18,12 @@
                                             ng-click="saveCoord()">
                                         <i class="fa  fa-save"></i>
                                     </button>
+                                    <button class="btn btn-default btn-sm" title="刷新"
+                                            ng-click="getData($this,{refresh:1})">
+                                        <i class="fa fa-refresh"></i>
+                                    </button>
                                 </div>
+
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">

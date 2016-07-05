@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="box box-info" ng-controller="{{$tpl_controller}}"
-                                 ng-init="data_url='/{{$dirname}}/list';delete_url='/{{$dirname}}/destroy'">
+                                 ng-init="data_url='/data/{{$dirname}}/list';delete_url='/data/{{$dirname}}/destroy'">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">{{$table_comment}}列表</h3>
                                     <div class="box-tools">
@@ -90,7 +90,7 @@
                                                             @endif
                                                         @endforeach
                                                         <td>
-                                                            <a class="btn btn-xs btn-info" title="编辑" role="button" href="/{{$dirname}}/edit/@{{row.id}}">
+                                                            <a class="btn btn-xs btn-info" title="编辑" role="button" href="#/{{$dirname}}/edit/@{{row.id}}">
                                                                 <i class="glyphicon glyphicon-edit"></i>
                                                             </a>
                                                             <button class="btn btn-xs btn-danger" title="删除" ng-click="delete($this,row.id)" type="button">
@@ -109,7 +109,7 @@
                                                 <button class="btn btn-default btn-sm" title="刷新" ng-click="getData($this,{refresh:1})">
                                                     <i class="fa fa-refresh"></i>
                                                 </button>
-                                                <a class="btn btn-default btn-sm" title="添加" href="/{{$dirname}}/edit/0">
+                                                <a class="btn btn-default btn-sm" title="添加" href="#/{{$dirname}}/edit/0">
                                                     <i class="fa fa-plus"></i>
                                                 </a>
                                             </div>

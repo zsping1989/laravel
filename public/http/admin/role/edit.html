@@ -14,10 +14,16 @@
                             <div class="box-header">
                                 <h3 class="box-title" ng-if="row.id">修改角色</h3>
                                 <h3 class="box-title" ng-if="!row.id">新增角色</h3>
+                                <div class="box-tools">
+                                    <button class="btn btn-default btn-sm" title="刷新"
+                                            ng-click="getData($this,{refresh:1})">
+                                        <i class="fa fa-refresh"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="box-body">
                                 <form role="form" action="/data/admin/role/edit" method="post"
-                                      ng-init="data_url='/data/admin/role/edit';back_url='/admin/role/index'">
+                                      ng-init="data_url='/data/admin/role/edit/'+row.id;edit_url='/data/admin/role/edit';back_url='/admin/role/index'">
                                     <div class="form-group row" ng-init="errorFieldMap['name']='角色名称'">
                                         <div class="col-xs-2">
                                             <label class="pull-right">角色名称:</label>
@@ -102,7 +108,7 @@
                                             </button>
 
                                             &nbsp; &nbsp; &nbsp;
-                                            <button class="btn" type="button" ng-click="reset()">
+                                            <button class="btn" type="button" ng-click="resetdata()">
                                                 <i class="glyphicon glyphicon-repeat"></i>
                                                 重置
                                             </button>
