@@ -1,8 +1,10 @@
 define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
     app.register.controller('admin-role-indexCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$modal','$http',
         function ($scope,$rootScope,Model,View,$alert,$modal,$http) {
+            $scope.data_key = '/admin/role/list';
             $scope = View.withCache(datas.list,$scope);
             $rootScope = View.with(datas.global,$rootScope);
+
             /* 条件查询数据 */
             $scope.getData = Model.getData;
             $scope.ids = [];

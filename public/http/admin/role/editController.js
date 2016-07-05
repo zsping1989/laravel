@@ -1,38 +1,14 @@
 define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
     app.register.controller('admin-role-editCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$http','$location','$timeout',
     function ($scope,$rootScope,Model,View,$alert,$http,$location,$timeout) {
-        dump(datas);
         $rootScope = View.with(datas.global,$rootScope);
-        //数据缓存,用于方便更新数据
-        var route = parseURL('hash');
-        //动态路由需要重新获取数据
-        if(route!=datas.route && !window.cacheData[route]){
-            $http({
-                method: 'GET',
-                url: route,
-                async: false
-            }).success(function(data){
-                window.cacheData[route] = {'master':data.row,
-                    'permissions':data.permissions,
-                    canEdit:data.canEdit,
-                    users:data.users
-                };
-                init();
-            })
-        }else {
-            init();
-        }
-        function init(){
-            var maindata = window.cacheData[route] || {'master':datas.row, users:datas.users,'permissions':datas.permissions,canEdit:datas.canEdit};
-            window.cacheData[route] = maindata;
-            $scope.data_key = route;
+        $scope = View.withCache(datas,$scope);
 
-            //重置
-            $scope = View.with(maindata,$scope);
-            $scope.reset = function() {
-                $scope.row = angular.copy($scope.master);
-            };
-            $scope.reset();
+        //重置备份数据
+        $scope.master = angular.copy($scope.row);
+        $scope.reset = function() {
+             $scope.row = angular.copy($scope.master);
+        };
 
             //提交
             $scope.submit = function(){
@@ -57,10 +33,10 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                     url: $scope.data_url,
                     data: data
                 }).success(function(){
-                    window.cacheData[route] = null;
+                    window.cacheData['/admin/role/index'] = false; //更新页面数据
                     $timeout(function(){
                         if($scope.row.id){
-                            //$location.path($scope.back_url);
+                            $location.path($scope.back_url);
                         }
                     },1000);
                 }).error(function(data){
@@ -88,7 +64,6 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                     }
                 }
             }
-        }
 
     }]);
 })

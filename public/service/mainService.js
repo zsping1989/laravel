@@ -42,7 +42,7 @@ define(['angular'], function (angular) {
 
 
     /* 数据渲染 */
-    main.factory('View', function () {
+    main.factory('View', ['$http',function ($http) {
         var factory = {};
         factory.with = function (data, scope) {
             if (typeof data == 'undefined') {
@@ -65,15 +65,32 @@ define(['angular'], function (angular) {
             scope.$this = scope;
             return scope;
         }
+
         factory.withCache = function(data,scope){
             //数据缓存,用于方便更新数据
-            scope.data_key = parseURL('hash');
-            var maindata = window.cacheData[scope.data_key] || data;
-            window.cacheData[scope.data_key] = maindata;
-            return factory.with(maindata,scope);
+            scope.data_key = scope.data_key || parseURL('hash');
+
+            //需要重新更新数据
+            if(window.cacheData[scope.data_key]===false || (!window.cacheData[scope.data_key] && data['global'] && data['global']['route']!=scope.data_key)){
+                $http({
+                    method: 'GET',
+                    url:'/data'+scope.data_key
+                }).success(function(data){
+                    window.cacheData[scope.data_key] = data;
+                    return init();
+                });
+                return scope;
+            }else {
+                return init();
+            }
+            function init(){
+                var maindata = window.cacheData[scope.data_key] || data;
+                window.cacheData[scope.data_key] = maindata;
+                return factory.with(maindata,scope);
+            }
         };
         return factory;
-    });
+    }]);
 
     main.factory('Model',['$http','View',function($http,View){
         var factory = {};
