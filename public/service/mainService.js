@@ -77,7 +77,9 @@ define(['angular'], function (angular) {
                     url:'/data'+scope.data_key
                 }).success(function(data){
                     window.cacheData[scope.data_key] = data;
-                    return init();
+                    var result =init();
+                    scope.master = angular.copy(scope.row);
+                    return result;
                 });
                 return scope;
             }else {
