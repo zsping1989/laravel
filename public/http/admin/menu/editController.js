@@ -1,6 +1,8 @@
 define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
-    app.register.controller('admin-menu-editCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$http','$location','$timeout',
-    function ($scope,$rootScope,Model,View,$alert,$http,$location,$timeout) {
+    app.register.controller('admin-menu-editCtrl', ["$scope",'$rootScope', 'Model','View','$alert'
+        ,'$http','$location','$timeout','$modal',
+    function ($scope,$rootScope,Model,View,$alert,$http,$location,$timeout,$modal) {
+        dump(datas);
         $rootScope = View.with(datas.global, $rootScope);
         $scope = View.withCache(datas, $scope);
         /* 条件查询数据 */
@@ -11,6 +13,27 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
         $scope.resetdata = function () {
             $scope.row = angular.copy($scope.master);
         };
+
+        //删除参数
+        $scope.deleteParam = function(index){
+            var data = [];
+            for (var i in $scope.row.params){
+                if(i==index){
+                    continue;
+                }
+                data[data.length] = $scope.row.params[i];
+            }
+            $scope.row.params = data;
+        }
+
+        //弹窗参数编辑
+        $scope.editParam = function(index){
+            $scope.param_index = typeof index == 'undefined' ? $scope.row.params.length : index;
+            $modal({scope: $scope,
+                template: '/http/admin/menu/edit-param.html',
+                placement:'center',
+                show: true});
+        }
 
         //提交
         $scope.submit = function(){

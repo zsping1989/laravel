@@ -1,0 +1,71 @@
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal ng-scope top am-fade"  style="z-index: 1050; display: block;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div ng-show="userTitle" class="modal-header">
+                <button ng-click="$hide()" aria-label="Close" class="close" type="button">
+                    <span aria-hidden="true">×</span></button>
+                <h4 ng-bind="userTitle" class="modal-title ng-binding"></h4>
+            </div>
+            <div class="modal-body ng-binding">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h5 class="box-title" ng-if="row.params[param_index]">修改参数</h5>
+                        <h5 class="box-title" ng-if="!row.params[param_index]">新增参数</h5>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group row">
+                            <div class="col-xs-3">
+                                <label class="pull-right">变量名:</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <input type="text" ng-model="row.params[param_index].name"  class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-3">
+                                <label class="pull-right">事例:</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <input type="text" ng-model="row.params[param_index].example"   class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-3">
+                                <label class="pull-right">变量名标题:</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <input type="text"  ng-model="row.params[param_index].title"   class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-3">
+                                <label class="pull-right">是否必填:</label>
+                            </div>
+                            <div class="col-xs-6">
+                                是 :<input type="radio" name="required" value="1"  ng-model="row.params[param_index].required">
+                                否 :<input type="radio" name="required" value="0" ng-model="row.params[param_index].required">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-3">
+                                <label class="pull-right">描述:</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <textarea  ng-model="row.params[param_index].description" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-3">
+                            </div>
+                            <div class="col-xs-6">
+                                <button ng-click="$hide()" class="btn btn-default" type="button">确定</button>
+                                <button ng-click="$hide();deleteParam(param_index)" class="btn btn-default" type="button">取消</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

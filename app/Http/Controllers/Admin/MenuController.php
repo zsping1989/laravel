@@ -27,7 +27,17 @@ class MenuController extends Controller
     * 返回: array
     */
     protected function getValidateRule(){
-        return ['name'=>'required','icons'=>'alpha_dash','url'=>'url','method'=>'in:1,2,3','status'=>'in:1,2','parent_id'=>'sometimes|required|exists:menus,id'];
+        return ['name'=>'required','icons'=>'alpha_dash','method'=>'in:1,2,3','status'=>'in:1,2','parent_id'=>'sometimes|required|exists:menus,id'];
+    }
+
+    /**
+     * 编辑数据页面
+     * @param null $id
+     */
+    public function getEdit($id=null){
+        $data = [];
+        $id AND $data['row'] = $this->bindModel->findOrFail($id)->load('params','responses');
+        return Response::returns($data);
     }
 
     /**
