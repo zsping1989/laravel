@@ -90,6 +90,7 @@ trait CreateCommand
                 'db_name'=>config('database.connections.mysql.database'),
                 'tname'=>$trueTable
             ])[0]->TABLE_COMMENT;
+
         //字段信息
         $data['table_fields'] = collect(DB::select('show full COLUMNS from `'.$trueTable.'`'))
             ->map(function($item){

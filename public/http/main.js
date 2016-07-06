@@ -4,14 +4,15 @@ requirejs(['/data/home/index/routes?define=AMD'],function(data){
     window.cacheData = {};
     //自动注册路由
     window.routes = handleRoute(data.menus);
-    data.route = parseURL()['path'];//data.route.replace(/\{(\w+)[\?]\}/ ,":$1");
+    data.route = parseURL()['path'];
 
     //当前路由不存在,自动组成路由
     if(!window.routes[data.route]){
+        window.routes.default ='/admin/page404';
         window.routes[data.route] = {'as':data.route,'path':data.route};
+    }else {
+        window.routes.default = data.route; //当前路由
     }
-
-    window.routes.default = data.route; //当前路由
     require.config({
         baseUrl: "/http/",
         paths: {
@@ -64,7 +65,7 @@ function handleRoute(menus){
     for(var i in menus){
         if(!menus[i].url){continue};
         //参数路由处理
-        var route = menus[i].url.replace(/\{(\w+)[\?]\}/ ,":$1");
+        var route = menus[i].url.replace(/\{/ ,":").replace(/[\?]{0,1}\}/ ,"");
         var path = menus[i].url.replace(/\/\{(\w+)[\?]\}/ ,"");
         routes[route]={
             'as': path,
@@ -131,8 +132,10 @@ function parseURL(key,url) {
     return res;
 }
 
-function dataPath(){
-    if(parseURL('hash')==routes.default || !window.cacheData['global']){
+function dataPath(nodata){
+    if(nodata && window.cacheData['global']){
+        return null;
+    }else if(parseURL('hash')==routes.default || !window.cacheData['global']){
         return '/data'+parseURL('hash')+'?define=AMD&global=all&time='+(new Date()).getTime();
     }else{
         return '/data'+parseURL('hash')+'?define=AMD&time='+(new Date()).getTime();

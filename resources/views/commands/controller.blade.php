@@ -1,7 +1,9 @@
 {!! $php !!}
 
-use App\Http\Controllers\Controller;
 namespace {{$namespace}};
+
+
+use App\Http\Controllers\Controller;
 @if ($resource)
 use App\Exceptions\ResourceController;
 use App\{{$model}};
