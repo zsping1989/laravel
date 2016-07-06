@@ -35,6 +35,29 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                 show: true});
         }
 
+        //删除响应说明
+        $scope.deleteResponse = function(index){
+            var data = [];
+            for (var i in $scope.row.responses){
+                if(i==index){
+                    continue;
+                }
+                data[data.length] = $scope.row.responses[i];
+            }
+            $scope.row.responses = data;
+        }
+
+        //弹窗响应说明编辑
+        $scope.editResponse = function(index){
+            $scope.response_index = typeof index == 'undefined' ? $scope.row.responses.length : index;
+            $modal({scope: $scope,
+                template: '/http/admin/menu/edit-response.html',
+                placement:'center',
+                show: true});
+        }
+
+
+
         //提交
         $scope.submit = function(){
             var data = $scope.row;

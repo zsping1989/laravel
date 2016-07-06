@@ -187,7 +187,6 @@
                                                             {{x.description}}
                                                         </td>
                                                         <td>
-                                                        <td>
                                                             <a class="btn btn-xs btn-info" title="编辑" role="button" ng-click="editParam($index)">
                                                                 <i class="glyphicon glyphicon-edit"></i>
                                                             </a>
@@ -209,17 +208,33 @@
                                         </div>
                                         <div data-title="响应说明" name="响应说明" bs-pane>
                                             <div class="box-body">
-                                                <div class="form-group row">
-                                                    <div class="col-xs-2">
-                                                        <label class="pull-right">添加参数:</label>
-                                                    </div>
-                                                    <div class="col-xs-10">
-                                                        参数变量名:<input type="text" name="param[name]"  class="form-control">
-                                                        变量名标题:<input type="text" name="param[title]"  class="form-control">
-                                                        参数事例:<input type="text" name="param[example]"  class="form-control">
-                                                        参数描述:<input type="text" name="param[description]"  class="form-control">
-                                                        是否必填: 是<input type="radio" name="param[required]" value="1"  >
-                                                        否<input type="radio" name="param[required]" value="0" >
+                                                <table class="table table-hover table-bordered">
+                                                    <tr>
+                                                        <th>序号</th>
+                                                        <th>结果字段</th>
+                                                        <th>描述</th>
+                                                        <th>操作</th>
+                                                    </tr>
+                                                    <tr ng-repeat="x in row.responses">
+                                                        <td>{{$index+1}}</td>
+                                                        <td>{{x.name}}</td>
+                                                        <td>{{x.description}}</td>
+                                                        <td>
+                                                            <a class="btn btn-xs btn-info" title="编辑" role="button" ng-click="editResponse($index)">
+                                                                <i class="glyphicon glyphicon-edit"></i>
+                                                            </a>
+                                                            <button class="btn btn-xs btn-danger" title="删除" type="button" ng-click="deleteResponse($index)">
+                                                                <i class="glyphicon glyphicon-trash"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                        <a class="btn btn-default btn-sm" title="添加" ng-click="editResponse()">
+                                                            <i class="fa fa-plus"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
