@@ -72,7 +72,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                 window.cacheData['/admin/menu/list'] = false; //更新页面数据
                 $timeout(function(){
                     if($scope.row.id){
-                        $location.path($scope.back_url);
+                        //$location.path($scope.back_url);
                     }
                 },1000)
             }).error(function(data){

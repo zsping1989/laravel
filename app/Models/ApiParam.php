@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ApiParam extends Model
 {
     use SoftDeletes;
+    //批量赋值白名单
+    protected $fillable = ['id','menu_id','name','title','description','example','required'];
     public function menu(){
         return $this->belongsTo('App\Models\Menu');
     }

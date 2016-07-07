@@ -63,7 +63,7 @@ $factory->define(App\Models\ApiParam::class, function (Faker\Generator $faker) {
 });
 
 //接口响应说明
-$factory->define(App\Models\ApiParam::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\ApiResponse::class, function (Faker\Generator $faker) {
     return [
         'menu_id'=>0,
         'name'=>$faker->word,
