@@ -9,6 +9,7 @@ use App\Models\Test;
 
 class TestController extends Controller
 {
+    protected $treeOrder = true;
     use ResourceController; //资源控制器
 
     /**

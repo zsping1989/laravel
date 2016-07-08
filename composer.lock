@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3687478f076c06f16e08f34a40320e27",
-    "content-hash": "e3b2889edf81b5f608546c401fb2489a",
+    "hash": "a92e033d3cf8ccc5bacdb6bf18a80a33",
+    "content-hash": "27082ef877959ba459f43553b7750563",
     "packages": [
         {
             "name": "caouecs/laravel-lang",
@@ -203,16 +203,16 @@
         },
         {
             "name": "gregwar/captcha",
-            "version": "v1.1.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gregwar/Captcha.git",
-                "reference": "1240ab993ca713680573b2d4166900da5f758623"
+                "reference": "3f0cb3ddef76ff13c8bae9ab5651783ae7a60fe6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gregwar/Captcha/zipball/1240ab993ca713680573b2d4166900da5f758623",
-                "reference": "1240ab993ca713680573b2d4166900da5f758623",
+                "url": "https://api.github.com/repos/Gregwar/Captcha/zipball/3f0cb3ddef76ff13c8bae9ab5651783ae7a60fe6",
+                "reference": "3f0cb3ddef76ff13c8bae9ab5651783ae7a60fe6",
                 "shasum": ""
             },
             "require": {
@@ -247,7 +247,7 @@
                 "captcha",
                 "spam"
             ],
-            "time": "2015-09-11 15:23:20"
+            "time": "2016-03-19 11:34:59"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2112,6 +2112,40 @@
                 "environment"
             ],
             "time": "2016-04-15 10:48:49"
+        },
+        {
+            "name": "zsping1989/margin-tree",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zsping1989/margin-tree.git",
+                "reference": "dfd5f963ad84087f4df080dd735d75b634f5f55c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zsping1989/margin-tree/zipball/dfd5f963ad84087f4df080dd735d75b634f5f55c",
+                "reference": "dfd5f963ad84087f4df080dd735d75b634f5f55c",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.2.*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MarginTree\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "zhangshiping",
+                    "email": "214986304@qq.com"
+                }
+            ],
+            "description": "margin tree parent children node",
+            "time": "2016-07-08 08:26:05"
         }
     ],
     "packages-dev": [
@@ -3338,7 +3372,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "gregwar/captcha": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

@@ -5,7 +5,7 @@
 namespace {{$namespace}};
 use App\BaseModel;
 @if ($tree)
-use App\Exceptions\MarginTree\TreeModel;
+use MarginTree\TreeModel;
 @endif
 @if ($softDeletes)
 use Illuminate\Database\Eloquent\SoftDeletes;

@@ -4,8 +4,8 @@
  */
 namespace App\Models;
 use App\BaseModel;
-use App\Exceptions\MarginTree\ExcludeTop;
-use App\Exceptions\MarginTree\TreeModel;
+use MarginTree\ExcludeTop;
+use MarginTree\TreeModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Menu extends BaseModel
