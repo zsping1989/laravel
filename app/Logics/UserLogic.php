@@ -47,6 +47,7 @@ class UserLogic{
      * 返回: mixed
      */
     public function getAdmin(){
+        dd($this->admin);
         return $this->admin;
     }
 

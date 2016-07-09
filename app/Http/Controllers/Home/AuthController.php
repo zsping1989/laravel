@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Logics\Facade\UserLogic;
 use App\User;
 use Gregwar\Captcha\CaptchaBuilder;
 use Illuminate\Support\Facades\Auth;
@@ -215,7 +216,30 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  bool  $throttles
+     * @return \Illuminate\Http\Response
+     */
+    protected function handleUserWasAuthenticated(Request $request, $throttles)
+    {
+        if ($throttles) {
+            $this->clearLoginAttempts($request);
+        }
 
+        if (method_exists($this, 'authenticated')) {
+            return $this->authenticated($request, Auth::guard($this->getGuard())->user());
+        }
+        //用户数据记录
+        UserLogic::loginCacheInfo();
+
+        if(canRedirect()){
+            return redirect()->intended($this->redirectPath());
+        }
+        return orRedirect($this->redirectPath());
+    }
 
 
 
