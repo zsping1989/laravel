@@ -11,7 +11,8 @@
         "caouecs/laravel-lang": "~3.0",
         "guzzlehttp/guzzle": "~5.0",
         "gregwar/captcha": "dev-master",
-        "zsping1989/margin-tree": "^1.0"
+        "zsping1989/margin-tree": "^1.0",
+        "zsping1989/commands": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

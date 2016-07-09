@@ -4,8 +4,8 @@
  */
 namespace App\Models;
 use App\BaseModel;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use MarginTree\TreeModel;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Test extends BaseModel
 {

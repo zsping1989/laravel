@@ -14,11 +14,11 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // Commands\Inspire::class,
-        Commands\ConvertMigrations::class,
-        Commands\CreateControllers::class,
-        Commands\CreateModels::class,
-        Commands\CreateViews::class,
-        Commands\CreateJs::class
+        \Custom\Commands\ConvertMigrations::class,
+        \Custom\Commands\CreateControllers::class,
+        \Custom\Commands\CreateModels::class,
+        \Custom\Commands\CreateViews::class,
+        \Custom\Commands\CreateJs::class
     ];
 
     /**

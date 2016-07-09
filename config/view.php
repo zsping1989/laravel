@@ -15,6 +15,7 @@ return [
 
     'paths' => [
         realpath(base_path('resources/views')),
+        realpath(base_path('vendor/zsping1989/commands/src/Views'))
     ],
 
     /*
@@ -29,5 +30,6 @@ return [
     */
 
     'compiled' => realpath(storage_path('framework/views')),
+
 
 ];

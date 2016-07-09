@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a92e033d3cf8ccc5bacdb6bf18a80a33",
-    "content-hash": "27082ef877959ba459f43553b7750563",
+    "hash": "1a708ea3f5f3ec3bad348eb5f31d8dac",
+    "content-hash": "0c3864057cb08bf99c6cc75fd496825d",
     "packages": [
         {
             "name": "caouecs/laravel-lang",
@@ -2112,6 +2112,41 @@
                 "environment"
             ],
             "time": "2016-06-14 14:14:52"
+        },
+        {
+            "name": "zsping1989/commands",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zsping1989/commands.git",
+                "reference": "46e50579deb82b4d783694e1e7cf7cbb059c1cee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zsping1989/commands/zipball/46e50579deb82b4d783694e1e7cf7cbb059c1cee",
+                "reference": "46e50579deb82b4d783694e1e7cf7cbb059c1cee",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.2.*",
+                "php": ">=5.6.0",
+                "zsping1989/margin-tree": ">=1.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Custom\\Commands\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "zhangshiping",
+                    "email": "214986304@qq.com"
+                }
+            ],
+            "description": "commands",
+            "time": "2016-07-09 09:49:55"
         },
         {
             "name": "zsping1989/margin-tree",
