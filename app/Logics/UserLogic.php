@@ -174,4 +174,8 @@ class UserLogic{
         return $no_disabled;
     }
 
+    public function getUserPassword(){
+        return $this->user->getAttributeValue('password');
+    }
+
 }

@@ -347,7 +347,7 @@ class MenuTableSeeder extends Seeder
             'name'=>'资料修改',
             'icons'=>'fa-database',
             'prefix'=>'#',
-            'url'=>'/admin/user/info',
+            'url'=>'/admin/profile/info',
             'method'=>1,
             'description' => '个人资料修改',
             'parent_id'=>6,
@@ -360,7 +360,7 @@ class MenuTableSeeder extends Seeder
             'name'=>'密码修改',
             'icons'=>'fa-lock',
             'prefix'=>'#',
-            'url'=>'/admin/user/password',
+            'url'=>'/admin/profile/password',
             'method'=>1,
             'description' => '个人资料修改',
             'parent_id'=>6,
@@ -504,6 +504,8 @@ class MenuTableSeeder extends Seeder
             'parent_id'=>7,
             'status'=>1
         ]);
+
+
 
         //新建假数据3条
         //factory(\App\Models\Menu::class,3)->create();

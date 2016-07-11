@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Session;
 
 class User extends Authenticatable
 {
@@ -29,5 +28,20 @@ class User extends Authenticatable
     public function admin(){
         return $this->hasOne('App\Models\Admin');
     }
+
+    public function scopeOptions($query,array $options=[])
+    {
+        //条件筛选
+        collect($options['where'])->each(function($item,$key) use(&$query){
+            $val = $item->exp=='like' ? '%'.preg_replace('/([_%])/','\\\$1', $item->val).'%' : $item->val;
+            $item and $query->where($item->key,$item->exp,$val);
+        });
+        //排序
+        collect($options['order'])->each(function($item,$key) use (&$query){
+            $item and $query->orderBy($key,$item);
+        });
+        return $query;
+    }
+
 
 }

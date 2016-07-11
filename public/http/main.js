@@ -142,6 +142,7 @@ function parseURL(key,url) {
 }
 
 function dataPath(nodata){
+
     if(nodata && window.cacheData['global']){
         return null;
     }else if(parseURL('hash')==routes.default || !window.cacheData['global']){
