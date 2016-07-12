@@ -169,6 +169,21 @@ function deep(num) {
     return '';
 }
 
+function  updateData(key,retain){
+    if(!key){
+        return false;
+    }
+    if(!retain){
+        window.cacheData[key] = false; //更新页面数据
+    }else {
+        if(window.cacheData[key]){
+            window.cacheData[key]['updatedata'] = 1; //更新页面数据
+        }else {
+            window.cacheData[key] = false; //更新页面数据
+        }
+    }
+    return true;
+}
 
 
 

@@ -72,12 +72,19 @@ define(['angular'], function (angular) {
                 scope.data_key = scope.data_key!='global' ? scope.data_key : parseURL('hash');
             }
             //需要重新更新数据
-            if(window.cacheData[scope.data_key]===false || (!window.cacheData[scope.data_key] && data['global'] && scope.data_key!='global' && data['global']['route']!=scope.data_key)){
+            if(window.cacheData[scope.data_key]===false || (window.cacheData[scope.data_key] && window.cacheData[scope.data_key]['updatedata']) || (!window.cacheData[scope.data_key] && data['global'] && scope.data_key!='global' && data['global']['route']!=scope.data_key)){
+               var resparams = {};
+                if(window.cacheData[scope.data_key]){
+                    resparams.order = window.cacheData[scope.data_key]['order'];
+                    resparams.where = window.cacheData[scope.data_key]['where'];
+                }
                 $http({
                     method: 'GET',
-                    url:'/data'+scope.data_key
+                    url:'/data'+scope.data_key,
+                    params: resparams
                 }).success(function(data){
                     window.cacheData[scope.data_key] = data;
+                    window.cacheData[scope.data_key]['updatedata'] = 0;
                     var result =init();
                     scope.master = angular.copy(scope.row);
                     return result;
