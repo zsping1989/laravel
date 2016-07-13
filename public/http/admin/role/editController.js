@@ -36,7 +36,7 @@ define(['app', dataPath(), 'admin/public/headerController', 'admin/public/leftCo
                     url: $scope.edit_url,
                     data: data
                 }).success(function () {
-                    window.cacheData['/admin/role/list'] = false; //更新页面数据
+                    updateData('/admin/role/list',1);
                     $timeout(function () {
                         if ($scope.row.id) {
                             $location.path($scope.back_url);

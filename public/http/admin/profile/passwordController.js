@@ -21,7 +21,6 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                 url: $scope.edit_url,
                 data: data
             }).success(function(){
-                window.cacheData['/admin/profile/password'] = false; //更新页面数据
 
             }).error(function(data){
                 if(typeof data == "object"){

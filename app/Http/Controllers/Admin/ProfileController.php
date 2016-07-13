@@ -52,6 +52,17 @@ class ProfileController extends Controller{
         return Response::returns(['row'=>UserLogic::getUser()]);
     }
 
+    /**
+     * 执行修改资料
+     */
+    public function postInfo(){
+        dd();
+    }
+
+    protected function getValidateUserInfo(){
+        //return ['old_password'=>'required','password'=>'required|digits_between:6,18|confirmed'];
+    }
+
 
 
 
