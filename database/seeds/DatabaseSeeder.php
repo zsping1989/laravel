@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call('ApiParamTableSeeder'); //创建权限url数据
         $this->call('RoleTableSeeder'); //创建角色,包括分配权限
         $this->call('UserTableSeeder'); //创建普通用户,分配后台用户,分配后台用户角色
+        $this->call('NotificationCategorieTableSeeder'); //消息分类数据
 
     }
 }

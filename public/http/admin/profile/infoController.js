@@ -18,9 +18,12 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
 
         //提交
         $scope.submit = function(){
-            var data = $scope.row;
-            if(!data.parent_id){
-                delete data.parent_id;
+            var data = {};
+            for (var i in $scope.row){
+                if(i=='mobile_phone' && $scope.row.mobile_phone==$scope.master.mobile_phone){
+                    continue;
+                }
+                data[i] = $scope.row[i];
             }
             $http({
                 method: 'POST',

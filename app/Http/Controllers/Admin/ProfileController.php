@@ -7,7 +7,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Logics\Facade\UserLogic;
-use Illuminate\Support\Facades\Auth;
+use App\User;
+use Fenos\Notifynder\Facades\Notifynder;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request as ValidateRequest;
 
@@ -29,10 +30,6 @@ class ProfileController extends Controller{
         //验证
         $this->validate($request,$this->getValidateRestPasswordRule());
         $user = UserLogic::getUser();
-        //确认旧密码
-        if(!Auth::validate(['email' => $user['email'], 'password' => $request->input('old_password')])){
-            return Response::returns(['old_password'=>'密码错误请重新输入!'],422);
-        }
         $user->update(['password'=> bcrypt($request->input('password'))]);
         return ['alert'=>alert(['content'=>'修改密码成功!'])];
     }
@@ -42,7 +39,7 @@ class ProfileController extends Controller{
      * 返回: array
      */
     protected function getValidateRestPasswordRule(){
-        return ['old_password'=>'required','password'=>'required|digits_between:6,18|confirmed'];
+        return ['old_password'=>'required|ckeck_password','password'=>'required|digits_between:6,18|confirmed'];
     }
 
     /**
@@ -55,12 +52,26 @@ class ProfileController extends Controller{
     /**
      * 执行修改资料
      */
-    public function postInfo(){
-        dd();
+    public function postInfo(ValidateRequest $request){
+        //验证字段
+        $this->validate($request,$this->getValidateUserInfo());
+        //只允许修改字段
+        $only = $request->has('mobile_phone') ? ['mobile_phone','name'] : ['name'];
+        //修改个人资料
+        UserLogic::getUser()->update($request->only($only));
+        //弹窗消息
+        return ['alert'=>alert(['content'=>'修改资料!'])];
     }
 
+    /**
+     * 个人资料修改验证规则
+     * 返回: array
+     */
     protected function getValidateUserInfo(){
-        //return ['old_password'=>'required','password'=>'required|digits_between:6,18|confirmed'];
+        return [
+            'mobile_phone'=>'sometimes|required|mobile_phone|digits:11|unique:users,mobile_phone',
+            'name'=>'required'
+        ];
     }
 
 

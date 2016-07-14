@@ -2,11 +2,13 @@
 
 namespace App;
 
+use Fenos\Notifynder\Notifable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use Notifable;
     //软删除
     use SoftDeletes;
 
@@ -42,6 +44,8 @@ class User extends Authenticatable
         });
         return $query;
     }
+
+
 
 
 }

@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder
         //创建一个超级管理员用户
         $superUser = factory(\App\User::class)->make([
             'uname'=>'zsping1989',
-            'name'=>'张世平',
+            'name'=>'系统',
             'email'=>'214986304@qq.com',
             'password'=>bcrypt(123456),
             'mobile_phone'=>'13699411148',
