@@ -39,6 +39,15 @@
                                                         <td>创建一个创建迁移文件</td>
                                                     </tr>
                                                     <tr>
+                                                        <td>convert:migration</td>
+                                                        <td>数据库表导出迁徙文件</td>
+                                                        <td>
+                                                            <input name="cm_name" ng-init="cm_name='tests'" ng-model="cm_name"  placeholder="请填写数据库表名称">->表名称<br />
+                                                        </td>
+                                                        <td><button ng-click="create({'artisan':'convert:migration','name':cm_name})">创建</button></td>
+                                                        <td>创建数据库已有数据表的迁徙文件</td>
+                                                    </tr>
+                                                    <tr>
                                                         <td>make:seeder</td>
                                                         <td>创建数据填充文件</td>
                                                         <td>
@@ -91,6 +100,7 @@
                                                 <div class="box-body">
                                                     <table class="table table-hover table-bordered">
                                                         <tr>
+                                                            <th>命令</th>
                                                             <th>命令名称</th>
                                                             <th>命令选项</th>
                                                             <th>执行按钮</th>

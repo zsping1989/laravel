@@ -178,13 +178,13 @@ class UserLogic{
      * 返回: static
      */
     public function getNotificationsNotRead(){
-        return collect($this->user->getNotificationsNotRead()->toArray())->groupBy(function ($item) {
+  /*      return collect($this->user->getNotificationsNotRead()->toArray())->groupBy(function ($item) {
             return 'category_id_'.$item['category_id'];
         })->map(function($item){
             $result['count'] = collect($item)->count(); //总条数
             $result['data'] = collect($item)->slice(0,3); //取3条
             return $result;
-        });
+        });*/
     }
 
 }

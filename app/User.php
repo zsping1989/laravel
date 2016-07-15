@@ -2,13 +2,11 @@
 
 namespace App;
 
-use Fenos\Notifynder\Notifable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifable;
     //软删除
     use SoftDeletes;
 
@@ -26,11 +24,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token','deleted_at'
     ];
-    //关系模型
+
+    //用户-后台用户
     public function admin(){
         return $this->hasOne('App\Models\Admin');
     }
 
+
+
+    //条件筛选查询
     public function scopeOptions($query,array $options=[])
     {
         //条件筛选

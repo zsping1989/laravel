@@ -15,7 +15,7 @@
                         aria-haspopup="true"
                         aria-expanded="false">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="label label-success">{{messages.category_id_1.count || 0}}</span>
+                        <span class="label label-success" ng-if="messages.category_id_1.count">{{messages.category_id_1.count}}</span>
                     </a>
                     <ul class="dropdown-menu"  role="menu">
                         <li class="header">你有{{messages.category_id_1.count || 0}}条消息</li>
@@ -46,15 +46,15 @@
                         aria-haspopup="true"
                         aria-expanded="false">
                         <i class="fa fa-bell-o"></i>
-                        <span class="label label-warning">10</span>
+                        <span class="label label-warning" ng-if="messages.category_id_2.count">{{messages.category_id_2.count}}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">你有10个提醒</li>
-                        <li>
+                        <li class="header">你有{{messages.category_id_2.count || 0}}个提醒</li>
+                        <li ng-repeat="row in messages.category_id_2.data">
                             <ul class="menu">
                                 <li>
                                     <a >
-                                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                        <i class="fa fa-users text-aqua"></i> {{row.text}}
                                     </a>
                                 </li>
                             </ul>
