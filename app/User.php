@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Exceptions\message\src\Message;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -9,6 +10,7 @@ class User extends Authenticatable
 {
     //软删除
     use SoftDeletes;
+    use Message;
 
     //批量赋值白名单
     protected $fillable = [

@@ -6,6 +6,8 @@
  * 日期: 2016/7/15
  * 时间: 17:02
  */
+namespace App\Exceptions\message\src;
+
 class MessageManager{
 
 }

@@ -6,6 +6,8 @@
  * 日期: 2016/7/15
  * 时间: 17:01
  */
+namespace App\Exceptions\message\src;
+
 trait Message{
     //用户-用户消息
     public function messages(){
