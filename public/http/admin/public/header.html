@@ -15,11 +15,11 @@
                         aria-haspopup="true"
                         aria-expanded="false">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="label label-success">1</span>
+                        <span class="label label-success">{{messages.category_id_1.count || 0}}</span>
                     </a>
                     <ul class="dropdown-menu"  role="menu">
-                        <li class="header">你有一条消息</li>
-                        <li>
+                        <li class="header">你有{{messages.category_id_1.count || 0}}条消息</li>
+                        <li ng-repeat="row in messages.category_id_1.data">
                             <ul class="menu">
                                 <li><!-- start message -->
                                     <a >
@@ -27,10 +27,10 @@
                                             <img src="/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                         </div>
                                         <h4>
-                                            Support Team
+                                            你有新消息了
                                             <small><i class="fa fa-clock-o"></i> 5 mins</small>
                                         </h4>
-                                        <p>Why not buy a new awesome theme?</p>
+                                        <p>{{row.text}}</p>
                                     </a>
                                 </li><!-- end message -->
                             </ul>

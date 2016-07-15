@@ -7,8 +7,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Logics\Facade\UserLogic;
-use App\User;
-use Fenos\Notifynder\Facades\Notifynder;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request as ValidateRequest;
 
