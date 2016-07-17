@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Exceptions\message\src\Message;
+use Message\Message;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

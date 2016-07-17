@@ -1,6 +1,6 @@
 <?php
 
-use App\Exceptions\message\src\Models\Msgtpl;
+use Message\Models\Msgtpl;
 use Illuminate\Database\Seeder;
 
 class MsgtplTableSeeder extends Seeder

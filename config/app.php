@@ -160,6 +160,7 @@ return [
         App\Providers\ResponseMacroServiceProvider::class,
         MarginTree\Providers\MarginTreeServiceProvider::class,
         App\Providers\LogicServiceProvider::class,
+        Message\Providers\MessageServiceProvider::class,
 
     ],
 

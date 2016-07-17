@@ -28,7 +28,8 @@
         "psr-4": {
             "App\\": "app/",
             "Model\\":"app/Model/",
-            "Gregwar\\Captcha\\": "vendor/Captcha/"
+            "Gregwar\\Captcha\\": "vendor/Captcha/",
+            "Message\\":"vendor/zsping1989/message/src/"
         },
         "files":[
             "app/helpers.php"
