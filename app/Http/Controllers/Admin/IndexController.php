@@ -14,7 +14,7 @@ class IndexController extends Controller
      * 返回: mixed
      */
     public function getIndex(){
-        User::find(1)->sendMessage(2,'messages','你好!');
+        //User::find(1)->sendMessage(2,'messages','你好!');
         return Response::returns([]);
     }
 
