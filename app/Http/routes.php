@@ -65,7 +65,7 @@ Route::group(['prefix'=>'data/admin','namespace'=>'Admin','middleware'=>['auth',
     Route::controller('exploit', 'ExploitController'); //开发工具控制器
     Route::controller('role', 'RoleController'); //角色资源控制器
     Route::controller('user', 'UserController'); //用户资源控制器
-    //Route::controller('profile', 'ProfileController'); //个人设置
+    Route::controller('profile', 'ProfileController'); //个人设置
     Route::controller('test', 'TestController');
     Route::controller('/', 'IndexController');
 });
