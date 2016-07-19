@@ -15,11 +15,11 @@
                         aria-haspopup="true"
                         aria-expanded="false">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="label label-success" ng-if="messages.category_id_1.count">{{messages.category_id_1.count}}</span>
+                        <span class="label label-success" ng-if="user_msg.messages.total">{{user_msg.messages.total}}</span>
                     </a>
                     <ul class="dropdown-menu"  role="menu">
-                        <li class="header">你有{{messages.category_id_1.count || 0}}条消息</li>
-                        <li ng-repeat="row in messages.category_id_1.data">
+                        <li class="header">你有{{user_msg.messages.total || 0}}条新消息</li>
+                        <li ng-repeat="row in user_msg.messages.data">
                             <ul class="menu">
                                 <li><!-- start message -->
                                     <a >
@@ -27,10 +27,10 @@
                                             <img src="/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                         </div>
                                         <h4>
-                                            你有新消息了
-                                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                            {{row.subject}}
+                                            <small><i class="fa fa-clock-o"></i> {{row.format_time}}</small>
                                         </h4>
-                                        <p>{{row.text}}</p>
+                                        <p>{{row.content}}</p>
                                     </a>
                                 </li><!-- end message -->
                             </ul>
@@ -46,15 +46,15 @@
                         aria-haspopup="true"
                         aria-expanded="false">
                         <i class="fa fa-bell-o"></i>
-                        <span class="label label-warning" ng-if="messages.category_id_2.count">{{messages.category_id_2.count}}</span>
+                        <span class="label label-warning" ng-if="remind.messages.total">{{remind.messages.total}}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">你有{{messages.category_id_2.count || 0}}个提醒</li>
-                        <li ng-repeat="row in messages.category_id_2.data">
+                        <li class="header">你有{{remind.messages.total || 0}}个提醒</li>
+                        <li ng-repeat="row in remind.messages.data">
                             <ul class="menu">
                                 <li>
                                     <a >
-                                        <i class="fa fa-users text-aqua"></i> {{row.text}}
+                                        <i class="fa fa-users text-aqua"></i> {{row.content}}
                                     </a>
                                 </li>
                             </ul>

@@ -67,7 +67,11 @@ class ResponseMacroServiceProvider extends ServiceProvider
             $global['user'] = $user; //用户信息
             $global['menus'] = $global['user'] ? UserLogic::getUserInfo('menus') : null; //菜单数据
         }
-        $global['messages'] = $user ? UserLogic::getNotificationsNotRead():null;
+        if($user){
+            $global['user_msg'] = UserLogic::getAllNotReadLimit('user.message'); //用户消息
+            $global['remind'] = UserLogic::getAllNotReadLimit('system.message'); //系统提醒
+        }
+
         $value['global'] = $global;
     }
 

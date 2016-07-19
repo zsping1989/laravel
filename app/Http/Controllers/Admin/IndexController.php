@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
+use App\Logics\Facade\UserLogic;
 use Illuminate\Support\Facades\Response;
 
 use App\Http\Controllers\Controller;
@@ -14,7 +14,12 @@ class IndexController extends Controller
      * 返回: mixed
      */
     public function getIndex(){
-        //User::find(1)->sendMessage(2,'messages','你好!');
+
+       /* return User::find(2)->sendMessage('user.message',[
+            'user_id'=>1,
+            'subject'=>'你好!',
+            'content'=>'你好你好'
+        ]);*/
         return Response::returns([]);
     }
 

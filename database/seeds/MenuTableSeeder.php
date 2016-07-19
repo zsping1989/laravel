@@ -373,7 +373,7 @@ class MenuTableSeeder extends Seeder
             'name'=>'系统消息',
             'icons'=>'fa-bell-o',
             'prefix'=>'#',
-            'url'=>'/admin/profile/info',
+            'url'=>'/admin/profile/message',
             'method'=>1,
             'description' => '个人资料修改',
             'parent_id'=>6,

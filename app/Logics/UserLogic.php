@@ -12,6 +12,7 @@ use App\Models\Menu;
 use App\Models\Role;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Message\Facades\Message;
 
 class UserLogic{
     //存储后台用户信息
@@ -185,6 +186,10 @@ class UserLogic{
             $result['data'] = collect($item)->slice(0,3); //取3条
             return $result;
         });*/
+    }
+
+    public function getAllNotReadLimit($msgtpl,$limit=3){
+       return Message::getAllNotReadLimit($this->getUserInfo('id'),$msgtpl,$limit);
     }
 
 }

@@ -21,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
             return new CustomValidator($translator, $data, $rules, $messages);
         });
 
+        //时间语言设置
+        \Carbon\Carbon::setLocale('zh');
 
 
     }
