@@ -23,6 +23,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
     {
         $macro = $this;
         $factory->macro('returns', function ($value,$status=200) use ($factory,$macro) {
+
             $value = collect($value);
             if(Request::input('callback')){ //jsonp
                return $factory->jsonp(Request::input('callback'),$value);
