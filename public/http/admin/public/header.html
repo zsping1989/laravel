@@ -15,11 +15,11 @@
                         aria-haspopup="true"
                         aria-expanded="false">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="label label-success" ng-if="user_msg.messages.total">{{user_msg.messages.total}}</span>
+                        <span class="label label-success" ng-if="messages['user.message'].msg_count">{{messages['user.message'].msg_count}}</span>
                     </a>
                     <ul class="dropdown-menu"  role="menu">
-                        <li class="header">你有{{user_msg.messages.total || 0}}条新消息</li>
-                        <li ng-repeat="row in user_msg.messages.data">
+                        <li class="header">你有{{messages['user.message'].msg_count || 0}}条新消息</li>
+                        <li ng-repeat="row in messages['user.message'].messages">
                             <ul class="menu">
                                 <li><!-- start message -->
                                     <a >
@@ -46,11 +46,11 @@
                         aria-haspopup="true"
                         aria-expanded="false">
                         <i class="fa fa-bell-o"></i>
-                        <span class="label label-warning" ng-if="remind.messages.total">{{remind.messages.total}}</span>
+                        <span class="label label-warning" ng-if="messages['system.message'].msg_count">{{messages['system.message'].msg_count}}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">你有{{remind.messages.total || 0}}个提醒</li>
-                        <li ng-repeat="row in remind.messages.data">
+                        <li class="header">你有{{messages['system.message'].msg_count || 0}}个提醒</li>
+                        <li ng-repeat="row in messages['system.message'].messages">
                             <ul class="menu">
                                 <li>
                                     <a >
