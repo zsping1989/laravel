@@ -76,25 +76,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <table class="table table-bordered table-hover dataTable">
-                                                <tr role="row">
-                                                    <th class="sorting" style="width: 30px;">
-                                                        <input type="checkbox" value="1" name="selectAll"
-                                                               ng-click="selectAllId($this,selectAll)"
-                                                               ng-model="selectAll">
-                                                    </th>
-                                                    <th class="sorting ">标记                                                                    <span ng-click="getData($this,{'order':'read'})"
-                                                                                                                                                       ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.read=='desc','glyphicon glyphicon-sort-by-attributes':order.read!='desc'}"></span>
-                                                    </th>
-                                                    <th class="sorting ">主题                                                                    <span ng-click="getData($this,{'order':'subject'})"
-                                                    </th>
-                                                    <th class="sorting ">内容                                                                    <span ng-click="getData($this,{'order':'content'})"
-                                                    </th>
-                                                    <th class="sorting  visible-lg ">时间                                                                        <i class="glyphicon glyphicon-time"></i>                                                                     <span ng-click="getData($this,{'order':'created_at'})"
-                                                                                                                                                                                                                                                                                    ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.created_at=='desc','glyphicon glyphicon-sort-by-attributes':order.created_at!='desc'}"></span>
-                                                    </th>
-                                                    <th class="sorting">操作</th>
-                                                </tr>
+                                            <table class="table table-hover dataTable">
                                                 <tr ng-repeat="row in data" role="row">
                                                     <td>
                                                         <input type="checkbox" value="{{row.id}}" name="ids[]" ng-model="ids[$index]"
@@ -108,17 +90,15 @@
                                                     <td>{{row.subject}}</td>
                                                     <td>{{row.content}}</td>
                                                     <td class="visible-lg">{{ row.format_time}}</td>
-                                                    <td>
-                                                        <button class="btn btn-xs btn-danger" title="删除" ng-click="delete($this,row.id)" type="button">
-                                                            <i class="glyphicon glyphicon-trash"></i>
-                                                        </button>
-                                                    </td>
                                                 </tr>
                                             </table>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-5">
+                                            <input type="checkbox" value="1" name="selectAll"
+                                                   ng-click="selectAllId($this,selectAll)"
+                                                   ng-model="selectAll">
                                             <button class="btn btn-default btn-sm" title="删除选中"  ng-click="delete($this)">
                                                 <i class="fa fa-trash-o"></i>
                                             </button>
