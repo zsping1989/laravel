@@ -15,6 +15,7 @@ class IndexController extends Controller
      */
     public function getIndex(){
 
+
        /* return User::find(2)->sendMessage('user.message',[
             'user_id'=>1,
             'subject'=>'你好!',

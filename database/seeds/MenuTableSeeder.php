@@ -370,7 +370,7 @@ class MenuTableSeeder extends Seeder
 
         //ID:32
         factory(\App\Models\Menu::class)->create([
-            'name'=>'系统消息',
+            'name'=>'消息中心',
             'icons'=>'fa-bell-o',
             'prefix'=>'#',
             'url'=>'/admin/profile/message',

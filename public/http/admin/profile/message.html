@@ -1,0 +1,146 @@
+<div class="skin-blue sidebar-mini" ng-class="{'sidebar-collapse':left_hidden}">
+    <div class="wrapper">
+        <div ng-include="'/http/admin/public/header.html'"></div>
+        <div ng-include="'/http/admin/public/left.html'"></div>
+        <div style="min-height: 715px;" class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div ng-include="'/http/admin/public/nav.html'"></div>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row"  ng-controller="admin-profile-messageCtrl">
+                    <div class="col-md-3">
+                        <a class="btn btn-primary btn-block margin-bottom">工具栏</a>
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">消息分组</h3>
+                                <div class="box-tools">
+                                    <button class="btn btn-box-tool" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="box-body no-padding">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li class="active"><a href="#"><i class="fa fa-inbox"></i> 所有消息 <span class="label label-primary pull-right">12</span></a></li>
+                                    <li><a href="#"><i class="fa fa-envelope-o"></i> 用户消息 </a></li>
+                                    <li><a href="#"><i class="fa fa-bell-o"></i> 系统消息</a></li>
+                                    <li><a href="#"><i class="fa fa-file-text-o"></i> 已发消息 <span class="label label-warning pull-right">65</span></a></li>
+                                </ul>
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->
+                        <div class="box box-solid" ng-class="{'collapsed-box':hidden_lable==1}" >
+                            <div class="box-header with-border">
+                                <h3 class="box-title">标记</h3>
+                                <div class="box-tools">
+                                    <button class="btn btn-box-tool" data-widget="collapse" ng-click="hidden_lable = !hidden_lable"><i class="fa fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body no-padding">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#"><i class="fa fa-circle-o text-red"></i> 所有</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> 已读</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> 未读</a></li>
+                                </ul>
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                    </div><!-- /.col -->
+                    <div class="col-md-9">
+                        <div class="box box-primary"
+                             ng-init="data_url='/data/admin/profile/list';delete_url='/data/admin/profile/destroy'">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">用户消息列表</h3>
+                                <div class="box-tools">
+                                    <div class="input-group">
+                                        <input type="text" ng-init="where[0].key='id';where[0].exp='like';where[0].val= where[0].val || '';"
+                                               ng-model="where[0].val" placeholder="Search"
+                                               class="form-control input-sm pull-right">
+                                        <div class="input-group-btn">
+                                            <button ng-init="reset=where[0].val ? 1 : 0" ng-click="getData($this)"
+                                                    class="btn btn-sm btn-default"><i class="fa fa-search"></i>
+                                            </button>
+                                            <button type="button" ng-click="getData($this,{reset:1})"
+                                                    class="btn btn-sm btn-default"><i class="fa  fa-repeat"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="dataTables_wrapper form-inline dt-bootstrap">
+                                    <div class="row">
+                                        <div class="col-sm-6"></div>
+                                        <div class="col-sm-6"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table class="table table-bordered table-hover dataTable">
+                                                <tr role="row">
+                                                    <th class="sorting" style="width: 30px;">
+                                                        <input type="checkbox" value="1" name="selectAll"
+                                                               ng-click="selectAllId($this,selectAll)"
+                                                               ng-model="selectAll">
+                                                    </th>
+                                                    <th class="sorting ">标记                                                                    <span ng-click="getData($this,{'order':'read'})"
+                                                                                                                                                       ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.read=='desc','glyphicon glyphicon-sort-by-attributes':order.read!='desc'}"></span>
+                                                    </th>
+                                                    <th class="sorting ">主题                                                                    <span ng-click="getData($this,{'order':'subject'})"
+                                                    </th>
+                                                    <th class="sorting ">内容                                                                    <span ng-click="getData($this,{'order':'content'})"
+                                                    </th>
+                                                    <th class="sorting  visible-lg ">时间                                                                        <i class="glyphicon glyphicon-time"></i>                                                                     <span ng-click="getData($this,{'order':'created_at'})"
+                                                                                                                                                                                                                                                                                    ng-class="{'glyphicon glyphicon-sort-by-attributes-alt':order.created_at=='desc','glyphicon glyphicon-sort-by-attributes':order.created_at!='desc'}"></span>
+                                                    </th>
+                                                    <th class="sorting">操作</th>
+                                                </tr>
+                                                <tr ng-repeat="row in data" role="row">
+                                                    <td>
+                                                        <input type="checkbox" value="{{row.id}}" name="ids[]" ng-model="ids[$index]"
+                                                               ng-init="allIds[$index] = row.id"
+                                                               ng-true-value="{{row.id}}" ng-checked="selectAll">
+                                                    </td>
+                                                    <td>
+                                                        <span class="label label-primary" ng-if="row.read=='0'">未读</span>
+                                                        <span class="label label-success" ng-if="row.read=='1'">已读</span>
+                                                    </td>
+                                                    <td>{{row.subject}}</td>
+                                                    <td>{{row.content}}</td>
+                                                    <td class="visible-lg">{{ row.format_time}}</td>
+                                                    <td>
+                                                        <button class="btn btn-xs btn-danger" title="删除" ng-click="delete($this,row.id)" type="button">
+                                                            <i class="glyphicon glyphicon-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <button class="btn btn-default btn-sm" title="删除选中"  ng-click="delete($this)">
+                                                <i class="fa fa-trash-o"></i>
+                                            </button>
+                                            <button class="btn btn-default btn-sm" title="刷新" ng-click="getData($this,{refresh:1})">
+                                                <i class="fa fa-refresh"></i>
+                                            </button>
+                                            <a class="btn btn-default btn-sm" title="添加" href="#/admin/profile/edit/0">
+                                                <i class="fa fa-plus"></i>
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-7 ">
+                                            <div ng-include="'/http/admin/public/page.html'" class="pull-right"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <div ng-include="'/http/admin/public/right.html'"></div>
+    </div>
+</div>

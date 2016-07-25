@@ -7,11 +7,24 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Logics\Facade\UserLogic;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request as ValidateRequest;
+use Message\Models\Message;
 
 class ProfileController extends Controller{
-
+    /**
+     * 处理请求参数
+     */
+    protected function handleRequest(){
+        Request::offsetSet('order',json_decode(Request::input('order','[]')));//排序处理
+        Request::offsetSet('where',collect(Request::input('where',[]))->map(function($item){
+            if($item){
+                return json_decode($item);
+            }
+        })->toArray()); //条件筛选处理
+    }
 
     /**
      * 修改密码
@@ -71,6 +84,44 @@ class ProfileController extends Controller{
             'name'=>'required'
         ];
     }
+
+    /**
+     * 附带参数返回
+     * param $data
+     * 返回: static
+     */
+    protected function withParam($data){
+        $param = [
+            'order'=> Request::input('order',[]), //排序
+            'where'=>Request::input('where',[]), //条件查询
+        ];
+        return collect($data)->merge($param);
+    }
+
+    /**
+     * 获取菜单数据
+     * @return static
+     */
+    public function getList(){
+        $this->handleRequest();
+        $data = Message::options(Request::only('where', 'order'))->paginate();
+        foreach($data as &$item){
+            $item->format_time = Carbon::createFromFormat('Y-m-d H:i:s',$item->created_at)->diffForHumans();
+        }
+        return $this->withParam($data);
+    }
+
+    /**
+     * 列表数据展示页面
+     * @return mixed
+     */
+    public function getMessage(){
+        $data['list'] = $this->getList();
+        return Response::returns($data);
+    }
+
+
+
 
 
 

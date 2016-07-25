@@ -3,6 +3,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
         ,'$http','$location','$timeout','$modal',
     function ($scope,$rootScope,Model,View,$alert,$http,$location,$timeout,$modal) {
         dump(datas);
+        datas.row = datas.row || {};
         $rootScope = View.with(datas.global, $rootScope);
         $scope = View.withCache(datas, $scope);
         /* 条件查询数据 */

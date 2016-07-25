@@ -19,7 +19,7 @@
                     </a>
                     <ul class="dropdown-menu"  role="menu">
                         <li class="header">你有{{messages['user.message'].msg_count || 0}}条新消息</li>
-                        <li ng-repeat="row in messages['user.message'].messages">
+                        <li  ng-repeat="row in messages['user.message'].messages">
                             <ul class="menu">
                                 <li><!-- start message -->
                                     <a >
@@ -69,10 +69,10 @@
                         aria-haspopup="true"
                         aria-expanded="false" >
                         <i class="fa fa-flag-o"></i>
-                        <span class="label label-danger">9</span>
+                        <span class="label label-danger"ng-if="messages['system.task'].msg_count">{{messages['system.task'].msg_count}}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">你有9个任务</li>
+                        <li class="header">你有{{messages['system.task'].msg_count || 0}}个任务</li>
                         <li>
                             <ul class="menu">
                                 <li><!-- Task item -->
