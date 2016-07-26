@@ -175,21 +175,25 @@ class UserLogic{
     }
 
     /**
-     * 获取用户未读消息
+     * 获取用户所有未读消息
      * 返回: static
      */
-    public function getNotificationsNotRead(){
-  /*      return collect($this->user->getNotificationsNotRead()->toArray())->groupBy(function ($item) {
-            return 'category_id_'.$item['category_id'];
-        })->map(function($item){
-            $result['count'] = collect($item)->count(); //总条数
-            $result['data'] = collect($item)->slice(0,3); //取3条
-            return $result;
-        });*/
+    public function getAllNotRead($msgtpl=null){
+        return Message::getAllNotRead($this->getUserInfo('id'),$msgtpl);
     }
 
+    /**
+     * 获取未读消息分组的前三条数据
+     * param $msgtpl
+     * param int $limit
+     * 返回: mixed
+     */
     public function getAllNotReadLimit($msgtpl,$limit=3){
        return Message::getAllNotReadLimit($this->getUserInfo('id'),$msgtpl,$limit);
+    }
+
+    public function getCountNotReadByMsgtpl($msgtpl=null){
+        return Message::getCountNotReadByMsgtpl($this->getUserInfo('id'),$msgtpl);
     }
 
 }

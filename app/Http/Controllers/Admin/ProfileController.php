@@ -108,6 +108,7 @@ class ProfileController extends Controller{
         foreach($data as &$item){
             $item->format_time = Carbon::createFromFormat('Y-m-d H:i:s',$item->created_at)->diffForHumans();
         }
+        $data = collect($data)->put('message_count',UserLogic::getCountNotReadByMsgtpl(['messages','user','system'])->keyBy('name'));
         return $this->withParam($data);
     }
 

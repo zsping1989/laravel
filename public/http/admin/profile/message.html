@@ -22,10 +22,24 @@
                             </div>
                             <div class="box-body no-padding">
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li class="active"><a href="#"><i class="fa fa-inbox"></i> 所有消息 <span class="label label-primary pull-right">12</span></a></li>
-                                    <li><a href="#"><i class="fa fa-envelope-o"></i> 用户消息 </a></li>
-                                    <li><a href="#"><i class="fa fa-bell-o"></i> 系统消息</a></li>
-                                    <li><a href="#"><i class="fa fa-file-text-o"></i> 已发消息 <span class="label label-warning pull-right">65</span></a></li>
+                                    <li class="active">
+                                        <a href="#">
+                                            <i class="fa fa-inbox"></i> 所有消息
+                                            <span class="label label-primary pull-right" ng-if="message_count['messages']['msg_count']">{{message_count['messages']['msg_count']}}</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-envelope-o"></i> 用户消息
+                                            <span class="label label-warning pull-right" ng-if="message_count['user']['msg_count']">{{message_count['user']['msg_count']}}</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-bell-o"></i> 系统消息
+                                            <span class="label label-danger pull-right" ng-if="message_count['system']['msg_count']">{{message_count['system']['msg_count']}}</span>
+                                        </a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-file-text-o"></i> 已发消息</a></li>
                                 </ul>
                             </div><!-- /.box-body -->
                         </div><!-- /. box -->
