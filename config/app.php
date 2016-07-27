@@ -157,10 +157,14 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\ResponseMacroServiceProvider::class,
-        MarginTree\Providers\MarginTreeServiceProvider::class,
-        App\Providers\LogicServiceProvider::class,
-        Message\Providers\MessageServiceProvider::class,
+
+        App\Providers\ResponseMacroServiceProvider::class, //响应宏注册
+        MarginTree\Providers\MarginTreeServiceProvider::class, //边界树注册
+        Message\Providers\MessageServiceProvider::class, //消息模块
+        Custom\Commands\Providers\CommandsServiceProvider::class, //自定义代码生成
+
+        App\Providers\LogicServiceProvider::class, //逻辑模块
+
 
     ],
 

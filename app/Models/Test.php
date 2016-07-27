@@ -1,6 +1,6 @@
 <?php
 /**
- * 测试模型11
+ * 测试模型
  */
 namespace App\Models;
 use App\BaseModel;
