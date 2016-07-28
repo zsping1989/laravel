@@ -153,6 +153,8 @@ return [
         /*
          * Application Service Providers...
          */
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class, //编辑器自动补全
+
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,

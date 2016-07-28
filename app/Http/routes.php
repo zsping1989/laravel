@@ -10,6 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/data/swagger/doc', 'SwaggerController@doc');
 Route::get('/', 'Home\IndexController@index');
 Route::group(['prefix'=>'home','namespace'=>'Home'],function(){
     Route::controller('auth', 'AuthController');
