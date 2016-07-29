@@ -48,7 +48,8 @@ class ResponseMacroServiceProvider extends ServiceProvider
                 $macro->addData($value);
                 $value['user'] = UserLogic::getUser(); //用户信息
                 $value['menus'] = $value['user'] ? UserLogic::getUserInfo('menus') : null;
-                return view('index',['data'=>$value]);
+                return $factory->json($value,$status);
+                //return view('index',['data'=>$value]);
             }
             return $factory->make($value,$status);
         });
