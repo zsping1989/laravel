@@ -25,7 +25,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
         $factory->macro('returns', function ($value,$status=200) use ($factory,$macro) {
             $value = collect($value);
             if(Request::input('callback')){ //jsonp
-               return $factory->jsonp(Request::input('callback'),$value);
+               return $factory->jsonp(Request::input('callback'),$value,$status);
             }elseif(Request::input('define')=='AMD'){ //AMD
                 $macro->addData($value);
                 if($redirect = $value->get('redirect')){
@@ -41,7 +41,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
             }elseif(Request::has('dd')){ //数据打印页面
                 dd($value->toArray());
             }elseif(Request::ajax() || Request::wantsJson()){ //json
-                $value = collect($value)->toJson();
+                return $factory->json($value,$status);
             }elseif(Request::has('script')){ //页面
                 $value = 'var '.Request::input('script').' = '.collect($value)->toJson().';';
             }else{

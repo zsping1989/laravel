@@ -1,15 +1,31 @@
 <?php
+
 /**
  * @SWG\Swagger(
- *   @SWG\Info(
- *     title="接口API",
- *     version="1.0.0"
- *   ),
- *   @SWG\Tag(name="Admin", description="验证模块"),
- *   @SWG\Tag(name="Index", description="用户模块"),
- *   schemes={"http"},
- *   host="www.laravels.com",
- *   basePath="/data/admin"
+ *     basePath="/data/admin",
+ *     host="www.laravels.com",
+ *     schemes={"http"},
+ *     @SWG\Info(
+ *         version="1.0.0",
+ *         title="接口API",
+ *         @SWG\Contact(name="张世平", url="http://www.laravels.com"),
+ *         @SWG\License(name="大家好", url="http://creativecommons.org/licenses/by/4.0/")
+ *     ),
+ *     @SWG\Tag(name="Admin", description="验证模块"),
+ *     @SWG\Tag(name="Index", description="用户模块"),
+ *     @SWG\Definition(
+ *         definition="Error",
+ *         required={"code", "message"},
+ *         @SWG\Property(
+ *             property="code",
+ *             type="integer",
+ *             format="int32"
+ *         ),
+ *         @SWG\Property(
+ *             property="message",
+ *             type="string"
+ *         )
+ *     )
  * )
  */
 
@@ -20,6 +36,7 @@ use App\User;
 use Illuminate\Support\Facades\Response;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
 use Message\Facades\Message;
 
 class IndexController extends Controller
@@ -30,7 +47,8 @@ class IndexController extends Controller
      *   summary="显示所有用户",
      *   tags={"Index"},
      *   @SWG\Parameter(name="Authorization", in="header", required=false, description="用户凭证", type="string"),
-     *   @SWG\Response(
+     *   @SWG\Parameter(name="aa", in="header", required=false, description="用户凭证", type="string"),
+     *     @SWG\Response(
      *     response=200,
      *     description="all users"
      *   ),
@@ -41,7 +59,7 @@ class IndexController extends Controller
      * )
      */
     public function getShow() {
-        return User::all();
+        return Response::returns(User::all());
     }
     /**
      * @SWG\Get(path="/store/inventory",
@@ -68,12 +86,13 @@ class IndexController extends Controller
      * )
      */
 
+
+
     /**
      * 后台首页
      * 返回: mixed
      */
     public function getIndex(){
-
         //dd(Message::getCountNotReadByMsgtpl(1,['messages','system.message'])->toArray());
         //dd(UserLogic::getCountNotReadByMsgtpl(['messages','user','system'])->toArray());
 
