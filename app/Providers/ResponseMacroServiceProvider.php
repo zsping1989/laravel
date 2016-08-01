@@ -46,8 +46,6 @@ class ResponseMacroServiceProvider extends ServiceProvider
                 $value = 'var '.Request::input('script').' = '.collect($value)->toJson().';';
             }else{
                 $macro->addData($value);
-                $value['user'] = UserLogic::getUser(); //用户信息
-                $value['menus'] = $value['user'] ? UserLogic::getUserInfo('menus') : null;
                 return $factory->json($value,$status);
                 //return view('index',['data'=>$value]);
             }

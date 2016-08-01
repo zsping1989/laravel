@@ -10,51 +10,13 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/data/swagger/doc', 'SwaggerController@doc');
-Route::get('/', 'Home\IndexController@index');
-Route::group(['prefix'=>'home','namespace'=>'Home'],function(){
-    Route::controller('auth', 'AuthController');
-    Route::controller('index', 'IndexController');
-    // 发送密码重置链接路由
-    Route::get('password/email', 'PasswordController@getEmail');
-    Route::post('password/email', 'PasswordController@postEmail');
 
-// 密码重置路由
-    Route::get('password/reset/{token?}', 'PasswordController@getReset');
-    Route::post('password/reset', 'PasswordController@postReset');
-});
 
 //前台路由设置
 Route::group(['prefix'=>'data/home','namespace'=>'Home'],function(){
-
+    Route::get('swagger', 'SwaggerController@doc'); //swagger接口文档说明路由
     Route::controller('auth', 'AuthController');
     Route::controller('index', 'IndexController');
-    // 发送密码重置链接路由
-    Route::get('password/email', 'PasswordController@getEmail');
-    Route::post('password/email', 'PasswordController@postEmail');
-
-// 密码重置路由
-    Route::get('password/reset/{token?}', 'PasswordController@getReset');
-    Route::post('password/reset', 'PasswordController@postReset');
-    /*
-     // 验证路由
-
-     // 用户注册路由
-     Route::get('register', 'AuthController@showRegistrationForm');
-     Route::post('register', 'AuthController@register');
-
-     // 密码重置路由
-     Route::get('password/reset/{token?}', 'PasswordController@showResetForm');
-     Route::post('password/email', 'PasswordController@sendResetLinkEmail');
-     Route::post('password/reset', 'PasswordController@reset');
-    */
-
-
-
-
-});
-Route::group(['namespace'=>'Admin'],function(){
-    //Route::resource('menu', 'MenuController');
 });
 
 
