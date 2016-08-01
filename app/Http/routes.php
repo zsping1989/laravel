@@ -13,7 +13,7 @@
 
 
 //前台路由设置
-Route::group(['prefix'=>'data/home','namespace'=>'Home'],function(){
+Route::group(['prefix'=>'data/home','namespace'=>'Home'],function($data){
     Route::get('swagger', 'SwaggerController@doc'); //swagger接口文档说明路由
     Route::controller('auth', 'AuthController');
     Route::controller('index', 'IndexController');
