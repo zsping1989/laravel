@@ -49,8 +49,8 @@ define(['angular'], function (angular) {
                 return scope;
             }
             //默认排序对象
-            scope.order = data.order || {};
-            data.where = data.where || {};
+            scope.order = data.order || [];
+            data.where = data.where || [];
             for (var i in scope.where) {
                 if (!data.where[i]) {
                     data.where[i] = scope.where[i];
@@ -76,7 +76,7 @@ define(['angular'], function (angular) {
                var resparams = {};
                 if(window.cacheData[scope.data_key]){
                     resparams.order = window.cacheData[scope.data_key]['order'];
-                    resparams.where = window.cacheData[scope.data_key]['where'];
+                    resparams['where[]'] = window.cacheData[scope.data_key]['where'];
                 }
                 $http({
                     method: 'GET',
@@ -124,10 +124,11 @@ define(['angular'], function (angular) {
             var where = $scope.where;
             var flog = false;
             for (var i in where) {
-                if (where[i].val.replace(/(^\s*)|(\s*$)/g, "")) {
-                    resparams['where[' + i + ']'] = where[i];
+                var val = where[i].val.replace(/(^\s*)|(\s*$)/g, "");
+                if (val) {
                     flog = true;
                 }
+                resparams['where[' + i + ']'] = where[i];
             }
             //查询条件为空不请求
             if (!params.order && !flog && page == $scope.current_page && !params.reset && !params.refresh) {

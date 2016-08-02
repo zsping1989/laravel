@@ -19,11 +19,15 @@ class ProfileController extends Controller{
      */
     protected function handleRequest(){
         Request::offsetSet('order',json_decode(Request::input('order','[]')));//排序处理
-        Request::offsetSet('where',collect(Request::input('where',[]))->map(function($item){
+        $where = Request::input('where',[]);
+        //dd($where);
+        $where = is_array($where) ? collect($where)->map(function($item){
             if($item){
-                return json_decode($item);
+                return json_decode($item,true);
             }
-        })->toArray()); //条件筛选处理
+        })->toArray() : json_decode($where,true);
+        //dd($where);
+        Request::offsetSet('where',$where); //条件筛选处理
     }
 
     /**
@@ -104,11 +108,20 @@ class ProfileController extends Controller{
      */
     public function getList(){
         $this->handleRequest();
+        //默认排序时间降序
+        if(!Request::input('order')){
+            Request::offsetSet('order',["created_at"=>'desc']);
+        }
+        //获取数据
         $data = Message::options(Request::only('where', 'order'))->paginate();
         foreach($data as &$item){
             $item->format_time = Carbon::createFromFormat('Y-m-d H:i:s',$item->created_at)->diffForHumans();
         }
+        $ids = $data->pluck('id');
+        //未读数据统计
         $data = collect($data)->put('message_count',UserLogic::getCountNotReadByMsgtpl(['messages','user','system'])->keyBy('name'));
+        //修改成已读
+        \Message\Facades\Message::updateReadByIds($ids);
         return $this->withParam($data);
     }
 

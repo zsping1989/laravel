@@ -1,6 +1,7 @@
 define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
     app.register.controller('admin-profile-messageCtrl', ["$scope",'$rootScope', 'Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
         $scope.data_key = '/admin/profile/list';
+        updateData('/admin/profile/list',1);
         dump(datas.list);
         $scope = View.withCache(datas.list,$scope);
         $rootScope = View.withCache(datas.global,$rootScope,1);
@@ -13,6 +14,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
         $scope.delete = Model.delete;
         $scope.selectAllId = Model.selectAllId;
         $scope.hidden_lable = 0;
+
     }]);
 })
 
