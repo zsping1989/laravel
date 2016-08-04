@@ -51,6 +51,17 @@ $ composer install
 165        //Message\Providers\MessageServiceProvider::class, //消息模块
 166        //Custom\Commands\Providers\CommandsServiceProvider::class, //自定义代码生成
 ```
+5. appache需要开启重写配置,Nginx配置重写规则如下
+```
+        if ($uri ~* "^/+data/(.*)") {
+          rewrite "^/+data/" /index.php/$1 break;
+        }
+        location / {
+            try_files $uri $uri/ /index.html;
+            index  index.html index.htm index.php;
+            #autoindex  on;
+        }
+```
 
 ```
 $ php artisan migrate --seed
