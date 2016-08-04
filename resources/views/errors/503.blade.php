@@ -1,46 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Be right back.</title>
-
-
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                color: #B0BEC5;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 72px;
-                margin-bottom: 40px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Be right back.</div>
-            </div>
-        </div>
-    </body>
+<head>
+    <meta charset="utf-8">
+    <title>后台管理系统</title>
+    <link rel="stylesheet" href="/lib/bootstrap/3.3.5/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="/css/ionicons/font-awesome.css">
+    <link rel="stylesheet" href="/css/ionicons/ionicons.css">
+    <link rel="stylesheet" href="/css/ate/AdminLTE.min.css">
+    <link rel="stylesheet" href="/css/ate/_all-skins.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/animate/animate.min.css">
+</head>
+<body>
+<!-- 前端入口引擎 -->
+<script data-main="/http/main.js" src="/lib/require/2.1.20/require.js"></script>
+<!-- 视图显示 -->
+<div ui-view></div>
+</body>
 </html>

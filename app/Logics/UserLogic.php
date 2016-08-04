@@ -12,6 +12,7 @@ use App\Models\Menu;
 use App\Models\Role;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Message\Facades\Message;
 
 class UserLogic{
     //存储后台用户信息
@@ -171,6 +172,28 @@ class UserLogic{
             $flog AND $no_disabled = true;
         }
         return $no_disabled;
+    }
+
+    /**
+     * 获取用户所有未读消息
+     * 返回: static
+     */
+    public function getAllNotRead($msgtpl=null){
+        return Message::getAllNotRead($this->getUserInfo('id'),$msgtpl);
+    }
+
+    /**
+     * 获取未读消息分组的前三条数据
+     * param $msgtpl
+     * param int $limit
+     * 返回: mixed
+     */
+    public function getAllNotReadLimit($msgtpl,$limit=3){
+       return Message::getAllNotReadLimit($this->getUserInfo('id'),$msgtpl,$limit);
+    }
+
+    public function getCountNotReadByMsgtpl($msgtpl=null){
+        return Message::getCountNotReadByMsgtpl($this->getUserInfo('id'),$msgtpl);
     }
 
 }

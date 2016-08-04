@@ -15,11 +15,11 @@
                         aria-haspopup="true"
                         aria-expanded="false">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="label label-success">1</span>
+                        <span class="label label-success" ng-if="messages['user.message'].msg_count">{{messages['user.message'].msg_count}}</span>
                     </a>
                     <ul class="dropdown-menu"  role="menu">
-                        <li class="header">你有一条消息</li>
-                        <li>
+                        <li class="header">你有{{messages['user.message'].msg_count || 0}}条新消息</li>
+                        <li  ng-repeat="row in messages['user.message'].messages">
                             <ul class="menu">
                                 <li><!-- start message -->
                                     <a >
@@ -27,10 +27,10 @@
                                             <img src="/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                         </div>
                                         <h4>
-                                            Support Team
-                                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                            {{row.subject}}
+                                            <small><i class="fa fa-clock-o"></i> {{row.format_time}}</small>
                                         </h4>
-                                        <p>Why not buy a new awesome theme?</p>
+                                        <p>{{row.content}}</p>
                                     </a>
                                 </li><!-- end message -->
                             </ul>
@@ -46,15 +46,15 @@
                         aria-haspopup="true"
                         aria-expanded="false">
                         <i class="fa fa-bell-o"></i>
-                        <span class="label label-warning">10</span>
+                        <span class="label label-warning" ng-if="messages['system.message'].msg_count">{{messages['system.message'].msg_count}}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">你有10个提醒</li>
-                        <li>
+                        <li class="header">你有{{messages['system.message'].msg_count || 0}}个提醒</li>
+                        <li ng-repeat="row in messages['system.message'].messages">
                             <ul class="menu">
                                 <li>
                                     <a >
-                                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                        <i class="fa fa-users text-aqua"></i> {{row.content}}
                                     </a>
                                 </li>
                             </ul>
@@ -69,10 +69,10 @@
                         aria-haspopup="true"
                         aria-expanded="false" >
                         <i class="fa fa-flag-o"></i>
-                        <span class="label label-danger">9</span>
+                        <span class="label label-danger"ng-if="messages['system.task'].msg_count">{{messages['system.task'].msg_count}}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">你有9个任务</li>
+                        <li class="header">你有{{messages['system.task'].msg_count || 0}}个任务</li>
                         <li>
                             <ul class="menu">
                                 <li><!-- Task item -->

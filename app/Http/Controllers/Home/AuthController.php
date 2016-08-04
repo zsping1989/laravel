@@ -215,6 +215,7 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
     /**
      * Send the response after the user was authenticated.
      *
@@ -231,17 +232,14 @@ class AuthController extends Controller
         if (method_exists($this, 'authenticated')) {
             return $this->authenticated($request, Auth::guard($this->getGuard())->user());
         }
-        //登录成功缓存用户数据
+        //用户数据记录
         UserLogic::loginCacheInfo();
 
         if(canRedirect()){
             return redirect()->intended($this->redirectPath());
         }
-        return Response::returns([
-            'redirect' => $this->redirectPath()
-        ]);
+        return orRedirect($this->redirectPath());
     }
-
 
 
 

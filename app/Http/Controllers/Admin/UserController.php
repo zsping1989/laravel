@@ -11,7 +11,6 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request as ValidateRequest;
 
 class UserController extends Controller
@@ -32,7 +31,7 @@ class UserController extends Controller
      * 返回: array
      */
     protected function getValidateRule(){
-        return ['uname'=>'sometimes|required|alpha_dash|between:6,18|unique:users,uname','password'=>'sometimes|required|digits_between:6,18','name'=>'required','email'=>'sometimes|required|email|unique:users,email','mobile_phone'=>'sometimes|required|mobile_phone|digits:11|unique:users,qq','qq'=>'integer'];
+        return ['uname'=>'sometimes|required|alpha_dash|between:6,18|unique:users,uname','password'=>'sometimes|required|digits_between:6,18','name'=>'required','email'=>'sometimes|required|email|unique:users,email','mobile_phone'=>'sometimes|required|mobile_phone|digits:11|unique:users,mobile_phone','qq'=>'integer'];
     }
 
     /**

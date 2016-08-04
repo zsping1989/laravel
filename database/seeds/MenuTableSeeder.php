@@ -347,7 +347,7 @@ class MenuTableSeeder extends Seeder
             'name'=>'资料修改',
             'icons'=>'fa-database',
             'prefix'=>'#',
-            'url'=>'/admin/user/info',
+            'url'=>'/admin/profile/info',
             'method'=>1,
             'description' => '个人资料修改',
             'parent_id'=>6,
@@ -360,7 +360,7 @@ class MenuTableSeeder extends Seeder
             'name'=>'密码修改',
             'icons'=>'fa-lock',
             'prefix'=>'#',
-            'url'=>'/admin/user/password',
+            'url'=>'/admin/profile/password',
             'method'=>1,
             'description' => '个人资料修改',
             'parent_id'=>6,
@@ -370,10 +370,10 @@ class MenuTableSeeder extends Seeder
 
         //ID:32
         factory(\App\Models\Menu::class)->create([
-            'name'=>'系统消息',
+            'name'=>'消息中心',
             'icons'=>'fa-bell-o',
             'prefix'=>'#',
-            'url'=>'/admin/user/message',
+            'url'=>'/admin/profile/message',
             'method'=>1,
             'description' => '个人资料修改',
             'parent_id'=>6,
@@ -504,6 +504,43 @@ class MenuTableSeeder extends Seeder
             'parent_id'=>7,
             'status'=>1
         ]);
+
+        //ID:43
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'404页面',
+            'icons'=>'',
+            'prefix'=>'#',
+            'is_page' => '1',
+            'url'=>'/home/page404',
+            'description' => '前端404页面',
+            'parent_id'=>4,
+            'status'=>1
+        ]);
+
+        //ID:44
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'500页面',
+            'icons'=>'',
+            'prefix'=>'#',
+            'is_page' => '1',
+            'url'=>'/home/page500',
+            'description' => '前端500页面',
+            'parent_id'=>4,
+            'status'=>1
+        ]);
+
+        //ID:45
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'前端主页',
+            'icons'=>'',
+            'prefix'=>'#',
+            'is_page' => '1',
+            'url'=>'/home/index',
+            'description' => '前端主页',
+            'parent_id'=>4,
+            'status'=>1
+        ]);
+
 
         //新建假数据3条
         //factory(\App\Models\Menu::class,3)->create();

@@ -1,17 +1,17 @@
 //获取路由数据,注册路由
 requirejs(['/data/home/index/routes?define=AMD'],function(data){
-    dump(data);
     window.cacheData = {};
     //自动注册路由
     window.routes = handleRoute(data.menus);
-    data.route = parseURL()['path'];
+    var url = parseURL();
+    data.route = url['hash'] || url['path'];
 
     //当前路由不存在,自动组成路由
-    if(!window.routes[data.route]){
-        window.routes.default ='/admin/page404';
-        window.routes[data.route] = {'as':data.route,'path':data.route};
-    }else {
+    if(window.routes[data.route] || ckeckUrl(data.route)){
         window.routes.default = data.route; //当前路由
+        //window.routes[data.route] = {'as':data.route,'path':data.route};
+    }else {
+        window.routes.default ='/admin/page404';
     }
     require.config({
         baseUrl: "/http/",
@@ -49,6 +49,15 @@ requirejs(['/data/home/index/routes?define=AMD'],function(data){
         urlArgs: ''//"time=" + (new Date()).getTime()  //防止读取缓存，调试用
     });
 
+    function ckeckUrl(route){
+        var flog = false;
+        for (var i in window.routes){
+            if(route.indexOf(i.replace(/\:.*/ ,""))==0){
+                flog = true;
+            }
+        }
+        return flog;
+    }
 });
 /* 调试打印 */
 function dump(){
@@ -133,6 +142,7 @@ function parseURL(key,url) {
 }
 
 function dataPath(nodata){
+
     if(nodata && window.cacheData['global']){
         return null;
     }else if(parseURL('hash')==routes.default || !window.cacheData['global']){
@@ -159,6 +169,21 @@ function deep(num) {
     return '';
 }
 
+function  updateData(key,retain){
+    if(!key){
+        return false;
+    }
+    if(!retain){
+        window.cacheData[key] = false; //更新页面数据
+    }else {
+        if(window.cacheData[key]){
+            window.cacheData[key]['updatedata'] = 1; //更新页面数据
+        }else {
+            window.cacheData[key] = false; //更新页面数据
+        }
+    }
+    return true;
+}
 
 
 

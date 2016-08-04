@@ -4,8 +4,8 @@
  */
 namespace App\Models;
 use App\BaseModel;
-use App\Exceptions\MarginTree\ExcludeTop;
-use App\Exceptions\MarginTree\TreeModel;
+use MarginTree\ExcludeTop;
+use MarginTree\TreeModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Menu extends BaseModel
@@ -16,7 +16,7 @@ class Menu extends BaseModel
 
     //批量赋值白名单
     protected $fillable = [
-        'name','icons', 'prefix','description' , 'url','status','parent_id'
+        'name','icons', 'prefix','description' , 'url','status','parent_id','is_page'
     ];
 
     /* 菜单-角色 */

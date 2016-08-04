@@ -22,7 +22,7 @@ class CreateMenusTable extends Migration
             $table->string('icons')->default('')->comment('图标@alpha_dash');
             $table->string('description')->default('')->comment('描述$textarea');
             $table->string('prefix')->default('')->comment('URL前缀:-跳转刷新,#-前端刷新$radio');
-            $table->string('url')->default('')->comment('URL路径@url');
+            $table->string('url')->default('')->comment('URL路径');
 
             //$table->marginTree(); //树状结构
             $table->integer('parent_id')->default(0)->comment('父级ID@sometimes|required|exists:menus,id');

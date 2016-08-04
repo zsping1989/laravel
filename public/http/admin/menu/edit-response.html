@@ -1,0 +1,46 @@
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal ng-scope top am-fade"  style="z-index: 1050; display: block;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div ng-show="userTitle" class="modal-header">
+                <button ng-click="$hide()" aria-label="Close" class="close" type="button">
+                    <span aria-hidden="true">×</span></button>
+                <h4 ng-bind="userTitle" class="modal-title ng-binding"></h4>
+            </div>
+            <div class="modal-body ng-binding">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h5 class="box-title" ng-if="row.responses[response_index]">修改响应说明</h5>
+                        <h5 class="box-title" ng-if="!row.responses[response_index]">新增响应说明</h5>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group row">
+                            <div class="col-xs-3">
+                                <label class="pull-right">响应字段:</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <input type="text" ng-model="row.responses[response_index].name"  class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-3">
+                                <label class="pull-right">字段描述:</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <textarea  ng-model="row.responses[response_index].description" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-3">
+                            </div>
+                            <div class="col-xs-6">
+                                <button ng-click="$hide()" class="btn btn-default" type="button">确定</button>
+                                <button ng-click="$hide();deleteResponse(response_index)" class="btn btn-default" type="button">取消</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

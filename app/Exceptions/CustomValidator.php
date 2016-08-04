@@ -12,6 +12,8 @@
 namespace App\Exceptions;
 
 
+use App\Logics\Facade\UserLogic;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Validator;
 
 class CustomValidator extends Validator{
@@ -40,6 +42,19 @@ class CustomValidator extends Validator{
     {
         return empty($value);
     }
+
+    /**
+     * 验证用户输入密码是否正确
+     * @param $attribute
+     * @param $value
+     * @param $parameters
+     * 返回: mixed
+     */
+    public function validateCkeckPassword($attribute, $value, $parameters){
+        $user = UserLogic::getUser(); //获取当前用户
+        return Auth::validate(['email' => $user['email'], 'password' => $value]); //验证
+    }
+
 
 
 } 

@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Shanghai',
 
     /*
     |--------------------------------------------------------------------------
@@ -153,13 +153,20 @@ return [
         /*
          * Application Service Providers...
          */
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class, //编辑器自动补全
+
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\ResponseMacroServiceProvider::class,
-        App\Providers\MarginTreeServiceProvider::class,
-        App\Providers\LogicServiceProvider::class,
+
+        App\Providers\ResponseMacroServiceProvider::class, //响应宏注册
+        //MarginTree\Providers\MarginTreeServiceProvider::class, //边界树注册
+        //Message\Providers\MessageServiceProvider::class, //消息模块
+        //Custom\Commands\Providers\CommandsServiceProvider::class, //自定义代码生成
+
+        App\Providers\LogicServiceProvider::class, //逻辑模块
+
 
     ],
 

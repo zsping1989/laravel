@@ -10,7 +10,13 @@
         "overtrue/laravel-lang": "~3.0",
         "caouecs/laravel-lang": "~3.0",
         "guzzlehttp/guzzle": "~5.0",
-        "gregwar/captcha": "dev-master"
+        "gregwar/captcha": "dev-master",
+        "zsping1989/margin-tree": "^1.0",
+        "zsping1989/commands": "^1.0",
+        "barryvdh/laravel-ide-helper": "^2.2",
+        "zircote/swagger-php": "^2.0",
+        "doctrine/dbal": "^2.5",
+        "zsping1989/message": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -50,7 +56,9 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize"
+            "php artisan optimize",
+            "php artisan clear-compiled",
+            "php artisan ide-helper:generate"
         ]
     },
     "config": {

@@ -1,6 +1,7 @@
 define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
     app.register.controller('admin-area-editCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$http','$location','$timeout',
     function ($scope,$rootScope,Model,View,$alert,$http,$location,$timeout) {
+        datas.row = datas.row || {};
         $rootScope = View.with(datas.global, $rootScope);
         $scope = View.withCache(datas, $scope);
         /* 条件查询数据 */
@@ -22,7 +23,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                 url: $scope.edit_url,
                 data: data
             }).success(function(){
-                window.cacheData['/admin/area/list'] = false; //更新页面数据
+                updateData('/admin/area/list',1);
                 $timeout(function(){
                     if($scope.row.id){
                         $location.path($scope.back_url);

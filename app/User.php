@@ -2,14 +2,15 @@
 
 namespace App;
 
+use Message\Message;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Session;
 
 class User extends Authenticatable
 {
     //软删除
     use SoftDeletes;
+    use Message;
 
     //批量赋值白名单
     protected $fillable = [
@@ -25,9 +26,30 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token','deleted_at'
     ];
-    //关系模型
+
+    //用户-后台用户
     public function admin(){
         return $this->hasOne('App\Models\Admin');
     }
+
+
+
+    //条件筛选查询
+    public function scopeOptions($query,array $options=[])
+    {
+        //条件筛选
+        collect($options['where'])->each(function($item,$key) use(&$query){
+            $val = $item->exp=='like' ? '%'.preg_replace('/([_%])/','\\\$1', $item->val).'%' : $item->val;
+            $item and $query->where($item->key,$item->exp,$val);
+        });
+        //排序
+        collect($options['order'])->each(function($item,$key) use (&$query){
+            $item and $query->orderBy($key,$item);
+        });
+        return $query;
+    }
+
+
+
 
 }
