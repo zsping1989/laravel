@@ -45,6 +45,12 @@ $ composer install
 1. 根目录创建 ```.env``` 文件
 2. 修改好数据库等相关配置
 3. cmd到项目根目录
+4. 将\config\app.php打开去掉164行-166行的注释
+```
+164        //MarginTree\Providers\MarginTreeServiceProvider::class, //边界树注册
+165        //Message\Providers\MessageServiceProvider::class, //消息模块
+166        //Custom\Commands\Providers\CommandsServiceProvider::class, //自定义代码生成
+```
 
 ```
 $ php artisan migrate --seed
