@@ -23,19 +23,19 @@
                             </div>
                             <div class="box-body no-padding">
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li ng-class="{'active':(!where[1].val || where[1].val==message_count['messages']['childs'])}"  ng-click="where[1].val=message_count['messages']['childs'];getData($this);">
+                                    <li ng-class="{'active':(!where[1].val || where[1].val==message_count['messages']['childs'])}"  ng-click="switch(1,'');">
                                         <a>
                                             <i class="fa fa-inbox"></i> 所有消息
                                             <span class="label label-primary pull-right" ng-if="message_count['messages']['msg_count']">{{message_count['messages']['msg_count']}}</span>
                                         </a>
                                     </li>
-                                    <li ng-class="{'active':where[1].val==message_count['user']['childs']}" ng-click="where[1].val=message_count['user']['childs'];getData($this);">
+                                    <li ng-class="{'active':where[1].val==message_count['user']['childs']}" ng-click="switch(1,message_count['user']['childs']);">
                                         <a>
                                             <i class="fa fa-envelope-o"></i> 用户消息
                                             <span class="label label-warning pull-right" ng-if="message_count['user']['msg_count']">{{message_count['user']['msg_count']}}</span>
                                         </a>
                                     </li>
-                                    <li ng-class="{'active':where[1].val==message_count['system']['childs']}" ng-click="where[1].val=message_count['system']['childs'];getData($this);">
+                                    <li ng-class="{'active':where[1].val==message_count['system']['childs']}" ng-click="switch(1,message_count['system']['childs']);">
                                         <a><i class="fa fa-bell-o"></i> 系统消息
                                             <span class="label label-danger pull-right" ng-if="message_count['system']['msg_count']">{{message_count['system']['msg_count']}}</span>
                                         </a>
@@ -56,13 +56,13 @@
                             </div>
                             <div class="box-body no-padding">
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li ng-class="{'active':!where[2].val}" ng-click="where[2].val='';getData($this,{refresh:2});">
+                                    <li ng-class="{'active':!where[2].val}" ng-click="switch(2,'');">
                                         <a><i class="fa fa-circle-o text-red"></i> 所有</a>
                                     </li>
-                                    <li  ng-class="{'active':where[2].val=='1'}" ng-click="where[2].val='1';getData($this);">
+                                    <li  ng-class="{'active':where[2].val=='1'}" ng-click="switch(2,'1');">
                                         <a><i class="fa fa-circle-o text-yellow"></i> 已读</a>
                                     </li>
-                                    <li  ng-class="{'active':where[2].val=='0'}" ng-click="where[2].val='0';getData($this);">
+                                    <li  ng-class="{'active':where[2].val=='0'}" ng-click="switch(2,'0');">
                                         <a><i class="fa fa-circle-o text-light-blue"></i> 未读</a>
                                     </li>
                                 </ul>

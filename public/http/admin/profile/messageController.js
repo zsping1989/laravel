@@ -13,7 +13,13 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
         /* 删除数据 */
         $scope.delete = Model.delete;
         $scope.selectAllId = Model.selectAllId;
-        $scope.hidden_lable = 0;
+        $scope.switch = function(key,val){
+            if($scope.where[key].val==val){
+                return true;
+            }
+            $scope.where[key].val = val;
+            $scope.getData($scope,{refresh:2});
+        }
 
     }]);
 })

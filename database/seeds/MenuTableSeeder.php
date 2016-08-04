@@ -505,6 +505,41 @@ class MenuTableSeeder extends Seeder
             'status'=>1
         ]);
 
+        //ID:43
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'404页面',
+            'icons'=>'',
+            'prefix'=>'#',
+            'is_page' => '1',
+            'url'=>'/home/page404',
+            'description' => '前端404页面',
+            'parent_id'=>4,
+            'status'=>1
+        ]);
+
+        //ID:44
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'500页面',
+            'icons'=>'',
+            'prefix'=>'#',
+            'is_page' => '1',
+            'url'=>'/home/page500',
+            'description' => '前端500页面',
+            'parent_id'=>4,
+            'status'=>1
+        ]);
+
+        //ID:45
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'前端主页',
+            'icons'=>'',
+            'prefix'=>'#',
+            'is_page' => '1',
+            'url'=>'/home/index',
+            'description' => '前端主页',
+            'parent_id'=>4,
+            'status'=>1
+        ]);
 
 
         //新建假数据3条

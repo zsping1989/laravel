@@ -21,11 +21,15 @@ trait ResourceController{
      */
     protected function handleRequest(){
         Request::offsetSet('order',json_decode(Request::input('order','[]')));//排序处理
-        Request::offsetSet('where',collect(Request::input('where',[]))->map(function($item){
+        $where = Request::input('where',[]);
+        //dd($where);
+        $where = is_array($where) ? collect($where)->map(function($item){
             if($item){
-                return json_decode($item);
+                return json_decode($item,true);
             }
-        })->toArray()); //条件筛选处理
+        })->toArray() : json_decode($where,true);
+        //dd($where);
+        Request::offsetSet('where',$where); //条件筛选处理
     }
 
     /**
