@@ -1,7 +1,7 @@
 /**
  * Created by zhang on 16-5-18.
  */
-define(['app','home/public/headerController'], function (app) {
+define(['app'], function (app) {
     app.register.controller('home-indexCtrl', ["$scope", '$rootScope','Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
         dump(datas);
         $scope = View.with([],$scope);

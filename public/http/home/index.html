@@ -1,133 +1,147 @@
-<link rel="stylesheet" href="/css/docs.min.css">
-<header role="banner" id="top" class="navbar navbar-static-top bs-docs-nav">
-    <div class="container">
-        <div class="navbar-header">
-            <button aria-expanded="false" aria-controls="bs-navbar" data-target="#bs-navbar" data-toggle="collapse" type="button" class="navbar-toggle collapsed">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="../">Laravel Angular Admin</a>
-        </div>
-        <nav class="collapse navbar-collapse" id="bs-navbar">
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a  href="../getting-started/">文档</a>
-                </li>
-                <li>
-                    <a  href="../css/">安装</a>
-                </li>
-                <li>
-                    <a href="https://github.com/zsping1989/laravel/archive/master.zip">下载</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a target="_blank"  href="http://www.bootcss.com/">GitHub</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-<div tabindex="-1" id="content" class="bs-docs-header">
-    <div class="container">
-        <h1>Laravel Angular Admin</h1>
-        <p>Laravel + Angularjs + Bootstrap + AdminLTE Dashboard Boilerplate</p>
-    </div>
-</div>
+<div ng-include="'/http/home/public/header.html'"></div>
 <div class="container bs-docs-container">
-
     <div class="row">
-        <div role="main" class="col-md-9">
+        <div class="col-md-9" role="main">
             <div class="bs-docs-section">
-                <h1 class="page-header" id="wells"><a data-anchorjs-icon="" aria-label="Anchor link for: wells" href="#wells" class="anchorjs-link " style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>Well</h1>
+            <h1 class="page-header" id="whats-included"><a data-anchorjs-icon="" aria-label="Anchor link for: whats included" href="#whats-included" class="anchorjs-link " style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>包含的内容</h1>
 
-                <h2 id="-10"><a data-anchorjs-icon="" aria-label="Anchor link for:  10" href="#-10" class="anchorjs-link " style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>默认效果</h2>
-                <p>把 Well 用在元素上，能有嵌入（inset）的的简单效果。</p>
-                <div data-example-id="default-well" class="bs-example">
-                    <div class="well">
-                        Look, I'm in a well!
-                    </div>
-                </div>
-                <div class="zero-clipboard"><span class="btn-clipboard">复制</span></div><div class="highlight"><pre><code data-lang="html" class="language-html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"well"</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span></code></pre></div>
-                <h2 id="-11"><a data-anchorjs-icon="" aria-label="Anchor link for:  11" href="#-11" class="anchorjs-link " style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>可选类/样式</h2>
-                <p>通过这两种可选修饰类，可以控制此组件的内补（padding）和圆角的设置。</p>
-                <div data-example-id="large-well" class="bs-example">
-                    <div class="well well-lg">
-                        Look, I'm in a large well!
-                    </div>
-                </div>
-                <div class="zero-clipboard"><span class="btn-clipboard">复制</span></div><div class="highlight"><pre><code data-lang="html" class="language-html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"well well-lg"</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span></code></pre></div>
+            <p class="lead">Bootstrap 提供了两种形式的压缩包，在下载下来的压缩包内可以看到以下目录和文件，这些文件按照类别放到了不同的目录内，并且提供了压缩与未压缩两种版本。</p>
 
-                <div data-example-id="small-well" class="bs-example">
-                    <div class="well well-sm">
-                        Look, I'm in a small well!
-                    </div>
-                </div>
-                <div class="zero-clipboard"><span class="btn-clipboard">复制</span></div><div class="highlight"><pre><code data-lang="html" class="language-html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"well well-sm"</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span></code></pre></div>
+            <div id="jquery-required" class="bs-callout bs-callout-warning">
+                <h4>Bootstrap 插件全部依赖 jQuery</h4>
+                <p>请注意，<strong>Bootstrap 的所有 JavaScript 插件都依赖 jQuery，</strong>因此 jQuery 必须在 Bootstrap 之前引入，就像在<a href="#template">基本模版</a>中所展示的一样。在<a href="https://github.com/twbs/bootstrap/blob/v3.3.5/bower.json"> <code>bower.json</code> 文件中</a> 列出了 Bootstrap 所支持的 jQuery 版本。</p>
             </div>
 
+            <h2 id="whats-included-precompiled"><a data-anchorjs-icon="" aria-label="Anchor link for: whats included precompiled" href="#whats-included-precompiled" class="anchorjs-link " style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>预编译版</h2>
+            <p>下载压缩包之后，将其解压缩到任意目录即可看到以下（压缩版的）目录结构：</p>
+            <!-- NOTE: This info is intentionally duplicated in the README.
+            Copy any changes made here over to the README too. -->
+            <div class="zero-clipboard"><span class="btn-clipboard">复制</span></div><div class="highlight"><pre><code data-lang="bash" class="language-bash">bootstrap/
+            ├── css/
+            │   ├── bootstrap.css
+            │   ├── bootstrap.css.map
+            │   ├── bootstrap.min.css
+            │   ├── bootstrap-theme.css
+            │   ├── bootstrap-theme.css.map
+            │   └── bootstrap-theme.min.css
+            ├── js/
+            │   ├── bootstrap.js
+            │   └── bootstrap.min.js
+            └── fonts/
+            ├── glyphicons-halflings-regular.eot
+            ├── glyphicons-halflings-regular.svg
+            ├── glyphicons-halflings-regular.ttf
+            ├── glyphicons-halflings-regular.woff
+            └── glyphicons-halflings-regular.woff2</code></pre></div>
+            <!-- NOTE: This info is intentionally duplicated in the README.
+            Copy any changes made here over to the README too. -->
+            <p>上面展示的就是 Bootstrap 的基本文件结构：预编译文件可以直接使用到任何 web 项目中。我们提供了编译好的 CSS 和 JS (<code>bootstrap.*</code>) 文件，还有经过压缩的 CSS 和 JS (<code>bootstrap.min.*</code>) 文件。同时还提供了 CSS <a href="https://developer.chrome.com/devtools/docs/css-preprocessors">源码映射表</a> (<code>bootstrap.*.map</code>) ，可以在某些浏览器的开发工具中使用。同时还包含了来自 Glyphicons 的图标字体，在附带的 Bootstrap 主题中使用到了这些图标。</p>
 
+            <h2 id="whats-included-source"><a data-anchorjs-icon="" aria-label="Anchor link for: whats included source" href="#whats-included-source" class="anchorjs-link " style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>Bootstrap 源码</h2>
+            <p>Bootstrap 源码包含了预先编译的 CSS、JavaScript 和图标字体文件，并且还有 LESS、JavaScript 和文档的源码。具体来说，主要文件组织结构如下：</p>
+            <div class="zero-clipboard"><span class="btn-clipboard">复制</span></div><div class="highlight"><pre><code data-lang="bash" class="language-bash">bootstrap/
+            ├── less/
+            ├── js/
+            ├── fonts/
+            ├── dist/
+            │   ├── css/
+            │   ├── js/
+            │   └── fonts/
+            └── docs/
+            └── examples/</code></pre></div>
+            <p><code>less/</code>、<code>js/</code> 和 <code>fonts/</code> 目录分别包含了 CSS、JS 和字体图标的源码。<code>dist/</code> 目录包含了上面所说的预编译 Bootstrap 包内的所有文件。<code>docs/</code> 包含了所有文档的源码文件，<code>examples/</code> 目录是 Bootstrap 官方提供的实例工程。除了这些，其他文件还包含 Bootstrap 安装包的定义文件、许可证文件和编译脚本等。</p>
         </div>
-
+        </div>
         <div role="complementary" class="col-md-3">
-            <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" style="">
+            <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
                 <ul class="nav bs-docs-sidenav">
+
+                    <li class="active">
+                        <a href="#download">下载</a>
+                    </li>
                     <li class="">
-                        <a href="#glyphicons">Glyphicons 字体图标</a>
+                        <a href="#whats-included">包含的内容</a>
                         <ul class="nav">
-                            <li class=""><a href="#glyphicons-glyphs">所有可用的图标</a></li>
-                            <li class=""><a href="#glyphicons-how-to-use">如何使用</a></li>
-                            <li class=""><a href="#glyphicons-examples">实例</a></li>
+                            <li class=""><a href="#whats-included-precompiled">预编译版</a></li>
+                            <li class=""><a href="#whats-included-source">Bootstrap 源码</a></li>
                         </ul>
                     </li>
                     <li class="">
-                        <a href="#dropdowns">下拉菜单</a>
+                        <a href="#grunt">编译 CSS 和 JavaScript 文件</a>
                         <ul class="nav">
-                            <li class=""><a href="#dropdowns-example">实例</a></li>
-                            <li><a href="#dropdowns-alignment">对齐</a></li>
-                            <li><a href="#dropdowns-headers">标题</a></li>
-                            <li class=""><a href="#dropdowns-divider">分割线</a></li>
-                            <li><a href="#dropdowns-disabled">禁用的菜单项</a></li>
+                            <li class=""><a href="#grunt-installing">安装 Grunt</a></li>
+                            <li class=""><a href="#grunt-commands">可以使用的 Grunt 命令</a></li>
+                            <li class=""><a href="#grunt-troubleshooting">除错</a></li>
                         </ul>
                     </li>
+                    <li class="">
+                        <a href="#template">基本模板</a>
+                    </li>
+                    <li class="">
+                        <a href="#examples">实例精选</a>
+                        <ul class="nav">
+                            <li class=""><a href="#examples-framework">Bootstrap 框架的基本用法</a></li>
+                            <li class=""><a href="#examples-navbars">导航条实战</a></li>
+                            <li class=""><a href="#examples-custom">自定义组件</a></li>
+                            <li class=""><a href="#examples-experiments">Experiments</a></li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#tools">工具</a>
+                        <ul class="nav">
+                            <li class=""><a href="#tools-bootlint">Bootlint</a></li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#community">社区</a>
+                    </li>
+                    <li>
+                        <a href="#disable-responsive">禁止响应式布局</a>
+                    </li>
+                    <li>
+                        <a href="#migration">从 2.x 版本升级到 3.0 版本</a>
+                    </li>
+                    <li>
+                        <a href="#support">对浏览器和设备的支持情况</a>
+                        <ul class="nav">
+                            <li><a href="#support-browsers">被支持的浏览器</a></li>
+                            <li><a href="#support-ie8-ie9">Internet Explorer 8-9</a></li>
+                            <li><a href="#support-ie8-respondjs">IE8 与 Respond.js</a></li>
+                            <li><a href="#support-ie8-box-sizing">IE8 与 box-sizing 属性</a></li>
+                            <li><a href="#support-ie8-font-face">IE8 and @font-face</a></li>
+                            <li><a href="#support-ie-compatibility-modes">IE 兼容模式</a></li>
+                            <li><a href="#support-chinese-browsers-renderer-modes">国产浏览器高速模式</a></li>
+                            <li><a href="#support-ie10-width">IE10 和 Windows (Phone) 8</a></li>
+                            <li><a href="#support-safari-percentages">Safari 对百分比数字凑整的问题</a></li>
+                            <li><a href="#support-fixed-position-keyboards">模态框、导航条和虚拟键盘</a></li>
+                            <li><a href="#support-browser-zooming">浏览器的缩放功能</a></li>
+                            <li><a href="#support-sticky-hover-mobile">Sticky :hover/:focus on mobile</a></li>
+                            <li><a href="#support-printing">打印</a></li>
+                            <li><a href="#support-android-stock-browser">Android stock browser</a></li>
+                            <li><a href="#support-validators">Validators</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#third-parties">对第三方组件的支持</a>
+                    </li>
+                    <li>
+                        <a href="#accessibility">可访问性</a>
+                    </li>
+                    <li>
+                        <a href="#license-faqs">许可证 FAQ</a>
+                    </li>
+                    <li>
+                        <a href="#translations">文档翻译</a>
+                    </li>
+
+
                 </ul>
                 <a href="#top" class="back-to-top">
                     返回顶部
                 </a>
 
-                <a role="button" class="bs-docs-theme-toggle" href="#">
-                    主题预览
-                </a>
-
             </nav>
         </div>
-
     </div>
 </div>
-<footer role="contentinfo" class="bs-docs-footer">
-    <div class="container">
-
-        <p>Designed and built with all the love in the world by <a target="_blank" href="https://twitter.com/mdo">@mdo</a> and <a target="_blank" href="https://twitter.com/fat">@fat</a>.</p>
-        <p>Maintained by the <a href="https://github.com/orgs/twbs/people">core team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>
-        <p>本项目源码受 <a target="_blank" href="https://github.com/twbs/bootstrap/blob/master/LICENSE" rel="license">MIT</a>开源协议保护，文档受 <a target="_blank" href="https://creativecommons.org/licenses/by/3.0/" rel="license">CC BY 3.0</a> 开源协议保护。</p>
-        <ul class="bs-docs-footer-links text-muted">
-            <li>当前版本： v3.3.5</li>
-            <li>·</li>
-            <li><a href="https://github.com/twbs/bootstrap">GitHub 仓库</a></li>
-            <li>·</li>
-            <li><a href="../getting-started/#examples">实例精选</a></li>
-            <li>·</li>
-            <li><a href="http://v2.bootcss.com/">v2.3.2 中文文档</a></li>
-            <li>·</li>
-            <li><a href="../about/">关于</a></li>
-            <li>·</li>
-            <li><a href="http://expo.bootcss.com">优站精选</a></li>
-            <li>·</li>
-            <li><a href="http://blog.getbootstrap.com">官方博客</a></li>
-            <li>·</li>
-            <li><a href="https://github.com/twbs/bootstrap/issues">Issues</a></li>
-            <li>·</li>
-            <li><a href="https://github.com/twbs/bootstrap/releases">历史版本</a></li>
-        </ul>
-    </div>
-</footer>
+<div ng-include="'/http/home/public/footer.html'"></div>

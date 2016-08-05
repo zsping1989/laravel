@@ -541,6 +541,30 @@ class MenuTableSeeder extends Seeder
             'status'=>1
         ]);
 
+        //ID:46
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'捐赠页面',
+            'icons'=>'',
+            'prefix'=>'#',
+            'is_page' => '1',
+            'url'=>'/home/doc/donate',
+            'description' => '前端捐赠页面',
+            'parent_id'=>4,
+            'status'=>1
+        ]);
+
+        //ID:46
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'安装说明',
+            'icons'=>'',
+            'prefix'=>'#',
+            'is_page' => '1',
+            'url'=>'/home/doc/install',
+            'description' => '前端安装说明页面',
+            'parent_id'=>4,
+            'status'=>1
+        ]);
+
 
         //新建假数据3条
         //factory(\App\Models\Menu::class,3)->create();
