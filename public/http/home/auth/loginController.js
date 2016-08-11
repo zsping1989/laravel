@@ -4,6 +4,8 @@
 //dataPath(),数据源地址
 define(['app',dataPath()],function(app,datas){
     app.register.controller('home-loginCtrl',["$scope",'$http',function($scope,$http){
+        $scope.data_key = '/home/login';
+        updateData('/home/login');
         $scope.login = function(){
             $http.post('/data/home/auth/login',{
                 username:$scope.username,
