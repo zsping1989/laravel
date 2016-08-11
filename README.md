@@ -70,3 +70,4 @@ $ php artisan migrate --seed
 * 路由访问:/admin/index
 * Note: 登录用户名:13699411148 密码:123456
 
+
