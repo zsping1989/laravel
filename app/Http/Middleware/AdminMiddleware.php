@@ -40,9 +40,9 @@ class AdminMiddleware{
             //判断当前路由是否在拥有权限url中
             $hasPermission = MenuLogic::isUrlInMenus($route,$menus);;
 
-            //没有权限,
+            //没有权限
             if(!$hasPermission){
-                if(canRedirect() || app('request')->has('define')){
+                if(canRedirect()){
                     return redirect('/admin/page404');
                 }
                 return Response::returns(['alert'=>alert(['content'=>'你没有访问权限,请联系管理员!'],404)]);
