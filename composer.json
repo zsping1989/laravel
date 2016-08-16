@@ -1,5 +1,5 @@
 {
-    "name": "laravel/laravel",
+    "name": "zsping1989/laravel",
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
@@ -10,7 +10,7 @@
         "overtrue/laravel-lang": "~3.0",
         "caouecs/laravel-lang": "~3.0",
         "guzzlehttp/guzzle": "~5.0",
-        "gregwar/captcha": "dev-master",
+        "gregwar/captcha": ">=1.0.0",
         "zsping1989/margin-tree": "^1.0",
         "zsping1989/commands": "^1.0",
         "barryvdh/laravel-ide-helper": "^2.2",

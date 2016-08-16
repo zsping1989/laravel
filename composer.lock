@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f1a0bb1a2f1f4536c5878e618807f423",
-    "content-hash": "59ce63882cc4c13ce7e833421e5862c5",
+    "hash": "81957eed5a001d26c589e58693d7b87c",
+    "content-hash": "32a12c7b2f8b8cbd9dd028044a78f928",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -720,16 +720,16 @@
         },
         {
             "name": "gregwar/captcha",
-            "version": "dev-master",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gregwar/Captcha.git",
-                "reference": "3f0cb3ddef76ff13c8bae9ab5651783ae7a60fe6"
+                "reference": "1240ab993ca713680573b2d4166900da5f758623"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gregwar/Captcha/zipball/3f0cb3ddef76ff13c8bae9ab5651783ae7a60fe6",
-                "reference": "3f0cb3ddef76ff13c8bae9ab5651783ae7a60fe6",
+                "url": "https://api.github.com/repos/Gregwar/Captcha/zipball/1240ab993ca713680573b2d4166900da5f758623",
+                "reference": "1240ab993ca713680573b2d4166900da5f758623",
                 "shasum": ""
             },
             "require": {
@@ -764,7 +764,7 @@
                 "captcha",
                 "spam"
             ],
-            "time": "2016-03-19 11:34:59"
+            "time": "2015-09-11 15:23:20"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -4221,9 +4221,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "gregwar/captcha": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
