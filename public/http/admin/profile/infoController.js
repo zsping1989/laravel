@@ -3,7 +3,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
     function ($scope,$rootScope,Model,View,$alert,$http,$location,$timeout) {
         $rootScope = View.with(datas.global, $rootScope);
         $scope = View.withCache(datas, $scope);
-
+        $scope.errorFieldMap = {};
         //重置备份数据
         $scope.master = angular.copy($scope.row);
         $scope.resetdata = function () {

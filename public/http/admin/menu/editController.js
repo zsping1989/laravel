@@ -5,6 +5,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
         dump(datas);
         datas.row = datas.row || {};
         $rootScope = View.with(datas.global, $rootScope);
+        $scope.errorFieldMap = {};
         $scope = View.withCache(datas, $scope);
         /* 条件查询数据 */
         $scope.getData = Model.getData;
@@ -56,8 +57,6 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                 placement:'center',
                 show: true});
         }
-
-
 
         //提交
         $scope.submit = function(){
