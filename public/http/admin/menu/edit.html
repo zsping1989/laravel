@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div ng-include="'/http/admin/public/header.html'"></div>
         <div ng-include="'/http/admin/public/left.html'"></div>
-        <div style="min-height: 715px;" class="content-wrapper">
+        <div  class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div ng-include="'/http/admin/public/nav.html'"></div>
 

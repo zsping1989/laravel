@@ -6,6 +6,16 @@
     <nav class="navbar navbar-static-top" role="navigation" ng-controller="admin-headerCtrl">
         <a  class="sidebar-toggle" ng-click="hiddenLeft()" role="button">
         </a>
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ng-repeat="(key,menu) in menus" ng-init="menus[key].toggle = nav[menu.id]"
+                    ng-class="{'active':menus[key].toggle}" ng-if="menu.level==2 && menu.status==1">
+                    <a href="{{menu.prefix}}{{menu.url}}">
+                        <i class="fa" ng-class="menu.icons"></i> <span>{{menu.name}}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <li class="dropdown messages-menu" >

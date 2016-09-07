@@ -62,6 +62,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
         $global = [];
         $global['route'] = preg_replace('/^\/?data(.*)$/','$1',Request::getPathInfo());  //路由信息
         $global['nav'] = MenuLogic::getNavbar(); //导航数据
+        $global['navkeys'] = collect($global['nav'])->keys()->all();
         if(Request::input('global')=='all'){ //获取当前用户菜单数据,用户信息
             $global['user'] = $user; //用户信息
             $global['menus'] = $global['user'] ? UserLogic::getUserInfo('menus') : null; //菜单数据
