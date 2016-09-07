@@ -26,8 +26,9 @@ class MenuTableSeeder extends Seeder
         //ID:2
         factory(\App\Models\Menu::class)->create([
             'name'=>'控制面板',
+            'prefix'=>'#',
             'icons'=>'fa-dashboard',
-            'url'=>'',
+            'url'=>'/admin/index',
             'description' => '',
             'parent_id'=>1,
             'status'=>1
@@ -36,7 +37,8 @@ class MenuTableSeeder extends Seeder
         factory(\App\Models\Menu::class)->create([
             'name'=>'开发工具',
             'icons'=>'fa-circle-o',
-            'url'=>'',
+            'prefix'=>'#',
+            'url'=>'/admin/make/create-code',
             'description' => '开发模块',
             'parent_id'=>1,
             'status'=>1
@@ -46,7 +48,8 @@ class MenuTableSeeder extends Seeder
         factory(\App\Models\Menu::class)->create([
             'name'=>'前端模块',
             'icons'=>'fa-wrench',
-            'url'=>'',
+            'prefix'=>'#',
+            'url'=>'/home/index',
             'description' => '前端所有路由',
             'parent_id'=>1,
             'status'=>1
@@ -55,7 +58,8 @@ class MenuTableSeeder extends Seeder
         factory(\App\Models\Menu::class)->create([
             'name'=>'用户管理',
             'icons'=>'fa-users',
-            'url'=>'',
+            'prefix'=>'#',
+            'url'=>'/admin/role/index',
             'description' => '用户模块',
             'parent_id'=>1,
             'status'=>1
@@ -64,7 +68,8 @@ class MenuTableSeeder extends Seeder
         factory(\App\Models\Menu::class)->create([
             'name'=>'个人中心',
             'icons'=>'fa-heart',
-            'url'=>'',
+            'prefix'=>'#',
+            'url'=>'/admin/profile/info',
             'description' => '个人资料',
             'parent_id'=>1,
             'status'=>1
@@ -72,8 +77,9 @@ class MenuTableSeeder extends Seeder
         //ID:7
         factory(\App\Models\Menu::class)->create([
             'name'=>'其它板块',
+            'prefix'=>'#',
             'icons'=>'fa-wrench',
-            'url'=>'',
+            'url'=>'/admin/area/index',
             'description' => '后台登录',
             'parent_id'=>1,
             'status'=>1
