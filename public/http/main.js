@@ -5,11 +5,12 @@ requirejs(['/data/home/index/routes?define=AMD'],function(data){
     window.routes = handleRoute(data.menus);
     var url = parseURL();
     data.route = url['hash'] || url['path'];
-
     //当前路由不存在,自动组成路由
     if(window.routes[data.route] || ckeckUrl(data.route)){
         window.routes.default = data.route; //当前路由
         //window.routes[data.route] = {'as':data.route,'path':data.route};
+    }else if(data.route=='/'){
+        window.routes.default ='/admin/index';
     }else {
         window.routes.default ='/admin/page404';
     }
