@@ -52,7 +52,7 @@ class MenuTableSeeder extends Seeder
             'url'=>'/home/index',
             'description' => '前端所有路由',
             'parent_id'=>1,
-            'status'=>1
+            'status'=>2
         ]);
         //ID:5
         factory(\App\Models\Menu::class)->create([
@@ -88,9 +88,8 @@ class MenuTableSeeder extends Seeder
         factory(\App\Models\Menu::class)->create([
             'name'=>'创建代码',
             'icons'=>'fa-mouse-pointer',
-            'prefix'=>'#',
-            'url'=>'/admin/make/create-code',
-            'is_page'=>1,
+            'prefix'=>'',
+            'url'=>'',
             'description' => '创建代码',
             'parent_id'=>3,
             'status'=>1
@@ -99,11 +98,10 @@ class MenuTableSeeder extends Seeder
         factory(\App\Models\Menu::class)->create([
             'name'=>'接口文档',
             'icons'=>'fa-asterisk',
-            'prefix'=>'#',
-            'url'=>'/admin/exploit/api',
+            'prefix'=>'',
+            'url'=>'',
             'description' => '接口说明',
             'parent_id'=>3,
-            'is_page'=>1,
             'status'=>1
         ]);
         //ID:10
@@ -143,11 +141,10 @@ class MenuTableSeeder extends Seeder
         factory(\App\Models\Menu::class)->create([
             'name'=>'菜单管理',
             'icons'=>'fa-th',
-            'prefix'=>'#',
-            'url'=>'/admin/menu/index',
+            'prefix'=>'',
+            'url'=>'',
             'description' => '菜单管理',
             'parent_id'=>3,
-            'is_page'=>1,
             'status'=>1
         ]);
 
@@ -158,8 +155,9 @@ class MenuTableSeeder extends Seeder
             'prefix'=>'#',
             'url'=>'/admin/menu/index',
             'description' => '列表详细',
+            'is_page'=>1,
             'parent_id'=>13,
-            'status'=>2
+            'status'=>1
         ]);
 
         //ID:15
@@ -203,10 +201,9 @@ class MenuTableSeeder extends Seeder
         factory(\App\Models\Menu::class)->create([
             'name'=>'区域管理',
             'icons'=>'fa-area-chart',
-            'prefix'=>'#',
-            'url'=>'/admin/area/index',
+            'prefix'=>'',
+            'url'=>'',
             'description' => '城市地区管理',
-            'is_page' => '1',
             'parent_id'=>7,
             'is_page'=>1,
             'status'=>1
@@ -219,8 +216,9 @@ class MenuTableSeeder extends Seeder
             'prefix'=>'#',
             'url'=>'/admin/area/index',
             'description' => '列表详细',
+            'is_page'=>1,
             'parent_id'=>18,
-            'status'=>2
+            'status'=>1
         ]);
 
         //ID:20
@@ -252,12 +250,11 @@ class MenuTableSeeder extends Seeder
         factory(\App\Models\Menu::class)->create([
             'name'=>'权限管理',
             'icons'=>'fa-group',
-            'prefix'=>'#',
-            'url'=>'/admin/role/index',
+            'prefix'=>'',
+            'url'=>'',
             'method'=>1,
             'description' => '角色的权限管理',
             'parent_id'=>5,
-            'is_page'=>1,
             'status'=>1
         ]);
 
@@ -269,8 +266,9 @@ class MenuTableSeeder extends Seeder
             'url'=>'/admin/role/index',
             'method'=>1,
             'description' => '列表详情',
+            'is_page'=>1,
             'parent_id'=>22,
-            'status'=>2
+            'status'=>1
         ]);
 
         //ID:24
@@ -302,12 +300,11 @@ class MenuTableSeeder extends Seeder
         factory(\App\Models\Menu::class)->create([
             'name'=>'用户管理',
             'icons'=>'fa-user',
-            'prefix'=>'#',
-            'url'=>'/admin/user/index',
+            'prefix'=>'',
+            'url'=>'',
             'method'=>1,
             'description' => '用户管理',
             'parent_id'=>5,
-            'is_page'=>1,
             'status'=>1
         ]);
 
@@ -319,8 +316,9 @@ class MenuTableSeeder extends Seeder
             'url'=>'/admin/user/index',
             'method'=>1,
             'description' => '用户管理',
+            'is_page'=>1,
             'parent_id'=>26,
-            'status'=>2
+            'status'=>1
         ]);
 
         //ID:28
@@ -350,26 +348,25 @@ class MenuTableSeeder extends Seeder
 
         //ID:30
         factory(\App\Models\Menu::class)->create([
-            'name'=>'资料修改',
+            'name'=>'个人资料',
             'icons'=>'fa-database',
-            'prefix'=>'#',
-            'url'=>'/admin/profile/info',
+            'prefix'=>'',
+            'url'=>'',
             'method'=>1,
             'description' => '个人资料修改',
             'parent_id'=>6,
-            'is_page'=>1,
             'status'=>1
         ]);
 
         //ID:31
         factory(\App\Models\Menu::class)->create([
-            'name'=>'密码修改',
-            'icons'=>'fa-lock',
+            'name'=>'修改资料',
+            'icons'=>'fa-database',
             'prefix'=>'#',
-            'url'=>'/admin/profile/password',
+            'url'=>'/admin/profile/info',
             'method'=>1,
             'description' => '个人资料修改',
-            'parent_id'=>6,
+            'parent_id'=>30,
             'is_page'=>1,
             'status'=>1
         ]);
@@ -481,7 +478,7 @@ class MenuTableSeeder extends Seeder
             'method'=>1,
             'description' => '',
             'is_page'=>1,
-            'parent_id'=>5,
+            'parent_id'=>22,
             'status'=>1
         ]);
 
@@ -571,7 +568,41 @@ class MenuTableSeeder extends Seeder
             'status'=>1
         ]);
 
+        //ID:47
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'创建页面',
+            'icons'=>'fa-chrome',
+            'prefix'=>'#',
+            'url'=>'/admin/make/create-code',
+            'is_page'=>1,
+            'description' => '创建页面',
+            'parent_id'=>8,
+            'status'=>1
+        ]);
 
+        //ID:48
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'接口页面',
+            'icons'=>'fa-clone',
+            'prefix'=>'#',
+            'url'=>'/admin/exploit/api',
+            'description' => '接口说明',
+            'parent_id'=>9,
+            'is_page'=>1,
+            'status'=>1
+        ]);
+        //ID:49
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'密码修改',
+            'icons'=>'fa-lock',
+            'prefix'=>'#',
+            'url'=>'/admin/profile/password',
+            'method'=>1,
+            'description' => '个人资料修改',
+            'parent_id'=>30,
+            'is_page'=>1,
+            'status'=>1
+        ]);
         //新建假数据3条
         //factory(\App\Models\Menu::class,3)->create();
     }
