@@ -9,8 +9,10 @@ requirejs(['/data/home/index/routes?define=AMD'],function(data){
     if(window.routes[data.route] || ckeckUrl(data.route)){
         window.routes.default = data.route; //当前路由
         //window.routes[data.route] = {'as':data.route,'path':data.route};
+    //默认根目录路由
     }else if(data.route=='/'){
         window.routes.default ='/admin/index';
+    //没有对应路由跳转404页面
     }else {
         window.routes.default ='/admin/page404';
     }
