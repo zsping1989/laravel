@@ -5,7 +5,7 @@
 define(['app',dataPath()],function(app,datas){
     app.register.controller('home-loginCtrl',["$scope",'$http',function($scope,$http){
         $scope.data_key = '/home/login';
-        updateData('/home/login');
+        updateData(); //全部数据更新
         $scope.login = function(){
             $http.post('/data/home/auth/login',{
                 username:$scope.username,
