@@ -11,7 +11,7 @@ requirejs(['/data/home/index/routes?define=AMD'],function(data){
         //window.routes[data.route] = {'as':data.route,'path':data.route};
     //默认根目录路由
     }else if(data.route=='/'){
-        window.routes.default ='/admin/index';
+        window.routes.default ='/home/auth/login';
     //没有对应路由跳转404页面
     }else {
         window.routes.default ='/admin/page404';
@@ -175,7 +175,9 @@ function deep(num) {
 
 function  updateData(key,retain){
     if(!key){
-        return false;
+        for(var i in window.cacheData){
+            window.cacheData[i]['updatedata']=1;
+        }
     }
     if(!retain){
         window.cacheData[key] = false; //更新页面数据
