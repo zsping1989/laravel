@@ -35,6 +35,7 @@ requirejs(['/data/home/index/routes?define=AMD'],function(data){
             'backbone':'/lib/backbone/backbone.min',
             'joint':'/lib/joint/0.9.6/joint.min',
             'underscore':'/lib/underscore/1.8.3/underscore.min',
+            'echarts':'/lib/echart/3.2.3/echarts.min',
             "app":'app'
         },
         map: {

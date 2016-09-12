@@ -80,7 +80,7 @@ class MenuTableSeeder extends Seeder
             'prefix'=>'#',
             'icons'=>'fa-wrench',
             'url'=>'/admin/area/index',
-            'description' => '后台登录',
+            'description' => '',
             'parent_id'=>1,
             'status'=>1
         ]);
@@ -556,7 +556,7 @@ class MenuTableSeeder extends Seeder
             'status'=>1
         ]);
 
-        //ID:46
+        //ID:47
         factory(\App\Models\Menu::class)->create([
             'name'=>'安装说明',
             'icons'=>'',
@@ -568,7 +568,7 @@ class MenuTableSeeder extends Seeder
             'status'=>1
         ]);
 
-        //ID:47
+        //ID:48
         factory(\App\Models\Menu::class)->create([
             'name'=>'创建页面',
             'icons'=>'fa-chrome',
@@ -580,7 +580,7 @@ class MenuTableSeeder extends Seeder
             'status'=>1
         ]);
 
-        //ID:48
+        //ID:49
         factory(\App\Models\Menu::class)->create([
             'name'=>'接口页面',
             'icons'=>'fa-clone',
@@ -591,7 +591,7 @@ class MenuTableSeeder extends Seeder
             'is_page'=>1,
             'status'=>1
         ]);
-        //ID:49
+        //ID:50
         factory(\App\Models\Menu::class)->create([
             'name'=>'密码修改',
             'icons'=>'fa-lock',
@@ -603,6 +603,55 @@ class MenuTableSeeder extends Seeder
             'is_page'=>1,
             'status'=>1
         ]);
+
+        //ID:51
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'图表事列',
+            'icons'=>'fa-bar-chart',
+            'prefix'=>'',
+            'url'=>'',
+            'description' => '图表事列',
+            'parent_id'=>2,
+            'status'=>1
+        ]);
+
+        //ID:52
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'折线图表',
+            'icons'=>'fa-line-chart',
+            'prefix'=>'#',
+            'url'=>'/admin/chart/line-chart',
+            'description' => '折线图',
+            'is_page'=>1,
+            'parent_id'=>51,
+            'status'=>1
+        ]);
+
+        //ID:53
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'柱状图表',
+            'icons'=>'fa-bar-chart',
+            'prefix'=>'#',
+            'url'=>'/admin/chart/bar-chart',
+            'description' => '柱状图',
+            'is_page'=>1,
+            'parent_id'=>51,
+            'status'=>1
+        ]);
+
+        //ID:54
+        factory(\App\Models\Menu::class)->create([
+            'name'=>'中国地图',
+            'icons'=>'fa-area-chart',
+            'prefix'=>'#',
+            'url'=>'/admin/chart/china-chart',
+            'description' => '柱状图',
+            'is_page'=>1,
+            'parent_id'=>51,
+            'status'=>1
+        ]);
+
+
         //新建假数据3条
         //factory(\App\Models\Menu::class,3)->create();
     }
