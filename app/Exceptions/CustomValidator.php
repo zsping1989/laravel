@@ -55,6 +55,21 @@ class CustomValidator extends Validator{
         return Auth::validate(['email' => $user['email'], 'password' => $value]); //验证
     }
 
-
+    /**
+     * 验证验证码
+     * 参数: $attribute
+     * 参数: $value
+     * 参数: $parameters
+     * 返回: bool
+     */
+    public function validateVerifyCode($attribute, $value, $parameters)
+    {
+        $verify_code_key = config('auth.verify_code_key');
+        if($value!=\Session::get($verify_code_key)){
+            return false;
+        }
+        \Session::forget($verify_code_key);
+        return true;
+    }
 
 } 

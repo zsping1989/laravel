@@ -104,4 +104,10 @@ return [
         ],
     ],
 
+    /**
+     * 验证码key
+     *
+     */
+    'verify_code_key'=>'verify_code',
+
 ];

@@ -17,4 +17,8 @@ class IndexController extends Controller
         $data['menus'] = MenuLogic::getPageMenus();
         return Response::returns($data);
     }
+
+    public function getTest(){
+        dd(\Session::get('verify_code'));
+    }
 }

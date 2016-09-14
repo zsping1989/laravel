@@ -79,8 +79,24 @@ class AuthController extends Controller
     public function captcha($w=150,$h=32){
         $builder = new CaptchaBuilder();
         $builder->build($w,$h);
-        \Session::set('phrase',$builder->getPhrase()); //存储验证码
+        \Session::put(config('auth.verify_code_key'),$builder->getPhrase()); //存储验证码
         return response($builder->output())->header('Content-type','image/jpeg');
+    }
+
+    /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->loginUsername() => 'required',
+            'password' => 'required',
+            'verify' => 'required|verify_code'
+        ]);
+
     }
 
     /**
