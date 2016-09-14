@@ -31,7 +31,14 @@ class UserController extends Controller
      * 返回: array
      */
     protected function getValidateRule(){
-        return ['uname'=>'sometimes|required|alpha_dash|between:6,18|unique:users,uname','password'=>'sometimes|required|digits_between:6,18','name'=>'required','email'=>'sometimes|required|email|unique:users,email','mobile_phone'=>'sometimes|required|mobile_phone|digits:11|unique:users,mobile_phone','qq'=>'integer'];
+        return [
+            'uname' => 'sometimes|required|alpha_dash|between:6,18|unique:users,uname',
+            'password' => 'sometimes|required|digits_between:6,18',
+            'name' => 'required',
+            'email' => 'sometimes|required|email|unique:users,email',
+            'mobile_phone' => 'sometimes|required|mobile_phone|digits:11|unique:users,mobile_phone',
+            'qq' => 'integer'
+        ];
     }
 
     /**
