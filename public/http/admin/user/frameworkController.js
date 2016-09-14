@@ -57,7 +57,7 @@ define(['app',dataPath(),'joint','admin/public/headerController','admin/public/l
         var barts = {}; //图标对象
 
         for(var i in $scope.roles){
-            var x = $scope.roles[i].x || ($scope.width-200)/(Math.pow(2,$scope.level_count[$scope.roles[i].level]))+($scope.roles[i].level_num*200)-60;
+            var x = $scope.roles[i].x || ($scope.width-200)/(Math.pow(2,$scope.level_count[$scope.roles[i].level]))+($scope.roles[i].level_num*200)-1;
             var y = $scope.roles[i].y || 115*$scope.roles[i].level;
             //画图
             barts['id'+$scope.roles[i].id] = member(
