@@ -50,7 +50,7 @@ requirejs(['/data/home/index/routes?define=AMD'],function(data){
             "angular-ui-router": ["angular"]
         },
         deps: ['app','css'], //启动
-        urlArgs: ''//"time=" + (new Date()).getTime()  //防止读取缓存，调试用
+        urlArgs: "versions=" + versions//(new Date()).getTime()  //防止读取缓存，调试用
     });
 
     function ckeckUrl(route){
