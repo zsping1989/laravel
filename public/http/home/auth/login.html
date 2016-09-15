@@ -6,11 +6,11 @@
         <p class="login-box-msg">请先登录</p>
         <form  class="login-form" ng-controller="home-loginCtrl" method="post">
             <div class="form-group has-feedback">
-                <input type="text" name="username" ng-model="username" class="form-control" placeholder="请填写用户名">
+                <input type="text" name="username" ng-model="username" ng-init="errorFieldMap['uname']='用户名'" class="form-control" placeholder="请填写用户名">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" name="password" ng-model="password"  class="form-control" placeholder="请输入密码">
+                <input type="password" name="password" ng-model="password"  ng-init="errorFieldMap['password']='密码'"  class="form-control" placeholder="请输入密码">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
