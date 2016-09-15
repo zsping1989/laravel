@@ -27,7 +27,7 @@ define(['app',dataPath()],function(app,datas){
             }
             $http.post('/data/home/auth/login',post_data).success(function(res){
                 //登录成功跳转
-                window.location.href = res.redirect || '/admin/index';
+                //window.location.href = '#'+res.redirect || '#/admin/index';
             }).error(function(data){
                 if(typeof data == "object"){
                     for(var i in data){

@@ -19,6 +19,6 @@ class IndexController extends Controller
     }
 
     public function getTest(){
-        dd(\Session::get('verify_code'));
+        dd();
     }
 }

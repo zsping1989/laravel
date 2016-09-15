@@ -48,6 +48,9 @@ define(['angular'], function (angular) {
             if (typeof data == 'undefined') {
                 return scope;
             }
+            if(data.redirect){
+                window.location.href = '#'+data.redirect;
+            }
             //默认排序对象
             scope.order = data.order || [];
             data.where = data.where || [];

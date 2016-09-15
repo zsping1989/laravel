@@ -40,6 +40,12 @@ function orRedirect($to = null, $status = 302){
     ]);
 }
 
+/**
+ * 前端弹窗参数返回
+ * @param array $data
+ * @param int $status
+ * @return array
+ */
 function alert($data = [],$status=200){
     //默认值
     $defult  = [
@@ -61,4 +67,15 @@ function alert($data = [],$status=200){
         ]
     ];
     return collect(isset($defult[$status]) ? $defult[$status] : $defult['other'])->merge($data)->toArray();
+}
+
+/**
+ * 通过路径转化成前端控制器
+ * @param $path
+ */
+function pathToCtrl($path){
+    if(!$path){return false;};
+    $name = implode(array_slice(array_filter(explode('/',$path)),0,3),'-');
+    if(!$name){return false;}
+    return $name.'Ctrl';
 }

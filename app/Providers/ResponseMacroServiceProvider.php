@@ -28,13 +28,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
                return $factory->jsonp(Request::input('callback'),$value,$status);
             }elseif(Request::input('define')=='AMD'){ //AMD
                 $macro->addData($value);
-                if($redirect = $value->get('redirect')){
-                    //页面跳转
-                    $value = 'window.location.href = \'./#'.$redirect.'\';'.
-                        'define([],function(){ return '.collect($value)->toJson().';});';;
-                }else{
-                    $value = 'define([],function(){ return '.collect($value)->toJson().';});';
-                }
+                $value = 'define([],function(){ return '.collect($value)->toJson().';});';
             }elseif(Request::input('define')=='CMD'){ //CMD
                 $macro->addData($value);
                 $value = 'define([],function(){ return '.collect($value)->toJson().';});';
@@ -69,6 +63,9 @@ class ResponseMacroServiceProvider extends ServiceProvider
         }
         if($user){
             $global['messages'] = UserLogic::getAllNotReadLimit(['user.message','system.message','system.task'])->keyBy('name'); //用户消息
+        }
+        if($redirect = $value->get('redirect')){
+            $global['redirect'] = $redirect;
         }
 
         $value['global'] = $global;

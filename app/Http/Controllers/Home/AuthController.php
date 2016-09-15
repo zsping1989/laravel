@@ -42,8 +42,8 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '#/admin/index';
-    protected $redirectAfterLogout = './#/home/auth/login';
+    protected $redirectTo = '/admin/index';
+    protected $redirectAfterLogout = '/home/auth/login';
 
     /**
      * Create a new authentication controller instance.
@@ -94,7 +94,7 @@ class AuthController extends Controller
         $this->validate($request, [
             $this->loginUsername() => 'required',
             'password' => 'required',
-            'verify' => 'required|verify_code'
+          //  'verify' => 'required|verify_code'
         ]);
 
     }
@@ -126,7 +126,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::guard($this->getGuard())->logout();
-        return orRedirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
+        return orRedirect('/#'.(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/'));
     }
 
     /**
@@ -254,7 +254,7 @@ class AuthController extends Controller
         if(canRedirect()){
             return redirect()->intended($this->redirectPath());
         }
-        return orRedirect($this->redirectPath());
+        return orRedirect('#'.$this->redirectPath());
     }
 
 
