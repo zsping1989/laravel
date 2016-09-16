@@ -5,8 +5,8 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
         dump(datas);
         datas.row = datas.row || {};
         $rootScope = View.with(datas.global, $rootScope);
-        $scope.errorFieldMap = {};
         $scope = View.withCache(datas, $scope);
+        $scope.errorFieldMap = {};
         /* 条件查询数据 */
         $scope.getData = Model.getData;
 

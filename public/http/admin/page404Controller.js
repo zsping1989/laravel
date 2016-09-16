@@ -6,8 +6,9 @@
 datas = {};
 define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
     app.register.controller('admin-page404Ctrl', ["$scope", '$rootScope','Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
-        $scope = View.with(datas,$scope);
         $rootScope = View.withCache(datas.global ,$rootScope,1);
+        $scope = View.with(datas,$scope);
+
     }]);
 })
 

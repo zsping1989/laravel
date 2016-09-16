@@ -70,6 +70,9 @@ define(['angular'], function (angular) {
         }
 
         factory.withCache = function(data,scope,root){
+            if(!data){
+                return scope;
+            }
             if(!root){
                 //数据缓存,用于方便更新数据
                 scope.data_key = scope.data_key!='global' ? scope.data_key : parseURL('hash');

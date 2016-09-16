@@ -1,7 +1,8 @@
 define(['app',dataPath(),'joint','admin/public/headerController','admin/public/leftController'], function (app,datas,joint) {
     app.register.controller('admin-user-frameworkCtrl', ["$scope",'$rootScope', 'Model','View','$alert','$http', function ($scope,$rootScope,Model,View,$alert,$http) {
-        $scope = View.withCache(datas,$scope);
         $rootScope = View.withCache(datas.global,$rootScope,1);
+        $scope = View.withCache(datas,$scope);
+
         /* 条件查询数据 */
         $scope.getData = Model.getData;
 

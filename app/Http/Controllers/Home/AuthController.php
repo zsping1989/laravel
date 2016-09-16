@@ -126,7 +126,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::guard($this->getGuard())->logout();
-        return orRedirect('/#'.(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/'));
+        return orRedirect((property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/'));
     }
 
     /**

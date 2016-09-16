@@ -1,8 +1,9 @@
 define(['app',dataPath(),'echarts','admin/public/headerController','admin/public/leftController'], function (app,datas,echarts) {
     app.register.controller('admin-chart-line-chartCtrl', ["$scope",'$rootScope', 'Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
         $scope.data_key = '/admin/chart/line-chart';
-        $scope = View.withCache(datas,$scope);
         $rootScope = View.withCache(datas.global,$rootScope,1);
+        $scope = View.withCache(datas,$scope);
+
 
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main1'));

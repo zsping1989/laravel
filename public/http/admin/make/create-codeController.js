@@ -6,8 +6,9 @@
 
 define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
     app.register.controller('admin-create-codeCtrl', ["$scope", '$rootScope','View','$alert','$http', function ($scope,$rootScope,View,$alert,$http) {
+        $rootScope = View.withCache(datas.global,$rootScope,1);
         $scope = View.withCache(datas,$scope);
-       $rootScope = View.withCache(datas.global,$rootScope,1);
+
         //创建代码
         $scope.create = function(param){
             //命令拼接

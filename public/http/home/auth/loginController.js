@@ -4,6 +4,10 @@
 //dataPath(),数据源地址
 define(['app',dataPath()],function(app,datas){
     app.register.controller('home-loginCtrl',["$scope",'$http',function($scope,$http){
+        dump(datas);
+        if(datas.redirect){
+            window.location.href = '#'+datas.redirect;
+        }
         $scope.data_key = '/home/login';
         $scope.captcha = '/data/home/auth/captcha';
         $scope.errorFieldMap = {};
