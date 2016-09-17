@@ -168,7 +168,7 @@ class MenuTableSeeder extends Seeder
             'url'=>'/admin/menu/edit/{id?}',
             'method'=>1,
             'description' => '修改或添加数据',
-            'parent_id'=>13,
+            'parent_id'=>14,
             'is_page'=>1,
             'status'=>2
         ]);
@@ -241,7 +241,7 @@ class MenuTableSeeder extends Seeder
             'url'=>'/admin/area/edit/{id?}',
             'method'=>2,
             'description' => '添加或编辑区域',
-            'parent_id'=>18,
+            'parent_id'=>19,
             'is_page'=>1,
             'status'=>2
         ]);
@@ -279,7 +279,7 @@ class MenuTableSeeder extends Seeder
             'url'=>'/admin/role/edit/{id?}',
             'method'=>2,
             'description' => '添加或编辑角色',
-            'parent_id'=>22,
+            'parent_id'=>23,
             'is_page'=>1,
             'status'=>2
         ]);
@@ -329,7 +329,7 @@ class MenuTableSeeder extends Seeder
             'url'=>'/admin/user/edit/{id?}',
             'method'=>2,
             'description' => '添加或编辑用户',
-            'parent_id'=>26,
+            'parent_id'=>27,
             'is_page'=>1,
             'status'=>2
         ]);
