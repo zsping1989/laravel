@@ -35,7 +35,8 @@ requirejs(['/data/home/index/routes?define=AMD'],function(data){
             'backbone':'/lib/backbone/backbone.min',
             'joint':'/lib/joint/0.9.6/joint.min',
             'underscore':'/lib/underscore/1.8.3/underscore.min',
-            'echarts':'/lib/echart/3.2.3/echarts.min',
+            'echart':'/lib/echart/3.2.3/echarts.min',
+            'echarts':'/lib/echart/js/',
             "app":'app'
         },
         map: {
@@ -47,6 +48,7 @@ requirejs(['/data/home/index/routes?define=AMD'],function(data){
             'lodash':['jquery'],
             'backbone':['jquery','lodash'],
             "joint": ["jquery",'lodash','backbone','css!/lib/joint/0.9.6/joint.css'],
+            'echarts1':['/lib/echart/js/echarts.js','css!/lib/echart/css/echartsHome.css'],
             "angular-ui-router": ["angular"]
         },
         deps: ['app','css'], //启动

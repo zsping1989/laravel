@@ -142,6 +142,10 @@ class UserLogic{
      */
     public function getUserInfo($key=''){
         $key and $key = '.'.$key;
+        //session过期,重新缓存
+        if(!session('userInfo')){
+            $this->loginCacheInfo();
+        }
         return session('userInfo'.$key);
     }
 
