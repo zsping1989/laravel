@@ -164,8 +164,18 @@ class UserController extends Controller
      * 返回: mixed
      */
     public function getFramework(){
-        //查询所有角色
-        $data['roles'] = Role::orderBy('left_margin')->get()->load('admins.user');
+        $roleModel = Role::orderBy('left_margin')->whereRaw('false');
+        collect(UserLogic::getUserInfo('admin.roles'))->each(function($item) use(&$roleModel){
+            $roleModel->orWhere(function($query) use($item){
+                $query->where('left_margin','<=',$item['left_margin'])
+                    ->where('right_margin','>=',$item['right_margin']);
+            })->orWhere(function($query) use($item){
+                $query->where('left_margin','>=',$item['left_margin'])
+                    ->where('right_margin','<=',$item['right_margin']);
+            });
+        });
+        //查询跟自己有关系的角色
+        $data['roles'] = $roleModel->get()->load('admins.user');
         $level = [];
         foreach($data['roles'] as &$role){
             $role->users = collect($role->admins->toArray())->pluck('user')->implode('name', ',');

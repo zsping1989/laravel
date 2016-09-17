@@ -10,7 +10,6 @@ define(['app',dataPath(),'joint','admin/public/headerController','admin/public/l
         var graph = new joint.dia.Graph();
         var paper = new joint.dia.Paper({
             el: $('#paper'),
-            width: $scope.width+200,
             height: $scope.height+200,
             gridSize: 1,
             model: graph,
