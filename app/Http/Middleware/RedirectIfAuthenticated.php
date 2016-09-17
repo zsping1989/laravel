@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Logics\Facade\UserLogic;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -19,7 +20,8 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return orRedirect('/admin/index');
+            $redirect = UserLogic::getUserInfo('admin') ? '/admin/index' : '/home/index';
+            return orRedirect($redirect);
         }
 
         return $next($request);
