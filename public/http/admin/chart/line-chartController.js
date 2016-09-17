@@ -1,4 +1,5 @@
-define(['app',dataPath(),'echarts','admin/public/headerController','admin/public/leftController'], function (app,datas,echarts) {
+define(['app',dataPath(),'echart','admin/public/headerController','admin/public/leftController'],
+    function (app,datas,echarts) {
     app.register.controller('admin-chart-line-chartCtrl', ["$scope",'$rootScope', 'Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
         $scope.data_key = '/admin/chart/line-chart';
         $rootScope = View.withCache(datas.global,$rootScope,1);
