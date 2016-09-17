@@ -44,6 +44,7 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/admin/index';
     protected $redirectAfterLogout = '/home/auth/login';
+    protected $redirectToHome = '/home/index';
 
     /**
      * Create a new authentication controller instance.
@@ -250,11 +251,11 @@ class AuthController extends Controller
         }
         //用户数据记录
         UserLogic::loginCacheInfo();
-
+        $redirect = UserLogic::getUserInfo('admin') ? $this->redirectPath() : $this->redirectToHome;
         if(canRedirect()){
-            return redirect()->intended($this->redirectPath());
+            return redirect()->intended($redirect);
         }
-        return orRedirect('#'.$this->redirectPath());
+        return orRedirect('#'.$redirect);
     }
 
 
