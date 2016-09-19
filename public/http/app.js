@@ -1,7 +1,8 @@
 /**
  * Created by zhang on 16-5-13.
  */
-define(["angular", "angularAMD", "angular-ui-router",'angular-animate','angular-strap-tpl','angular-animate','mainService'], function (angular, angularAMD) {
+define(["angular", "angularAMD", 'angular-zh',"angular-ui-router",'angular-animate','angular-strap-tpl','angular-animate','mainService'],
+    function (angular, angularAMD) {
     //创建app模块
     var app = angular.module("app", ['ngAnimate',"ui.router",'mgcrea.ngStrap','main']);
 

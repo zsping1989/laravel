@@ -21,8 +21,9 @@ requirejs(['/data/home/index/routes?define=AMD'],function(data){
         paths: {
             "jquery":'/lib/jquery/2.2.3/jquery.min',
             "angular": "/lib/angular/1.5.5/angular.min",
+            "angular-zh": "/lib/angular/1.5.5/angular-locale_zh-cn",
             "angular-ui-router": "/lib/angular-ui-router/0.2.8/angular-ui-router.min",
-            "angular-strap":'/lib/angular-strap/2.3.8/dist/angular-strap.min',
+            "angular-strap":'/lib/angular-strap/2.3.8/dist/angular-strap',
             "angular-strap-tpl":'/lib/angular-strap/2.3.8/dist/angular-strap.tpl.min',
             'satellizer':'/lib/satellizer/0.14.0/satellizer.min',
             "angularAMD": "/lib/angularAMD/0.2.1/angularAMD.min",
@@ -43,6 +44,7 @@ requirejs(['/data/home/index/routes?define=AMD'],function(data){
         },
         shim: {
             "angular": { exports: "angular" },
+            'angular-zh':['angular'],
             "angularAMD": ["angular"],
             "ngload": ["angularAMD"],
             'lodash':['jquery'],
