@@ -2101,3 +2101,29 @@ var requirejs, require, define;
     //Set up with config info.
     req(cfg);
 }(this));
+require.config({
+    baseUrl: "/http/",
+    paths: {
+        "jquery":'/lib/jquery/2.2.3/jquery.min',
+        'satellizer':'/lib/satellizer/0.14.0/satellizer.min',
+        "angular-animate":'/lib/angular-animate/1.5.5/angular-animate.min',
+        'css': '/lib/require-css/0.1.8/css.min',
+        'mainService':'/service/mainService',
+        'lodash':'/lib/lodash/3.10.1/lodash.min',
+        'backbone':'/lib/backbone/backbone.min',
+        'joint':'/lib/joint/0.9.6/joint.min',
+        'underscore':'/lib/underscore/1.8.3/underscore.min',
+        'echart':'/lib/echart/3.2.3/echarts.min',
+        'echarts':'/lib/echart/js/'
+    },
+    map: {
+    },
+    shim: {
+        'lodash':['jquery'],
+        'backbone':['jquery','lodash'],
+        "joint": ["jquery",'lodash','backbone','css!/lib/joint/0.9.6/joint.css'],
+        'echarts1':['/lib/echart/js/echarts.js','css!/lib/echart/css/echartsHome.css']
+    },
+    deps: ['css'], //启动
+    urlArgs: "versions=" + (new Date()).getTime()  //防止读取缓存，调试用
+});

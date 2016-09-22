@@ -1,8 +1,8 @@
-define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
-    app.register.controller('admin-area-indexCtrl', ["$scope",'$rootScope', 'Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
+dump(datas.global);
+app.controller('admin-area-indexCtrl', ["$scope",'$rootScope', 'Model','View', function ($scope,$rootScope,Model,View) {
         $scope.data_key = '/admin/area/list';
-        $rootScope = View.withCache(datas.global,$rootScope,1);
-        $scope = View.withCache(datas.list,$scope);
+        $rootScope = View.with(datas.global,$rootScope,1);
+        $scope = View.with(datas.list,$scope);
 
         $scope.selectedDate = "2016-09-30T12:46:06.578Z"; // <- [object Date]
         $scope.selectedDateAsNumber = 509414400000; // <- [object Number]
@@ -21,7 +21,6 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
         $scope.delete = Model.delete;
         $scope.selectAllId = Model.selectAllId;
     }]);
-})
 
 
 

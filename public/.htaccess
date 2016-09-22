@@ -2,23 +2,14 @@
     <IfModule mod_negotiation.c>
         Options -MultiViews
     </IfModule>
-    Options +FollowSymlinks
+
     RewriteEngine On
 
-    # Redirect Trailing Slashes If Not A Folder...
-    RewriteCond %{REQUEST_FILENAME} !-d
+    # Redirect Trailing Slashes...
     RewriteRule ^(.*)/$ /$1 [L,R=301]
-    RewriteRule ^/?data/home/index/routes\.js.*$ /http/routes.js [L]
-    RewriteRule ^/?data/(.*)$ index.php [L]
 
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-
-    RewriteRule ^ index.html [L]
-
-
-    # Handle Authorization Header
-    RewriteCond %{HTTP:Authorization} .
-    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    RewriteRule ^ index.php [L]
 </IfModule>

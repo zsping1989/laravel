@@ -40,8 +40,8 @@ class ResponseMacroServiceProvider extends ServiceProvider
                 $value = 'var '.Request::input('script').' = '.collect($value)->toJson().';';
             }else{
                 $macro->addData($value);
-                return $factory->json($value,$status);
-                //return view('index',['data'=>$value]);
+                //return $factory->json($value,$status);
+                return view(Route::getCurrentRoute()->getCompiled()->getStaticPrefix(),['data'=>$value]);
             }
             return $factory->make($value,$status);
         });
@@ -54,19 +54,10 @@ class ResponseMacroServiceProvider extends ServiceProvider
     public function addData(&$value){
         $user = UserLogic::getUser();
         $global = [];
-        $global['route'] = preg_replace('/^\/?data(.*)$/','$1',Request::getPathInfo());  //路由信息
         $global['nav'] = MenuLogic::getNavbar(); //导航数据
         $global['navkeys'] = collect($global['nav'])->keys()->all();
-        if(Request::input('global')=='all'){ //获取当前用户菜单数据,用户信息
             $global['user'] = $user; //用户信息
             $global['menus'] = $global['user'] ? UserLogic::getUserInfo('menus') : null; //菜单数据
-        }
-        if($user){
-            $global['messages'] = UserLogic::getAllNotReadLimit(['user.message','system.message','system.task'])->keyBy('name'); //用户消息
-        }
-        if($redirect = $value->get('redirect')){
-            $global['redirect'] = $redirect;
-        }
 
         $value['global'] = $global;
     }

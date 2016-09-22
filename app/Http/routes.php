@@ -13,7 +13,7 @@
 
 
 //前台路由设置
-Route::group(['prefix'=>'data/home','namespace'=>'Home'],function($data){
+Route::group(['prefix'=>'home','namespace'=>'Home'],function($data){
     Route::get('swagger', 'SwaggerController@doc'); //swagger接口文档说明路由
     Route::controller('auth', 'AuthController');
     Route::controller('index', 'IndexController');
@@ -21,7 +21,7 @@ Route::group(['prefix'=>'data/home','namespace'=>'Home'],function($data){
 
 
 //中间件验证
-Route::group(['prefix'=>'data/admin','namespace'=>'Admin','middleware'=>['auth','admin']], function(){
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']], function(){
     Route::controller('make', 'MakeController'); //创建代码控制器
     Route::controller('menu', 'MenuController'); //菜单资源控制器
     Route::controller('area', 'AreaController'); //区域资源控制器
