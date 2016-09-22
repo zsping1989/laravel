@@ -5,7 +5,7 @@
 app.controller('home-loginCtrl',["$scope",'$http',function($scope,$http){
     dump(datas);
     if(datas.redirect){
-        window.location.href = '#'+datas.redirect;
+        //window.location.href = datas.redirect;
     }
     $scope.data_key = '/home/login';
     $scope.errorFieldMap = {};

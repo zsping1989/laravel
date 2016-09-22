@@ -255,7 +255,7 @@ class AuthController extends Controller
         if(canRedirect()){
             return redirect()->intended($redirect);
         }
-        return orRedirect('#'.$redirect);
+        return orRedirect($redirect);
     }
 
 
