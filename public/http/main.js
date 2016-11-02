@@ -1,10 +1,10 @@
-var myChart=[]; //echarts画图自动放缩
+var myChart = []; //echarts画图自动放缩
 /**
  * echart响应式
  */
-window.onresize = function(){
-    if(typeof myChart=='object'){
-        for (var i  in myChart){
+window.onresize = function () {
+    if (typeof myChart == 'object') {
+        for (var i  in myChart) {
             myChart[i].resize();
         }
     }
@@ -14,73 +14,72 @@ window.onresize = function(){
 require.config({
     baseUrl: "/http/",
     paths: {
-        "jquery":'/lib/jquery/2.2.3/jquery.min',
-        'satellizer':'/lib/satellizer/0.14.0/satellizer.min',
-        "angular-animate":'/lib/angular-animate/1.5.5/angular-animate.min',
+        "jquery": '/lib/jquery/2.2.3/jquery.min',
+        'satellizer': '/lib/satellizer/0.14.0/satellizer.min',
+        "angular-animate": '/lib/angular-animate/1.5.5/angular-animate.min',
         'css': '/lib/require-css/0.1.8/css.min',
-        'mainService':'/service/mainService',
-        'lodash':'/lib/lodash/3.10.1/lodash.min',
-        'backbone':'/lib/backbone/backbone.min',
-        'joint':'/lib/joint/0.9.6/joint.min',
-        'underscore':'/lib/underscore/1.8.3/underscore.min',
-        'echarts':'/lib/echarts/dist/echarts.min',
-        'echart':'/lib/echarts/',
-        'layer':'/lib/layer/layer',
-        'swiper':'/lib/swiper/swiper.min',
-        'ztree_core':'/lib/ztree/jquery.ztree.core',
-        'ztree':'/lib/ztree/jquery.ztree.excheck'
+        'mainService': '/service/mainService',
+        'lodash': '/lib/lodash/3.10.1/lodash.min',
+        'backbone': '/lib/backbone/backbone.min',
+        'joint': '/lib/joint/0.9.6/joint.min',
+        'underscore': '/lib/underscore/1.8.3/underscore.min',
+        'echarts': '/lib/echarts/dist/echarts.min',
+        'echart': '/lib/echarts/',
+        'layer': '/lib/layer/layer',
+        'swiper': '/lib/swiper/swiper.min',
+        'ztree_core': '/lib/ztree/jquery.ztree.core',
+        'ztree': '/lib/ztree/jquery.ztree.excheck'
     },
-    map: {
-    },
+    map: {},
     shim: {
-        'lodash':['jquery'],
-        'backbone':['jquery','lodash'],
-        'layer':['jquery','css!/lib/layer/skin/layer.css'],
-        "joint": ["jquery",'lodash','backbone','css!/lib/joint/0.9.6/joint.css'],
-        'ztree_core':['jquery'],
-        'ztree':['jquery','ztree_core','css!/lib/ztree/zTreeStyle.css']
+        'lodash': ['jquery'],
+        'backbone': ['jquery', 'lodash'],
+        'layer': ['jquery', 'css!/lib/layer/skin/layer.css'],
+        "joint": ["jquery", 'lodash', 'backbone', 'css!/lib/joint/0.9.6/joint.css'],
+        'ztree_core': ['jquery'],
+        'ztree': ['jquery', 'ztree_core', 'css!/lib/ztree/zTreeStyle.css']
     },
     deps: ['css'], //启动
     urlArgs: "versions=" + (new Date()).getTime()  //防止读取缓存，调试用
 });
 
-var app = angular.module('app',[]); //app模块启动
+var app = angular.module('app', []); //app模块启动
 //全局请求配置,响应监听
-app.factory('httpInterceptor', [ '$q', '$injector',function($q, $injector) {
+app.factory('httpInterceptor', ['$q', '$injector', function ($q, $injector) {
     var httpInterceptor = {
-        'responseError' : function(response) {
+        'responseError': function (response) {
             dump(response);
-            if(response.data===null){
+            if (response.data === null) {
                 response.data = {};
             }
             //页面跳转
-            if(response.data.redirect){
+            if (response.data.redirect) {
                 window.location.href = response.data.redirect;
             }
             //页面弹窗提示
-            if(response.data.alert ){
+            if (response.data.alert) {
                 alert(response.data.alert);
             }
             return $q.reject(response);
         },
-        'response' : function(response) {
-            if(response.data===null){
+        'response': function (response) {
+            if (response.data === null) {
                 response.data = {};
             }
             //页面跳转
-            if(response.data.redirect){
+            if (response.data.redirect) {
                 window.location.href = response.data.redirect;
             }
             //页面弹窗提示
-            if(response.data.alert){
+            if (response.data.alert) {
                 alert(response.data.alert);
             }
 
             return response;
-        }, 'request' : function(config) {
+        }, 'request': function (config) {
             return config;
         },
-        'requestError' : function(config){
+        'requestError': function (config) {
             return $q.reject(config);
         }
     }
@@ -88,18 +87,18 @@ app.factory('httpInterceptor', [ '$q', '$injector',function($q, $injector) {
 }]);
 
 /* 数据渲染 */
-app.factory('View', ['$http',function ($http) {
+app.factory('View', ['$http', function ($http) {
     var factory = {};
     factory.with = function (data, scope) {
         if (typeof data == 'undefined') {
             return scope;
         }
-        if(data.redirect){
-            window.location.href = '#'+data.redirect;
+        if (data.redirect) {
+            window.location.href = '#' + data.redirect;
         }
-        if(data.where){
+        if (data.where) {
             for (var i in data.where) {
-                if(data.where[i]['val'] && (data.where[i]['type']=='dateStart' || data.where[i]['type']=='dateEnd')){
+                if (data.where[i]['val'] && (data.where[i]['type'] == 'dateStart' || data.where[i]['type'] == 'dateEnd')) {
                     data.where[i].val = new Date(data.where[i].val);
                 }
             }
@@ -125,10 +124,10 @@ app.factory('View', ['$http',function ($http) {
     return factory;
 }]);
 
-app.factory('Model',['$http','View',function($http,View){
+app.factory('Model', ['$http', 'View', function ($http, View) {
     var factory = {};
     //条件查询数据
-    factory.getData = function ($scope,params) {
+    factory.getData = function ($scope, params) {
         params = params || {};
         var page = parseInt(params.page) || 1; //默认第一页
         page = page > $scope.last_page ? $scope.last_page : page; //超出最后一页,显示最后一页
@@ -144,14 +143,14 @@ app.factory('Model',['$http','View',function($http,View){
         var flog = false;
         for (var i in where) {
             var objt = typeof (where[i].val);
-            if(where[i].type=='dateStart' && objt=='object'){
-                where[i].val = handleDate(where[i].val,'yyyy-MM-dd');
-            }else if(where[i].type=='dateEnd' && objt=='object'){
-                where[i].val = handleDate(where[i].val,'yyyy-MM-dd');
-            }else {
+            if (where[i].type == 'dateStart' && objt == 'object') {
+                where[i].val = handleDate(where[i].val, 'yyyy-MM-dd');
+            } else if (where[i].type == 'dateEnd' && objt == 'object') {
+                where[i].val = handleDate(where[i].val, 'yyyy-MM-dd');
+            } else {
                 where[i].val = where[i].val.replace(/(^\s*)|(\s*$)/g, "");
             }
-            var val =  where[i].val;
+            var val = where[i].val;
             if (val) {
                 flog = true;
             }
@@ -176,30 +175,32 @@ app.factory('Model',['$http','View',function($http,View){
         }
         resparams.order = order;
         if (params.reset) {
-            if(!$scope.reset){return true}
+            if (!$scope.reset) {
+                return true
+            }
             resparams = {page: 1};
             var where = $scope.oldWhere;
             for (var i in where) {
                 var objt = typeof (where[i].val);
-                if(where[i].type=='dateStart' && objt=='object'){
-                    where[i].val = handleDate(where[i].val,'yyyy-MM-dd');
-                }else if(where[i].type=='dateEnd' && objt=='object'){
-                    where[i].val = handleDate(where[i].val,'yyyy-MM-dd');
-                }else {
+                if (where[i].type == 'dateStart' && objt == 'object') {
+                    where[i].val = handleDate(where[i].val, 'yyyy-MM-dd');
+                } else if (where[i].type == 'dateEnd' && objt == 'object') {
+                    where[i].val = handleDate(where[i].val, 'yyyy-MM-dd');
+                } else {
                     where[i].val = where[i].val.replace(/(^\s*)|(\s*$)/g, "");
                 }
-                var val =  where[i].val;
+                var val = where[i].val;
                 resparams['where[' + i + ']'] = where[i];
             }
             $scope.reset = -1;
             //开始时间
-            $scope.dateOptions0 =  {
+            $scope.dateOptions0 = {
                 maxDate: new Date(),
                 showWeeks: true
             };
 
             //结束时间
-            $scope.dateOptions1 =  {
+            $scope.dateOptions1 = {
                 maxDate: new Date(),
                 showWeeks: true
             };
@@ -209,9 +210,10 @@ app.factory('Model',['$http','View',function($http,View){
         $http({
             method: 'GET',
             url: $scope.data_url,
-            params: resparams}).success(function (data) {
+            params: resparams
+        }).success(function (data) {
 
-            if(params.refresh==1){
+            if (params.refresh == 1) {
                 /* $alert({
                  'title':'提示',
                  'content':'刷新成功!',
@@ -222,53 +224,53 @@ app.factory('Model',['$http','View',function($http,View){
                  });*/
             }
             $scope.reset++;
-            View.with(data,$scope);
+            View.with(data, $scope);
         });
     };
 
     //置顶
-    factory.upTop = function($scope,id){
+    factory.upTop = function ($scope, id) {
         //请求数据
         $http({
             method: 'POST',
-            url: $scope.upTop_url+'/'+id
+            url: $scope.upTop_url + '/' + id
         }).success(function () {
-            factory.getData($scope,{refresh:2});
+            factory.getData($scope, {refresh: 2});
         });
     };
 
     //删除数据
-    factory.delete = function($scope,id){
-        var ids =id || $scope.ids;
+    factory.delete = function ($scope, id) {
+        var ids = id || $scope.ids;
         var data = [];
-        if(typeof ids=='object'){
-            for (var i in ids){
-                if(ids[i]){
+        if (typeof ids == 'object') {
+            for (var i in ids) {
+                if (ids[i]) {
                     data[data.length] = ids[i];
                 }
             }
-        }else {
+        } else {
             data = ids;
         }
-        if(!data || (typeof ids =='object' && !ids.length)){
+        if (!data || (typeof ids == 'object' && !ids.length)) {
             return false;
         }
         //请求数据
         $http({
             method: 'POST',
             url: $scope.delete_url,
-            data: {ids:data}
+            data: {ids: data}
         }).success(function () {
             $scope.selectAll = false;
             $scope.ids = [];
-            factory.getData($scope,{refresh:2});
+            factory.getData($scope, {refresh: 2});
         });
     };
 
-    factory.selectAllId = function($scope,selectAll){
-        if(selectAll){
+    factory.selectAllId = function ($scope, selectAll) {
+        if (selectAll) {
             $scope.ids = $scope.allIds;
-        }else {
+        } else {
             $scope.ids = []
         }
     };
@@ -277,7 +279,7 @@ app.factory('Model',['$http','View',function($http,View){
 }]);
 
 /* 全局函数调用 */
-app.filter('F', [ function () {
+app.filter('F', [function () {
     return function () {
         var f = eval(arguments[0]);
         arguments.splice = [].splice;
@@ -287,12 +289,12 @@ app.filter('F', [ function () {
 }]);
 
 //http全局配置
-app.config(['$httpProvider',function($httpProvider){
+app.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push('httpInterceptor');
 }]);
 
 //中文包
-angular.module("ngLocale", [], ["$provide", function($provide) {
+angular.module("ngLocale", [], ["$provide", function ($provide) {
     var PLURAL_CATEGORY = {ZERO: "zero", ONE: "one", TWO: "two", FEW: "few", MANY: "many", OTHER: "other"};
     $provide.value("$locale", {
         "DATETIME_FORMATS": {
@@ -413,14 +415,16 @@ angular.module("ngLocale", [], ["$provide", function($provide) {
         },
         "id": "zh-cn",
         "localeID": "zh_CN",
-        "pluralCat": function(n, opt_precision) {  return PLURAL_CATEGORY.OTHER;}
+        "pluralCat": function (n, opt_precision) {
+            return PLURAL_CATEGORY.OTHER;
+        }
     });
 }]);
 
 /**
  * 打印调试
  */
-function dump(){
+function dump() {
     for (var i = 0; i < arguments.length; ++i) {
         console.log(arguments[i]);
     }
@@ -431,12 +435,12 @@ function dump(){
  * @param num
  * @returns {Array}
  */
-function binaryToArray(num){
+function binaryToArray(num) {
     var res = [];
     var i = 0;
-    while(num){
-        if(num&1){
-            res[res.length] = pow(2,i);
+    while (num) {
+        if (num & 1) {
+            res[res.length] = pow(2, i);
         }
         num >>= 1;
         i++;
@@ -449,11 +453,13 @@ function binaryToArray(num){
  * @param arr
  * @returns {number}
  */
-function arrayToBinary(arr){
-    if(!arr){return 0;}
+function arrayToBinary(arr) {
+    if (!arr) {
+        return 0;
+    }
     var res = 0;
-    for(var i in arr){
-       res |= arr[i];
+    for (var i in arr) {
+        res |= arr[i];
     }
     return res;
 }
@@ -464,12 +470,12 @@ function arrayToBinary(arr){
  * @param limit
  * @param end
  */
-function str_limit(value,limit,end){
+function str_limit(value, limit, end) {
     limit = limit || 100;
     end = end || '...';
-    var _str = value ? String(value):'';
-    if(_str.length>limit){
-        return _str.substring(0,4) + '...';
+    var _str = value ? String(value) : '';
+    if (_str.length > limit) {
+        return _str.substring(0, 4) + '...';
     }
     return _str;
 }
@@ -480,33 +486,35 @@ function str_limit(value,limit,end){
  * @param url
  * @returns {*}
  */
-function parseURL(key,url) {
-    var a =  document.createElement('a');
+function parseURL(key, url) {
+    var a = document.createElement('a');
     a.href = url || window.location.href;
     var res = {
         source: url,
-        protocol: a.protocol.replace(':',''),
+        protocol: a.protocol.replace(':', ''),
         host: a.hostname,
         port: a.port,
         query: a.search,
-        params: (function(){
+        params: (function () {
             var ret = {},
-                seg = a.search.replace(/^\?/,'').split('&'),
+                seg = a.search.replace(/^\?/, '').split('&'),
                 len = seg.length, i = 0, s;
-            for (;i<len;i++) {
-                if (!seg[i]) { continue; }
+            for (; i < len; i++) {
+                if (!seg[i]) {
+                    continue;
+                }
                 s = seg[i].split('=');
                 ret[s[0]] = s[1];
             }
             return ret;
         })(),
-        file: (a.pathname.match(/\/([^\/?#]+)$/i) || [,''])[1],
-        hash: a.hash.replace('#',''),
-        path: a.pathname.replace(/^([^\/])/,'/$1'),
-        relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])[1],
-        segments: a.pathname.replace(/^\//,'').split('/')
+        file: (a.pathname.match(/\/([^\/?#]+)$/i) || [, ''])[1],
+        hash: a.hash.replace('#', ''),
+        path: a.pathname.replace(/^([^\/])/, '/$1'),
+        relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [, ''])[1],
+        segments: a.pathname.replace(/^\//, '').split('/')
     };
-    if(key){
+    if (key) {
         return res[key];
     }
     return res;
@@ -519,29 +527,33 @@ function parseURL(key,url) {
  */
 function arrive_timer_format(s) {
     var t;
-    if(s > -1){
-        hour = Math.floor(s/3600);
-        min = Math.floor(s/60) % 60;
+    if (s > -1) {
+        hour = Math.floor(s / 3600);
+        min = Math.floor(s / 60) % 60;
         sec = s % 60;
         day = parseInt(hour / 24);
 
         if (day > 0) {
             hour = hour - 24 * day;
-            if(hour<10){
+            if (hour < 10) {
                 t = day + "天 0" + hour + ":";
-            }else {
+            } else {
                 t = day + "天 " + hour + ":";
             }
-        }else{
-            if(hour<10){
-                t = '0'+hour + ":";
-            }else {
+        } else {
+            if (hour < 10) {
+                t = '0' + hour + ":";
+            } else {
                 t = hour + ":";
             }
         }
-        if(min < 10){t += "0";}
+        if (min < 10) {
+            t += "0";
+        }
         t += min + ":";
-        if(sec < 10){t += "0";}
+        if (sec < 10) {
+            t += "0";
+        }
         t += sec;
     }
     return t;
@@ -553,7 +565,7 @@ function arrive_timer_format(s) {
  * @param leng
  * @returns {string}
  */
-function toFixed(num,leng){
+function toFixed(num, leng) {
     num = Number(num) || 0;
     return num.toFixed(leng)
 }
@@ -563,18 +575,18 @@ function toFixed(num,leng){
  * @param e
  * @returns {boolean}
  */
-function banInputSapce(e){
-    var keynum; 
-    if(window.event){ //IE 
-        keynum = e.keyCode 
-    } 
-    else if(e.which) {// Netscape/Firefox/Opera  
-        keynum = e.which 
-    } 
-    if(keynum == 32){ 
-        return false; 
-    } 
-    return true; 
+function banInputSapce(e) {
+    var keynum;
+    if (window.event) { //IE
+        keynum = e.keyCode
+    }
+    else if (e.which) {// Netscape/Firefox/Opera
+        keynum = e.which
+    }
+    if (keynum == 32) {
+        return false;
+    }
+    return true;
 }
 /**
  * 对日期进行格式化，
@@ -592,13 +604,13 @@ function banInputSapce(e){
  * @return String
  * @author yanis.wang
  */
-function dateFormat (date, format) {
-    if(!format){
+function dateFormat(date, format) {
+    if (!format) {
         format = 'yyyy-MM-dd hh:mm:ss';
     }
 
-    date = new Date(date*1000);
-    return handleDate(date,format);
+    date = new Date(date * 1000);
+    return handleDate(date, format);
 }
 
 /**
@@ -607,8 +619,8 @@ function dateFormat (date, format) {
  * @param format
  * @returns {*}
  */
-function handleDate(date,format){
-    if(!date){
+function handleDate(date, format) {
+    if (!date) {
         return '';
     }
     var map = {
@@ -620,16 +632,16 @@ function handleDate(date,format){
         "q": Math.floor((date.getMonth() + 3) / 3), //季度
         "S": date.getMilliseconds() //毫秒
     };
-    format = format.replace(/([yMdhmsqS])+/g, function(all, t){
+    format = format.replace(/([yMdhmsqS])+/g, function (all, t) {
         var v = map[t];
-        if(v !== undefined){
-            if(all.length > 1){
+        if (v !== undefined) {
+            if (all.length > 1) {
                 v = '0' + v;
-                v = v.substr(v.length-2);
+                v = v.substr(v.length - 2);
             }
             return v;
         }
-        else if(t === 'y'){
+        else if (t === 'y') {
             return (date.getFullYear() + '').substr(4 - all.length);
         }
         return all;
@@ -642,20 +654,20 @@ function handleDate(date,format){
  * 两个时间戳相距
  * @param time 时间戳
  */
-function dateApart(time){
+function dateApart(time) {
     time = Math.abs(time);
-    if(time<60){
-        return time+'秒';
-    }else if(time<3600){
-        return Math.round(time/60) +'分钟';
-    }else if(time<3600*24){
-        return Math.round(time/3600) +'小时';
-    }else if(time<3600*24*30){
-        return Math.round(time/3600/24) +'天';
-    }else if(time<3600*24*30*12){
-        return Math.round(time/3600/24/30) +'月';
-    }else{
-        return Math.round(time/3600/24/365) +'年';
+    if (time < 60) {
+        return time + '秒';
+    } else if (time < 3600) {
+        return Math.round(time / 60) + '分钟';
+    } else if (time < 3600 * 24) {
+        return Math.round(time / 3600) + '小时';
+    } else if (time < 3600 * 24 * 30) {
+        return Math.round(time / 3600 / 24) + '天';
+    } else if (time < 3600 * 24 * 30 * 12) {
+        return Math.round(time / 3600 / 24 / 30) + '月';
+    } else {
+        return Math.round(time / 3600 / 24 / 365) + '年';
     }
 }
 
@@ -664,7 +676,7 @@ function dateApart(time){
  * @param arr
  * @returns {number}
  */
-function cout(arr){
+function cout(arr) {
     return arr ? arr.length : 0;
 }
 
@@ -679,7 +691,7 @@ function deep(num) {
         str += '—';
     }
     if (num > 1) {
-        return str+':';
+        return str + ':';
     }
     return '';
 }
