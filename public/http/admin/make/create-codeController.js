@@ -1,13 +1,7 @@
-/**
- * Created by zhangshiping on 16-5-12.
- */
-//require.s.contexts._.config.paths.data = '/Admin/index';
-//dump(require.s.contexts._.defined.data);
-
-define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
-    app.register.controller('admin-create-codeCtrl', ["$scope", '$rootScope','View','$alert','$http', function ($scope,$rootScope,View,$alert,$http) {
-        $rootScope = View.withCache(datas.global,$rootScope,1);
-        $scope = View.withCache(datas,$scope);
+    app.controller('admin-create-codeCtrl', ["$scope", '$rootScope','View','$http',
+        function ($scope,$rootScope,View,$http) {
+        $rootScope = View.with(datas.global,$rootScope,1);
+        $scope = View.with(datas,$scope);
 
         //创建代码
         $scope.create = function(param){
@@ -34,7 +28,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
             $scope.artisan += option;
             $http({
                     method: 'POST',
-                    url: '/data/admin/make/exe',
+                    url: '@{{admin/make/exe',
                     data: param}
             ).error(function(){
                 $alert({
@@ -48,7 +42,6 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
             });
         };
     }]);
-})
 
 
 

@@ -102,7 +102,7 @@
                                         <td class="visible-lg">@{{ row.updated_at}}</td>
                                         <td>
                                             <a class="btn btn-xs btn-info" title="编辑" role="button"
-                                               href="#/admin/area/edit/@{{row.id}}">
+                                               href="/admin/area/edit/@{{row.id}}">
                                                 <i class="glyphicon glyphicon-edit"></i>
                                             </a>
                                             <button class="btn btn-xs btn-danger" title="删除"
@@ -124,7 +124,7 @@
                                         ng-click="getData($this,{refresh:1})">
                                     <i class="fa fa-refresh"></i>
                                 </button>
-                                <a class="btn btn-default btn-sm" title="添加" href="#/admin/area/edit/0">
+                                <a class="btn btn-default btn-sm" title="添加" href="/admin/area/edit/0">
                                     <i class="fa fa-plus"></i>
                                 </a>
                             </div>

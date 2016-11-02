@@ -12,6 +12,7 @@ use App\Models\Menu;
 use App\Models\Role;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Message\Facades\Message;
 
 class UserLogic{
@@ -40,7 +41,17 @@ class UserLogic{
      * 返回: array
      */
     public function getMenuWhiteListIds(){
-        return [7,2,12,41,42];
+        return $this->getHomeMenus()->pluck('id')->merge([7,2,12,41,42])->toArray();
+    }
+
+    /**
+     * 前端模块菜单
+     */
+    public function getHomeMenus(){
+        $home = Menu::find(3);
+        return Menu::whereRaw('left_margin>='.$home['left_margin'].' AND right_margin<='.$home['right_margin'])
+            //->orWhereIn('id',[6,30,31,50])
+            ->orderBy('left_margin')->get();
     }
 
     /**
@@ -74,7 +85,7 @@ class UserLogic{
      */
     public function getAdminRolesAndChilds($all=true){
         $roles = $this->admin->roles; //当前用户角色
-        $roleModel = Role::where('id','<',0); //角色模型
+        $roleModel = Role::whereRaw('false'); //角色模型
         $exp = $all ? '=':'';
         //查询所有包含自己及子节点
         foreach($roles as $role){

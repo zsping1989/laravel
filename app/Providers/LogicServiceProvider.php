@@ -34,6 +34,7 @@ class LogicServiceProvider extends ServiceProvider
         $this->app->singleton('menu.logic', function($app){
             return new MenuLogic();
         });
+
     }
 
     /**

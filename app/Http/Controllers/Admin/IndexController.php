@@ -2,7 +2,7 @@
 
 /**
  * @SWG\Swagger(
- *     basePath="/data/admin",
+ *     basePath="@{{admin",
  *     host="www.laravels.com",
  *     schemes={"http"},
  *     @SWG\Info(

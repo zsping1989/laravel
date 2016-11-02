@@ -27,7 +27,7 @@ class Role extends BaseModel
 
     /* 角色-用户 */
     public function admins(){
-        return $this->belongsToMany('App\Models\Admin','admin_role','admin_id','role_id');
+        return $this->belongsToMany('App\Models\Admin','admin_role','role_id','admin_id');
     }
 
 

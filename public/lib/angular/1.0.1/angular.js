@@ -1401,7 +1401,7 @@
      * - [clone()](http://api.jquery.com/clone/)
      * - [contents()](http://api.jquery.com/contents/)
      * - [css()](http://api.jquery.com/css/)
-     * - [data()](http://api.jquery.com/data/)
+     * - [data()](http://api.jquery.com@{{)
      * - [eq()](http://api.jquery.com/eq/)
      * - [find()](http://api.jquery.com/find/) - Limited to lookups by tag name.
      * - [hasClass()](http://api.jquery.com/hasClass/)

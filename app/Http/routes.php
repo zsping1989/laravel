@@ -10,7 +10,10 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+//首页
+Route::get('/', function(){
+    return redirect('/home/auth/login');
+});
 
 //前台路由设置
 Route::group(['prefix'=>'home','namespace'=>'Home'],function($data){
@@ -31,7 +34,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admi
     Route::controller('profile', 'ProfileController'); //个人设置
     Route::controller('chart', 'ChartController'); //图表事列
     Route::controller('test', 'TestController');
-    Route::controller('/', 'IndexController');
+    Route::controller('index', 'IndexController');
 });
 
 

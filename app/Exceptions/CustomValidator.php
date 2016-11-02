@@ -52,7 +52,7 @@ class CustomValidator extends Validator{
      */
     public function validateCkeckPassword($attribute, $value, $parameters){
         $user = UserLogic::getUser(); //获取当前用户
-        return Auth::validate(['email' => $user['email'], 'password' => $value]); //验证
+        return Auth::validate(['uname' => $user['uname'], 'password' => $value]); //验证
     }
 
     /**

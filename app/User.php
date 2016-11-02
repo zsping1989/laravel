@@ -38,15 +38,37 @@ class User extends Authenticatable
     {
         //条件筛选
         collect($options['where'])->each(function($item,$key) use(&$query){
-            $val = $item['exp']=='like' ? '%'.preg_replace('/([_%])/','\\\$1', $item['val']).'%' : $item['val'];
-            if($item['exp']=='in'){
-                $item and $item['val']!=='' and $query->whereIn($item['key'],explode(',',$val));
+            if(!$item || $item['val']===''){
+                return ;
+            }
+            //like匹配
+            if($item['exp']=='like'){
+                $val = '%'.preg_replace('/([_%\'"])/','\\\$1', $item['val']).'%';
+                //时间戳处理
+            }else if(isset($item['type'])&&($item['type']=='dateStart' || $item['type']=='dateEnd')){
+                //dd($item['val']);
+                $val = $item['type']=='dateStart' ? strtotime($item['val'].' 00:00:00') : strtotime($item['val'].' 23:59:59');
+                //其它
             }else{
-                $item and $item['val']!=='' and $query->where($item['key'],$item['exp'],$val);
+                $val = $item['val'];
+            }
+
+            if($item['exp']=='in'){
+                $query->whereIn($item['key'],explode(',',$val));
+            }elseif($item['exp']=='like'){
+                $fileds = explode('|',$item['key']);
+                if(count($fileds)>1){
+                    $item['key'] = 'concat(`'.implode('`,`',$fileds).'`)';
+                    $query->whereRaw($item['key'].' like "'.$val.'"');
+                }else{
+                    $query->where($item['key'],$item['exp'],$val);
+                }
+            }else{
+                $query->where($item['key'],$item['exp'],$val);
             }
         });
         //排序
-        collect($options['order'])->each(function($item,$key) use (&$query){
+        isset($options['order']) AND collect($options['order'])->each(function($item,$key) use (&$query){
             $item and $query->orderBy($key,$item);
         });
         return $query;

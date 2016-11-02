@@ -14,21 +14,37 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request as ValidateRequest;
 
 trait ResourceController{
-    protected $bindModel; //绑定的model模型
 
     /**
      * 处理请求参数
      */
     protected function handleRequest(){
-        Request::offsetSet('order',json_decode(Request::input('order','[]')));//排序处理
+        Request::offsetSet('order',json_decode(Request::input('order','[]'))?:(isset($this->defaultOrder)?$this->defaultOrder:[]));//排序处理
         $where = Request::input('where',[]);
-        //dd($where);
         $where = is_array($where) ? collect($where)->map(function($item){
-            if($item){
+            if(!is_array($item)){
                 return json_decode($item,true);
+            }else{
+                return $item;
             }
         })->toArray() : json_decode($where,true);
-        //dd($where);
+        if(Request::input('dateStart')){
+            $where[0] = [
+                'key'=>$this->dateFiled,
+                'type'=>'dateStart',
+                'val'=>Request::input('dateStart'),
+                'exp'=>'>='
+            ];
+        }
+        if(Request::input('dateEnd')){
+            $where[1] = [
+                'key'=>$this->dateFiled,
+                'type'=>'dateEnd',
+                'val'=>Request::input('dateEnd'),
+                'exp'=>'<='
+            ];
+        }
+
         Request::offsetSet('where',$where); //条件筛选处理
     }
 
@@ -92,7 +108,11 @@ trait ResourceController{
      */
     public function getEdit($id=null){
         $data = [];
-        $id AND $data['row'] = $this->bindModel->findOrFail($id);
+        if($id){
+            $data['row'] = $this->bindModel->findOrFail($id);
+        }else{
+            $data['row'] = [];
+        }
         return Response::returns($data);
     }
 

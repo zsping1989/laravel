@@ -7,7 +7,7 @@
         <a ng-click="getData($this,{'page':current_page+i})">@{{current_page+i}}</a>
     </li>
     <li ng-show="current_page<last_page-3"><a ng-click="getData($this,{'page':last_page})">@{{last_page}}</a></li>
-    <li ng-class="{disabled:current_page==last_page}">
+    <li ng-class="{disabled:(current_page==last_page||last_page==0)}">
         <a aria-label="Next" ng-click="getData($this,{'page':current_page+1})"><span aria-hidden="true">»</span></a>
     </li>
 </ul>

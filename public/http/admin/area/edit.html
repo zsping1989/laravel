@@ -22,8 +22,8 @@
                                 </div>
                             </div>
                             <div class="box-body">
-                                <form role="form" action="/data/admin/area/edit" method="post"
-                                      ng-init="data_url='/data/admin/area/edit/'+row.id;edit_url='/data/admin/area/edit';back_url='/admin/area/index'">
+                                <form role="form" action="@{{admin/area/edit" method="post"
+                                      ng-init="data_url='@{{admin/area/edit/'+row.id;edit_url='@{{admin/area/edit';back_url='/admin/area/index'">
                                     <div class="form-group row" ng-init="errorFieldMap['name']='名称'">
                                         <div class="col-xs-2">
                                             <label class="pull-right">名称:</label>

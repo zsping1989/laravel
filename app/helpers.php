@@ -79,3 +79,34 @@ function pathToCtrl($path){
     if(!$name){return false;}
     return $name.'Ctrl';
 }
+
+function timeFormat($time){
+    $second = $time % 60;
+    $minutes = floor($time/60) % 60;
+    $hours   = floor(floor($time/60)/60) % 24;
+    $day = floor($time/3600/24);
+
+    $text = '';
+    if($hours >= 0 ) $text .= str_pad($hours, 2, '0', STR_PAD_LEFT).':';
+    if($minutes >= 0 ) $text .= str_pad($minutes, 2, '0', STR_PAD_LEFT).':';
+    if($second >= 0 ) $text .= str_pad($second, 2, '0', STR_PAD_LEFT).'';
+    $text = $day>0 ? $day.'天 '.$text:$text;
+    return $text;
+}
+
+/**
+ * @param $start
+ * @param $end
+ * @return array
+ */
+function spanTimeLine($start,$end){
+    $return_str = 'addMonth';
+    $start = \Carbon\Carbon::createFromTimestamp($start);
+    $end = \Carbon\Carbon::createFromTimestamp($end);
+    $res = ['year'=>[],'month'=>[]];
+    for($i=$start;$i->getTimestamp()<=$end->getTimestamp();$i->$return_str()){
+        !in_array($i->year,$res['year']) AND  $res['year'][] = "$i->year";
+        $res['month'][$i->year][] = $i->month<10 ? "0$i->month":"$i->month";
+    }
+    return $res;
+}

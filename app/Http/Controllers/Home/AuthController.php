@@ -42,9 +42,9 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/index';
+    protected $redirectTo = '/admin/index/index';
     protected $redirectAfterLogout = '/home/auth/login';
-    protected $redirectToHome = '/home/index';
+    protected $redirectToHome = '/home/index/index';
 
     /**
      * Create a new authentication controller instance.
@@ -118,7 +118,7 @@ class AuthController extends Controller
         //ajax提交
         return Response::returns([
            $this->loginUsername() => [$this->getFailedLoginMessage()]
-        ],302);
+        ],422);
     }
 
     /**

@@ -4,11 +4,14 @@
 
 app.controller('home-loginCtrl',["$scope",'$http',function($scope,$http){
     dump(datas);
-    if(datas.redirect){
-        //window.location.href = datas.redirect;
-    }
-    $scope.data_key = '/home/login';
     $scope.errorFieldMap = {};
+
+    /**
+     * 切换验证码
+     */
+    $scope.switchCaptcha = function(){
+        $scope.captcha = '/home/auth/captcha?time='+(new Date()).getTime();
+    }
 
     /**
      * 用户登录
@@ -27,8 +30,6 @@ app.controller('home-loginCtrl',["$scope",'$http',function($scope,$http){
             post_data.remember = undefined;
         }
         $http.post('/home/auth/login',post_data).success(function(res){
-            //登录成功跳转
-            //window.location.href = '#'+res.redirect || '#/admin/index';
         }).error(function(data){
             if(typeof data == "object"){
                 for(var i in data){
@@ -38,15 +39,11 @@ app.controller('home-loginCtrl',["$scope",'$http',function($scope,$http){
                 }
                 $scope.error = data;
             }
+            $scope.switchCaptcha();
         });
     }
 
-    /**
-     * 切换验证码
-     */
-    $scope.switchCaptcha = function(){
-        $scope.captcha = '/home/auth/captcha?time='+(new Date()).getTime();
-    }
+
 }])
 
 

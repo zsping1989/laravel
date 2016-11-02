@@ -42,8 +42,14 @@ class RoleController extends Controller
     public function getList(){
         $this->handleRequest(); //请求参数处理
         $obj = $this->checkOrder(); //排序检查
-        $data = $obj->options(Request::only('where', 'order'))->paginate(); //数据查询
-        $data = RoleLogic::checkIsHandle($data); //判断角色是否拥有操作权限
+        $page = $obj->options(Request::only('where', 'order'))->paginate(); //数据查询
+
+        $list = $page->count() ? $page->load(['parentNode']) : [];
+        $list = RoleLogic::checkIsHandle($list); //判断角色是否拥有操作权限
+        $data= $page->toArray();
+        $data['data'] = $list;
+
+
         return $this->withParam($data); //附带请求参数返回
     }
 
@@ -82,13 +88,19 @@ class RoleController extends Controller
         }
 
         $data['row'] = $this->bindModel->findOrFail($id);
-
-        //查询当前用户拥有权限,并选中当前角色权限
-        $data['permissions'] = MenuLogic::getMainCheckedMenus($data['row']->menus);
         //当前角色对应的用户
         $data['users'] = $this->getUserList($id);
         //当前用户是否可编辑当前角色
         $data['canEdit'] = in_array($id,$this->rolesChildsId()) || UserLogic::getUserInfo('isSuperAdmin');
+
+        //查询当前用户拥有权限,并选中当前角色权限
+        $data['permissions'] = MenuLogic::getMainCheckedMenus($data['row']->menus)->map(function($item)use($data){
+            $item['checked'] = $data['row']['id']==1 ? true:$data['row']['menus']->contains('id',$item['id']);
+            $item['chkDisabled'] = ($data['row']['id']==1 || !$data['canEdit']);
+            $item['url'] = '';
+            return $item;
+        });
+
         return Response::returns($data);
     }
 
@@ -147,8 +159,9 @@ class RoleController extends Controller
                 $role->childs()->each(function($item) use($del_permissions){
                     $del_permissions AND $item->menus()->detach($del_permissions);
                 });
-
             }
+            //更新用户信息
+            UserLogic::loginCacheInfo();
             return Response::returns(['alert' => alert(['content' => '修改成功!'])]);
         }
 
@@ -162,6 +175,8 @@ class RoleController extends Controller
             $item->menus()->attach($new_permissions);
         });
 
+        //更新用户信息
+        UserLogic::loginCacheInfo();
         //添加菜单-角色关系
         return Response::returns(['alert' => alert(['content' => '新增成功!'])]);
     }

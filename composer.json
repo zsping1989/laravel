@@ -16,7 +16,9 @@
         "barryvdh/laravel-ide-helper": "^2.2",
         "zircote/swagger-php": "^2.0",
         "doctrine/dbal": "^2.5",
-        "zsping1989/message": "^1.0"
+        "zsping1989/message": "^1.0",
+        "flc/alidayu": "^2.0",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

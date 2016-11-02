@@ -24,7 +24,7 @@ class AdminMiddleware{
         //不是管理员,跳转到前台首页
         if(!UserLogic::getUserInfo('admin')){
             if(canRedirect() || app('request')->has('define')){
-                return orRedirect('/admin/page404');
+                return orRedirect('/admin/index/page404');
             }
             return Response::returns(['alert'=>alert(['content'=>'你还不是后台管理员,请联系管理员!'],404)],404);
         }
@@ -43,7 +43,7 @@ class AdminMiddleware{
             //没有权限
             if(!$hasPermission){
                 if(canRedirect() || app('request')->has('define')){
-                    return orRedirect('/admin/page404');
+                    return orRedirect('/admin/index/page404');
                 }
                 return Response::returns(['alert'=>alert(['content'=>'你没有访问权限,请联系管理员!'],404)],404);
             }

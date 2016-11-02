@@ -34,7 +34,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
                 $value = 'define([],function(){ return '.collect($value)->toJson().';});';
             }elseif(Request::has('dd')){ //数据打印页面
                 dd($value->toArray());
-            }elseif(Request::ajax() || Request::wantsJson()){ //json
+            }elseif(Request::ajax() || Request::wantsJson() || Request::has('json')){ //json
                 return $factory->json($value,$status);
             }elseif(Request::has('script')){ //页面
                 $value = 'var '.Request::input('script').' = '.collect($value)->toJson().';';
@@ -57,7 +57,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
         $global['nav'] = MenuLogic::getNavbar(); //导航数据
         $global['navkeys'] = collect($global['nav'])->keys()->all();
             $global['user'] = $user; //用户信息
-            $global['menus'] = $global['user'] ? UserLogic::getUserInfo('menus') : null; //菜单数据
+        $global['menus'] = $global['user'] ? UserLogic::getUserInfo('navigation') : null; //菜单数据
 
         $value['global'] = $global;
     }

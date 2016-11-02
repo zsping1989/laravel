@@ -19,11 +19,14 @@ class MenuLogic{
      * 返回: array|static
      */
     public function getNavbar(){
-        $route = Route::getCurrentRoute()->getCompiled()->getStaticPrefix(); //当前路由
-        $route = preg_replace('/^\/?data(.*)$/','$1',$route);
-        $menu = Menu::where('url','like',$route.'%')->orderBy('right_margin')->first(); //最底层路由
+        $route = app('request')->getPathInfo();
+        $menu = Menu::where('url','=',$route)->orderBy('right_margin')->first();
+        if(!$menu){
+            $route = Route::getCurrentRoute()->getCompiled()->getStaticPrefix(); //当前路由
+            $menu = Menu::where('url','like',$route.'%')->orderBy('right_margin')->first(); //最底层路由
+        }
         $menu AND $menu->url = 'end';
-       return $menu ? collect($menu->parents()->toArray())->push($menu)->keyBy('id') : [];
+        return $menu ? collect($menu->parents()->toArray())->push($menu)->keyBy('id') : [];
     }
 
     /**

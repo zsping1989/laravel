@@ -1,8 +1,8 @@
-define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
-    app.register.controller('admin-user-indexCtrl', ["$scope",'$rootScope', 'Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
+app.controller('admin-user-indexCtrl', ["$scope",'$rootScope', 'Model','View',
+    function ($scope,$rootScope,Model,View) {
         $scope.data_key = '/admin/user/list';
-        $rootScope = View.withCache(datas.global,$rootScope,1);
-        $scope = View.withCache(datas.list,$scope);
+        $rootScope = View.with(datas.global,$rootScope,1);
+        $scope = View.with(datas.list,$scope);
 
 
         /* 条件查询数据 */
@@ -13,7 +13,6 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
         $scope.delete = Model.delete;
         $scope.selectAllId = Model.selectAllId;
     }]);
-})
 
 
 

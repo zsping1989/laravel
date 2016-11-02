@@ -21,10 +21,9 @@
 
 
                 <!-- User Account: style can be found in dropdown.less -->
-                <li class="dropdown user user-menu" >
+                <li class="dropdown user user-menu" ng-class="{open:top_hidden==1}">
                     <a  class="dropdown-toggle" data-animation="am-flip-x"
-                        data-placement="bottom-right"
-                        bs-dropdown
+                        ng-click="top_hidden = !top_hidden"
                         aria-haspopup="true"
                         aria-expanded="false">
                         <img src="/img/user2-160x160.jpg" class="user-image" alt="User Image">
@@ -42,7 +41,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="" class="btn btn-default btn-flat">个人中心</a>
+                                <a href="/admin/profile/info" class="btn btn-default btn-flat">个人中心</a>
                             </div>
                             <div class="pull-right">
                                 <a href="/home/auth/logout" class="btn btn-default btn-flat ts-admin-logout">退出登录</a>

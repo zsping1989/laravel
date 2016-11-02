@@ -1,11 +1,10 @@
-define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
-    app.register.controller('admin-menu-editCtrl', ["$scope",'$rootScope', 'Model','View','$alert'
-        ,'$http','$location','$timeout','$modal',
-    function ($scope,$rootScope,Model,View,$alert,$http,$location,$timeout,$modal) {
+    app.controller('admin-menu-editCtrl', ["$scope",'$rootScope', 'Model','View'
+        ,'$http','$location','$timeout',
+    function ($scope,$rootScope,Model,View,$http,$location,$timeout) {
         dump(datas);
         datas.row = datas.row || {};
         $rootScope = View.with(datas.global, $rootScope);
-        $scope = View.withCache(datas, $scope);
+        $scope = View.with(datas, $scope);
         $scope.errorFieldMap = {};
         /* 条件查询数据 */
         $scope.getData = Model.getData;
@@ -87,4 +86,3 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
             });
         }
     }]);
-})
