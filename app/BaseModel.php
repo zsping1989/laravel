@@ -31,7 +31,7 @@ class BaseModel extends Model{
             }
 
             if($item['exp']=='in'){
-                $query->whereIn($item['key'],explode(',',$val));
+                $query->whereIn($item['key'],is_array($val) ? $val : explode(',',$val));
             }elseif($item['exp']=='like'){
                 $fileds = explode('|',$item['key']);
                 if(count($fileds)>1){

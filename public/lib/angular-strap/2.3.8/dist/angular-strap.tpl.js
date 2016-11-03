@@ -5,7 +5,6 @@
  * @author Olivier Louvignes <olivier@mg-crea.com> (https://github.com/mgcrea)
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
-define([''])
 (function(window, document, undefined) {
   'use strict';
   angular.module('mgcrea.ngStrap.aside').run([ '$templateCache', function($templateCache) {

@@ -9,7 +9,6 @@
                     <div class="box-tools">
                     </div>
                 </div>
-                <!-- /.box-header -->
                 <div class="box-body" ng-controller="admin-chart-line-chartCtrl">
                     <div class="dataTables_wrapper form-inline dt-bootstrap">
                         <div id="main1" style="width: 100%;height: 500px">
@@ -17,8 +16,6 @@
                     </div>
                 </div>
             </div>
-            <!-- /.box -->
         </div>
-        <!-- /.col -->
     </div>
 @stop

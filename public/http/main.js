@@ -43,7 +43,7 @@ require.config({
     urlArgs: "versions=" + (new Date()).getTime()  //防止读取缓存，调试用
 });
 
-var app = angular.module('app', []); //app模块启动
+var app = angular.module('app', ['mgcrea.ngStrap']); //app模块启动
 //全局请求配置,响应监听
 app.factory('httpInterceptor', ['$q', '$injector', function ($q, $injector) {
     var httpInterceptor = {
@@ -92,9 +92,6 @@ app.factory('View', ['$http', function ($http) {
     factory.with = function (data, scope) {
         if (typeof data == 'undefined') {
             return scope;
-        }
-        if (data.redirect) {
-            window.location.href = '#' + data.redirect;
         }
         if (data.where) {
             for (var i in data.where) {

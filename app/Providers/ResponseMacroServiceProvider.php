@@ -56,7 +56,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
         $global = [];
         $global['nav'] = MenuLogic::getNavbar(); //导航数据
         $global['navkeys'] = collect($global['nav'])->keys()->all();
-            $global['user'] = $user; //用户信息
+        $global['user'] = $user; //用户信息
         $global['menus'] = $global['user'] ? UserLogic::getUserInfo('navigation') : null; //菜单数据
 
         $value['global'] = $global;

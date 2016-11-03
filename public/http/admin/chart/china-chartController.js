@@ -3,22 +3,9 @@ app.controller('admin-chart-china-chartCtrl', ["$scope",'$rootScope', 'Model','V
         $scope.data_key = '/admin/chart/china-chart';
         $rootScope = View.with(datas.global,$rootScope,1);
         $scope = View.with(datas.list,$scope);
-        require(['echarts/echarts',
-            '/lib/echart/theme/macarons.js',
-            'echarts/chart/line',
-            'echarts/chart/bar',
-            'echarts/chart/scatter',
-            'echarts/chart/k',
-            'echarts/chart/pie',
-            'echarts/chart/radar',
-            'echarts/chart/force',
-            'echarts/chart/chord',
-            'echarts/chart/gauge',
-            'echarts/chart/funnel',
-            'echarts/chart/eventRiver',
-            'echarts/chart/map'],function(echarts, defaultTheme){
+        require(['echarts','echart/theme/macarons','echart/map/js/china'],function(echarts){
             var domMain = document.getElementById('main');
-            var myChart = echarts.init(domMain, defaultTheme);
+            myChart['china'] = echarts.init(domMain,'macarons');
             var option = {
                 title : {
                     text: 'iphone销量',
@@ -157,7 +144,7 @@ app.controller('admin-chart-china-chartCtrl', ["$scope",'$rootScope', 'Model','V
                     }
                 ]
             };
-            myChart.setOption(option, true)
+            myChart['china'].setOption(option, true)
         })
 
 

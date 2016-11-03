@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', '区域')
+@section('title', '')
 @section('content')
 <div class="row" ng-controller="admin-indexCtrl">
     <div class="col-md-3 col-sm-6 col-xs-12">

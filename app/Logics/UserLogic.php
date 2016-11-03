@@ -138,10 +138,22 @@ class UserLogic{
      */
     public function loginCacheInfo(){
         $data = $this->user->toArray();
-        $this->admin AND $this->admin->roles;
-        $data['admin'] = $this->admin ? $this->admin->toArray() : null;
-        $data['menus'] = $this->admin ? $this->getAdminMenus()->toArray(): null;
-        $data['isSuperAdmin'] = $this->admin ? $this->isSuperAdmin() : false;
+        if($this->admin){
+            $this->admin->roles;
+            $data['admin'] = $this->admin->toArray(); //后台用户数据缓存
+            $data['admin']['rolesAndChilds'] = $this->getAdminRolesAndChilds()->toArray(); //所有子级角色
+            $data['menus'] = $this->getAdminMenus()->toArray(); //菜单数据,用于判断权限
+            $data['isSuperAdmin'] =$this->isSuperAdmin(); //判断用户是否是超级管理员
+        }else{
+            $data['admin'] = null;
+            $data['menus'] = $this->getHomeMenus()->toArray();
+            $data['isSuperAdmin'] = false;
+        }
+
+        //导航数据
+        $data['navigation'] = collect($data['menus'])->filter(function($item){
+            return $item['status']==1;
+        })->toArray();
         return $this->putCacheUserInfo($data);
     }
 

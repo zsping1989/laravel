@@ -1,11 +1,10 @@
 app.controller('admin-chart-line-chartCtrl', ["$scope",'$rootScope', 'Model','View',
     function ($scope,$rootScope,Model,View) {
-        $scope.data_key = '/admin/chart/line-chart';
-        $rootScope = View.with(datas.global,$rootScope,1);
+        $rootScope = View.with(datas.global,$rootScope);
         $scope = View.with(datas,$scope);
-        require(['echart'],function(echarts){
+        require(['echarts','echart/theme/macarons'],function(echarts){
             // 基于准备好的dom，初始化echarts实例
-            var myChart = echarts.init(document.getElementById('main1'));
+            myChart['line'] = echarts.init(document.getElementById('main1'));
 
             // 指定图表的配置项和数据
             var option = {
@@ -72,7 +71,7 @@ app.controller('admin-chart-line-chartCtrl', ["$scope",'$rootScope', 'Model','Vi
             };
 
             // 使用刚指定的配置项和数据显示图表。
-            myChart.setOption(option);
+            myChart['line'].setOption(option);
         })
 
 
