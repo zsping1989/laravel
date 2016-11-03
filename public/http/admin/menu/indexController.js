@@ -1,6 +1,5 @@
 app.controller('admin-menu-indexCtrl', ["$scope", '$rootScope', 'Model', 'View',
     function ($scope, $rootScope, Model, View) {
-        $scope.data_key = '/admin/menu/list';
         $rootScope = View.with(datas.global, $rootScope);
         $scope = View.with(datas.list, $scope);
 

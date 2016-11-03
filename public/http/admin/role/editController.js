@@ -38,7 +38,6 @@ app.controller('admin-role-editCtrl', ["$scope", '$rootScope', 'Model', 'View',
                 url: $scope.edit_url,
                 data: data
             }).success(function () {
-                updateData('/admin/role/list',1);
                 $timeout(function () {
                     if ($scope.row.id) {
                         $location.path($scope.back_url);

@@ -1,7 +1,6 @@
 dump(datas.global);
 app.controller('admin-area-indexCtrl', ["$scope",'$rootScope', 'Model','View', function ($scope,$rootScope,Model,View) {
-        $scope.data_key = '/admin/area/list';
-        $rootScope = View.with(datas.global,$rootScope,1);
+        $rootScope = View.with(datas.global,$rootScope);
         $scope = View.with(datas.list,$scope);
 
         $scope.selectedDate = "2016-09-30T12:46:06.578Z"; // <- [object Date]

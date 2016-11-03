@@ -1,7 +1,6 @@
 app.controller('admin-chart-china-chartCtrl', ["$scope",'$rootScope', 'Model','View',
     function ($scope,$rootScope,Model,View) {
-        $scope.data_key = '/admin/chart/china-chart';
-        $rootScope = View.with(datas.global,$rootScope,1);
+        $rootScope = View.with(datas.global,$rootScope);
         $scope = View.with(datas.list,$scope);
         require(['echarts','echart/theme/macarons','echart/map/js/china'],function(echarts){
             var domMain = document.getElementById('main');

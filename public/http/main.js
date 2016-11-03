@@ -58,7 +58,7 @@ app.factory('httpInterceptor', ['$q', '$injector', function ($q, $injector) {
             }
             //页面弹窗提示
             if (response.data.alert) {
-                alert(response.data.alert);
+                $alert(response.data.alert);
             }
             return $q.reject(response);
         },
@@ -72,7 +72,7 @@ app.factory('httpInterceptor', ['$q', '$injector', function ($q, $injector) {
             }
             //页面弹窗提示
             if (response.data.alert) {
-                alert(response.data.alert);
+                $alert(response.data.alert);
             }
 
             return response;
@@ -87,7 +87,8 @@ app.factory('httpInterceptor', ['$q', '$injector', function ($q, $injector) {
 }]);
 
 /* 数据渲染 */
-app.factory('View', ['$http', function ($http) {
+app.factory('View', ['$http','$alert', function ($http,$alert) {
+    window.$alert = $alert;
     var factory = {};
     factory.with = function (data, scope) {
         if (typeof data == 'undefined') {

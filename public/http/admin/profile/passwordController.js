@@ -1,6 +1,6 @@
     app.controller('admin-profile-passwordCtrl',
-        ["$scope",'$rootScope', 'Model','View','$http','$location','$timeout',
-    function ($scope,$rootScope,Model,View,$http,$location,$timeout) {
+        ["$scope",'$rootScope', 'Model','View','$http',
+    function ($scope,$rootScope,Model,View,$http) {
         dump(datas);
         $rootScope = View.with(datas.global, $rootScope);
         $scope = View.with(datas, $scope);

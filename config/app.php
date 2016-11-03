@@ -164,7 +164,7 @@ return [
         MarginTree\Providers\MarginTreeServiceProvider::class, //边界树注册
         Message\Providers\MessageServiceProvider::class, //消息模块
         Custom\Commands\Providers\CommandsServiceProvider::class, //自定义代码生成
-
+        Germey\Geetest\GeetestServiceProvider::class, //极验模块
         App\Providers\LogicServiceProvider::class, //逻辑模块
 
 
@@ -213,6 +213,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Geetest' => Germey\Geetest\Geetest::class,
 
     ],
 

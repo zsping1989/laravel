@@ -102,4 +102,5 @@ return [
     'mobile_phone' => ':attribute 不是合法的手机号。',
     'ckeck_password' => ':attribute 错误请重新输入!',
     'verify_code'=>':attribute 不正确!',
+    'geetest'=>'验证码校验失败',
 ];

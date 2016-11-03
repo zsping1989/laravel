@@ -16,11 +16,15 @@ app.controller('home-loginCtrl',["$scope",'$http',function($scope,$http){
     /**
      * 用户登录
      */
-    $scope.login = function(){
+    window.login = $scope.login = function(){
         var post_data = {
             username:$scope.username,
             password:$scope.password,
-            verify:$scope.verify,
+            //verify:$scope.verify,
+            /* 极验 */
+            geetest_challenge:$("input[name='geetest_challenge']").val(),
+            geetest_validate:$("input[name='geetest_validate']").val(),
+            geetest_seccode:$("input[name='geetest_seccode']").val(),
             remember:$scope.remember,
             _token:datas._token
         };
@@ -42,6 +46,7 @@ app.controller('home-loginCtrl',["$scope",'$http',function($scope,$http){
             $scope.switchCaptcha();
         });
     }
+
 
 
 }])

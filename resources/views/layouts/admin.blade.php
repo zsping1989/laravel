@@ -8,7 +8,7 @@
 <body>
 @include('public.js')
 
-<div ng-app="app">
+<div ng-app="app" ng-cloak>
     <div class="skin-blue sidebar-mini" ng-class="{'sidebar-collapse':left_hidden}">
         <div class="wrapper">
             @include('public.admin.header')

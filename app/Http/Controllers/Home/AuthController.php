@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Logics\Facade\UserLogic;
 use App\User;
+use Germey\Geetest\CaptchaGeetest;
 use Gregwar\Captcha\CaptchaBuilder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -27,7 +28,7 @@ class AuthController extends Controller
     */
 
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use AuthenticatesAndRegistersUsers, ThrottlesLogins,CaptchaGeetest;
 
     /**
      * 验证登录字段
@@ -95,7 +96,8 @@ class AuthController extends Controller
         $this->validate($request, [
             $this->loginUsername() => 'required',
             'password' => 'required',
-          //  'verify' => 'required|verify_code'
+          //  'verify' => 'required|verify_code',
+            'geetest_challenge' => 'required|geetest'
         ]);
 
     }

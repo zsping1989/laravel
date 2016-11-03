@@ -1,6 +1,6 @@
-    app.controller('admin-create-codeCtrl', ["$scope", '$rootScope','View','$http',
+app.controller('admin-create-codeCtrl', ["$scope", '$rootScope','View','$http',
         function ($scope,$rootScope,View,$http) {
-        $rootScope = View.with(datas.global,$rootScope,1);
+        $rootScope = View.with(datas.global,$rootScope);
         $scope = View.with(datas,$scope);
 
         //创建代码
@@ -28,7 +28,7 @@
             $scope.artisan += option;
             $http({
                     method: 'POST',
-                    url: '@{{admin/make/exe',
+                    url: '/admin/make/exe',
                     data: param}
             ).error(function(){
                 $alert({
@@ -41,7 +41,7 @@
                 });
             });
         };
-    }]);
+}]);
 
 
 
