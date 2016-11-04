@@ -28,7 +28,8 @@ require.config({
         'layer': '/lib/layer/layer',
         'swiper': '/lib/swiper/swiper.min',
         'ztree_core': '/lib/ztree/jquery.ztree.core',
-        'ztree': '/lib/ztree/jquery.ztree.excheck'
+        'ztree': '/lib/ztree/jquery.ztree.excheck',
+        'geetest':'https://static.geetest.com/static/tools/gt'
     },
     map: {},
     shim: {
@@ -37,7 +38,8 @@ require.config({
         'layer': ['jquery', 'css!/lib/layer/skin/layer.css'],
         "joint": ["jquery", 'lodash', 'backbone', 'css!/lib/joint/0.9.6/joint.css'],
         'ztree_core': ['jquery'],
-        'ztree': ['jquery', 'ztree_core', 'css!/lib/ztree/zTreeStyle.css']
+        'ztree': ['jquery', 'ztree_core', 'css!/lib/ztree/zTreeStyle.css'],
+        'geetest':['jquery']
     },
     deps: ['css'], //启动
     urlArgs: "versions=" + (new Date()).getTime()  //防止读取缓存，调试用

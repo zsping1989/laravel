@@ -51,7 +51,7 @@ return [
 	| Here you can config the alert text when it failed in client.
 	|
 	*/
-	'client_fail_alert' => '请正确完成验证码操作',
+	'client_fail_alert' => '请正确完成验证码操作!',
 
 	/*
 	|--------------------------------------------------------------------------

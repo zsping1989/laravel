@@ -2,7 +2,7 @@
  * Created by zhangshiping on 16-5-13.
  */
 
-app.controller('home-loginCtrl',["$scope",'$http',function($scope,$http){
+app.controller('home-loginCtrl',["$scope",'$http','$alert',function($scope,$http,$alert){
     dump(datas);
     $scope.errorFieldMap = {};
 
@@ -16,7 +16,7 @@ app.controller('home-loginCtrl',["$scope",'$http',function($scope,$http){
     /**
      * 用户登录
      */
-    window.login = $scope.login = function(){
+    $scope.login = function(){
         var post_data = {
             username:$scope.username,
             password:$scope.password,
@@ -47,8 +47,34 @@ app.controller('home-loginCtrl',["$scope",'$http',function($scope,$http){
         });
     }
 
-
-
+    /**
+     * 极验验证
+     */
+    require(['geetest'],function(){
+            initGeetest(datas.geetest, function(captchaObj){
+                $("#geetest-captcha").closest('form').submit(function(e) {
+                    var validate = captchaObj.getValidate();
+                    if (!validate) {
+                        $alert({
+                            'title': '提示',
+                            'content': datas.geetest.client_fail_alert,
+                            'placement': 'bottom-right',
+                            'type': 'info',
+                            'duration': 3,
+                            'show': true
+                        });
+                        e.preventDefault();
+                        return false;
+                    }
+                    $scope.login();
+                    captchaObj.refresh()
+                });
+                captchaObj.appendTo("#geetest-captcha");
+                captchaObj.onReady(function() {
+                    $("#wait")[0].className = "hide";
+                });
+            });
+    });
 }])
 
 

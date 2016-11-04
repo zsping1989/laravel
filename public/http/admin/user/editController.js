@@ -38,7 +38,6 @@ app.controller('admin-user-editCtrl', ["$scope",'$rootScope', 'Model','View','$h
                 url: $scope.edit_url,
                 data: data
             }).success(function(){
-                updateData('/admin/user/list',1);
                 $timeout(function(){
                     if($scope.row.id){
                         $location.path($scope.back_url);

@@ -24,7 +24,8 @@
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback" ng-init="errorFieldMap['geetest_challenge']='验证码'">
-                    {!! Geetest::render() !!}
+                    <div id="geetest-captcha"></div>
+                    <p id="wait" class="show">正在加载验证码...</p>
                 </div>
               {{--  <div class="form-group has-feedback">
                     <input type="text" name="verify" class="form-control"  ng-init="errorFieldMap['verify']='验证码'" ng-model="verify" placeholder="请填写验证码"  autocomplete="off">

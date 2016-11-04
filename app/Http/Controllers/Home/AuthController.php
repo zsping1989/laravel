@@ -7,6 +7,7 @@ use App\User;
 use Germey\Geetest\CaptchaGeetest;
 use Gregwar\Captcha\CaptchaBuilder;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Response;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -28,7 +29,7 @@ class AuthController extends Controller
     */
 
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins,CaptchaGeetest;
+    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
      * 验证登录字段
@@ -65,7 +66,10 @@ class AuthController extends Controller
      */
     public function showLoginForm()
     {
-        return Response::returns(['_token'=>csrf_token()]);
+        return Response::returns([
+            '_token'=>csrf_token(),
+            'geetest'=>$this->geetest()
+        ]);
     }
 
     /**
@@ -78,11 +82,43 @@ class AuthController extends Controller
         return $this->captcha($w,$h);
     }
 
+    /**
+     * 验证码生成
+     * @param int $w
+     * @param int $h
+     * @return mixed
+     */
     public function captcha($w=150,$h=32){
         $builder = new CaptchaBuilder();
         $builder->build($w,$h);
         \Session::put(config('auth.verify_code_key'),$builder->getPhrase()); //存储验证码
         return response($builder->output())->header('Content-type','image/jpeg');
+    }
+
+    /**
+     * 极验验证
+     * Get geetest.
+     */
+    public function getGeetest()
+    {
+       return $this->geetest();
+    }
+
+    /**
+     * 极验验证
+     * @return mixed
+     */
+    public function geetest()
+    {
+        $user_id = "test";
+        $status = \Geetest::preProcess($user_id);
+        session()->put('gtserver', $status);
+        session()->put('user_id', $user_id);
+        $data = \Geetest::getResponse();
+        $data['client_fail_alert'] = Config::get('geetest.client_fail_alert','验证失败!');
+        $data['lang'] = Config::get('geetest.lang', 'zh-cn');
+        $data['success'] = !$data['success'];
+        return $data;
     }
 
     /**
