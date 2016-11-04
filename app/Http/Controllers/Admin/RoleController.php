@@ -36,24 +36,6 @@ class RoleController extends Controller
 
 
     /**
-     * 获取菜单数据
-     * @return static
-     */
-    public function getList(){
-        $this->handleRequest(); //请求参数处理
-        $obj = $this->checkOrder(); //排序检查
-        $page = $obj->options(Request::only('where', 'order'))->paginate(); //数据查询
-
-        $list = $page->count() ? $page->load(['parentNode']) : [];
-        $list = RoleLogic::checkIsHandle($list); //判断角色是否拥有操作权限
-        $data= $page->toArray();
-        $data['data'] = $list;
-
-
-        return $this->withParam($data); //附带请求参数返回
-    }
-
-    /**
      * 列表数据展示页面
      * @return mixed
      */

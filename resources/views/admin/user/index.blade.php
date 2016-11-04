@@ -132,7 +132,9 @@
                                 </a>
                             </div>
                             <div class="col-sm-7 ">
-                                <div ng-include="'/http/admin/public/page.html'" class="pull-right"></div>
+                                <div class="pull-right">
+                                    @include('public.page')
+                                </div>
                             </div>
                         </div>
                     </div>

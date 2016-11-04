@@ -1,10 +1,10 @@
 @extends('layouts.admin')
-@section('title', '区域')
+@section('title', '')
 @section('content')
     <div class="row">
         <div class="col-xs-12">
             <div class="box box-info" ng-controller="admin-role-indexCtrl"
-                 ng-init="data_url='admin/role/list';delete_url='admin/role/destroy'">
+                 ng-init="data_url='/admin/role/list';delete_url='/admin/role/destroy'">
                 <div class="box-header with-border">
                     <h3 class="box-title">角色列表</h3>
                     <div class="box-tools">
@@ -112,7 +112,9 @@
                                 </a>
                             </div>
                             <div class="col-sm-7 ">
-                                <div ng-include="'/http/admin/public/page.html'" class="pull-right"></div>
+                                <div class="pull-right">
+                                    @include('public.page')
+                                </div>
                             </div>
                         </div>
                     </div>

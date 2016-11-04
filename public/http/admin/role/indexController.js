@@ -1,8 +1,7 @@
-app.controller('admin-role-indexCtrl', ["$scope",'$rootScope', 'Model','View','$http',
-    function ($scope,$rootScope,Model,View,$http) {
+app.controller('admin-role-indexCtrl', ["$scope",'$rootScope', 'Model','View','$http','$modal',
+    function ($scope,$rootScope,Model,View,$http,$modal) {
         dump(datas);
-        $scope.data_key = '/admin/role/list';
-        $rootScope = View.with(datas.global,$rootScope,1);
+        $rootScope = View.with(datas.global,$rootScope);
         $scope = View.with(datas.list,$scope);
 
 
@@ -18,7 +17,7 @@ app.controller('admin-role-indexCtrl', ["$scope",'$rootScope', 'Model','View','$
         $scope.userList = function(id){
             $http({
                 method: 'GET',
-                url: '@{{admin/role/user-list/'+id
+                url: '/admin/role/user-list/'+id
             }).success(function(data){
                 $scope.userTitle = '用户列表';
                 $scope.userData = data;
