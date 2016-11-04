@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.2.45 on 2016-11-03.
+ * Generated for Laravel 5.2.45 on 2016-11-04.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -11417,6 +11417,99 @@ namespace {
          */
         public static function getNames(){
             return \Illuminate\View\Factory::getNames();
+        }
+        
+    }
+
+
+    class Geetest extends \Germey\Geetest\Geetest{
+        
+        /**
+         * 
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getGeetestUrl(){
+            return \Germey\Geetest\GeetestLib::getGeetestUrl();
+        }
+        
+        /**
+         * 
+         *
+         * @param string $geetestUrl
+         * @static 
+         */
+        public static function setGeetestUrl($geetest_url){
+            return \Germey\Geetest\GeetestLib::setGeetestUrl($geetest_url);
+        }
+        
+        /**
+         * Check Geetest server is running or not.
+         *
+         * @param null $user_id
+         * @return int 
+         * @static 
+         */
+        public static function preProcess($user_id = null){
+            return \Germey\Geetest\GeetestLib::preProcess($user_id);
+        }
+        
+        /**
+         * 
+         *
+         * @return mixed 
+         * @static 
+         */
+        public static function getResponseStr(){
+            return \Germey\Geetest\GeetestLib::getResponseStr();
+        }
+        
+        /**
+         * 
+         *
+         * @return mixed 
+         * @static 
+         */
+        public static function getResponse(){
+            return \Germey\Geetest\GeetestLib::getResponse();
+        }
+        
+        /**
+         * Get success validate result.
+         *
+         * @param $challenge
+         * @param $validate
+         * @param $seccode
+         * @param null $user_id
+         * @return int 
+         * @static 
+         */
+        public static function successValidate($challenge, $validate, $seccode, $user_id = null){
+            return \Germey\Geetest\GeetestLib::successValidate($challenge, $validate, $seccode, $user_id);
+        }
+        
+        /**
+         * Get fail result.
+         *
+         * @param $challenge
+         * @param $validate
+         * @param $seccode
+         * @return int 
+         * @static 
+         */
+        public static function failValidate($challenge, $validate, $seccode){
+            return \Germey\Geetest\GeetestLib::failValidate($challenge, $validate, $seccode);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $product
+         * @static 
+         */
+        public static function render($product = 'float'){
+            return \Germey\Geetest\GeetestLib::render($product);
         }
         
     }

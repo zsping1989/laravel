@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box box-info" ng-controller="admin-menu-indexCtrl"
-                 ng-init="data_url='admin/menu/list';delete_url='admin/menu/destroy';upTop_url='admin/menu/move-top'">
+                 ng-init="data_url='/admin/menu/list';delete_url='/admin/menu/destroy';upTop_url='/admin/menu/move-top'">
                 <div class="box-header with-border">
                     <h3 class="box-title">菜单列表</h3>
                     <div class="box-tools">
@@ -140,7 +140,9 @@
                                 </a>
                             </div>
                             <div class="col-sm-7 ">
-                                <div ng-include="'/http/admin/public/page.html'" class="pull-right"></div>
+                                <div class="pull-right">
+                                    @include('public.page')
+                                </div>
                             </div>
                         </div>
                     </div>
