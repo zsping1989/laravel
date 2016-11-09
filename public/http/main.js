@@ -212,16 +212,15 @@ app.factory('Model', ['$http', 'View', function ($http, View) {
             url: $scope.data_url,
             params: resparams
         }).success(function (data) {
-
             if (params.refresh == 1) {
-                /* $alert({
+                 $alert({
                  'title':'提示',
                  'content':'刷新成功!',
                  'placement':'bottom-right',
                  'type':'info',
                  'duration':3,
                  'show':true
-                 });*/
+                 });
             }
             $scope.reset++;
             View.with(data, $scope);

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', '区域')
+@section('title', '')
 @section('content')
     <div class="row">
         <div class="col-xs-12">
@@ -7,10 +7,6 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">后台组织架构图</h3>
                     <div class="box-tools">
-                        <button class="btn btn-default btn-sm" title="保存"
-                                ng-click="saveCoord()">
-                            <i class="fa  fa-save"></i>
-                        </button>
                         <button class="btn btn-default btn-sm" title="刷新"
                                 ng-click="getData($this,{refresh:1})">
                             <i class="fa fa-refresh"></i>

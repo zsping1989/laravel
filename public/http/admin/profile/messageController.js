@@ -1,5 +1,5 @@
-define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
-    app.register.controller('admin-profile-messageCtrl', ["$scope",'$rootScope', 'Model','View','$alert', function ($scope,$rootScope,Model,View,$alert) {
+app.controller('admin-profile-messageCtrl', ["$scope",'$rootScope', 'Model','View','$alert',
+    function ($scope,$rootScope,Model,View,$alert) {
         dump(datas.list);
         $rootScope = View.with(datas.global,$rootScope);
         $scope = View.with(datas.list,$scope);
@@ -20,8 +20,7 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
             $scope.getData($scope,{refresh:2});
         }
 
-    }]);
-})
+}]);
 
 
 
