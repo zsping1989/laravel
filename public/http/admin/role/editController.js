@@ -1,6 +1,6 @@
 app.controller('admin-role-editCtrl', ["$scope", '$rootScope', 'Model', 'View',
-    '$http', '$location', '$timeout',
-    function ($scope, $rootScope, Model, View, $http, $location, $timeout) {
+    '$http',
+    function ($scope, $rootScope, Model, View, $http) {
         dump(datas);
         datas.row = datas.row || {};
         $rootScope = View.with(datas.global, $rootScope);
@@ -38,11 +38,12 @@ app.controller('admin-role-editCtrl', ["$scope", '$rootScope', 'Model', 'View',
                 url: $scope.edit_url,
                 data: data
             }).success(function () {
-                $timeout(function () {
-                    if ($scope.row.id) {
-                        $location.path($scope.back_url);
+                $scope.error = {};
+                window.setTimeout(function(){
+                    if($scope.row.id){
+                        window.location.href = $scope.back_url;
                     }
-                }, 1000);
+                },1000);
             }).error(function (data) {
                 if (typeof data == "object") {
                     for (var i in data) {
@@ -58,11 +59,14 @@ app.controller('admin-role-editCtrl', ["$scope", '$rootScope', 'Model', 'View',
         //选中
         $scope.checkedp = function (checked, left, right) {
             //向下选中所有子节点,向上选中父节点
+            //转换类型
             checked = checked - 0;
+            left = left-0;
+            right = right-0;
             var permissions = $scope.permissions;
             for (var permission in permissions) {
-                if ((checked && left > permissions[permission].left_margin && right < permissions[permission].right_margin) ||
-                    (left < permissions[permission].left_margin && right > permissions[permission].right_margin)) {
+                if ((checked && left > (permissions[permission].left_margin-0) && right < (permissions[permission].right_margin-0)) ||
+                    (left < (permissions[permission].left_margin-0) && right > (permissions[permission].right_margin-0))) {
                     $scope.permissions[permission].checked = checked;
                     $scope.new_permissions[permission] = checked ? $scope.permissions[permission].id : 0;
                 }

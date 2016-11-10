@@ -1,6 +1,6 @@
-    app.controller('admin-menu-editCtrl', ["$scope",'$rootScope', 'Model','View'
-        ,'$http','$location','$timeout',
-    function ($scope,$rootScope,Model,View,$http,$location,$timeout) {
+app.controller('admin-menu-editCtrl', ["$scope",'$rootScope', 'Model','View'
+        ,'$http','$modal',
+    function ($scope,$rootScope,Model,View,$http,$modal) {
         dump(datas);
         datas.row = datas.row || {};
         $rootScope = View.with(datas.global, $rootScope);
@@ -68,12 +68,12 @@
                 url: $scope.edit_url,
                 data: data
             }).success(function(){
-                updateData('/admin/menu/list',1);
-                $timeout(function(){
+                $scope.error = {};
+                window.setTimeout(function(){
                     if($scope.row.id){
-                        //$location.path($scope.back_url);
+                        window.location.href = $scope.back_url;
                     }
-                },1000)
+                },1000);
             }).error(function(data){
                 if(typeof data == "object"){
                     for(var i in data){

@@ -64,7 +64,7 @@
         </div><!-- /.col -->
         <div class="col-md-9">
             <div class="box box-primary"
-                 ng-init="data_url='admin/profile/list';delete_url='admin/profile/destroy'">
+                 ng-init="data_url='/admin/profile/list';delete_url='/admin/profile/destroy'">
                             <div class="box-header with-border">
                                 <h3 class="box-title">用户消息列表</h3>
                                 <div class="box-tools">

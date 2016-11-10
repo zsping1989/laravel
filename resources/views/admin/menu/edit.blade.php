@@ -15,8 +15,8 @@
                 </div>
             </div>
             <div class="box-body">
-                <form role="form" action="@{{admin/menu/edit" method="post"
-                      ng-init="data_url='admin/menu/edit/'+row.id;edit_url='admin/menu/edit';;back_url='/admin/menu/index'">
+                <form role="form" action="/admin/menu/edit" method="post"
+                      ng-init="data_url='/admin/menu/edit/'+row.id;edit_url='/admin/menu/edit';;back_url='/admin/menu/index'">
                     <div bs-tabs>
                         <div data-title="基本信息" name="基本信息" bs-pane>
                             <div class="box-body">

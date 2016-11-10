@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box box-info" ng-controller="admin-user-indexCtrl"
-                 ng-init="data_url='admin/user/list';delete_url='admin/user/destroy'">
+                 ng-init="data_url='/admin/user/list';delete_url='/admin/user/destroy'">
                 <div class="box-header with-border">
                     <h3 class="box-title">用户列表</h3>
                     <div class="box-tools">

@@ -1,5 +1,5 @@
-    app.controller('admin-area-editCtrl', ["$scope",'$rootScope', 'Model','View','$http','$timeout',
-    function ($scope,$rootScope,Model,View,$http,$timeout) {
+app.controller('admin-area-editCtrl', ["$scope",'$rootScope', 'Model','View','$http',
+    function ($scope,$rootScope,Model,View,$http) {
         datas.row = datas.row || {};
         $rootScope = View.with(datas.global, $rootScope);
         $scope = View.with(datas, $scope);
@@ -22,11 +22,12 @@
                 url: $scope.edit_url,
                 data: data
             }).success(function(){
-                $timeout(function(){
+                $scope.error = {};
+                window.setTimeout(function(){
                     if($scope.row.id){
-                        window.location = $scope.back_url
+                        window.location.href = $scope.back_url;
                     }
-                },1000)
+                },1000);
             }).error(function(data){
                 if(typeof data == "object"){
                     for(var i in data){

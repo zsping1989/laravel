@@ -16,7 +16,7 @@
                 </div>
                 <div class="box-body">
                     <form role="form" action="/admin/role/edit" method="post"
-                          ng-init="data_url='admin/role/edit/'+row.id;edit_url='admin/role/edit';back_url='/admin/role/index'">
+                          ng-init="data_url='/admin/role/edit/'+row.id;edit_url='/admin/role/edit';back_url='/admin/role/index'">
                         <div class="form-group row" ng-init="errorFieldMap['name']='角色名称'">
                             <div class="col-xs-2">
                                 <label class="pull-right">角色名称:</label>
