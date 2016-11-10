@@ -8,19 +8,6 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">地区列表</h3>
                     <div class="box-tools">
-                        <div class="input-group"  ng-class="{'has-error': datepickerForm.date2.$invalid}">
-                            <input class="form-control input-sm pull-right"
-                                   ng-model="selectedDateAsNumber"
-                                   data-date-format="yyyy-MM-dd"
-                                   data-autoclose="1"
-                                   data-model-date-format="string"
-                                   name="date2" bs-datepicker type="text">
-                            <div class="input-group-btn">
-                                <button type="button" ng-click="aa()"
-                                        class="btn btn-sm btn-default"><i class="fa fa-calendar"></i>
-                                </button>
-                            </div>
-                        </div>
                         <div class="input-group">
                             <input type="text"
                                    ng-init="where[0].key='id';where[0].exp='like';where[0].val= where[0].val || '';"
