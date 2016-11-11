@@ -6,6 +6,9 @@ app.controller('admin-profile-infoCtrl', ["$scope",'$rootScope', 'Model','View',
         //重置备份数据
         $scope.master = angular.copy($scope.row);
         $scope.resetdata = function () {
+            if(!$scope.editdata){
+                return false;
+            }
             $scope.row = angular.copy($scope.master);
         };
 
@@ -29,6 +32,7 @@ app.controller('admin-profile-infoCtrl', ["$scope",'$rootScope', 'Model','View',
                 url: $scope.edit_url,
                 data: data
             }).success(function(){
+                $scope.error = {};
                 $scope.editdata = false;
             }).error(function(data){
                 if(typeof data == "object"){

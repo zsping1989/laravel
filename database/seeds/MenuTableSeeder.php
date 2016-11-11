@@ -33,6 +33,7 @@ class MenuTableSeeder extends Seeder
             'parent_id'=>1,
             'status'=>1
         ]);
+
         //ID:3
         factory(\App\Models\Menu::class)->create([
             'name'=>'开发工具',
@@ -165,7 +166,7 @@ class MenuTableSeeder extends Seeder
             'name'=>'编辑菜单',
             'icons'=>'fa-edit',
             'prefix'=>'#',
-            'url'=>'/admin/menu/edit/{id?}',
+            'url'=>'/admin/menu/edit',
             'method'=>1,
             'description' => '修改或添加数据',
             'parent_id'=>14,
@@ -190,7 +191,7 @@ class MenuTableSeeder extends Seeder
             'name'=>'菜单置顶',
             'icons'=>'',
             'prefix'=>'',
-            'url'=>'/admin/menu/move-top/{id}',
+            'url'=>'/admin/menu/move-top',
             'description' => '移动菜单节点位置',
             'method'=>2,
             'parent_id'=>13,
@@ -238,7 +239,7 @@ class MenuTableSeeder extends Seeder
             'name'=>'编辑区域',
             'icons'=>'fa-edit',
             'prefix'=>'#',
-            'url'=>'/admin/area/edit/{id?}',
+            'url'=>'/admin/area/edit',
             'method'=>2,
             'description' => '添加或编辑区域',
             'parent_id'=>19,
@@ -276,7 +277,7 @@ class MenuTableSeeder extends Seeder
             'name'=>'角色编辑',
             'icons'=>'fa-edit',
             'prefix'=>'#',
-            'url'=>'/admin/role/edit/{id?}',
+            'url'=>'/admin/role/edit',
             'method'=>2,
             'description' => '添加或编辑角色',
             'parent_id'=>23,
@@ -326,7 +327,7 @@ class MenuTableSeeder extends Seeder
             'name'=>'编辑用户',
             'icons'=>'fa-edit',
             'prefix'=>'#',
-            'url'=>'/admin/user/edit/{id?}',
+            'url'=>'/admin/user/edit',
             'method'=>2,
             'description' => '添加或编辑用户',
             'parent_id'=>27,
@@ -462,7 +463,7 @@ class MenuTableSeeder extends Seeder
             'name'=>'角色用户',
             'icons'=>'fa-edit',
             'prefix'=>'#',
-            'url'=>'/admin/role/user-list/{id}',
+            'url'=>'/admin/role/user-list',
             'method'=>1,
             'description' => '',
             'parent_id'=>22,
@@ -492,7 +493,7 @@ class MenuTableSeeder extends Seeder
             'method'=>1,
             'description' => '',
             'parent_id'=>7,
-            'status'=>1
+            'status'=>2
         ]);
 
         //ID:42
@@ -505,7 +506,7 @@ class MenuTableSeeder extends Seeder
             'description' => '',
             'is_page' => '1',
             'parent_id'=>7,
-            'status'=>1
+            'status'=>2
         ]);
 
         //ID:43
@@ -517,7 +518,7 @@ class MenuTableSeeder extends Seeder
             'url'=>'/home/page404',
             'description' => '前端404页面',
             'parent_id'=>4,
-            'status'=>1
+            'status'=>2
         ]);
 
         //ID:44
@@ -529,7 +530,7 @@ class MenuTableSeeder extends Seeder
             'url'=>'/home/page500',
             'description' => '前端500页面',
             'parent_id'=>4,
-            'status'=>1
+            'status'=>2
         ]);
 
         //ID:45

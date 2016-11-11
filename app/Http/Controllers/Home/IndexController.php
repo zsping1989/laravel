@@ -13,12 +13,11 @@ use Illuminate\Support\Facades\Response;
 class IndexController extends Controller
 {
 
-    public function getRoutes(){
-        $data['menus'] = MenuLogic::getPageMenus();
-        return Response::returns($data);
-    }
 
-    public function getTest(){
-        dd();
+    /**
+     * 首页
+     */
+    public function getIndex(){
+        return Response::returns([]);
     }
 }
