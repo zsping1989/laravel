@@ -1,7 +1,6 @@
 app.controller('admin-user-indexCtrl', ["$scope",'$rootScope', 'Model','View',
     function ($scope,$rootScope,Model,View) {
-        $scope.data_key = '/admin/user/list';
-        $rootScope = View.with(datas.global,$rootScope,1);
+        $rootScope = View.with(datas.global,$rootScope);
         $scope = View.with(datas.list,$scope);
 
 

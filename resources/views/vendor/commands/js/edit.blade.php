@@ -1,9 +1,8 @@
-define(['app',dataPath(),'admin/public/headerController','admin/public/leftController'], function (app,datas) {
-    app.register.controller('{{$tpl_controller}}', ["$scope",'$rootScope', 'Model','View','$alert','$http','$location','$timeout',
-    function ($scope,$rootScope,Model,View,$alert,$http,$location,$timeout) {
+app.controller('{{$tpl_controller}}', ["$scope",'$rootScope', 'Model','View','$http',
+    function ($scope,$rootScope,Model,View,$http) {
         datas.row = datas.row || {};
         $rootScope = View.with(datas.global, $rootScope);
-        $scope = View.withCache(datas, $scope);
+        $scope = View.with(datas, $scope);
         $scope.errorFieldMap = {};
 
         //重置备份数据
@@ -26,12 +25,12 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
                 url: $scope.edit_url,
                 data: data
             }).success(function(){
-                updateData('/{{$dirname}}/list',1); //更新页面数据
-                $timeout(function(){
+                $scope.error = {};
+                window.setTimeout(function(){
                     if($scope.row.id){
-                        $location.path($scope.back_url);
+                        window.location.href = $scope.back_url;
                     }
-                },1000)
+                },1000);
             }).error(function(data){
                 if(typeof data == "object"){
                     for(var i in data){
@@ -44,5 +43,4 @@ define(['app',dataPath(),'admin/public/headerController','admin/public/leftContr
             });
         }
 
-    }]);
-})
+}]);

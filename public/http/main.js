@@ -29,7 +29,8 @@ require.config({
         'swiper': '/lib/swiper/swiper.min',
         'ztree_core': '/lib/ztree/jquery.ztree.core',
         'ztree': '/lib/ztree/jquery.ztree.excheck',
-        'geetest':'https://static.geetest.com/static/tools/gt'
+        'geetest':'https://static.geetest.com/static/tools/gt',
+        'date_picker':'/lib/My97DatePicker/4.8/WdatePicker'
     },
     map: {},
     shim: {

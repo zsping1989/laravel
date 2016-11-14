@@ -1,4 +1,4 @@
-dump(datas.global);
+dump(datas);
 app.controller('admin-area-indexCtrl', ["$scope",'$rootScope', 'Model','View', function ($scope,$rootScope,Model,View) {
         $rootScope = View.with(datas.global,$rootScope);
         $scope = View.with(datas.list,$scope);
@@ -10,6 +10,9 @@ app.controller('admin-area-indexCtrl', ["$scope",'$rootScope', 'Model','View', f
         /* 删除数据 */
         $scope.delete = Model.delete;
         $scope.selectAllId = Model.selectAllId;
+        require(['date_picker'],function(datePicker){
+
+        });
     }]);
 
 
