@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta property="wb:webmaster" content="da9a03d241c53278" />
     <title>后台管理系统</title>
     @include('public.css')
 </head>
@@ -59,6 +60,12 @@
                     <span  ng-repeat="info in error.password">@{{info}}</span>
                 </div>
             </form>
+            <div class="social-auth-links text-center">
+                <p>- 其它方式登录 -</p>
+                <a href="/home/auth/other/weibo" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-weibo"></i>新浪微博</a>
+                <a href="/home/auth/other/qq" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-qq"></i>腾讯QQ</a>
+                <a href="/home/auth/other/weixin" class="btn btn-block btn-social btn-primary btn-flat"><i class="fa fa-weixin"></i>微信</a>
+            </div>
         </div>
     </div>
 </div>

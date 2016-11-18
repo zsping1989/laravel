@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta property="wb:webmaster" content="da9a03d241c53278" />
     <title>@yield('title')后台管理系统</title>
     @include('public.css')
 </head>

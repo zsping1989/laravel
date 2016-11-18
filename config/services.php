@@ -35,4 +35,21 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'weibo' => [
+        'client_id' => env('WEIBO_KEY'),//your weibo app App Key
+        'client_secret' =>  env('WEIBO_SECRET'),//'your weibo app App Secret',
+        'redirect' => env('APP_URL').'/home/auth/other-callback/weibo'
+    ],
+
+    'qq' => [
+        'client_id' => env('QQ_KEY'),
+        'client_secret' => env('QQ_SECRET'),
+        'redirect' => env('APP_URL').'/home/auth/other-callback/qq'
+    ],
+    'weixin' => [
+        'client_id' => env('WEIXIN_KEY'),
+        'client_secret' => env('WEIXIN_SECRET'),
+        'redirect' => env('APP_URL').'/home/auth/other-callback/weixin'
+    ],
+
 ];

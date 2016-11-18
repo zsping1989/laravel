@@ -9,6 +9,7 @@ use Gregwar\Captcha\CaptchaBuilder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Response;
+use Laravel\Socialite\Facades\Socialite;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -296,6 +297,26 @@ class AuthController extends Controller
         return orRedirect($redirect);
     }
 
+    /**
+     * 三方登录页面
+     * @param Request $request
+     * @param $service
+     * @return mixed
+     */
+    public function getOther($service)
+    {
+        return Socialite::driver($service)->redirect();
+    }
+
+    /**
+     * 三方登录成功回调
+     * @param $service
+     */
+    public function getOtherCallback($service)
+    {
+        $user = Socialite::driver($service)->user();
+        dd($user);
+    }
 
 
 }

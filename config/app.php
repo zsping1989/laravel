@@ -160,6 +160,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        SocialiteProviders\Manager\ServiceProvider::class, //三方登录
         App\Providers\ResponseMacroServiceProvider::class, //响应宏注册
         MarginTree\Providers\MarginTreeServiceProvider::class, //边界树注册
         Message\Providers\MessageServiceProvider::class, //消息模块
@@ -214,6 +215,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Geetest' => Germey\Geetest\Geetest::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
