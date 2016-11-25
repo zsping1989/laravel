@@ -93,6 +93,7 @@ class IndexController extends Controller
      * 返回: mixed
      */
     public function getIndex(){
+        //sendSMS();
 
         //dd(Message::getCountNotReadByMsgtpl(1,['messages','system.message'])->toArray());
         //dd(UserLogic::getCountNotReadByMsgtpl(['messages','user','system'])->toArray());

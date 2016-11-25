@@ -110,3 +110,22 @@ function spanTimeLine($start,$end){
     }
     return $res;
 }
+
+function sendSMS(){
+    $config = [
+        'app_key'    => env('ALIDAYU_KEY'),
+        'app_secret' => env('ALIDAYU_SECRET'),
+    ];
+    $client = new \Flc\Alidayu\Client(new \Flc\Alidayu\App($config));
+    $req    = new \Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend();
+
+    $req->setRecNum('13699411148')
+        ->setSmsParam([
+            'number' => rand(100000, 999999)
+        ])->setSmsFreeSignName('测试zsping')
+        ->setSmsFreeSignName('叶子坑')
+        ->setSmsTemplateCode('SMS_27375263');
+
+    $resp = $client->execute($req);
+    dd($resp);
+}

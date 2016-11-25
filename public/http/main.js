@@ -43,7 +43,7 @@ require.config({
         'geetest':['jquery']
     },
     deps: ['css'], //启动
-    urlArgs: "versions=" + (new Date()).getTime()  //防止读取缓存，调试用
+    urlArgs: "versions=" //+ (new Date()).getTime()  //防止读取缓存，调试用
 });
 
 var app = angular.module('app', ['mgcrea.ngStrap']); //app模块启动
