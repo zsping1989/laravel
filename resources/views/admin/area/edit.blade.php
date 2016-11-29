@@ -22,7 +22,7 @@
                                 <label class="pull-right">名称:</label>
                             </div>
                             <div class="col-xs-3">
-                                <input type="text" name="name" ng-model="row.name" class="form-control">
+                                <input type="text" name="name" ng-model="row['name']" class="form-control">
                             </div>
                             <div class="col-xs-7" ng-if="!error.name">
                                 <span class="label-msg">填写提示信息!</span>

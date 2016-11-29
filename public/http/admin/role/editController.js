@@ -2,7 +2,7 @@ app.controller('admin-role-editCtrl', ["$scope", '$rootScope', 'Model', 'View',
     '$http',
     function ($scope, $rootScope, Model, View, $http) {
         dump(datas);
-        datas.row = datas.row || {};
+        datas.row = (!datas.row || (typeof datas.row.length=='number' && !datas.row.length)) ? {} : datas.row;
         $rootScope = View.with(datas.global, $rootScope);
         $scope = View.with(datas, $scope);
         $scope.errorFieldMap = {};

@@ -1,6 +1,7 @@
 app.controller('admin-user-editCtrl', ["$scope",'$rootScope', 'Model','View','$http','$alert',
     function ($scope,$rootScope,Model,View,$http,$alert) {
-        datas.row = datas.row || {};
+        dump(datas);
+        datas.row = (!datas.row || (typeof datas.row.length=='number' && !datas.row.length)) ? {} : datas.row;
         $rootScope = View.with(datas.global, $rootScope);
         $scope = View.with(datas, $scope);
         $scope.errorFieldMap = {};

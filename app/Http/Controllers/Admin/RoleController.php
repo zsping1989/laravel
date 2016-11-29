@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Exceptions\ResourceController;
+use Custom\Commands\Controllers\ResourceController;
 use App\Http\Controllers\Controller;
 use App\Logics\Facade\MenuLogic;
-use App\Logics\Facade\RoleLogic;
 use App\Logics\Facade\UserLogic;
 use App\Models\Role;
 use App\User;

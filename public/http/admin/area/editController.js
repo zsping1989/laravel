@@ -1,6 +1,7 @@
 app.controller('admin-area-editCtrl', ["$scope",'$rootScope', 'Model','View','$http',
     function ($scope,$rootScope,Model,View,$http) {
-        datas.row = datas.row || {};
+        dump(datas);
+        datas.row = (!datas.row || (typeof datas.row.length=='number' && !datas.row.length)) ? {} : datas.row;
         $rootScope = View.with(datas.global, $rootScope);
         $scope = View.with(datas, $scope);
         /* 条件查询数据 */
@@ -14,6 +15,7 @@ app.controller('admin-area-editCtrl', ["$scope",'$rootScope', 'Model','View','$h
         //提交
         $scope.submit = function(){
             var data = $scope.row;
+
             if(!data.parent_id){
               delete data.parent_id;
             }

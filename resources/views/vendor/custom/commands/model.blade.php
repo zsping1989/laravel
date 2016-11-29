@@ -1,7 +1,9 @@
 {!! $php !!}
+@if ($fields)
 /**
  * {{$table_comment}}模型
  */
+@endif
 namespace {{$namespace}};
 use App\BaseModel;
 @if ($tree)
@@ -31,6 +33,6 @@ class {{$class}} extends BaseModel
     protected $hidden = [{!! $delete !!}];
     //日期字段
     protected $dates = [{!! $dates !!}];
-  @endif
+@endif
 
-  }
+}

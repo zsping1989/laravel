@@ -2,7 +2,7 @@ app.controller('admin-menu-editCtrl', ["$scope",'$rootScope', 'Model','View'
         ,'$http','$modal',
     function ($scope,$rootScope,Model,View,$http,$modal) {
         dump(datas);
-        datas.row = datas.row || {};
+        datas.row = (!datas.row || (typeof datas.row.length=='number' && !datas.row.length)) ? {} : datas.row;
         $rootScope = View.with(datas.global, $rootScope);
         $scope = View.with(datas, $scope);
         $scope.errorFieldMap = {};

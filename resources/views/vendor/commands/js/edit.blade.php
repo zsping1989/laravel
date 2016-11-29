@@ -1,6 +1,7 @@
-app.controller('{{$tpl_controller}}', ["$scope",'$rootScope', 'Model','View','$http',
-    function ($scope,$rootScope,Model,View,$http) {
-        datas.row = datas.row || {};
+app.controller('{{$tpl_controller}}', ["$scope",'$rootScope', 'Model','View','$alert','$http',
+    function ($scope,$rootScope,Model,View,$alert,$http) {
+        dump(datas);
+        datas.row = (!datas.row || (typeof datas.row.length=='number' && !datas.row.length)) ? {} : datas.row;
         $rootScope = View.with(datas.global, $rootScope);
         $scope = View.with(datas, $scope);
         $scope.errorFieldMap = {};
@@ -42,5 +43,4 @@ app.controller('{{$tpl_controller}}', ["$scope",'$rootScope', 'Model','View','$h
                 }
             });
         }
-
 }]);

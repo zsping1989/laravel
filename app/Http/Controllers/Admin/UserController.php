@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Exceptions\ResourceController;
+use Custom\Commands\Controllers\ResourceController;
 use App\Http\Controllers\Controller;
 use App\Logics\Facade\UserLogic;
 use App\Models\Admin;
 use App\Models\Role;
 use App\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request as ValidateRequest;

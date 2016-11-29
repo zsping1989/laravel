@@ -20,5 +20,5 @@ class Test extends BaseModel
     protected $hidden = ['deleted_at'];
     //日期字段
     protected $dates = ['created_at','updated_at','deleted_at'];
-  
-  }
+
+}
