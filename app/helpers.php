@@ -111,21 +111,21 @@ function spanTimeLine($start,$end){
     return $res;
 }
 
-function sendSMS(){
+function sendSMS($data){
     $config = [
-        'app_key'    => env('ALIDAYU_KEY'),
-        'app_secret' => env('ALIDAYU_SECRET'),
+        'app_key'    => config('alidayu.app_key'),
+        'app_secret' => env('alidayu.app_secret'),
     ];
     $client = new \Flc\Alidayu\Client(new \Flc\Alidayu\App($config));
-    $req    = new \Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend();
-
-    $req->setRecNum('13699411148')
-        ->setSmsParam([
-            'number' => rand(100000, 999999)
-        ])->setSmsFreeSignName('测试zsping')
-        ->setSmsFreeSignName('叶子坑')
+    $req = new \Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend();
+    //短信接收者
+    $req->setRecNum($data['to'])
+        //模板参数
+        ->setSmsParam($data['params'])
+        //阿里大于模板签名
+        ->setSmsFreeSignName('测试zsping')
+        //阿里大于短信模板
         ->setSmsTemplateCode('SMS_27375263');
-
-    $resp = $client->execute($req);
-    dd($resp);
+    //发送短信
+    return $client->execute($req)->result->err_code==0;
 }
