@@ -80,6 +80,11 @@ function pathToCtrl($path){
     return $name.'Ctrl';
 }
 
+/**
+ * 时间格式,用于影片时长
+ * @param $time
+ * @return string
+ */
 function timeFormat($time){
     $second = $time % 60;
     $minutes = floor($time/60) % 60;
@@ -95,8 +100,9 @@ function timeFormat($time){
 }
 
 /**
- * @param $start
- * @param $end
+ * 每月跨度
+ * @param $start 开始时间戳
+ * @param $end 结束时间戳
  * @return array
  */
 function spanTimeLine($start,$end){
@@ -111,21 +117,44 @@ function spanTimeLine($start,$end){
     return $res;
 }
 
-function sendSMS($data){
-    $config = [
+/**
+ * 发送短信通知
+ * @param $to 用户手机号
+ * @param $tpl 配置模板
+ * @param array $data 短信参数
+ * @return bool
+ */
+function sendSMS($to,$tpl,$data=array()){
+    $config = config('alidayu.'.$tpl);
+    //短信模板不存在或接收者不存在,发送失败
+    if(!$config['sms_template_code'] || !$to){
+        return false;
+    }
+    $config['params']['to'] = 'required|mobile_phone';
+    //参数验证
+    $validator = \Illuminate\Support\Facades\Validator::make(array_merge($data,['to'=>$to]),$config['params']);
+    if($validator->fails()){
+        return false;
+    }
+
+    $client = new \Flc\Alidayu\Client(new \Flc\Alidayu\App([
         'app_key'    => config('alidayu.app_key'),
-        'app_secret' => env('alidayu.app_secret'),
-    ];
-    $client = new \Flc\Alidayu\Client(new \Flc\Alidayu\App($config));
+        'app_secret' => config('alidayu.app_secret'),
+    ]));
     $req = new \Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend();
     //短信接收者
-    $req->setRecNum($data['to'])
+    $req->setRecNum($to)
         //模板参数
-        ->setSmsParam($data['params'])
+        ->setSmsParam($data)
         //阿里大于模板签名
-        ->setSmsFreeSignName('测试zsping')
+        ->setSmsFreeSignName(config('alidayu.sms_free_sign_name'))
         //阿里大于短信模板
-        ->setSmsTemplateCode('SMS_27375263');
+        ->setSmsTemplateCode($config['sms_template_code']);
     //发送短信
-    return $client->execute($req)->result->err_code==0;
+    $res = $client->execute($req);
+    //返回结果
+    if(isset($res->code)){
+        return $res->code==0;
+    }
+    return $res->result->err_code==0;
 }

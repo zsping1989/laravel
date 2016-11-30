@@ -33,6 +33,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Logics\Facade\UserLogic;
 use App\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 
 use App\Http\Controllers\Controller;
@@ -93,7 +94,19 @@ class IndexController extends Controller
      * 返回: mixed
      */
     public function getIndex(){
-        //sendSMS();
+        $name = '学院君';
+        $flag = Mail::send('emails.register',['name'=>$name],function($message){
+            //dd($message);
+            $to = '214986304@qq.com';
+            $message ->to($to)->subject('测试邮件');
+        });
+        if($flag){
+            echo '发送邮件成功，请查收！';
+        }else{
+            echo '发送邮件失败，请重试！';
+        }
+        dd(1);
+        //dd(sendSMS('13699411148','register',['code'=>'1299'])); //发送短信功能
 
         //dd(Message::getCountNotReadByMsgtpl(1,['messages','system.message'])->toArray());
         //dd(UserLogic::getCountNotReadByMsgtpl(['messages','user','system'])->toArray());
