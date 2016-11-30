@@ -94,7 +94,7 @@ class IndexController extends Controller
      * 返回: mixed
      */
     public function getIndex(){
-        $name = '学院君';
+  /*      $name = '学院君';
         $flag = Mail::send('emails.register',['name'=>$name],function($message){
             //dd($message);
             $to = '214986304@qq.com';
@@ -105,7 +105,7 @@ class IndexController extends Controller
         }else{
             echo '发送邮件失败，请重试！';
         }
-        dd(1);
+        dd(1);*/
         //dd(sendSMS('13699411148','register',['code'=>'1299'])); //发送短信功能
 
         //dd(Message::getCountNotReadByMsgtpl(1,['messages','system.message'])->toArray());
