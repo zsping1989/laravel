@@ -10,9 +10,7 @@ app.controller('admin-area-indexCtrl', ["$scope",'$rootScope', 'Model','View', f
         /* 删除数据 */
         $scope.delete = Model.delete;
         $scope.selectAllId = Model.selectAllId;
-        require(['date_picker'],function(datePicker){
 
-        });
     }]);
 
 

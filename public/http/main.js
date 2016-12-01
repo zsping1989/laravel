@@ -46,7 +46,7 @@ require.config({
     urlArgs: "versions=" //+ (new Date()).getTime()  //防止读取缓存，调试用
 });
 
-var app = angular.module('app', ['mgcrea.ngStrap']); //app模块启动
+var app = angular.module('app', ['mgcrea.ngStrap','ngAnimate']); //app模块启动
 //全局请求配置,响应监听
 app.factory('httpInterceptor', ['$q', '$injector', function ($q, $injector) {
     var httpInterceptor = {
@@ -148,7 +148,7 @@ app.factory('Model', ['$http', 'View', function ($http, View) {
                 where[i].val = handleDate(where[i].val, 'yyyy-MM-dd');
             } else if (where[i].type == 'dateEnd' && objt == 'object') {
                 where[i].val = handleDate(where[i].val, 'yyyy-MM-dd');
-            } else {
+            } else if(objt=='string'){
                 where[i].val = where[i].val.replace(/(^\s*)|(\s*$)/g, "");
             }
             var val = where[i].val;
@@ -176,9 +176,6 @@ app.factory('Model', ['$http', 'View', function ($http, View) {
         }
         resparams.order = order;
         if (params.reset) {
-            if (!$scope.reset) {
-                return true
-            }
             resparams = {page: 1};
             var where = $scope.oldWhere;
             for (var i in where) {
@@ -187,7 +184,7 @@ app.factory('Model', ['$http', 'View', function ($http, View) {
                     where[i].val = handleDate(where[i].val, 'yyyy-MM-dd');
                 } else if (where[i].type == 'dateEnd' && objt == 'object') {
                     where[i].val = handleDate(where[i].val, 'yyyy-MM-dd');
-                } else {
+                } else if(objt=='string'){
                     where[i].val = where[i].val.replace(/(^\s*)|(\s*$)/g, "");
                 }
                 var val = where[i].val;

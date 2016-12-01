@@ -3,7 +3,6 @@
  * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
  */
-define(['angular'],function(angular){
 (function(window, angular) {'use strict';
 
 /* jshint ignore:start */
@@ -4146,4 +4145,3 @@ angular.module('ngAnimate', [])
 
 
 })(window, window.angular);
-});

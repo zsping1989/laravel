@@ -7,23 +7,65 @@
                  ng-init="data_url='/admin/area/list';delete_url='/admin/area/destroy'">
                 <div class="box-header with-border">
                     <h3 class="box-title">地区列表</h3>
-                    <div class="box-tools">
-                        <div class="input-group">
-                            <input type="text"
-                                   ng-init="where[0].key='id';where[0].exp='like';where[0].val= where[0].val || '';"
-                                   ng-model="where[0].val" placeholder="Search"
-                                   class="form-control input-sm pull-right">
-                            <div class="input-group-btn">
-                                <button ng-init="reset=where[0].val ? 1 : 0" ng-click="getData($this)"
-                                        class="btn btn-sm btn-default"><i class="fa fa-search"></i>
-                                </button>
-                                <button type="button" ng-click="getData($this,{reset:1})"
-                                        class="btn btn-sm btn-default"><i class="fa  fa-repeat"></i>
-                                </button>
+                    <form name="searchForm" class="form-inline pull-right">
+                        <div class="box-tools">
+                            <div ng-init="where[0].key='created_at';where[0].exp='>=';where[0].val= where[0].val || '';
+                            where[1].key='created_at';where[1].exp='<=';where[1].val= where[1].val || '';"
+                                 class="input-group "
+                                 ng-class="{'has-error': searchForm['where[0][val]'].$invalid}">
+                                <input class="form-control input-sm"
+                                       ng-model="where[0]['val']"
+                                       name="where[0][val]"
+                                       data-animation="am-fade"
+                                       data-trigger="focus"
+                                       data-max-date="@{{where[1]['val']}}"
+                                       placeholder="开始时间"
+                                       data-autoclose="1"
+                                       data-date-type="string"
+                                       data-model-date-format="yyyy-MM-dd 00:00:00"
+                                       bs-datepicker
+                                       type="text">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-sm btn-default">
+                                        <i class="fa fa-clock-o"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="input-group " ng-class="{'has-error': searchForm['where[1][val]'].$invalid}">
+                                <input class="form-control input-sm "
+                                       ng-model="where[1]['val']"
+                                       data-animation="am-fade"
+                                       name="where[1][val]"
+                                       data-trigger="focus"
+                                       data-min-date="@{{where[0]['val']}}"
+                                       placeholder="结束时间"
+                                       data-autoclose="1"
+                                       data-date-type="string"
+                                       data-model-date-format="yyyy-MM-dd 23:59:59"
+                                       bs-datepicker
+                                       type="text">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-sm btn-default">
+                                        <i class="fa fa-clock-o"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <input type="text"
+                                       ng-init="where[2].key='id';where[2].exp='like';where[2].val= where[2].val || '';"
+                                       ng-model="where[2].val" placeholder="搜索"
+                                       class="form-control input-sm">
+                                <div class="input-group-btn">
+                                    <button ng-click="getData($this)"
+                                            class="btn btn-sm btn-default"><i class="fa fa-search"></i>
+                                    </button>
+                                    <button type="button" ng-click="getData($this,{reset:1})"
+                                            class="btn btn-sm btn-default"><i class="fa fa-repeat"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-
-                    </div>
+                    </form>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">

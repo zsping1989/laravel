@@ -18,17 +18,16 @@
         </div>
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-
-
-                <!-- User Account: style can be found in dropdown.less -->
-                <li class="dropdown user user-menu" ng-class="{open:top_hidden==1}">
+                <li class="dropdown user user-menu">
                     <a  class="dropdown-toggle" data-animation="am-flip-x"
-                        ng-click="top_hidden = !top_hidden"
+                        data-placement="bottom-right"
+                        bs-dropdown
                         aria-haspopup="true"
                         aria-expanded="false">
                         <img src="/img/user2-160x160.jpg" class="user-image" alt="User Image">
                         <span class="hidden-xs">@{{user.uname}}</span>
                     </a>
+
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
