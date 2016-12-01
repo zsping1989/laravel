@@ -2,7 +2,7 @@
 
 /**
  * @SWG\Swagger(
- *     basePath="@{{admin",
+ *     basePath="",
  *     host="www.laravels.com",
  *     schemes={"http"},
  *     @SWG\Info(
@@ -44,7 +44,7 @@ class IndexController extends Controller
 {
     /**
      * @SWG\Get(
-     *   path="/show",
+     *   path="/admin/index/show",
      *   summary="显示所有用户",
      *   tags={"Index"},
      *   @SWG\Parameter(name="Authorization", in="header", required=false, description="用户凭证", type="string"),
@@ -60,7 +60,7 @@ class IndexController extends Controller
      * )
      */
     public function getShow() {
-        return Response::returns(User::all());
+        return User::all();
     }
     /**
      * @SWG\Get(path="/store/inventory",

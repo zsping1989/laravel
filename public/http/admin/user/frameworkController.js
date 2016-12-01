@@ -90,7 +90,7 @@ app.controller('admin-user-frameworkCtrl', ["$scope",'$rootScope', 'Model','View
         }
         $http({
             method: 'POST',
-            url: '@{{admin/user/framework',
+            url: '/admin/user/framework',
             data: {positions:data}
         })
     }

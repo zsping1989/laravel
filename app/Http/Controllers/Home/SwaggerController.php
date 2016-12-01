@@ -2,7 +2,7 @@
 /**
  * @Swagger(
  *     schemes={"http"},
- *     basePath="@{{",
+ *     basePath="",
  *     consumes={"application/json"},
  *     tags={
  *         @SWG\Tag(
