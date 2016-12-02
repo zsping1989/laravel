@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/lib/bootstrap/3.3.5/css/bootstrap.min.css" >
+<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" >
 <link rel="stylesheet" href="/css/ionicons/font-awesome.css">
 <link rel="stylesheet" href="/css/ionicons/ionicons.css">
 <link rel="stylesheet" href="/css/ate/AdminLTE.min.css">

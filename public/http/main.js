@@ -12,34 +12,29 @@ window.onresize = function () {
 
 //三方组件包配置
 require.config({
-    baseUrl: "/http/",
+    baseUrl: "/bower_components",
     paths: {
-        "jquery": '/lib/jquery/2.2.3/jquery.min',
-        'satellizer': '/lib/satellizer/0.14.0/satellizer.min',
-        "angular-animate": '/lib/angular-animate/1.5.5/angular-animate.min',
-        'css': '/lib/require-css/0.1.8/css.min',
-        'mainService': '/service/mainService',
-        'lodash': '/lib/lodash/3.10.1/lodash.min',
-        'backbone': '/lib/backbone/backbone.min',
-        'joint': '/lib/joint/0.9.6/joint.min',
-        'underscore': '/lib/underscore/1.8.3/underscore.min',
-        'echarts': '/lib/echarts/dist/echarts.min',
-        'echart': '/lib/echarts/',
-        'layer': '/lib/layer/layer',
-        'swiper': '/lib/swiper/swiper.min',
-        'ztree_core': '/lib/ztree/jquery.ztree.core',
-        'ztree': '/lib/ztree/jquery.ztree.excheck',
-        'geetest':'https://static.geetest.com/static/tools/gt',
-        'date_picker':'/lib/My97DatePicker/4.8/WdatePicker'
+        "jquery": 'jquery/dist/jquery.min',
+        'css': 'require-css/css.min',
+        'lodash': '/compatibility/lodash/3.10.1/lodash.min',
+        'backbone': 'backbone/backbone-min',
+        'joint': 'jointjs/dist/joint.min',
+        'underscore': 'underscore/underscore-min',
+        'echart':'echarts/',
+        'echarts': 'echarts/dist/echarts.min',
+        'layer': 'layer/build/layer',
+        'ztree_core':'ztree/js/jquery.ztree.core-3.5.min',
+        'ztree':'ztree/js/jquery.ztree.excheck-3.5.min',
+        'geetest':'https://static.geetest.com/static/tools/gt'
     },
     map: {},
     shim: {
         'lodash': ['jquery'],
         'backbone': ['jquery', 'lodash'],
-        'layer': ['jquery', 'css!/lib/layer/skin/layer.css'],
-        "joint": ["jquery", 'lodash', 'backbone', 'css!/lib/joint/0.9.6/joint.css'],
+        'layer': ['jquery', 'css!/bower_components/layer/build/skin/default/layer.css'],
+        "joint": ["jquery", 'lodash', 'backbone', 'css!/bower_components/jointjs/dist/joint.min.css'],
         'ztree_core': ['jquery'],
-        'ztree': ['jquery', 'ztree_core', 'css!/lib/ztree/zTreeStyle.css'],
+        'ztree': ['jquery', 'ztree_core', 'css!/bower_components/ztree/css/zTreeStyle/zTreeStyle.css'],
         'geetest':['jquery']
     },
     deps: ['css'], //启动

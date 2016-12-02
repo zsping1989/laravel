@@ -124,7 +124,8 @@ function spanTimeLine($start,$end){
  * @param array $data 短信参数
  * @return bool
  */
-function sendSMS($to,$tpl,$data=array()){
+function sendSMS($to,$tpl,array $data=array()){
+    $to = strval($to);
     $config = config('alidayu.'.$tpl);
     //短信模板不存在或接收者不存在,发送失败
     if(!$config['sms_template_code'] || !$to){

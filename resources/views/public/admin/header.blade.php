@@ -1,5 +1,5 @@
 <div class="main-header">
-    <a style="text-decoration:none;" class="logo">
+    <a style="text-decoration:none;" href="/" class="logo">
         <span class="logo-mini"><b>后</b>台</span>
         <span class="logo-lg"><b>后台管理</b>系统</span>
     </a>
