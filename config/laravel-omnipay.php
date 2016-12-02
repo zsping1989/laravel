@@ -24,11 +24,11 @@ return [
 		'alipay' => [
 			'driver' => 'Alipay_Express',
 			'options' => [
-				'partner' => 'your pid here',
-				'key' => 'your appid here',
-				'sellerEmail' =>'your alipay account here',
-				'returnUrl' => 'your returnUrl here',
-				'notifyUrl' => 'your notifyUrl here'
+				'partner' => env('ALIPLAY_PID'), //合作伙伴身份（PID）
+				'key' => env('ALIPLAY_APPID'), //APPID
+				'sellerEmail' =>env('ALIPLAY_USER'), //支付宝账号
+				'returnUrl' => 'your returnUrl here', //回调页面
+				'notifyUrl' => 'your notifyUrl here' //提示页面
 			]
 		]
 	]
