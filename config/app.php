@@ -167,6 +167,7 @@ return [
         Custom\Commands\Providers\CommandsServiceProvider::class, //自定义代码生成
         Germey\Geetest\GeetestServiceProvider::class, //极验模块
         App\Providers\LogicServiceProvider::class, //逻辑模块
+        Ignited\LaravelOmnipay\LaravelOmnipayServiceProvider::class, //支付宝支付
 
 
     ],
@@ -216,6 +217,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Geetest' => Germey\Geetest\Geetest::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Omnipay' => Ignited\LaravelOmnipay\Facades\OmnipayFacade::class,
 
     ],
 
