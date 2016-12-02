@@ -2,7 +2,7 @@
     var datas = {!! $data !!};
 </script>
 <script type="text/javascript" src="/bower_components/requirejs/require.js"></script>
-<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="/compatibility/angular/1.5.5/angular.min.js"></script>
 <script type="text/javascript" src="/bower_components/angular-strap/dist/angular-strap.min.js"></script>
 <script type="text/javascript" src="/bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
 <script type="text/javascript" src="/bower_components/angular-animate/angular-animate.min.js"></script>
