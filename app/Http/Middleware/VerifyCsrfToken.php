@@ -12,7 +12,8 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        //
+        '/home/pay-communicate/result',
+        '/home/pay-communicate/notify'
     ];
 
     /**

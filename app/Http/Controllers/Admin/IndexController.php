@@ -33,6 +33,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Logics\Facade\UserLogic;
 use App\User;
+
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 
@@ -94,6 +95,7 @@ class IndexController extends Controller
      * 返回: mixed
      */
     public function getIndex(){
+
   /*      $name = '学院君';
         $flag = Mail::send('emails.register',['name'=>$name],function($message){
             //dd($message);
@@ -118,6 +120,9 @@ class IndexController extends Controller
         ]));*/
         return Response::returns([]);
     }
+
+
+
 
     /**
      * 404错误页面

@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.2.45 on 2016-12-02.
+ * Generated for Laravel 5.2.45 on 2016-12-07.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -11596,6 +11596,49 @@ namespace {
         public static function getDrivers(){
             //Method inherited from \Illuminate\Support\Manager            
             return \Laravel\Socialite\SocialiteManager::getDrivers();
+        }
+        
+    }
+
+
+    class Omnipay extends \Ignited\LaravelOmnipay\Facades\OmnipayFacade{
+        
+        /**
+         * Get an instance of the specified gateway
+         *
+         * @param \Ignited\LaravelOmnipay\index  of config array to use
+         * @return \Omnipay\Common\AbstractGateway 
+         * @static 
+         */
+        public static function gateway($name = null){
+            return \Ignited\LaravelOmnipay\LaravelOmnipayManager::gateway($name);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function creditCard($cardInput){
+            return \Ignited\LaravelOmnipay\LaravelOmnipayManager::creditCard($cardInput);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function getGateway(){
+            return \Ignited\LaravelOmnipay\LaravelOmnipayManager::getGateway();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function setGateway($name){
+            return \Ignited\LaravelOmnipay\LaravelOmnipayManager::setGateway($name);
         }
         
     }

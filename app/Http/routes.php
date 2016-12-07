@@ -10,16 +10,23 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
 //首页
 Route::get('/', function(){
     return redirect('/home/auth/login');
 });
 
-//前台路由设置
+//前台无需登录路由
 Route::group(['prefix'=>'home','namespace'=>'Home'],function($data){
     Route::get('swagger', 'SwaggerController@doc'); //swagger接口文档说明路由
     Route::controller('auth', 'AuthController');
     Route::controller('index', 'IndexController');
+    Route::controller('pay-communicate', 'PayCommunicateController'); //支付通讯控制器
+});
+
+//前端必须登录的路由
+Route::group(['prefix'=>'home','namespace'=>'Home','middleware'=>['auth']],function($data){
+    Route::controller('pay', 'PayController'); //支付接口
 });
 
 
