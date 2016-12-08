@@ -17,7 +17,7 @@ return [
 	// 添加网关配置
 	'gateways' => [
 
-		//手机网站支付
+		//手机网站支付 new
 		'alipay_aop_wap'=>[
 			'driver' => 'Alipay_AopWap',
 			'options' => [
@@ -25,6 +25,21 @@ return [
 				'privateKey' =>env('ALIPAY_PRIVATE_KEY'), //私有秘钥
 				'alipayPublicKey'=> env('ALIPAY_PUBLIC_KEY'), //公钥
 				'notifyUrl'=>env('APP_URL').'/home/pay-communicate/notify/alipay_aop_wap' //支付后回调
+			]
+		],
+
+		//手机网站支付
+		'alipay_legacy_wap'=>[
+			'driver' => 'Alipay_LegacyWap',
+			'options' => [
+				'partner' => env('ALIPLAY_PID'), //合作伙伴身份（PID）
+				'key'=>env('ALIPAY_MD5_KEY'), //合作伙伴MD5密钥
+				'sellerId'=>env('ALIPLAY_PID'),
+				'privateKey' =>env('ALIPAY_PRIVATE_KEY'), //私有秘钥
+				'alipayPublicKey'=> env('ALIPAY_PUBLIC_KEY'), //公钥
+				'notifyUrl'=>env('APP_URL').'/home/pay-communicate/notify/alipay_aop_wap', //支付后回调
+				'returnUrl'=>env('APP_URL').'/home/pay-communicate/result'
+
 			]
 		],
 

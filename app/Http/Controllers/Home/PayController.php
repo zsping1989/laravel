@@ -32,6 +32,23 @@ class PayController extends Controller{
 
 
     /**
+     * 网关:Alipay_LegacyWap(Alipay Legacy WAP Gateway)
+     * 支付宝手机网站支付
+     * @return mixed
+     */
+    public function getAlipayLegacyWap(){
+        $request = $this->getGateway('alipay_legacy_wap')->purchase([
+            'out_trade_no' => date('YmdHis').mt_rand(1000,9999),
+            'subject'      => 'test',
+            'total_fee'    => '0.01',
+        ]);
+        $response = $request->send();
+        //$redirectUrl = $response->getRedirectUrl();
+        $response->redirect();
+    }
+
+
+    /**
      * 网关:Alipay_LegacyExpress(Alipay Legacy Express Gateway)
      * 支付宝即时到账
      * @return mixed
@@ -71,14 +88,12 @@ class PayController extends Controller{
         //Android 客户端
         /* PayTask alipay = new PayTask(PayDemoActivity.this);
         Map<String, String> result = alipay.payV2(orderString, true);*/
-
-
-        return $orderString;
+        return ['order_string'=>$orderString];
     }
 
     /**
      * 网关:Alipay_AopApp(Alipay APP Gateway)
-     * 支付宝APP支付
+     * 支付宝面对面支付
      * @return mixed
      */
     public function getAlipayAopF2f(){
@@ -93,7 +108,7 @@ class PayController extends Controller{
 
         // 获取收款二维码内容
         $qrCodeContent = $response->getQrCode();
-        dd($qrCodeContent);
+        return ['qr_code_url'=>$qrCodeContent];
     }
 
 
