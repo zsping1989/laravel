@@ -21,10 +21,12 @@
         "predis/predis": "^1.1",
         "germey/geetest": "^1.0",
         "ignited/laravel-omnipay": "2.*",
-        "lokielse/omnipay-alipay": "dev-master",
         "socialiteproviders/qq": "^2.0",
         "socialiteproviders/weibo": "^2.0",
-        "socialiteproviders/weixin": "^3.0"
+        "socialiteproviders/weixin": "^3.0",
+        "lokielse/omnipay-wechatpay": "^1.0",
+        "lokielse/omnipay-unionpay": "dev-master",
+        "lokielse/omnipay-alipay": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

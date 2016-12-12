@@ -21,6 +21,8 @@ return [
 		'alipay_aop_wap'=>[
 			'driver' => 'Alipay_AopWap',
 			'options' => [
+				'partner' => env('ALIPLAY_PID'), //合作伙伴身份（PID）
+				'sellerEmail' =>env('ALIPLAY_USER'), //卖方邮箱
 				'appId' => env('ALIPLAY_APPID'), //应用ID
 				'privateKey' =>env('ALIPAY_PRIVATE_KEY'), //私有秘钥
 				'alipayPublicKey'=> env('ALIPAY_PUBLIC_KEY'), //公钥
