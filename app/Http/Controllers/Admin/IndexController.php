@@ -38,6 +38,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Message\Facades\Message;
 
@@ -95,6 +96,7 @@ class IndexController extends Controller
      * 返回: mixed
      */
     public function getIndex(){
+        //dd(Storage::disk('f')->put('file.txt', 'Contents'));
 
   /*      $name = '学院君';
         $flag = Mail::send('emails.register',['name'=>$name],function($message){
