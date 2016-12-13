@@ -88,10 +88,9 @@ return [
 		'wechat_pay_app'=>[
 			'driver' => 'WechatPay_App',
 			'options' => [
-				'appId' => env('ALIPLAY_APPID'), //应用ID
-				'mchId' =>env('ALIPAY_PRIVATE_KEY'), //私有秘钥
-				'apiKey'=> env('ALIPAY_PUBLIC_KEY'), //公钥
-				'notifyUrl'=>env('APP_URL').'/home/pay-communicate/notify/alipay_aop_f2f' //支付后回调
+				'appId' => env('WECHAT_APPID'), //应用ID
+				'mchId' =>env('WECHAT_MCHID'), //
+				'apiKey'=> env('WECHAT_API_KEY'), //
 			]
 		],
 

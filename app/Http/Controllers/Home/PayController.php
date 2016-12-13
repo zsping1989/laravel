@@ -115,18 +115,23 @@ class PayController extends Controller{
      * @return mixed
      */
     public function getWechatPayApp(){
-        $request = $this->getGateway('alipay_aop_f2f')->purchase();
-        $request->setBizContent([
-            'subject'      => 'test',
-            'out_trade_no' => date('YmdHis') . mt_rand(1000, 9999),
-            'total_amount' => '0.01'
+        $request = $this->getGateway('wechat_pay_app')->purchase([
+            'body'              => 'The test order',
+            'out_trade_no'      => date('YmdHis').mt_rand(1000, 9999),
+            'total_fee'         => 1, //=0.01
+            'spbill_create_ip'  => 'ip_address',
+            'fee_type'          => 'CNY'
         ]);
+
 
         $response = $request->send();
 
-        // 获取收款二维码内容
-        $qrCodeContent = $response->getQrCode();
-        return ['qr_code_url'=>$qrCodeContent];
+        //available methods
+        $response->isSuccessful();
+        $response->getData(); //For debug
+        $response->getAppOrderData(); //For WechatPay_App
+        $response->getJsOrderData(); //For WechatPay_Js
+        $response->getCodeUrl(); //For Native Trade Type
     }
 
 
