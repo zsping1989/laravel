@@ -23,16 +23,20 @@ class PayCommunicateController extends Controller{
         exit('fail');
     }
 
-    public function postResult($gateway=null){
-        $gateway = $this->getGateway($gateway);
-        $options = [
-            'request_params'=> $_REQUEST,
-        ];
-
-        $response = $gateway->completePurchase($options)->send();
-        $response->isSuccessful() AND $response->isTradeStatusOk() AND exit('支付成功');
-        exit('支付失败');
+    public function anyResult($gateway=null){
+        $options = array_merge($_POST, $_GET);
+        $request = $this->getGateway($gateway)->completePurchase($options);
+        $response = $request->send();
+        dump($_REQUEST);
+        try {
+            $response = $request->send();
+            $response->isPaid() AND exit('success');
+        } catch (Exception $e) {
+        }
+        exit('fail');
     }
+
+
 
 
 

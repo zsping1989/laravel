@@ -7,7 +7,6 @@
 
 return [
 
-
 	// 默认支付使用网关
 	'default' => 'alipay_legacy_express',
 
@@ -20,13 +19,16 @@ return [
 		'alipay_legacy_express' => [
 			'driver' => 'Alipay_LegacyExpress',
 			'options' => [
-				/* sellerId,sellerEmail,sellerAccountName必填一个 */
-				'sellerId' => '2088021001625212',//env('ALIPLAY_PID'), //合作伙伴身份（PID）
-				//'sellerEmail' =>'magicyugi@gmail.com',//env('ALIPLAY_Email'), //卖方支付宝邮箱
-				//'sellerAccountName' => env('ALIPLAY_USER'), //卖方支付宝账号
-				'key'=>'nk7ro1rr86z67y05gb1lsk1ngw9im8vb',//env('ALIPAY_MD5_KEY'), //合作伙伴MD5密钥
-				//'returnUrl'=>env('APP_URL').'/home/pay-communicate/result',
-				//'notifyUrl'=>env('APP_URL').'/home/pay-communicate/notify/alipay_legacy_express'
+                'partner' => env('ALIPLAY_PID'), //合作伙伴身份（PID）-必填
+				'sellerId' => env('ALIPLAY_PID'), //合作伙伴身份（PID）-sellerId,sellerEmail,sellerAccountName必填一个
+				//'sellerEmail' => env('ALIPLAY_Email'), //卖方支付宝邮箱 -sellerId,sellerEmail,sellerAccountName必填一个
+				//'sellerAccountName' => env('ALIPLAY_USER'), //卖方支付宝账号 -sellerId,sellerEmail,sellerAccountName必填一个
+				//'signType'=>'RSA', //签名加密方式 -默认MD5
+				'key'=>env('ALIPAY_MD5_KEY'), //合作伙伴MD5密钥 -签名类型为MD5时必填
+                //'privateKey' =>env('ALIPAY_PRIVATE_KEY'), //私有秘钥 -signType='RSA'时,必填
+                //'alipayPublicKey'=> env('ALIPAY_PUBLIC_KEY'), //公钥 -signType='RSA'时,必填
+				'returnUrl'=>env('APP_URL').'/home/pay-communicate/result/alipay_legacy_express', //同步返回
+				'notifyUrl'=>env('APP_URL').'/home/pay-communicate/notify/alipay_legacy_express' //异步通知,只能返回success
 			]
 		],
 
