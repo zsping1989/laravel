@@ -12,28 +12,48 @@ use App\Http\Controllers\Controller;
 class PayCommunicateController extends Controller{
     use PayBase;
 
+    /**
+     * 支付宝,异步通知
+     * @param null $gateway
+     */
     public function anyNotify($gateway=null){
-        $request = $this->getGateway($gateway)->completePurchase();
-        $request->setParams(array_merge($_POST, $_GET)); //Don't use $_REQUEST for may contain $_COOKIE
+        $options = array_merge($_POST, $_GET);
+        $request = $this->getGateway($gateway)->completePurchase($options);
+        $response = $request->send();
         try {
             $response = $request->send();
-            $response->isPaid() and exit('success'); //The notify response should be 'success' only
+            !$response->isPaid() AND exit('fail');
         } catch (Exception $e) {
+            exit('fail');
         }
+        $this->isPaid() AND exit('success');
         exit('fail');
     }
 
+    /**
+     * 支付宝同步返回
+     * @param null $gateway
+     */
     public function anyResult($gateway=null){
         $options = array_merge($_POST, $_GET);
         $request = $this->getGateway($gateway)->completePurchase($options);
         $response = $request->send();
-        dump($_REQUEST);
         try {
             $response = $request->send();
-            $response->isPaid() AND exit('success');
+            !$response->isPaid() AND exit('fail');
         } catch (Exception $e) {
+            exit('fail');
         }
+        $this->isPaid() AND exit('success');
         exit('fail');
+    }
+
+    /**
+     * 支付成功,执行后续操作
+     * @return bool
+     */
+    protected function isPaid(){
+        return true;
     }
 
 

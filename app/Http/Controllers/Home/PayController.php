@@ -27,6 +27,29 @@ class PayController extends Controller{
         $response->redirect();
     }
 
+
+    /**
+     * 网关:Alipay_AopApp(Alipay APP Gateway)
+     * 支付宝面对面支付
+     * @return mixed
+     */
+    public function getAlipayAopF2f(){
+        $request = $this->getGateway('alipay_aop_f2f')->purchase();
+        $request->setBizContent([
+            'subject'      => 'test',
+            'out_trade_no' => date('YmdHis') . mt_rand(1000, 9999),
+            'total_amount' => '0.01',
+            'timeout_express'=>'90m'
+        ]);
+
+        $response = $request->send();
+        // 获取收款二维码内容
+        $qrCodeContent = $response->getQrCode();
+        return ['qr_code'=>qrcodeUrl($qrCodeContent)];
+    }
+
+
+
     /**
      * 网关:Alipay_AopWap(Alipay WAP Gateway)
      * 支付宝手机网站支付 new
@@ -89,25 +112,7 @@ class PayController extends Controller{
         return ['order_string'=>$orderString];
     }
 
-    /**
-     * 网关:Alipay_AopApp(Alipay APP Gateway)
-     * 支付宝面对面支付
-     * @return mixed
-     */
-    public function getAlipayAopF2f(){
-        $request = $this->getGateway('alipay_aop_f2f')->purchase();
-        $request->setBizContent([
-            'subject'      => 'test',
-            'out_trade_no' => date('YmdHis') . mt_rand(1000, 9999),
-            'total_amount' => '0.01'
-        ]);
 
-        $response = $request->send();
-
-        // 获取收款二维码内容
-        $qrCodeContent = $response->getQrCode();
-        return ['qr_code_url'=>$qrCodeContent];
-    }
 
     /**
      * 网关:Alipay_AopApp(Alipay APP Gateway)

@@ -32,6 +32,17 @@ return [
 			]
 		],
 
+		//阿里当面付
+		'alipay_aop_f2f'=>[
+			'driver' => 'Alipay_AopF2F',
+			'options' => [
+				'charset'=>'GBK', // 应用编码,默认UTF-8
+				'appId' => env('ALIPLAY_APPID'), //应用ID
+				'privateKey' => env('ALIPAY_APP_PRIVATE_KEY'), //应用私有秘钥
+				'alipayPublicKey'=>env('ALIPAY_PUBLIC_KEY'), //支付宝公钥
+				'notifyUrl'=>env('APP_URL').'/home/pay-communicate/notify/alipay_aop_f2f' //异步通知
+			]
+		],
 
 
 
@@ -75,16 +86,7 @@ return [
 			]
 		],
 
-		//阿里APP支付
-		'alipay_aop_f2f'=>[
-			'driver' => 'Alipay_AopF2F',
-			'options' => [
-				'appId' => env('ALIPLAY_APPID'), //应用ID
-				'privateKey' =>env('ALIPAY_PRIVATE_KEY'), //私有秘钥
-				'alipayPublicKey'=> env('ALIPAY_PUBLIC_KEY'), //公钥
-				'notifyUrl'=>env('APP_URL').'/home/pay-communicate/notify/alipay_aop_f2f' //支付后回调
-			]
-		],
+
 
 		//微信APP支付
 		'wechat_pay_app'=>[

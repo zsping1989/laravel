@@ -16,6 +16,8 @@ Route::get('/', function(){
     return redirect('/home/auth/login');
 });
 
+Route::controller('img', 'Home\ImgController'); //图片处理
+
 //前台无需登录路由
 Route::group(['prefix'=>'home','namespace'=>'Home'],function($data){
     Route::get('swagger', 'SwaggerController@doc'); //swagger接口文档说明路由

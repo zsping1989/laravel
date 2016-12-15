@@ -26,7 +26,8 @@
         "socialiteproviders/weixin": "^3.0",
         "lokielse/omnipay-wechatpay": "^1.0",
         "lokielse/omnipay-unionpay": "dev-master",
-        "lokielse/omnipay-alipay": "^2.0"
+        "lokielse/omnipay-alipay": "^2.0",
+        "aferrandini/phpqrcode": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
