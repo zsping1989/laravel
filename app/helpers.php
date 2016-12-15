@@ -160,6 +160,6 @@ function sendSMS($to,$tpl,array $data=array()){
     return $res->result->err_code==0;
 }
 
-function qrcodeUrl($content=''){
-    return '/img/qrcode-png?content='.urlencode($content);
+function qrcodeUrl($content='',$level=0,$size = 3, $margin =4){
+    return env('APP_URL')."/img/qrcode-png/$level/$size/$margin?content=".urlencode($content);
 }
