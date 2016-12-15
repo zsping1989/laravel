@@ -160,6 +160,14 @@ function sendSMS($to,$tpl,array $data=array()){
     return $res->result->err_code==0;
 }
 
+/**
+ * 二维码地址获取
+ * @param string $content 二维码内容
+ * @param int $level 容错级别 (0,1,2,3)
+ * @param int $size 二维码大小
+ * @param int $margin 二维码外边距
+ * @return string
+ */
 function qrcodeUrl($content='',$level=0,$size = 3, $margin =4){
     return env('APP_URL')."/img/qrcode-png/$level/$size/$margin?content=".urlencode($content);
 }
