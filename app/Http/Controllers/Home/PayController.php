@@ -70,23 +70,6 @@ class PayController extends Controller{
 
 
     /**
-     * 网关:Alipay_LegacyWap(Alipay Legacy WAP Gateway)
-     * 支付宝手机网站支付
-     * @return mixed
-     */
-    public function getAlipayLegacyWap(){
-        $request = $this->getGateway('alipay_legacy_wap')->purchase([
-            'out_trade_no' => date('YmdHis').mt_rand(1000,9999),
-            'subject'      => 'test',
-            'total_fee'    => '0.01',
-        ]);
-        $response = $request->send();
-        //$redirectUrl = $response->getRedirectUrl();
-        $response->redirect();
-    }
-
-
-    /**
      * 网关:Alipay_AopApp(Alipay APP Gateway)
      * 支付宝APP支付
      * @return mixed

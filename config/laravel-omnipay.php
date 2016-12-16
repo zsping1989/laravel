@@ -15,7 +15,8 @@ return [
 
 	// 添加网关配置
 	'gateways' => [
-		//阿里即时到账
+
+		//阿里即时到账 https://doc.open.alipay.com/docs/doc.htm?treeId=108&articleId=103950&docType=1
 		'alipay_legacy_express' => [
 			'driver' => 'Alipay_LegacyExpress',
 			'options' => [
@@ -32,7 +33,7 @@ return [
 			]
 		],
 
-		//阿里当面付
+		//阿里当面付 https://doc.open.alipay.com/docs/doc.htm?treeId=194&articleId=105072&docType=1
 		'alipay_aop_f2f'=>[
 			'driver' => 'Alipay_AopF2F',
 			'options' => [
@@ -44,44 +45,26 @@ return [
 			]
 		],
 
-
-
-
-		//手机网站支付 new
+		//手机网站支付 new https://doc.open.alipay.com/docs/doc.htm?treeId=203&articleId=105288&docType=1
 		'alipay_aop_wap'=>[
 			'driver' => 'Alipay_AopWap',
 			'options' => [
-				'partner' => env('ALIPLAY_PID'), //合作伙伴身份（PID）
-				'sellerEmail' =>env('ALIPLAY_USER'), //卖方邮箱
 				'appId' => env('ALIPLAY_APPID'), //应用ID
-				'privateKey' =>env('ALIPAY_PRIVATE_KEY'), //私有秘钥
-				'alipayPublicKey'=> env('ALIPAY_PUBLIC_KEY'), //公钥
-				'notifyUrl'=>env('APP_URL').'/home/pay-communicate/notify/alipay_aop_wap' //支付后回调
+				'privateKey' => env('ALIPAY_APP_PRIVATE_KEY'), //应用私有秘钥
+				'alipayPublicKey'=>env('ALIPAY_PUBLIC_KEY'), //支付宝公钥
+				'returnUrl'=>env('APP_URL').'/home/pay-communicate/result/alipay_legacy_express', //同步返回
+				'notifyUrl'=>env('APP_URL').'/home/pay-communicate/notify/alipay_aop_wap' //异步通知
 			]
 		],
 
-		//手机网站支付
-		'alipay_legacy_wap'=>[
-			'driver' => 'Alipay_LegacyWap',
-			'options' => [
-				'partner' => env('ALIPLAY_PID'), //合作伙伴身份（PID）
-				'key'=>env('ALIPAY_MD5_KEY'), //合作伙伴MD5密钥
-				'sellerId'=>env('ALIPLAY_PID'),
-				'privateKey' =>env('ALIPAY_PRIVATE_KEY'), //私有秘钥
-				'alipayPublicKey'=> env('ALIPAY_PUBLIC_KEY'), //公钥
-				'notifyUrl'=>env('APP_URL').'/home/pay-communicate/notify/alipay_aop_wap', //支付后回调
-				'returnUrl'=>env('APP_URL').'/home/pay-communicate/result'
-
-			]
-		],
-
-		//阿里APP支付
+		//阿里APP支付 https://doc.open.alipay.com/docs/doc.htm?treeId=204&articleId=105051&docType=1
 		'alipay_aop_app'=>[
 			'driver' => 'Alipay_AopApp',
 			'options' => [
 				'appId' => env('ALIPLAY_APPID'), //应用ID
 				'privateKey' =>env('ALIPAY_PRIVATE_KEY'), //私有秘钥
 				'alipayPublicKey'=> env('ALIPAY_PUBLIC_KEY'), //公钥
+				'returnUrl'=>env('APP_URL').'/home/pay-communicate/result/alipay_aop_app', //同步返回
 				'notifyUrl'=>env('APP_URL').'/home/pay-communicate/notify/alipay_aop_app' //支付后回调
 			]
 		],
