@@ -159,6 +159,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class, //调试日志
 
         SocialiteProviders\Manager\ServiceProvider::class, //三方登录
         App\Providers\ResponseMacroServiceProvider::class, //响应宏注册
@@ -218,6 +219,7 @@ return [
         'Geetest' => Germey\Geetest\Geetest::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Omnipay' => Ignited\LaravelOmnipay\Facades\OmnipayFacade::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 
