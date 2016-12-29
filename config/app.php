@@ -160,6 +160,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class, //调试日志
+        App\Providers\ObserverServiceProvider::class, //观察者模式
 
         SocialiteProviders\Manager\ServiceProvider::class, //三方登录
         App\Providers\ResponseMacroServiceProvider::class, //响应宏注册
