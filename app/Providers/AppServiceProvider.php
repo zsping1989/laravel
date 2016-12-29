@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Exceptions\CustomValidator;
 use App\Logics\UserLogic;
+use App\Models\Menu;
+use App\Observers\MenuObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
 
         //时间语言设置
         \Carbon\Carbon::setLocale('zh');
-
+        Menu::observe(MenuObserver::class); //菜单目录监听
 
     }
 

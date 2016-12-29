@@ -22,12 +22,6 @@ class UserLogic{
     protected $user;
 
 
-
-    public function __construct(){
-        $this->user = $this->getUser();
-        $this->admin = $this->user ? $this->user->admin : null;
-    }
-
     /**
      * 获取登录用户
      * 返回: mixed
@@ -137,7 +131,9 @@ class UserLogic{
      * 返回: mixed
      */
     public function loginCacheInfo(){
-        $data = $this->user->toArray();
+        $this->user = $this->getUser();
+        $this->admin = $this->user ? $this->user->admin : null;
+        $data = collect($this->user)->toArray();
         if($this->admin){
             $this->admin->roles;
             $data['admin'] = $this->admin->toArray(); //后台用户数据缓存

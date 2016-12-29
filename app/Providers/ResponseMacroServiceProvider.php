@@ -6,6 +6,7 @@ use App\Logics\Facade\MenuLogic;
 use App\Logics\Facade\UserLogic;
 use App\Models\Menu;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Support\Facades\Route;
@@ -54,7 +55,13 @@ class ResponseMacroServiceProvider extends ServiceProvider
     public function addData(&$value){
         $user = UserLogic::getUser();
         $global = [];
-        $global['nav'] = MenuLogic::getNavbar(); //导航数据
+        $route_key = md5(Route::getCurrentRoute()->getCompiled()->getStaticPrefix());
+        $navs = Cache::get(config('cache-key.menu_navbar'),[]);
+        $global['nav'] = array_get($navs,$route_key,function()use($navs,$route_key){
+            $navs[$route_key] = MenuLogic::getNavbar();
+            Cache::put(config('cache-key.menu_navbar'), $navs, 1440);
+            return $navs[$route_key];
+        });
         $global['navkeys'] = collect($global['nav'])->keys()->all();
         $global['user'] = $user; //用户信息
         $global['menus'] = $global['user'] ? UserLogic::getUserInfo('navigation') : null; //菜单数据
