@@ -423,6 +423,21 @@ function dump() {
 }
 
 /**
+ * 格式化数字
+ * @param num
+ * @returns {string}
+ */
+function toThousands(num) {
+    var num = (num || 0).toString(), result = '';
+    while (num.length > 3) {
+        result = ',' + num.slice(-3) + result;
+        num = num.slice(0, num.length - 3);
+    }
+    if (num) { result = num + result; }
+    return result;
+}
+
+/**
  * 二进制转数组
  * @param num
  * @returns {Array}

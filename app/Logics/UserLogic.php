@@ -21,6 +21,12 @@ class UserLogic{
     //用户信息
     protected $user;
 
+    public function __construct()
+    {
+        $this->user = $this->getUser();
+        $this->admin = $this->user ? $this->user->admin : null;
+    }
+
 
     /**
      * 获取登录用户
@@ -131,8 +137,6 @@ class UserLogic{
      * 返回: mixed
      */
     public function loginCacheInfo(){
-        $this->user = $this->getUser();
-        $this->admin = $this->user ? $this->user->admin : null;
         $data = collect($this->user)->toArray();
         if($this->admin){
             $this->admin->roles;
