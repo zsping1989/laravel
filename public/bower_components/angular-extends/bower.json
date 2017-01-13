@@ -1,0 +1,30 @@
+{
+  "name": "angular-extends",
+  "homepage": "https://github.com/stonexx/angular-extends",
+  "authors": [
+    "Kiwon Seok"
+  ],
+  "description": "Angular extension modules",
+  "main": "dist/angular-extends.js",
+  "keywords": [
+    "angular",
+    "angular-extends"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "/Gulpfile.js",
+    "/webpack.config.js",
+    "/package.json",
+    "/README.md",
+    "/test",
+    "/support",
+    "/docs",
+    "/examples",
+    "/node_modules",
+    "/bower_components"
+  ],
+  "dependencies": {
+    "angular": "^1.4.8"
+  }
+}

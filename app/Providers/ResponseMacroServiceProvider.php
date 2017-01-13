@@ -55,7 +55,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
     public function addData(&$value){
         $user = UserLogic::getUser();
         $global = [];
-        $route_key = md5(Route::getCurrentRoute()->getCompiled()->getStaticPrefix());
+        $route_key = md5(app('request')->getPathInfo());
         $navs = Cache::get(config('cache-key.menu_navbar'),[]);
         $global['nav'] = array_get($navs,$route_key,function()use($navs,$route_key){
             $navs[$route_key] = MenuLogic::getNavbar();

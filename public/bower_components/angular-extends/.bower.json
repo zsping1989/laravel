@@ -1,0 +1,41 @@
+{
+  "name": "angular-extends",
+  "homepage": "https://github.com/stonexx/angular-extends",
+  "authors": [
+    "Kiwon Seok"
+  ],
+  "description": "Angular extension modules",
+  "main": "dist/angular-extends.js",
+  "keywords": [
+    "angular",
+    "angular-extends"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "/Gulpfile.js",
+    "/webpack.config.js",
+    "/package.json",
+    "/README.md",
+    "/test",
+    "/support",
+    "/docs",
+    "/examples",
+    "/node_modules",
+    "/bower_components"
+  ],
+  "dependencies": {
+    "angular": "^1.4.8"
+  },
+  "version": "0.2.12",
+  "_release": "0.2.12",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.2.12",
+    "commit": "b29cd5a986efff646e3446db60bb3a13cc6462f3"
+  },
+  "_source": "https://github.com/stonexx/angular-extends.git",
+  "_target": "^0.2.12",
+  "_originalSource": "angular-extends",
+  "_direct": true
+}
