@@ -1,4 +1,5 @@
 var elixir = require('laravel-elixir');
+elixir.config.sourcemaps = false;
 
 /*
  |--------------------------------------------------------------------------
@@ -20,4 +21,14 @@ elixir(function(mix) {
         'app.less'
     ]);
 });
+
+//合并js
+elixir(function(mix) {
+    mix.scriptsIn('public/bower_components/angular-fengtingxun/src','public/bower_components/angular-fengtingxun/dist/angular-fengtingxun.js');
+});
+
+
+
+
+
 
